@@ -1,13 +1,15 @@
 import 'dart:core';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/schema.schema.gql.dart';
 import 'package:git_touch/models/theme.dart';
-import 'package:git_touch/widgets/label.dart';
+import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:provider/provider.dart';
+
 import '../utils/utils.dart';
 import 'comment_item.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 TextSpan createUserSpan(BuildContext context, String? login) {
   return createLinkSpan(context, login, '/github/$login');
@@ -202,7 +204,7 @@ class TimelineItem extends StatelessWidget {
           textSpan: TextSpan(children: [
             TextSpan(text: ' ${AppLocalizations.of(context)!.added} '),
             WidgetSpan(
-                child: MyLabel(name: p.label.name, cssColor: p.label.color)),
+                child: HexColorTag(name: p.label.name, color: p.label.color)),
             TextSpan(text: ' ${AppLocalizations.of(context)!.label}'),
           ]),
         );
@@ -214,7 +216,7 @@ class TimelineItem extends StatelessWidget {
           textSpan: TextSpan(children: [
             TextSpan(text: ' ${AppLocalizations.of(context)!.removed} '),
             WidgetSpan(
-                child: MyLabel(name: p.label.name, cssColor: p.label.color)),
+                child: HexColorTag(name: p.label.name, color: p.label.color)),
             TextSpan(text: ' ${AppLocalizations.of(context)!.label}'),
           ]),
         );

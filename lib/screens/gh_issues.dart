@@ -1,5 +1,6 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
@@ -7,10 +8,9 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
+import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:git_touch/widgets/issue_item.dart';
-import 'package:git_touch/widgets/label.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GhIssuesScreen extends StatelessWidget {
   final String owner;
@@ -52,7 +52,7 @@ class GhIssuesScreen extends StatelessWidget {
               ? null
               : Wrap(spacing: 4, runSpacing: 4, children: [
                   for (var label in p.labels!.nodes!)
-                    MyLabel(name: label.name, cssColor: label.color)
+                    HexColorTag(name: label.name, color: label.color)
                 ]),
           url: '/github/$owner/$name/issues/${p.number}',
         );

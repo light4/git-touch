@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
+import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:git_touch/widgets/issue_item.dart';
-import 'package:git_touch/widgets/label.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GlMergeRequestsScreen extends StatelessWidget {
   final String id;
@@ -40,7 +40,7 @@ class GlMergeRequestsScreen extends StatelessWidget {
             ? null
             : Wrap(spacing: 4, runSpacing: 4, children: [
                 for (var label in p.labels!)
-                  MyLabel(name: label, cssColor: '#428BCA')
+                  HexColorTag(name: label, color: '#428BCA')
               ]),
         // url: '/gitlab/projects/${p.projectId}/merge_requests/${p.iid}',
         url: '$prefix/merge_requests/${p.iid}', // TODO:

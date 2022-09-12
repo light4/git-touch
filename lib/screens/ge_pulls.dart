@@ -3,8 +3,8 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
+import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:git_touch/widgets/issue_item.dart';
-import 'package:git_touch/widgets/label.dart';
 import 'package:provider/provider.dart';
 
 class GePullsScreen extends StatelessWidget {
@@ -39,7 +39,7 @@ class GePullsScreen extends StatelessWidget {
             ? null
             : Wrap(spacing: 4, runSpacing: 4, children: [
                 for (var label in p.labels!)
-                  MyLabel(name: label.name, cssColor: label.color)
+                  HexColorTag(name: label.name!, color: label.color!)
               ]),
       ),
     );

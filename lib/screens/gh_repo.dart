@@ -1,29 +1,30 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:ferry/ferry.dart';
 import 'package:filesize/filesize.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
 import 'package:git_touch/graphql/__generated__/schema.schema.gql.dart';
 import 'package:git_touch/models/auth.dart';
+import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
-import 'package:git_touch/widgets/markdown_view.dart';
-import 'package:git_touch/widgets/label.dart';
 import 'package:git_touch/widgets/language_bar.dart';
+import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:git_touch/widgets/repo_header.dart';
 import 'package:git_touch/widgets/table_view.dart';
 import 'package:github/github.dart';
+import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:tuple/tuple.dart';
-import 'package:git_touch/widgets/action_button.dart';
 import 'package:universal_io/io.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GhRepoScreen extends StatelessWidget {
   final String owner;
@@ -79,6 +80,7 @@ class GhRepoScreen extends StatelessWidget {
             });
           };
         }
+
         final readmeData = MarkdownViewData(
           context,
           md: readmeFactory('application/vnd.github.v3.raw'),
@@ -93,7 +95,8 @@ class GhRepoScreen extends StatelessWidget {
           title: AppLocalizations.of(context)!.repositoryActions,
           items: [
             ActionItem(
-              text: '${AppLocalizations.of(context)!.projects}(${repo.projects.totalCount})',
+              text:
+                  '${AppLocalizations.of(context)!.projects}(${repo.projects.totalCount})',
               url: repo.projectsUrl,
             ),
             ...ActionItem.getUrlActions(repo.url),
@@ -192,14 +195,15 @@ class GhRepoScreen extends StatelessWidget {
                   Wrap(
                     spacing: 4,
                     runSpacing: 4,
-                    children: repo.repositoryTopics.nodes!.map((node) {
-                      return MyLabel(
-                        name: node.topic.name,
-                        // color: Colors.blue.shade50,
-                        color: theme.palette.grayBackground,
-                        textColor: theme.palette.primary,
-                      );
-                    }).toList(),
+                    children: [
+                      for (final node in repo.repositoryTopics.nodes!)
+                        AntTag(
+                          color: PrimerColors.blue500,
+                          fill: AntTagFill.outline,
+                          round: true,
+                          child: Text(node.topic.name),
+                        )
+                    ],
                   )
               ],
             ),
@@ -274,7 +278,8 @@ class GhRepoScreen extends StatelessWidget {
                     TableViewItem(
                       leftIconData: Octicons.git_branch,
                       text: Text(AppLocalizations.of(context)!.branches),
-                      rightWidget: Text('${ref.name} • ${numberFormat.format(repo.refs!.totalCount)}'),
+                      rightWidget: Text(
+                          '${ref.name} • ${numberFormat.format(repo.refs!.totalCount)}'),
                       onTap: () async {
                         final refs = repo.refs!.nodes!;
                         if (refs.length < 2) return;

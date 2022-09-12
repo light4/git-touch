@@ -67,6 +67,8 @@ dependencies:
   pub_semver:
   google_fonts:
   go_router:
+  antd_mobile:
+    path: ../ant-design-mobile-flutter
 
 dev_dependencies:
   flutter_test:
