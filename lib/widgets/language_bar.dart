@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:from_css_color/from_css_color.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:provider/provider.dart';
 import 'package:github/github.dart' as github;
+import 'package:provider/provider.dart';
 
 class LanguageBarItem {
   String? name;
@@ -45,7 +46,7 @@ class LanguageBar extends StatelessWidget {
                 const SizedBox(width: 1),
                 items
                     .map((lang) => Container(
-                        color: convertColor(lang.hexColor),
+                        color: fromCssColor(lang.hexColor!),
                         width: langWidth * lang.ratio!))
                     .toList(),
               ),
@@ -73,7 +74,7 @@ class LanguageBar extends StatelessWidget {
                     width: 18,
                     height: 18,
                     decoration: BoxDecoration(
-                      color: convertColor(edge.hexColor),
+                      color: fromCssColor(edge.hexColor!),
                       shape: BoxShape.circle,
                     ),
                   ),

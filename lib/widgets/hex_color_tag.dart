@@ -1,6 +1,6 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/material.dart';
-import 'package:git_touch/utils/utils.dart';
+import 'package:from_css_color/from_css_color.dart';
 
 class HexColorTag extends StatelessWidget {
   final String name;
@@ -16,7 +16,7 @@ class HexColorTag extends StatelessWidget {
   Widget build(BuildContext context) {
     return AntTag(
       round: true,
-      color: convertColor(color),
+      color: fromCssColor(color),
       child: Text(name),
     );
   }

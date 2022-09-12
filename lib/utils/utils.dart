@@ -1,16 +1,18 @@
-import 'package:universal_io/io.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/border_view.dart';
 import 'package:intl/intl.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
+import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
-export 'extensions.dart';
+
 export 'package:flutter_vector_icons/flutter_vector_icons.dart'
     show Octicons, Ionicons;
+
+export 'extensions.dart';
 
 class StorageKeys {
   @deprecated
@@ -38,20 +40,6 @@ class CommonStyle {
   static const border = BorderView();
   static const verticalGap = SizedBox(height: 18);
   static final monospace = Platform.isIOS ? 'Menlo' : 'monospace'; // FIXME:
-}
-
-Color convertColor(String? cssHex) {
-  if (cssHex == null) {
-    return const Color(0xffededed); // Default color
-  }
-
-  if (cssHex.startsWith('#')) {
-    cssHex = cssHex.substring(1);
-  }
-  if (cssHex.length == 3) {
-    cssHex = cssHex.split('').map((char) => char + char).join('');
-  }
-  return Color(int.tryParse('ff$cssHex', radix: 16) ?? 0);
 }
 
 Color getFontColorByBrightness(Color color) {

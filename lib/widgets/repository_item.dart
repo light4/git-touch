@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:from_css_color/from_css_color.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/models/gitlab.dart';
@@ -8,9 +9,9 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/link.dart';
+import 'package:github/github.dart' as github;
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:github/github.dart' as github;
 
 class RepositoryItem extends StatelessWidget {
   final String? owner;
@@ -224,8 +225,8 @@ class RepositoryItem extends StatelessWidget {
                             width: 12,
                             height: 12,
                             decoration: BoxDecoration(
-                              color: convertColor(primaryLanguageColor ??
-                                  github.languageColors[primaryLanguageName!]),
+                              color: fromCssColor(primaryLanguageColor ??
+                                  github.languageColors[primaryLanguageName!]!),
                               shape: BoxShape.circle,
                             ),
                           ),

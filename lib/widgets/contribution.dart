@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:from_css_color/from_css_color.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -86,10 +87,10 @@ class ContributionWidget extends StatelessWidget {
                       height: 10,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                            color: convertColor(
+                            color: fromCssColor(
                               theme.brightness == Brightness.dark
-                                  ? darkMapper[day.hexColor!]
-                                  : day.hexColor,
+                                  ? darkMapper[day.hexColor!]!
+                                  : day.hexColor!,
                             ),
                             borderRadius: BorderRadius.circular(2)),
                       ),
