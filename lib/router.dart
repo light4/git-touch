@@ -91,11 +91,11 @@ final router = GoRouter(
         // common
         GoRoute(
           path: 'choose-code-theme',
-          builder: (context, state) => LoginScreen(),
+          builder: (context, state) => CodeThemeScreen(),
         ),
         GoRoute(
           path: 'login',
-          builder: (context, state) => CodeThemeScreen(),
+          builder: (context, state) => LoginScreen(),
         ),
         GoRoute(
           path: 'settings',
