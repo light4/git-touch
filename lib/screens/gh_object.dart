@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
-import 'package:flutter/material.dart';
-import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/widgets/table_view.dart';
 import 'package:github/github.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +69,7 @@ class GhObjectScreen extends StatelessWidget {
                   ...(v.downloadUrl == null ? {} : {'raw': v.downloadUrl}),
                 },
               ).toString();
-              return ObjectTreeItem(
+              return createObjectTreeItem(
                 name: v.name ?? '',
                 type: v.type ?? '',
                 url: uri.toString(),

@@ -39,7 +39,7 @@ class GhGistsFilesScreen extends StatelessWidget {
                 'content': v.text,
               },
             ).toString();
-            return ObjectTreeItem(
+            return createObjectTreeItem(
               url: uri,
               type: 'file',
               name: v.name ?? '',

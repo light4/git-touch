@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:universal_io/io.dart';
+
 import 'package:flutter/material.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/bitbucket.dart';
+import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
+import 'package:git_touch/widgets/table_view.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
-import 'package:path/path.dart' as p;
+import 'package:universal_io/io.dart';
 
 class BbObjectScreen extends StatelessWidget {
   final String owner;
@@ -52,13 +54,15 @@ class BbObjectScreen extends StatelessWidget {
         if (pl is String) {
           return BlobView(path, text: pl);
         } else if (pl is BbTree) {
-          return ObjectTreeItem(
-            name: p.basename(pl.path),
-            type: pl.type,
-            // size: v.type == 'commit_file' ? v.size : null,
-            size: pl.size,
-            url: '/bitbucket/$owner/$name/src/$ref?path=${pl.path.urlencode}',
-            downloadUrl: pl.links!['self']['href'] as String?,
+          return TableViewItemWidget(
+            createObjectTreeItem(
+              name: basename(pl.path),
+              type: pl.type,
+              // size: v.type == 'commit_file' ? v.size : null,
+              size: pl.size,
+              url: '/bitbucket/$owner/$name/src/$ref?path=${pl.path.urlencode}',
+              downloadUrl: pl.links!['self']['href'] as String?,
+            ),
           );
         } else {
           return Container();

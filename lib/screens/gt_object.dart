@@ -46,7 +46,7 @@ class GtObjectScreen extends StatelessWidget {
           });
           return TableView(items: [
             for (var v in items)
-              ObjectTreeItem(
+              createObjectTreeItem(
                 name: v.name,
                 type: v.type,
                 size: v.type == 'file' ? v.size : null,

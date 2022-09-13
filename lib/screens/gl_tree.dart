@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
+import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/object_tree.dart';
-import 'package:flutter/material.dart';
-import 'package:git_touch/models/auth.dart';
+import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GlTreeScreen extends StatelessWidget {
   final int id;
@@ -37,21 +38,18 @@ class GlTreeScreen extends StatelessWidget {
         );
       },
       itemBuilder: (item) {
-        return ObjectTreeItem(
-          type: item.type,
-          name: item.name,
-          downloadUrl:
-              '${auth.activeAccount!.domain}/api/v4/projects/$id/repository/files/${item.path.urlencode}/raw?ref=master', // TODO:
-          url: (() {
-            switch (item.type) {
-              case 'tree':
-                return '/gitlab/projects/$id/tree/$ref?path=${item.path.urlencode}';
-              case 'blob':
-                return '/gitlab/projects/$id/blob/$ref?path=${item.path.urlencode}';
-              default:
-                return null;
-            }
-          })(),
+        return TableViewItemWidget(
+          createObjectTreeItem(
+            type: item.type,
+            name: item.name,
+            downloadUrl:
+                '${auth.activeAccount!.domain}/api/v4/projects/$id/repository/files/${item.path.urlencode}/raw?ref=master', // TODO:
+            url: item.type == 'tree'
+                ? '/gitlab/projects/$id/tree/$ref?path=${item.path.urlencode}'
+                : item.type == 'blob'
+                    ? '/gitlab/projects/$id/blob/$ref?path=${item.path.urlencode}'
+                    : '',
+          ),
         );
       },
     );

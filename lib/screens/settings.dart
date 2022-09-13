@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/code.dart';
 import 'package:git_touch/models/theme.dart';
@@ -13,7 +14,6 @@ import 'package:launch_review/launch_review.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -203,9 +203,8 @@ class SettingsScreen extends StatelessWidget {
               TableViewItem(
                 text: Text(AppLocalizations.of(context)!.submitAnIssue),
                 rightWidget: const Text('git-touch/git-touch'),
-                url: '${auth.activeAccount!.platform == PlatformType.github
-                        ? '/github'
-                        : 'https://github.com'}/git-touch/git-touch/issues/new',
+                url:
+                    '${auth.activeAccount!.platform == PlatformType.github ? '/github' : 'https://github.com'}/git-touch/git-touch/issues/new',
               ),
               TableViewItem(
                 text: Text(AppLocalizations.of(context)!.rateThisApp),
@@ -241,9 +240,8 @@ class SettingsScreen extends StatelessWidget {
               TableViewItem(
                 text: Text(AppLocalizations.of(context)!.sourceCode),
                 rightWidget: const Text('git-touch/git-touch'),
-                url: '${auth.activeAccount!.platform == PlatformType.github
-                        ? '/github'
-                        : 'https://github.com'}/git-touch/git-touch',
+                url:
+                    '${auth.activeAccount!.platform == PlatformType.github ? '/github' : 'https://github.com'}/git-touch/git-touch',
               ),
             ],
           ),

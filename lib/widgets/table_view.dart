@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/border_view.dart';
+import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
-import 'link.dart';
 
 class TableViewHeader extends StatelessWidget {
   final String? title;
 
-  const TableViewHeader(this.title);
+  const TableViewHeader(this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class TableViewHeader extends StatelessWidget {
   }
 }
 
-class TableViewItem extends StatelessWidget {
+class TableViewItem {
   final Widget text;
   final IconData? leftIconData;
   final Widget? leftWidget;
@@ -42,14 +42,20 @@ class TableViewItem extends StatelessWidget {
     this.url,
     this.hideRightChevron = false,
   }) : assert(leftIconData == null || leftWidget == null);
+}
+
+class TableViewItemWidget extends StatelessWidget {
+  const TableViewItemWidget(this.item, {super.key});
+
+  final TableViewItem item;
 
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
 
     return LinkWidget(
-      onTap: onTap,
-      url: url,
+      onTap: item.onTap,
+      url: item.url,
       child: DefaultTextStyle(
         style: TextStyle(fontSize: 17, color: theme.palette.text),
         overflow: TextOverflow.ellipsis,
@@ -58,27 +64,30 @@ class TableViewItem extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: (leftWidget == null && leftIconData == null) ? 12 : 44,
+                width: (item.leftWidget == null && item.leftIconData == null)
+                    ? 12
+                    : 44,
                 child: Center(
-                    child: leftWidget ??
+                    child: item.leftWidget ??
                         Icon(
-                          leftIconData,
+                          item.leftIconData,
                           color: theme.palette.primary,
                           size: 20,
                         )),
               ),
-              Expanded(child: text),
-              if (rightWidget != null) ...[
+              Expanded(child: item.text),
+              if (item.rightWidget != null) ...[
                 DefaultTextStyle(
                   style: TextStyle(
                     fontSize: 17,
                     color: theme.palette.tertiaryText,
                   ),
-                  child: rightWidget!,
+                  child: item.rightWidget!,
                 ),
                 const SizedBox(width: 6)
               ],
-              if ((onTap != null || url != null) && !hideRightChevron)
+              if ((item.onTap != null || item.url != null) &&
+                  !item.hideRightChevron)
                 Icon(Ionicons.chevron_forward,
                     size: 20, color: theme.palette.tertiaryText)
               else
@@ -94,10 +103,15 @@ class TableViewItem extends StatelessWidget {
 
 class TableView extends StatelessWidget {
   final String? headerText;
-  final Iterable<Widget> items;
+  final Iterable<TableViewItem> items;
   final bool? hasIcon;
 
-  const TableView({this.headerText, required this.items, this.hasIcon = true});
+  const TableView({
+    super.key,
+    this.headerText,
+    required this.items,
+    this.hasIcon = true,
+  });
 
   double get _leftPadding => hasIcon == true ? 44 : 12;
 
@@ -109,7 +123,7 @@ class TableView extends StatelessWidget {
         if (headerText != null) TableViewHeader(headerText),
         ...join(
           BorderView(leftPadding: _leftPadding),
-          items.toList(),
+          [for (final item in items) TableViewItemWidget(item)],
         ),
         CommonStyle.border,
       ],
