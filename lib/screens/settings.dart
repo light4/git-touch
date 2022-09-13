@@ -26,100 +26,93 @@ class SettingsScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[
           CommonStyle.verticalGap,
-          TableView(
-              hasIcon: false,
-              headerText: AppLocalizations.of(context)!.system,
-              items: [
-                if (auth.activeAccount!.platform == PlatformType.github) ...[
-                  TableViewItem(
-                    text: Text(AppLocalizations.of(context)!.githubStatus),
-                    url: 'https://www.githubstatus.com/',
-                  ),
-                  TableViewItem(
-                    text: Text(AppLocalizations.of(context)!.reviewPermissions),
-                    url:
-                        'https://github.com/settings/connections/applications/$clientId',
-                    rightWidget: Text(auth.activeAccount!.login),
-                  ),
-                ],
-                if (auth.activeAccount!.platform == PlatformType.gitlab)
-                  TableViewItem(
-                    text: Text(AppLocalizations.of(context)!.gitlabStatus),
-                    url: '${auth.activeAccount!.domain}/help',
-                    rightWidget: FutureBuilder<String>(
-                      future: auth
-                          .fetchGitlab('/version')
-                          .then((v) => v['version']),
-                      builder: (context, snapshot) {
-                        return Text(snapshot.data ?? '');
-                      },
-                    ),
-                  ),
-                if (auth.activeAccount!.platform == PlatformType.gitea)
-                  TableViewItem(
-                    leftIconData: Octicons.info,
-                    text: Text(AppLocalizations.of(context)!.giteaStatus),
-                    url: '/gitea/status',
-                    rightWidget: FutureBuilder<String>(
-                      future:
-                          auth.fetchGitea('/version').then((v) => v['version']),
-                      builder: (context, snapshot) {
-                        return Text(snapshot.data ?? '');
-                      },
-                    ),
-                  ),
-                TableViewItem(
-                  text: Text(AppLocalizations.of(context)!.switchAccounts),
-                  url: '/login',
-                  rightWidget: Text(auth.activeAccount!.login),
-                ),
-                TableViewItem(
-                  text: Text(AppLocalizations.of(context)!.appLanguage),
-                  rightWidget: Text(theme.locale == null
-                      ? AppLocalizations.of(context)!.followSystem
-                      : localeNameMap[theme.locale!] ?? theme.locale!),
-                  onTap: () {
-                    theme.showActions(context, [
-                      for (final key in [
-                        null,
-                        ...AppLocalizations.supportedLocales
-                            .map((l) => l.toString())
-                            .where((key) => localeNameMap[key] != null)
-                      ])
-                        ActionItem(
-                          text: key == null
-                              ? AppLocalizations.of(context)!.followSystem
-                              : localeNameMap[key],
-                          onTap: (_) async {
-                            final res = await theme.showConfirm(
-                              context,
-                              const Text(
-                                  'The app will reload to make the language setting take effect'),
-                            );
-                            if (res == true && theme.locale != key) {
-                              await theme.setLocale(key);
-                              auth.reloadApp();
-                            }
-                          },
-                        )
-                    ]);
+          TableView(header: Text(AppLocalizations.of(context)!.system), items: [
+            if (auth.activeAccount!.platform == PlatformType.github) ...[
+              TableViewItem(
+                child: Text(AppLocalizations.of(context)!.githubStatus),
+                url: 'https://www.githubstatus.com/',
+              ),
+              TableViewItem(
+                child: Text(AppLocalizations.of(context)!.reviewPermissions),
+                url:
+                    'https://github.com/settings/connections/applications/$clientId',
+                extra: Text(auth.activeAccount!.login),
+              ),
+            ],
+            if (auth.activeAccount!.platform == PlatformType.gitlab)
+              TableViewItem(
+                child: Text(AppLocalizations.of(context)!.gitlabStatus),
+                url: '${auth.activeAccount!.domain}/help',
+                extra: FutureBuilder<String>(
+                  future:
+                      auth.fetchGitlab('/version').then((v) => v['version']),
+                  builder: (context, snapshot) {
+                    return Text(snapshot.data ?? '');
                   },
-                )
-              ]),
+                ),
+              ),
+            if (auth.activeAccount!.platform == PlatformType.gitea)
+              TableViewItem(
+                prefixIconData: Octicons.info,
+                child: Text(AppLocalizations.of(context)!.giteaStatus),
+                url: '/gitea/status',
+                extra: FutureBuilder<String>(
+                  future: auth.fetchGitea('/version').then((v) => v['version']),
+                  builder: (context, snapshot) {
+                    return Text(snapshot.data ?? '');
+                  },
+                ),
+              ),
+            TableViewItem(
+              child: Text(AppLocalizations.of(context)!.switchAccounts),
+              url: '/login',
+              extra: Text(auth.activeAccount!.login),
+            ),
+            TableViewItem(
+              child: Text(AppLocalizations.of(context)!.appLanguage),
+              extra: Text(theme.locale == null
+                  ? AppLocalizations.of(context)!.followSystem
+                  : localeNameMap[theme.locale!] ?? theme.locale!),
+              onClick: () {
+                theme.showActions(context, [
+                  for (final key in [
+                    null,
+                    ...AppLocalizations.supportedLocales
+                        .map((l) => l.toString())
+                        .where((key) => localeNameMap[key] != null)
+                  ])
+                    ActionItem(
+                      text: key == null
+                          ? AppLocalizations.of(context)!.followSystem
+                          : localeNameMap[key],
+                      onTap: (_) async {
+                        final res = await theme.showConfirm(
+                          context,
+                          const Text(
+                              'The app will reload to make the language setting take effect'),
+                        );
+                        if (res == true && theme.locale != key) {
+                          await theme.setLocale(key);
+                          auth.reloadApp();
+                        }
+                      },
+                    )
+                ]);
+              },
+            )
+          ]),
           CommonStyle.verticalGap,
           TableView(
-            hasIcon: false,
-            headerText: AppLocalizations.of(context)!.theme,
+            header: Text(AppLocalizations.of(context)!.theme),
             items: [
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.brightness),
-                rightWidget:
-                    Text(theme.brighnessValue == AppBrightnessType.light
-                        ? AppLocalizations.of(context)!.light
-                        : theme.brighnessValue == AppBrightnessType.dark
-                            ? AppLocalizations.of(context)!.dark
-                            : AppLocalizations.of(context)!.followSystem),
-                onTap: () {
+                child: Text(AppLocalizations.of(context)!.brightness),
+                extra: Text(theme.brighnessValue == AppBrightnessType.light
+                    ? AppLocalizations.of(context)!.light
+                    : theme.brighnessValue == AppBrightnessType.dark
+                        ? AppLocalizations.of(context)!.dark
+                        : AppLocalizations.of(context)!.followSystem),
+                onClick: () {
                   theme.showActions(context, [
                     for (var t in [
                       Tuple2(AppLocalizations.of(context)!.followSystem,
@@ -141,11 +134,11 @@ class SettingsScreen extends StatelessWidget {
                 },
               ),
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.scaffoldTheme),
-                rightWidget: Text(theme.theme == AppThemeType.cupertino
+                child: Text(AppLocalizations.of(context)!.scaffoldTheme),
+                extra: Text(theme.theme == AppThemeType.cupertino
                     ? AppLocalizations.of(context)!.cupertino
                     : AppLocalizations.of(context)!.material),
-                onTap: () {
+                onClick: () {
                   theme.showActions(context, [
                     for (var t in [
                       Tuple2(AppLocalizations.of(context)!.material,
@@ -165,16 +158,16 @@ class SettingsScreen extends StatelessWidget {
                 },
               ),
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.codeTheme),
+                child: Text(AppLocalizations.of(context)!.codeTheme),
                 url: '/choose-code-theme',
-                rightWidget: Text('${code.fontFamily}, ${code.fontSize}pt'),
+                extra: Text('${code.fontFamily}, ${code.fontSize}pt'),
               ),
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.markdownRenderEngine),
-                rightWidget: Text(theme.markdown == AppMarkdownType.flutter
+                child: Text(AppLocalizations.of(context)!.markdownRenderEngine),
+                extra: Text(theme.markdown == AppMarkdownType.flutter
                     ? AppLocalizations.of(context)!.flutter
                     : AppLocalizations.of(context)!.webview),
-                onTap: () {
+                onClick: () {
                   theme.showActions(context, [
                     for (var t in [
                       Tuple2(AppLocalizations.of(context)!.flutter,
@@ -197,18 +190,17 @@ class SettingsScreen extends StatelessWidget {
           ),
           CommonStyle.verticalGap,
           TableView(
-            hasIcon: false,
-            headerText: AppLocalizations.of(context)!.feedback,
+            header: Text(AppLocalizations.of(context)!.feedback),
             items: [
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.submitAnIssue),
-                rightWidget: const Text('git-touch/git-touch'),
+                child: Text(AppLocalizations.of(context)!.submitAnIssue),
+                extra: const Text('git-touch/git-touch'),
                 url:
                     '${auth.activeAccount!.platform == PlatformType.github ? '/github' : 'https://github.com'}/git-touch/git-touch/issues/new',
               ),
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.rateThisApp),
-                onTap: () {
+                child: Text(AppLocalizations.of(context)!.rateThisApp),
+                onClick: () {
                   LaunchReview.launch(
                     androidAppId: 'io.github.pd4d10.gittouch',
                     iOSAppId: '1452042346',
@@ -216,8 +208,8 @@ class SettingsScreen extends StatelessWidget {
                 },
               ),
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.email),
-                rightWidget: const Text('pd4d10@gmail.com'),
+                child: Text(AppLocalizations.of(context)!.email),
+                extra: const Text('pd4d10@gmail.com'),
                 hideRightChevron: true,
                 url: 'mailto:pd4d10@gmail.com',
               ),
@@ -225,12 +217,11 @@ class SettingsScreen extends StatelessWidget {
           ),
           CommonStyle.verticalGap,
           TableView(
-            hasIcon: false,
-            headerText: AppLocalizations.of(context)!.about,
+            header: Text(AppLocalizations.of(context)!.about),
             items: [
               TableViewItem(
-                  text: Text(AppLocalizations.of(context)!.version),
-                  rightWidget: FutureBuilder<String>(
+                  child: Text(AppLocalizations.of(context)!.version),
+                  extra: FutureBuilder<String>(
                     future:
                         PackageInfo.fromPlatform().then((info) => info.version),
                     builder: (context, snapshot) {
@@ -238,8 +229,8 @@ class SettingsScreen extends StatelessWidget {
                     },
                   )),
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.sourceCode),
-                rightWidget: const Text('git-touch/git-touch'),
+                child: Text(AppLocalizations.of(context)!.sourceCode),
+                extra: const Text('git-touch/git-touch'),
                 url:
                     '${auth.activeAccount!.platform == PlatformType.github ? '/github' : 'https://github.com'}/git-touch/git-touch',
               ),

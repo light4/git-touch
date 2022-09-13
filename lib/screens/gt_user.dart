@@ -133,8 +133,8 @@ class GtUserScreen extends StatelessWidget {
               TableView(
                 items: [
                   TableViewItem(
-                    leftIconData: Octicons.home,
-                    text: const Text('Organizations'),
+                    prefixIconData: Octicons.home,
+                    child: const Text('Organizations'),
                     url: '/gitea/$login?tab=organizations',
                   ),
                 ],

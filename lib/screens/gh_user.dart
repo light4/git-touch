@@ -1,25 +1,25 @@
 import 'package:ferry/ferry.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
+import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/contribution.dart';
-import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:git_touch/widgets/entry_item.dart';
+import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:git_touch/widgets/repository_item.dart';
 import 'package:git_touch/widgets/table_view.dart';
 import 'package:git_touch/widgets/text_with_at.dart';
-import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:provider/provider.dart';
-import 'package:git_touch/widgets/action_button.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class _Repos extends StatelessWidget {
   final String title;
@@ -120,24 +120,24 @@ class _User extends StatelessWidget {
         TableView(
           items: [
             TableViewItem(
-              leftIconData: Octicons.rss,
-              text: Text(AppLocalizations.of(context)!.events),
+              prefixIconData: Octicons.rss,
+              child: Text(AppLocalizations.of(context)!.events),
               url: '/github/$login?tab=events',
             ),
             TableViewItem(
-              leftIconData: Octicons.book,
-              text: Text(AppLocalizations.of(context)!.gists),
+              prefixIconData: Octicons.book,
+              child: Text(AppLocalizations.of(context)!.gists),
               url: '/github/$login?tab=gists',
             ),
             TableViewItem(
-              leftIconData: Octicons.home,
-              text: Text(AppLocalizations.of(context)!.organizations),
+              prefixIconData: Octicons.home,
+              child: Text(AppLocalizations.of(context)!.organizations),
               url: '/github/$login?tab=organizations',
             ),
             if (isNotNullOrEmpty(p!.company))
               TableViewItem(
-                leftIconData: Octicons.organization,
-                text: TextWithAt(
+                prefixIconData: Octicons.organization,
+                child: TextWithAt(
                   text: p!.company!,
                   linkFactory: (text) => '/github/${text.substring(1)}',
                   style: TextStyle(fontSize: 17, color: theme.palette.text),
@@ -146,25 +146,26 @@ class _User extends StatelessWidget {
               ),
             if (isNotNullOrEmpty(p!.location))
               TableViewItem(
-                leftIconData: Octicons.location,
-                text: Text(p!.location!),
-                onTap: () {
-                  launchStringUrl('https://www.google.com/maps/place/${p!.location!.replaceAll(RegExp(r'\s+'), '')}');
+                prefixIconData: Octicons.location,
+                child: Text(p!.location!),
+                onClick: () {
+                  launchStringUrl(
+                      'https://www.google.com/maps/place/${p!.location!.replaceAll(RegExp(r'\s+'), '')}');
                 },
               ),
             if (isNotNullOrEmpty(p!.email))
               TableViewItem(
-                leftIconData: Octicons.mail,
-                text: Text(p!.email),
-                onTap: () {
+                prefixIconData: Octicons.mail,
+                child: Text(p!.email),
+                onClick: () {
                   launchStringUrl('mailto:${p!.email}');
                 },
               ),
             if (isNotNullOrEmpty(p!.websiteUrl))
               TableViewItem(
-                leftIconData: Octicons.link,
-                text: Text(p!.websiteUrl!),
-                onTap: () {
+                prefixIconData: Octicons.link,
+                child: Text(p!.websiteUrl!),
+                onClick: () {
                   var url = p!.websiteUrl!;
                   if (!url.startsWith('http')) {
                     url = 'http://$url';
@@ -217,31 +218,32 @@ class _Org extends StatelessWidget {
         TableView(
           items: [
             TableViewItem(
-              leftIconData: Octicons.rss,
-              text: Text(AppLocalizations.of(context)!.events),
+              prefixIconData: Octicons.rss,
+              child: Text(AppLocalizations.of(context)!.events),
               url: '/github/${p!.login}?tab=events',
             ),
             if (isNotNullOrEmpty(p!.location))
               TableViewItem(
-                leftIconData: Octicons.location,
-                text: Text(p!.location!),
-                onTap: () {
-                  launchStringUrl('https://www.google.com/maps/place/${p!.location!.replaceAll(RegExp(r'\s+'), '')}');
+                prefixIconData: Octicons.location,
+                child: Text(p!.location!),
+                onClick: () {
+                  launchStringUrl(
+                      'https://www.google.com/maps/place/${p!.location!.replaceAll(RegExp(r'\s+'), '')}');
                 },
               ),
             if (isNotNullOrEmpty(p!.email))
               TableViewItem(
-                leftIconData: Octicons.mail,
-                text: Text(p!.email!),
-                onTap: () {
+                prefixIconData: Octicons.mail,
+                child: Text(p!.email!),
+                onClick: () {
                   launchStringUrl('mailto:${p!.email!}');
                 },
               ),
             if (isNotNullOrEmpty(p!.websiteUrl))
               TableViewItem(
-                leftIconData: Octicons.link,
-                text: Text(p!.websiteUrl!),
-                onTap: () {
+                prefixIconData: Octicons.link,
+                child: Text(p!.websiteUrl!),
+                onClick: () {
                   var url = p!.websiteUrl!;
                   if (!url.startsWith('http')) {
                     url = 'http://$url';

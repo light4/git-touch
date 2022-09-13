@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/theme_map.dart';
 import 'package:git_touch/models/code.dart';
@@ -9,7 +10,6 @@ import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class CodeThemeScreen extends StatelessWidget {
   String _getCode(bool isDark) => '''// ${isDark ? 'Dark' : 'Light'} Mode
@@ -45,13 +45,12 @@ class MyApp extends StatelessWidget {
         children: <Widget>[
           CommonStyle.verticalGap,
           TableView(
-            headerText: AppLocalizations.of(context)!.fontStyle,
-            hasIcon: false,
+            header: Text(AppLocalizations.of(context)!.fontStyle),
             items: [
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.fontSize),
-                rightWidget: Text(codeProvider.fontSize.toString()),
-                onTap: () {
+                child: Text(AppLocalizations.of(context)!.fontSize),
+                extra: Text(codeProvider.fontSize.toString()),
+                onClick: () {
                   theme.showPicker(
                     context,
                     PickerGroupItem(
@@ -68,9 +67,9 @@ class MyApp extends StatelessWidget {
                 },
               ),
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.fontFamily),
-                rightWidget: Text(codeProvider.fontFamily),
-                onTap: () {
+                child: Text(AppLocalizations.of(context)!.fontFamily),
+                extra: Text(codeProvider.fontFamily),
+                onClick: () {
                   theme.showPicker(
                     context,
                     PickerGroupItem(
@@ -89,12 +88,12 @@ class MyApp extends StatelessWidget {
           ),
           CommonStyle.verticalGap,
           TableView(
-            headerText: AppLocalizations.of(context)!.syntaxHighlighting,
+            header: Text(AppLocalizations.of(context)!.syntaxHighlighting),
             items: [
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.light),
-                rightWidget: Text(codeProvider.theme),
-                onTap: () {
+                child: Text(AppLocalizations.of(context)!.light),
+                extra: Text(codeProvider.theme),
+                onClick: () {
                   theme.showPicker(
                     context,
                     PickerGroupItem(
@@ -110,9 +109,9 @@ class MyApp extends StatelessWidget {
                 },
               ),
               TableViewItem(
-                text: Text(AppLocalizations.of(context)!.dark),
-                rightWidget: Text(codeProvider.themeDark),
-                onTap: () {
+                child: Text(AppLocalizations.of(context)!.dark),
+                extra: Text(codeProvider.themeDark),
+                onClick: () {
                   theme.showPicker(
                     context,
                     PickerGroupItem(

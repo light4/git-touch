@@ -1,21 +1,21 @@
 import 'package:filesize/filesize.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitlab.dart';
+import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
-import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/language_bar.dart';
+import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/repo_header.dart';
 import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
-import 'package:git_touch/models/theme.dart';
-import 'package:git_touch/widgets/action_button.dart';
 import 'package:tuple/tuple.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GlProjectScreen extends StatelessWidget {
   final int id;
@@ -158,8 +158,8 @@ class GlProjectScreen extends StatelessWidget {
             TableView(
               items: [
                 TableViewItem(
-                  leftIconData: Octicons.code,
-                  text: FutureBuilder<Map<String, double>>(
+                  prefixIconData: Octicons.code,
+                  child: FutureBuilder<Map<String, double>>(
                     future: langFuture,
                     builder: (context, snapshot) {
                       if (snapshot.data == null) {
@@ -172,40 +172,39 @@ class GlProjectScreen extends StatelessWidget {
                       }
                     },
                   ),
-                  rightWidget: p.statistics == null
+                  extra: p.statistics == null
                       ? null
                       : Text(filesize(p.statistics!.repositorySize)),
-                  url:
-                      '/gitlab/projects/$id/tree/${branch ?? p.defaultBranch}',
+                  url: '/gitlab/projects/$id/tree/${branch ?? p.defaultBranch}',
                 ),
                 if (p.issuesEnabled!)
                   TableViewItem(
-                    leftIconData: Octicons.issue_opened,
-                    text: Text(AppLocalizations.of(context)!.issues),
-                    rightWidget: Text(numberFormat.format(p.openIssuesCount)),
+                    prefixIconData: Octicons.issue_opened,
+                    child: Text(AppLocalizations.of(context)!.issues),
+                    extra: Text(numberFormat.format(p.openIssuesCount)),
                     url: '/gitlab/projects/$id/issues?prefix=$prefix',
                   ),
                 if (p.mergeRequestsEnabled!)
                   TableViewItem(
-                    leftIconData: Octicons.git_pull_request,
-                    text: Text(AppLocalizations.of(context)!.mergeRequests),
+                    prefixIconData: Octicons.git_pull_request,
+                    child: Text(AppLocalizations.of(context)!.mergeRequests),
                     url: '/gitlab/projects/$id/merge_requests?prefix=$prefix',
                   ),
                 TableViewItem(
-                  leftIconData: Octicons.history,
-                  text: Text(AppLocalizations.of(context)!.commits),
-                  rightWidget: p.statistics == null
+                  prefixIconData: Octicons.history,
+                  child: Text(AppLocalizations.of(context)!.commits),
+                  extra: p.statistics == null
                       ? null
                       : Text(p.statistics!.commitCount.toString()),
                   url:
                       '/gitlab/projects/$id/commits?prefix=$prefix&branch=${branch ?? p.defaultBranch}', // EDIT
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.git_branch,
-                  text: Text(AppLocalizations.of(context)!.branches),
-                  rightWidget: Text(
+                  prefixIconData: Octicons.git_branch,
+                  child: Text(AppLocalizations.of(context)!.branches),
+                  extra: Text(
                       '${(branch ?? p.defaultBranch) ?? ''} • ${branches.length}'),
-                  onTap: () async {
+                  onClick: () async {
                     if (branches.length < 2) return;
 
                     await theme.showPicker(

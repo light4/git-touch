@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gogs.dart';
 import 'package:git_touch/models/theme.dart';
@@ -10,10 +12,9 @@ import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/repo_header.dart';
 import 'package:git_touch/widgets/table_view.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GoRepoScreen extends StatelessWidget {
   final String owner;
@@ -92,30 +93,31 @@ class GoRepoScreen extends StatelessWidget {
             TableView(
               items: [
                 TableViewItem(
-                  leftIconData: Octicons.code,
-                  text: const Text('Code'),
+                  prefixIconData: Octicons.code,
+                  child: const Text('Code'),
                   url: '/gogs/$owner/$name/blob?ref=${branch ?? 'master'}',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.issue_opened,
-                  text: const Text('Issues'),
+                  prefixIconData: Octicons.issue_opened,
+                  child: const Text('Issues'),
                   url: '/gogs/$owner/$name/issues',
                 ),
                 const TableViewItem(
-                  leftIconData: Octicons.git_pull_request,
-                  text: Text(
+                  prefixIconData: Octicons.git_pull_request,
+                  child: Text(
                       'Pull requests'), // TODO: when API endpoint is available
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.history,
-                  text: const Text('Commits'),
+                  prefixIconData: Octicons.history,
+                  child: const Text('Commits'),
                   url: '/gogs/$owner/$name/commits?ref=${branch ?? 'master'}',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.git_branch,
-                  text: Text(AppLocalizations.of(context)!.branches),
-                  rightWidget: Text('${branch ?? 'master'} • ${branches.length.toString()}'),
-                  onTap: () async {
+                  prefixIconData: Octicons.git_branch,
+                  child: Text(AppLocalizations.of(context)!.branches),
+                  extra: Text(
+                      '${branch ?? 'master'} • ${branches.length.toString()}'),
+                  onClick: () async {
                     await theme.showPicker(
                       context,
                       PickerGroupItem(

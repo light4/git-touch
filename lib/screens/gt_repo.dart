@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:filesize/filesize.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitea.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
@@ -11,10 +12,9 @@ import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/repo_header.dart';
 import 'package:git_touch/widgets/table_view.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GtRepoScreen extends StatelessWidget {
   final String owner;
@@ -83,26 +83,26 @@ class GtRepoScreen extends StatelessWidget {
             TableView(
               items: [
                 TableViewItem(
-                  leftIconData: Octicons.code,
-                  text: const Text('Code'),
-                  rightWidget: Text(filesize(p.size! * 1000)),
+                  prefixIconData: Octicons.code,
+                  child: const Text('Code'),
+                  extra: Text(filesize(p.size! * 1000)),
                   url: '/gitea/$owner/$name/blob',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.issue_opened,
-                  text: const Text('Issues'),
-                  rightWidget: Text(numberFormat.format(p.openIssuesCount)),
+                  prefixIconData: Octicons.issue_opened,
+                  child: const Text('Issues'),
+                  extra: Text(numberFormat.format(p.openIssuesCount)),
                   url: '/gitea/$owner/$name/issues',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.git_pull_request,
-                  text: const Text('Pull requests'),
-                  rightWidget: Text(numberFormat.format(p.openPrCounter)),
+                  prefixIconData: Octicons.git_pull_request,
+                  child: const Text('Pull requests'),
+                  extra: Text(numberFormat.format(p.openPrCounter)),
                   url: '/gitea/$owner/$name/pulls',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.history,
-                  text: const Text('Commits'),
+                  prefixIconData: Octicons.history,
+                  child: const Text('Commits'),
                   url: '/gitea/$owner/$name/commits',
                 ),
               ],

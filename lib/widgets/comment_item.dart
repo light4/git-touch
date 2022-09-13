@@ -5,9 +5,10 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
+import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:primer/primer.dart';
+
 import '../utils/utils.dart';
 import 'avatar.dart';
 import 'link.dart';

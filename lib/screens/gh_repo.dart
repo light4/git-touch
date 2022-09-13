@@ -242,9 +242,9 @@ class GhRepoScreen extends StatelessWidget {
               items: [
                 if (ref != null)
                   TableViewItem(
-                    leftIconData: Octicons.code,
-                    text: Text(repo.primaryLanguage?.name ?? 'Code'),
-                    rightWidget: Text(
+                    prefixIconData: Octicons.code,
+                    child: Text(repo.primaryLanguage?.name ?? 'Code'),
+                    extra: Text(
                       (license == null ? '' : '$license • ') +
                           filesize(repo.diskUsage! * 1000),
                     ),
@@ -252,35 +252,33 @@ class GhRepoScreen extends StatelessWidget {
                   ),
                 if (repo.hasIssuesEnabled)
                   TableViewItem(
-                    leftIconData: Octicons.issue_opened,
-                    text: Text(AppLocalizations.of(context)!.issues),
-                    rightWidget:
-                        Text(numberFormat.format(repo.issues.totalCount)),
+                    prefixIconData: Octicons.issue_opened,
+                    child: Text(AppLocalizations.of(context)!.issues),
+                    extra: Text(numberFormat.format(repo.issues.totalCount)),
                     url: '/github/$owner/$name/issues',
                   ),
                 TableViewItem(
-                  leftIconData: Octicons.git_pull_request,
-                  text: Text(AppLocalizations.of(context)!.pullRequests),
-                  rightWidget:
+                  prefixIconData: Octicons.git_pull_request,
+                  child: Text(AppLocalizations.of(context)!.pullRequests),
+                  extra:
                       Text(numberFormat.format(repo.pullRequests.totalCount)),
                   url: '/github/$owner/$name/pulls',
                 ),
                 if (ref != null) ...[
                   TableViewItem(
-                    leftIconData: Octicons.history,
-                    text: Text(AppLocalizations.of(context)!.commits),
-                    rightWidget: Text(
-                        ((ref.target as GRepoCommit).history.totalCount)
-                            .toString()),
+                    prefixIconData: Octicons.history,
+                    child: Text(AppLocalizations.of(context)!.commits),
+                    extra: Text(((ref.target as GRepoCommit).history.totalCount)
+                        .toString()),
                     url: '/github/$owner/$name/commits/${ref.name}',
                   ),
                   if (repo.refs != null)
                     TableViewItem(
-                      leftIconData: Octicons.git_branch,
-                      text: Text(AppLocalizations.of(context)!.branches),
-                      rightWidget: Text(
+                      prefixIconData: Octicons.git_branch,
+                      child: Text(AppLocalizations.of(context)!.branches),
+                      extra: Text(
                           '${ref.name} • ${numberFormat.format(repo.refs!.totalCount)}'),
-                      onTap: () async {
+                      onClick: () async {
                         final refs = repo.refs!.nodes!;
                         if (refs.length < 2) return;
 
@@ -303,9 +301,9 @@ class GhRepoScreen extends StatelessWidget {
                       },
                     ),
                   TableViewItem(
-                    leftIconData: Octicons.organization,
-                    text: Text(AppLocalizations.of(context)!.contributors),
-                    rightWidget: FutureBuilder<int>(
+                    prefixIconData: Octicons.organization,
+                    child: Text(AppLocalizations.of(context)!.contributors),
+                    extra: FutureBuilder<int>(
                       future: contributionFuture,
                       builder: (context, snapshot) {
                         return Text(snapshot.data?.toString() ?? '');
@@ -314,10 +312,10 @@ class GhRepoScreen extends StatelessWidget {
                     url: '/github/$owner/$name/contributors',
                   ),
                   TableViewItem(
-                    leftIconData: Octicons.book,
-                    text: Text(AppLocalizations.of(context)!.releases),
+                    prefixIconData: Octicons.book,
+                    child: Text(AppLocalizations.of(context)!.releases),
                     url: '/github/$owner/$name/releases',
-                    rightWidget: Text(repo.releases.totalCount.toString()),
+                    extra: Text(repo.releases.totalCount.toString()),
                   ),
                 ],
               ],

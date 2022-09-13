@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
 import 'package:git_touch/models/theme.dart';
@@ -12,10 +14,9 @@ import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:git_touch/widgets/repo_header.dart';
 import 'package:git_touch/widgets/table_view.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class StatusPayload {
   bool isWatching;
@@ -41,8 +42,8 @@ class GeRepoScreen extends StatelessWidget {
         });
 
         md() => auth.fetchGitee('/repos/$owner/$name/readme').then((v) {
-                  return (v['content'] as String?)?.base64ToUtf8 ?? '';
-                });
+              return (v['content'] as String?)?.base64ToUtf8 ?? '';
+            });
         html() => md().then((v) async {
               final res = await http.post(
                 Uri.parse('${auth.activeAccount!.domain}/api/v5/markdown'),
@@ -134,34 +135,35 @@ class GeRepoScreen extends StatelessWidget {
             TableView(
               items: [
                 TableViewItem(
-                  leftIconData: Octicons.code,
-                  text: const Text('Code'),
-                  rightWidget: Text(p.license ?? ''),
+                  prefixIconData: Octicons.code,
+                  child: const Text('Code'),
+                  extra: Text(p.license ?? ''),
                   url: '/gitee/$owner/$name/tree/${branch ?? p.defaultBranch}',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.issue_opened,
-                  text: const Text('Issues'),
-                  rightWidget: Text(numberFormat.format(p.openIssuesCount)),
+                  prefixIconData: Octicons.issue_opened,
+                  child: const Text('Issues'),
+                  extra: Text(numberFormat.format(p.openIssuesCount)),
                   url: '/gitee/$owner/$name/issues',
                 ),
                 if (p.pullRequestsEnabled!)
                   TableViewItem(
-                    leftIconData: Octicons.git_pull_request,
-                    text: const Text('Pull requests'),
+                    prefixIconData: Octicons.git_pull_request,
+                    child: const Text('Pull requests'),
                     url: '/gitee/$owner/$name/pulls',
                   ),
                 TableViewItem(
-                  leftIconData: Octicons.history,
-                  text: const Text('Commits'),
+                  prefixIconData: Octicons.history,
+                  child: const Text('Commits'),
                   url:
                       '/gitee/$owner/$name/commits?branch=${branch ?? p.defaultBranch}',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.git_branch,
-                  text: Text(AppLocalizations.of(context)!.branches),
-                  rightWidget: Text('${(branch ?? p.defaultBranch)!} • ${branches.length}'),
-                  onTap: () async {
+                  prefixIconData: Octicons.git_branch,
+                  child: Text(AppLocalizations.of(context)!.branches),
+                  extra: Text(
+                      '${(branch ?? p.defaultBranch)!} • ${branches.length}'),
+                  onClick: () async {
                     if (branches.length < 2) return;
 
                     await theme.showPicker(
@@ -183,8 +185,8 @@ class GeRepoScreen extends StatelessWidget {
                   },
                 ),
                 TableViewItem(
-                    leftIconData: Octicons.organization,
-                    text: const Text('Contributors'),
+                    prefixIconData: Octicons.organization,
+                    child: const Text('Contributors'),
                     url: '/gitee/$owner/$name/contributors'),
               ],
             ),

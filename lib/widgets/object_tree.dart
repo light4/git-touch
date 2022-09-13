@@ -38,9 +38,9 @@ TableViewItem createObjectTreeItem({
   int? size,
 }) {
   return TableViewItem(
-    leftWidget: _buildIcon(type, name),
-    text: Text(name),
-    rightWidget: size == null ? null : Text(filesize(size)),
+    prefix: _buildIcon(type, name),
+    child: Text(name),
+    extra: size == null ? null : Text(filesize(size)),
     url: [
       // Let system browser handle these files
       //

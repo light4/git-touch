@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:filesize/filesize.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/models/theme.dart';
@@ -13,7 +14,6 @@ import 'package:git_touch/widgets/repo_header.dart';
 import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class BbRepoScreen extends StatelessWidget {
   final String owner;
@@ -59,33 +59,34 @@ class BbRepoScreen extends StatelessWidget {
             TableView(
               items: [
                 TableViewItem(
-                  leftIconData: Octicons.code,
-                  text: const Text('Code'),
-                  rightWidget: Text(filesize(p.size)),
+                  prefixIconData: Octicons.code,
+                  child: const Text('Code'),
+                  extra: Text(filesize(p.size)),
                   url:
                       '/bitbucket/$owner/$name/src/${branch ?? p.mainbranch!.name}',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.issue_opened,
-                  text: const Text('Issues'),
+                  prefixIconData: Octicons.issue_opened,
+                  child: const Text('Issues'),
                   url: '/bitbucket/$owner/$name/issues',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.git_pull_request,
-                  text: const Text('Pull requests'),
+                  prefixIconData: Octicons.git_pull_request,
+                  child: const Text('Pull requests'),
                   url: '/bitbucket/$owner/$name/pulls',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.history,
-                  text: const Text('Commits'),
+                  prefixIconData: Octicons.history,
+                  child: const Text('Commits'),
                   url:
                       '/bitbucket/$owner/$name/commits/${branch ?? p.mainbranch!.name}',
                 ),
                 TableViewItem(
-                  leftIconData: Octicons.git_branch,
-                  text: Text(AppLocalizations.of(context)!.branches),
-                  rightWidget: Text('${(branch ?? p.mainbranch!.name)!} • ${branches.length}'),
-                  onTap: () async {
+                  prefixIconData: Octicons.git_branch,
+                  child: Text(AppLocalizations.of(context)!.branches),
+                  extra: Text(
+                      '${(branch ?? p.mainbranch!.name)!} • ${branches.length}'),
+                  onClick: () async {
                     if (branches.length < 2) return;
 
                     await theme.showPicker(

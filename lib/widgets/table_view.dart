@@ -1,8 +1,8 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/border_view.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
@@ -25,23 +25,23 @@ class TableViewHeader extends StatelessWidget {
 }
 
 class TableViewItem {
-  final Widget text;
-  final IconData? leftIconData;
-  final Widget? leftWidget;
-  final Widget? rightWidget;
-  final void Function()? onTap;
+  final Widget child;
+  final IconData? prefixIconData;
+  final Widget? prefix;
+  final Widget? extra;
+  final void Function()? onClick;
   final String? url;
   final bool hideRightChevron;
 
   const TableViewItem({
-    required this.text,
-    this.leftIconData,
-    this.leftWidget,
-    this.rightWidget,
-    this.onTap,
+    required this.child,
+    this.prefixIconData,
+    this.prefix,
+    this.extra,
+    this.onClick,
     this.url,
     this.hideRightChevron = false,
-  }) : assert(leftIconData == null || leftWidget == null);
+  }) : assert(prefixIconData == null || prefix == null);
 }
 
 class TableViewItemWidget extends StatelessWidget {
@@ -54,7 +54,7 @@ class TableViewItemWidget extends StatelessWidget {
     final theme = Provider.of<ThemeModel>(context);
 
     return LinkWidget(
-      onTap: item.onTap,
+      onTap: item.onClick,
       url: item.url,
       child: DefaultTextStyle(
         style: TextStyle(fontSize: 17, color: theme.palette.text),
@@ -64,29 +64,29 @@ class TableViewItemWidget extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: (item.leftWidget == null && item.leftIconData == null)
+                width: (item.prefix == null && item.prefixIconData == null)
                     ? 12
                     : 44,
                 child: Center(
-                    child: item.leftWidget ??
+                    child: item.prefix ??
                         Icon(
-                          item.leftIconData,
+                          item.prefixIconData,
                           color: theme.palette.primary,
                           size: 20,
                         )),
               ),
-              Expanded(child: item.text),
-              if (item.rightWidget != null) ...[
+              Expanded(child: item.child),
+              if (item.extra != null) ...[
                 DefaultTextStyle(
                   style: TextStyle(
                     fontSize: 17,
                     color: theme.palette.tertiaryText,
                   ),
-                  child: item.rightWidget!,
+                  child: item.extra!,
                 ),
                 const SizedBox(width: 6)
               ],
-              if ((item.onTap != null || item.url != null) &&
+              if ((item.onClick != null || item.url != null) &&
                   !item.hideRightChevron)
                 Icon(Ionicons.chevron_forward,
                     size: 20, color: theme.palette.tertiaryText)
@@ -102,30 +102,38 @@ class TableViewItemWidget extends StatelessWidget {
 }
 
 class TableView extends StatelessWidget {
-  final String? headerText;
+  final Widget? header;
   final Iterable<TableViewItem> items;
-  final bool? hasIcon;
 
   const TableView({
     super.key,
-    this.headerText,
+    this.header,
     required this.items,
-    this.hasIcon = true,
   });
-
-  double get _leftPadding => hasIcon == true ? 44 : 12;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        if (headerText != null) TableViewHeader(headerText),
-        ...join(
-          BorderView(leftPadding: _leftPadding),
-          [for (final item in items) TableViewItemWidget(item)],
-        ),
-        CommonStyle.border,
+    final theme = Provider.of<ThemeModel>(context);
+
+    return AntList(
+      header: header,
+      items: [
+        for (final item in items)
+          AntListItem(
+            child: item.child,
+            prefix: item.prefix ??
+                (item.prefixIconData == null
+                    ? null
+                    : Icon(item.prefixIconData)),
+            extra: item.extra,
+            onClick: item.onClick != null
+                ? item.onClick!
+                : item.url != null
+                    ? () {
+                        theme.push(context, item.url!);
+                      }
+                    : null,
+          ),
       ],
     );
   }
