@@ -60,14 +60,14 @@ class _NotificationItemState extends State<NotificationItem> {
       case 'CheckSuite':
         return _buildIcon(Octicons.x, GithubPalette.closed);
       default:
-        return _buildIcon(Octicons.octoface);
+        return _buildIcon(Octicons.bell);
     }
   }
 
   Widget _buildCheckIcon() {
     final theme = Provider.of<ThemeModel>(context);
     return Icon(
-      payload.unread! ? Ionicons.checkmark : Octicons.primitive_dot,
+      payload.unread! ? Ionicons.checkmark : Octicons.dot_fill,
       color:
           loading ? theme.palette.grayBackground : theme.palette.tertiaryText,
       size: 24,

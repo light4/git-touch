@@ -153,10 +153,11 @@ class _HomeState extends State<Home> {
       children: <Widget>[
         Icon(iconData),
         Positioned(
-            right: -2,
-            top: -2,
-            child: Icon(Octicons.primitive_dot,
-                color: theme.palette.primary, size: 14))
+          right: -2,
+          top: -2,
+          child:
+              Icon(Octicons.dot_fill, color: theme.palette.primary, size: 14),
+        )
       ],
     );
   }

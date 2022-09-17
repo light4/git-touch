@@ -23,7 +23,7 @@ class TimelineEventItem extends StatelessWidget {
 
   const TimelineEventItem({
     this.actor,
-    this.iconData = Octicons.octoface,
+    this.iconData = Octicons.diamond,
     this.iconColor = Colors.grey,
     this.textSpan,
   });
@@ -62,7 +62,7 @@ class TimelineItem extends StatelessWidget {
   Widget _buildFallback(String? type, BuildContext context) {
     return TimelineEventItem(
       actor: '',
-      iconData: Octicons.octoface,
+      iconData: Octicons.diamond,
       textSpan: TextSpan(children: [
         TextSpan(
             text:
@@ -99,7 +99,7 @@ class TimelineItem extends StatelessWidget {
         final prefix = p.source.G__typename == 'Issue' ? 'issues' : 'pull';
         return TimelineEventItem(
           actor: p.actor!.login,
-          iconData: Octicons.primitive_dot,
+          iconData: Octicons.dot_fill,
           iconColor: GithubPalette.open,
           textSpan: TextSpan(children: [
             TextSpan(
@@ -123,7 +123,7 @@ class TimelineItem extends StatelessWidget {
         final p = node as GReopenedEventParts;
         return TimelineEventItem(
           actor: p.actor!.login,
-          iconData: Octicons.primitive_dot,
+          iconData: Octicons.dot_fill,
           iconColor: GithubPalette.open,
           textSpan: TextSpan(
               text: ' ${AppLocalizations.of(context)!.reopenedEventMessage} '),
@@ -393,7 +393,7 @@ class TimelineItem extends StatelessWidget {
       case 'HeadRefForcePushedEvent':
         final p = node as GHeadRefForcePushedEventParts;
         return TimelineEventItem(
-          iconData: Octicons.repo_force_push,
+          iconData: Octicons.repo_push,
           actor: p.actor!.login,
           textSpan: TextSpan(
             children: [
@@ -419,7 +419,7 @@ class TimelineItem extends StatelessWidget {
       case 'BaseRefForcePushedEvent':
         final p = node as GBaseRefForcePushedEventParts;
         return TimelineEventItem(
-          iconData: Octicons.repo_force_push,
+          iconData: Octicons.repo_push,
           actor: p.actor!.login,
           textSpan: TextSpan(
             children: [

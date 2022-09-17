@@ -313,9 +313,9 @@ packages:
   flutter_vector_icons:
     dependency: "direct main"
     description:
-      name: flutter_vector_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../flutter-vector-icons"
+      relative: true
+    source: path
     version: "1.0.0"
   flutter_web_plugins:
     dependency: transitive
