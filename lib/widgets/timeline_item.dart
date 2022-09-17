@@ -204,7 +204,8 @@ class TimelineItem extends StatelessWidget {
           textSpan: TextSpan(children: [
             TextSpan(text: ' ${AppLocalizations.of(context)!.added} '),
             WidgetSpan(
-                child: HexColorTag(name: p.label.name, color: p.label.color)),
+                child: HexColorTag(
+                    name: p.label.name, color: '#${p.label.color}')),
             TextSpan(text: ' ${AppLocalizations.of(context)!.label}'),
           ]),
         );
@@ -216,7 +217,8 @@ class TimelineItem extends StatelessWidget {
           textSpan: TextSpan(children: [
             TextSpan(text: ' ${AppLocalizations.of(context)!.removed} '),
             WidgetSpan(
-                child: HexColorTag(name: p.label.name, color: p.label.color)),
+                child: HexColorTag(
+                    name: p.label.name, color: '#${p.label.color}')),
             TextSpan(text: ' ${AppLocalizations.of(context)!.label}'),
           ]),
         );
