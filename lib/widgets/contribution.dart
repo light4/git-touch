@@ -9,14 +9,6 @@ import 'package:provider/provider.dart';
 const contributionEmptyColor = '#ebedf0';
 const contributionColors = ['#9be9a8', '#40c463', '#30a14e', '#216e39'];
 
-const darkMapper = {
-  '#ebedf0': '#161b22',
-  '#9be9a8': '#01311f',
-  '#40c463': '#034525',
-  '#30a14e': '#0f6d31',
-  '#216e39': '#00c647'
-};
-
 class HideScrollbar extends StatelessWidget {
   final Widget? child;
   const HideScrollbar({Key? key, this.child}) : super(key: key);
@@ -39,6 +31,12 @@ class ContributionDay {
 
 class ContributionWidget extends StatelessWidget {
   final Iterable<Iterable<ContributionDay>>? weeks;
+
+  static Color _revertColor(Color color) {
+    return Color.fromRGBO(
+        0xff - color.red, 0xff - color.green, 0xff - color.blue, 1);
+  }
+
   ContributionWidget({required this.weeks}) {
     int? maxCount;
     for (var week in weeks!) {
@@ -82,17 +80,14 @@ class ContributionWidget extends StatelessWidget {
                 spacing: 3,
                 children: [
                   for (final day in week)
-                    SizedBox(
+                    Container(
                       width: 10,
                       height: 10,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                            color: fromCssColor(
-                              theme.brightness == Brightness.dark
-                                  ? darkMapper[day.hexColor!]!
-                                  : day.hexColor!,
-                            ),
-                            borderRadius: BorderRadius.circular(2)),
+                      decoration: BoxDecoration(
+                        color: theme.brightness == Brightness.dark
+                            ? _revertColor(fromCssColor(day.hexColor!))
+                            : fromCssColor(day.hexColor!),
+                        borderRadius: BorderRadius.circular(2),
                       ),
                     )
                 ],
