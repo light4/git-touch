@@ -10,22 +10,11 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
-    switch (theme.theme) {
-      case AppThemeType.cupertino:
-      default:
-        return CupertinoTextField(
-          controller: controller,
-          placeholder: placeholder,
-          style: TextStyle(color: theme.palette.text),
-        );
-      // default:
-      //   return TextField(
-      //     controller: controller,
-      //     decoration: InputDecoration(
-      //       filled: true,
-      //       labelText: placeholder,
-      //     ),
-      //   );
-    }
+
+    return CupertinoTextField(
+      controller: controller,
+      placeholder: placeholder,
+      style: TextStyle(color: theme.palette.text),
+    );
   }
 }

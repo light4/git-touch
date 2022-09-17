@@ -11,12 +11,6 @@ import 'package:primer/primer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_io/io.dart';
 
-class AppThemeType {
-  static const material = 0;
-  static const cupertino = 1;
-  static const values = [AppThemeType.material, AppThemeType.cupertino];
-}
-
 class AppBrightnessType {
   static const followSystem = 0;
   static const light = 1;
@@ -101,10 +95,6 @@ class Palette {
 
 class ThemeModel with ChangeNotifier {
   String? markdownCss;
-
-  int? _theme;
-  int? get theme => _theme;
-  bool get ready => _theme != null;
 
   Brightness systemBrightness = Brightness.light;
   void setSystemBrightness(Brightness v) {
@@ -211,15 +201,6 @@ class ThemeModel with ChangeNotifier {
 
     final prefs = await SharedPreferences.getInstance();
 
-    final v = prefs.getInt(StorageKeys.iTheme);
-    Fimber.d('read theme: $v');
-    if (AppThemeType.values.contains(v)) {
-      _theme = v;
-    } else if (Platform.isIOS || Platform.isMacOS) {
-      _theme = AppThemeType.cupertino;
-    } else {
-      _theme = AppThemeType.material;
-    }
     final b = prefs.getInt(StorageKeys.iBrightness);
     Fimber.d('read brightness: $b');
     if (AppBrightnessType.values.contains(b)) {
@@ -234,14 +215,6 @@ class ThemeModel with ChangeNotifier {
       _locale = l;
     }
 
-    notifyListeners();
-  }
-
-  Future<void> setTheme(int v) async {
-    _theme = v;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(StorageKeys.iTheme, v);
-    Fimber.d('write theme: $v');
     notifyListeners();
   }
 

@@ -200,23 +200,21 @@ class _GhSearchScreenState extends State<GhSearchScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            if (theme == AppThemeType.cupertino)
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: CupertinoSlidingSegmentedControl(
-                    groupValue: _activeTab,
-                    onValueChanged: _onTabSwitch,
-                    children: tabs.asMap().map((key, text) => MapEntry(
-                        key,
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child:
-                              Text(text, style: const TextStyle(fontSize: 14)),
-                        ))),
-                  ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: CupertinoSlidingSegmentedControl(
+                  groupValue: _activeTab,
+                  onValueChanged: _onTabSwitch,
+                  children: tabs.asMap().map((key, text) => MapEntry(
+                      key,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(text, style: const TextStyle(fontSize: 14)),
+                      ))),
                 ),
               ),
+            ),
             if (_loading)
               const Loading()
             else

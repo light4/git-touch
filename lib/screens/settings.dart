@@ -134,30 +134,6 @@ class SettingsScreen extends StatelessWidget {
                 },
               ),
               TableViewItem(
-                child: Text(AppLocalizations.of(context)!.scaffoldTheme),
-                extra: Text(theme.theme == AppThemeType.cupertino
-                    ? AppLocalizations.of(context)!.cupertino
-                    : AppLocalizations.of(context)!.material),
-                onClick: () {
-                  theme.showActions(context, [
-                    for (var t in [
-                      Tuple2(AppLocalizations.of(context)!.material,
-                          AppThemeType.material),
-                      Tuple2(AppLocalizations.of(context)!.cupertino,
-                          AppThemeType.cupertino),
-                    ])
-                      ActionItem(
-                        text: t.item1,
-                        onTap: (_) {
-                          if (theme.theme != t.item2) {
-                            theme.setTheme(t.item2);
-                          }
-                        },
-                      )
-                  ]);
-                },
-              ),
-              TableViewItem(
                 child: Text(AppLocalizations.of(context)!.codeTheme),
                 url: '/choose-code-theme',
                 extra: Text('${code.fontFamily}, ${code.fontSize}pt'),

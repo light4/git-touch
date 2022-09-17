@@ -24,6 +24,8 @@ class StorageKeys {
   static const github = 'github';
 
   static const accounts = 'accounts';
+
+  @deprecated
   static const iTheme = 'theme';
   static const iBrightness = 'brightness';
   static const codeTheme = 'code-theme';
