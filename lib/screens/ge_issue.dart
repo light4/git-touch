@@ -27,20 +27,19 @@ class GeIssueScreen extends StatelessWidget {
     final theme = context.read<ThemeModel>();
     return [
       ActionItem(
-          iconData: Octicons.pencil,
-          text: 'Edit',
-          onTap: (_) {
-            final uri = Uri(
-              path: '/gitee/$owner/$name/issues/$number/comment',
-              queryParameters: {
-                'body': comment.body,
-                'id': comment.id.toString(),
-              },
-            ).toString();
-            theme.push(context, uri);
-          }),
+        text: 'Edit',
+        onTap: (_) {
+          final uri = Uri(
+            path: '/gitee/$owner/$name/issues/$number/comment',
+            queryParameters: {
+              'body': comment.body,
+              'id': comment.id.toString(),
+            },
+          ).toString();
+          theme.push(context, uri);
+        },
+      ),
       ActionItem(
-        iconData: Octicons.trashcan,
         text: 'Delete',
         onTap: (_) async {
           await auth.fetchGitee(

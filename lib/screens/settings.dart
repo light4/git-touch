@@ -74,6 +74,7 @@ class SettingsScreen extends StatelessWidget {
                   ? AppLocalizations.of(context)!.followSystem
                   : localeNameMap[theme.locale!] ?? theme.locale!),
               onClick: () {
+                // TODO: too many options, better use a new page
                 theme.showActions(context, [
                   for (final key in [
                     null,

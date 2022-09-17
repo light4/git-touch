@@ -22,11 +22,10 @@ class StorageKeys {
   static const account = 'account';
   @deprecated
   static const github = 'github';
-
-  static const accounts = 'accounts';
-
   @deprecated
   static const iTheme = 'theme';
+
+  static const accounts = 'accounts';
   static const iBrightness = 'brightness';
   static const codeTheme = 'code-theme';
   static const codeThemeDark = 'code-theme-dark';

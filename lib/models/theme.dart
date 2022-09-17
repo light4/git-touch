@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -274,29 +275,6 @@ class ThemeModel with ChangeNotifier {
         );
       },
     );
-    // default:
-    //   return showDialog(
-    //     context: context,
-    //     builder: (BuildContext context) {
-    //       return AlertDialog(
-    //         content: content,
-    //         actions: <Widget>[
-    //           FlatButton(
-    //             child: const Text('CANCEL'),
-    //             onPressed: () {
-    //               Navigator.pop(context, false);
-    //             },
-    //           ),
-    //           FlatButton(
-    //             child: const Text('OK'),
-    //             onPressed: () {
-    //               Navigator.pop(context, true);
-    //             },
-    //           )
-    //         ],
-    //       );
-    //     },
-    //   );
   }
 
   static Timer? _debounce;
@@ -383,33 +361,22 @@ class ThemeModel with ChangeNotifier {
   }
 
   showActions(BuildContext context, List<ActionItem> actionItems) async {
-    final value = await showCupertinoModalPopup<int>(
+    await AntActionSheet.show(
       context: context,
-      builder: (BuildContext context) {
-        return CupertinoActionSheet(
-          title: const Text('Actions'),
-          actions: actionItems.asMap().entries.map((entry) {
-            return CupertinoActionSheetAction(
-              isDestructiveAction: entry.value.isDestructiveAction,
-              onPressed: () {
-                Navigator.pop(context, entry.key);
-              },
-              child: Text(entry.value.text!),
-            );
-          }).toList(),
-          cancelButton: CupertinoActionSheetAction(
-            isDefaultAction: true,
-            onPressed: () {
-              Navigator.pop(context);
+      extra: const Text('Actions'),
+      actions: [
+        for (final item in actionItems)
+          AntActionSheetAction(
+            text: Text(
+              item.text!,
+              style: TextStyle(color: item.danger ? AntTheme.danger : null),
+            ),
+            onClick: () {
+              item.onTap?.call(context);
             },
-            child: const Text('Cancel'),
+            key: null,
           ),
-        );
-      },
+      ],
     );
-
-    if (value != null) {
-      actionItems[value].onTap!(context);
-    }
   }
 }

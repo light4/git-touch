@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
         theme.showActions(context, [
           ActionItem(
             text: AppLocalizations.of(context)!.removeAccount,
-            isDestructiveAction: true,
+            danger: true,
             onTap: (_) {
               auth.removeAccount(index);
             },

@@ -97,7 +97,9 @@ class GhRepoScreen extends StatelessWidget {
             ActionItem(
               text:
                   '${AppLocalizations.of(context)!.projects}(${repo.projects.totalCount})',
-              url: repo.projectsUrl,
+              onTap: (_) {
+                launchStringUrl(repo.projectsUrl);
+              },
             ),
             ...ActionItem.getUrlActions(repo.url),
           ],
