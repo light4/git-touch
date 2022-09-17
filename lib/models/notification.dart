@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:tuple/tuple.dart';
 

@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ActionItem {
@@ -56,79 +55,54 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
-    switch (theme.theme) {
-      case AppThemeType.cupertino:
-        return CupertinoButton(
-          minSize: 0,
-          padding: EdgeInsets.zero,
-          onPressed: () async {
-            var value = await showCupertinoModalPopup<int>(
-              context: context,
-              builder: (BuildContext context) {
-                return CupertinoActionSheet(
-                  title: Text(title),
-                  actions: items.asMap().entries.map((entry) {
-                    return CupertinoActionSheetAction(
-                      child: Row(
-                        children: [
-                          Icon(entry.value.iconData),
-                          const SizedBox(width: 10),
-                          Text(
-                            entry.value.text!,
-                            style: TextStyle(
-                                fontWeight: selected == entry.key
-                                    ? FontWeight.w500
-                                    : FontWeight.w400),
-                          ),
-                        ],
+    return CupertinoButton(
+      minSize: 0,
+      padding: EdgeInsets.zero,
+      onPressed: () async {
+        var value = await showCupertinoModalPopup<int>(
+          context: context,
+          builder: (BuildContext context) {
+            return CupertinoActionSheet(
+              title: Text(title),
+              actions: items.asMap().entries.map((entry) {
+                return CupertinoActionSheetAction(
+                  child: Row(
+                    children: [
+                      Icon(entry.value.iconData),
+                      const SizedBox(width: 10),
+                      Text(
+                        entry.value.text!,
+                        style: TextStyle(
+                            fontWeight: selected == entry.key
+                                ? FontWeight.w500
+                                : FontWeight.w400),
                       ),
-                      onPressed: () {
-                        Navigator.pop(context, entry.key);
-                      },
-                    );
-                  }).toList(),
-                  cancelButton: CupertinoActionSheetAction(
-                    isDefaultAction: true,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Cancel'),
+                    ],
                   ),
+                  onPressed: () {
+                    Navigator.pop(context, entry.key);
+                  },
                 );
-              },
+              }).toList(),
+              cancelButton: CupertinoActionSheetAction(
+                isDefaultAction: true,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Cancel'),
+              ),
             );
+          },
+        );
 
-            if (value != null) {
-              if (items[value].onTap != null) items[value].onTap!(context);
-              if (items[value].url != null) {
-                theme.push(context, items[value].url!);
-              }
-            }
-          },
-          child: Icon(iconData, size: 22),
-        );
-      default:
-        return PopupMenuButton(
-          icon: Icon(iconData),
-          initialValue: selected,
-          itemBuilder: (context) {
-            return items.asMap().entries.map((entry) {
-              return PopupMenuItem(
-                value: entry.key,
-                child: Row(
-                  children: [
-                    Icon(entry.value.iconData),
-                    const SizedBox(width: 10),
-                    Text(entry.value.text!)
-                  ],
-                ),
-              );
-            }).toList();
-          },
-          onSelected: (dynamic value) {
-            items[value].onTap!(context);
-          },
-        );
-    }
+        if (value != null) {
+          if (items[value].onTap != null) items[value].onTap!(context);
+          if (items[value].url != null) {
+            theme.push(context, items[value].url!);
+          }
+        }
+      },
+      child: Icon(iconData, size: 22),
+    );
   }
 }

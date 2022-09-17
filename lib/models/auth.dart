@@ -1,21 +1,23 @@
-import 'dart:convert';
 import 'dart:async';
+import 'dart:convert';
+
 import 'package:ferry/ferry.dart';
-// import 'package:in_app_review/in_app_review.dart';
-import 'package:universal_io/io.dart';
+import 'package:fimber/fimber.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/models/gitea.dart';
 import 'package:git_touch/models/gitee.dart';
 import 'package:github/github.dart';
 import 'package:gql_http_link/gql_http_link.dart';
-import 'package:fimber/fimber.dart';
 import 'package:http/http.dart' as http;
-import 'package:uni_links/uni_links.dart';
 import 'package:nanoid/nanoid.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uni_links/uni_links.dart';
+// import 'package:in_app_review/in_app_review.dart';
+import 'package:universal_io/io.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../utils/utils.dart';
 import 'account.dart';
 import 'gitlab.dart';

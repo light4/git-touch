@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
-import '../widgets/loading.dart';
-import '../widgets/link.dart';
+
 import '../widgets/error_reload.dart';
+import '../widgets/link.dart';
+import '../widgets/loading.dart';
 
 class LongListPayload<T, K> {
   T header;
@@ -177,51 +177,25 @@ class _LongListStatefulScaffoldState<T, K>
 
   @override
   Widget build(BuildContext context) {
-    switch (Provider.of<ThemeModel>(context).theme) {
-      case AppThemeType.cupertino:
-        List<Widget> slivers = [
-          CupertinoSliverRefreshControl(onRefresh: _refresh)
-        ];
-        if (payload != null) {
-          slivers.add(
-            SliverToBoxAdapter(child: widget.headerBuilder(payload!.header)),
-          );
-        }
-        slivers.add(_buildSliver());
-
-        return CupertinoPageScaffold(
-          navigationBar: CupertinoNavigationBar(
-            middle: widget.title,
-            trailing: payload == null
-                ? null
-                : widget.trailingBuilder!(payload!.header),
-          ),
-          child: SafeArea(
-            child: CupertinoScrollbar(
-              child: CustomScrollView(slivers: slivers),
-            ),
-          ),
-        );
-      default:
-        return Scaffold(
-          appBar: AppBar(
-            title: widget.title,
-            actions: payload == null
-                ? null
-                : [widget.trailingBuilder!(payload!.header)],
-          ),
-          body: RefreshIndicator(
-            onRefresh: _refresh,
-            child: Scrollbar(
-              child: CustomScrollView(slivers: [
-                if (payload != null)
-                  SliverToBoxAdapter(
-                      child: widget.headerBuilder(payload!.header)),
-                _buildSliver(),
-              ]),
-            ),
-          ),
-        );
+    List<Widget> slivers = [CupertinoSliverRefreshControl(onRefresh: _refresh)];
+    if (payload != null) {
+      slivers.add(
+        SliverToBoxAdapter(child: widget.headerBuilder(payload!.header)),
+      );
     }
+    slivers.add(_buildSliver());
+
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: widget.title,
+        trailing:
+            payload == null ? null : widget.trailingBuilder!(payload!.header),
+      ),
+      child: SafeArea(
+        child: CupertinoScrollbar(
+          child: CustomScrollView(slivers: slivers),
+        ),
+      ),
+    );
   }
 }

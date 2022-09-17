@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
+import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:provider/provider.dart';
 import 'package:git_touch/widgets/event_item.dart';
-import 'package:git_touch/models/auth.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
+import 'package:provider/provider.dart';
 
 class GhEventsScreen extends StatelessWidget {
   final String login;

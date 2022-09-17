@@ -1,5 +1,6 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/border_view.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +10,8 @@ import 'package:tuple/tuple.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+export 'package:flutter/material.dart'
+    show Colors, Brightness, Card, ExpansionTile, IconButton; // TODO: remove
 export 'package:flutter_vector_icons/flutter_vector_icons.dart'
     show Octicons, Ionicons;
 
@@ -47,7 +50,7 @@ Color getFontColorByBrightness(Color color) {
   // Fimber.d('color: $color, $grayscale');
 
   var showWhite = grayscale < 128;
-  return showWhite ? Colors.white : Colors.black;
+  return showWhite ? AntTheme.white : AntTheme.text;
 }
 
 TextSpan createLinkSpan(
@@ -84,10 +87,10 @@ class GithubPalette {
 // final pageSize = 5;
 const PAGE_SIZE = 30;
 
-var createWarning = (String text) =>
-    Text(text, style: const TextStyle(color: Colors.redAccent));
+var createWarning =
+    (String text) => Text(text, style: const TextStyle(color: AntTheme.danger));
 var warningSpan =
-    const TextSpan(text: 'xxx', style: TextStyle(color: Colors.redAccent));
+    const TextSpan(text: 'xxx', style: TextStyle(color: AntTheme.danger));
 
 List<T> join<T>(T seperator, List<T> xs) {
   List<T> result = [];

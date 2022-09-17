@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
-import 'package:git_touch/models/theme.dart';
+import 'package:flutter_highlight/theme_map.dart';
 import 'package:git_touch/models/code.dart';
+import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_highlight/theme_map.dart';
 
 class FilesItem extends StatelessWidget {
   final String? filename;

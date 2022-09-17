@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:git_touch/widgets/issue_icon.dart';
+import 'package:flutter/widgets.dart';
+import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/models/auth.dart';
-import 'package:provider/provider.dart';
+import 'package:git_touch/widgets/issue_icon.dart';
 import 'package:git_touch/widgets/link.dart';
+import 'package:provider/provider.dart';
 
 import '../models/theme.dart';
 

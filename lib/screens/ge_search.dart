@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
+import 'package:git_touch/models/auth.dart';
+import 'package:git_touch/models/gitee.dart';
+import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/issue_item.dart';
@@ -8,10 +11,6 @@ import 'package:git_touch/widgets/repository_item.dart';
 import 'package:git_touch/widgets/user_item.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/models/gitee.dart';
-import 'package:git_touch/models/auth.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GeSearchScreen extends StatefulWidget {
@@ -71,37 +70,6 @@ class _GeSearchScreenState extends State<GeSearchScreen> {
     }
   }
 
-  Widget _buildInput() {
-    final theme = Provider.of<ThemeModel>(context);
-    switch (Provider.of<ThemeModel>(context).theme) {
-      case AppThemeType.cupertino:
-        return Container(
-          color: theme.palette.background,
-          child: CupertinoTextField(
-            prefix: Row(
-              children: const <Widget>[
-                SizedBox(width: 8),
-                Icon(Octicons.search, size: 20, color: PrimerColors.gray400),
-              ],
-            ),
-            placeholder: AppLocalizations.of(context)!.search,
-            clearButtonMode: OverlayVisibilityMode.editing,
-            textInputAction: TextInputAction.go,
-            onSubmitted: (_) => _query(),
-            controller: _controller,
-          ),
-        );
-      default:
-        return TextField(
-          decoration: InputDecoration.collapsed(
-              hintText: AppLocalizations.of(context)!.search),
-          textInputAction: TextInputAction.go,
-          onSubmitted: (_) => _query(),
-          controller: _controller,
-        );
-    }
-  }
-
   _onTabSwitch(int? index) {
     setState(() {
       _activeTab = index;
@@ -150,10 +118,25 @@ class _GeSearchScreenState extends State<GeSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context).theme;
+    final theme = Provider.of<ThemeModel>(context);
 
-    final scaffold = CommonScaffold(
-      title: _buildInput(),
+    return CommonScaffold(
+      title: Container(
+        color: theme.palette.background,
+        child: CupertinoTextField(
+          prefix: Row(
+            children: const <Widget>[
+              SizedBox(width: 8),
+              Icon(Octicons.search, size: 20, color: PrimerColors.gray400),
+            ],
+          ),
+          placeholder: AppLocalizations.of(context)!.search,
+          clearButtonMode: OverlayVisibilityMode.editing,
+          textInputAction: TextInputAction.go,
+          onSubmitted: (_) => _query(),
+          controller: _controller,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -168,7 +151,8 @@ class _GeSearchScreenState extends State<GeSearchScreen> {
                         key,
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Text(text, style: const TextStyle(fontSize: 14)),
+                          child:
+                              Text(text, style: const TextStyle(fontSize: 14)),
                         ))),
                   ),
                 ),
@@ -180,19 +164,6 @@ class _GeSearchScreenState extends State<GeSearchScreen> {
           ],
         ),
       ),
-      bottom: TabBar(
-        onTap: _onTabSwitch,
-        tabs: tabs.map((text) => Tab(text: text.toUpperCase())).toList(),
-      ),
     );
-
-    if (theme == AppThemeType.material) {
-      return DefaultTabController(
-        length: tabs.length,
-        child: scaffold,
-      );
-    } else {
-      return scaffold;
-    }
   }
 }

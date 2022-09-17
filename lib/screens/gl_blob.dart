@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
@@ -24,7 +24,8 @@ class GlBlobScreen extends StatelessWidget {
             '/projects/$id/repository/files/${path!.urlencode}?ref=$ref');
         return GitlabBlob.fromJson(res);
       },
-      action: const ActionEntry(iconData: Ionicons.cog, url: '/choose-code-theme'),
+      action:
+          const ActionEntry(iconData: Ionicons.cog, url: '/choose-code-theme'),
       bodyBuilder: (data, _) {
         return BlobView(path, base64Text: data.content);
       },

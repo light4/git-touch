@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:provider/provider.dart';
+import 'package:git_touch/widgets/empty.dart';
 import 'package:git_touch/widgets/error_reload.dart';
 import 'package:git_touch/widgets/loading.dart';
-import 'package:git_touch/widgets/empty.dart';
+
 export 'package:git_touch/utils/utils.dart';
 
 // This is a scaffold for infinite scroll screens
@@ -139,49 +137,19 @@ class _ListStatefulScaffoldState<T, K>
     }
   }
 
-  Widget _buildMaterial() {
-    if (error.isNotEmpty) {
-      return ErrorReload(text: error, onTap: _refresh);
-    } else if (loading && items.isEmpty) {
-      return const Loading(more: false);
-    } else if (items.isEmpty) {
-      return EmptyWidget();
-    } else {
-      return Scrollbar(
-        child: ListView.builder(
-          controller: _controller,
-          itemCount: 2 * items.length + 1,
-          itemBuilder: _buildItem,
-        ),
-      );
-    }
-  }
-
-  Widget _buildBody() {
-    switch (Provider.of<ThemeModel>(context).theme) {
-      case AppThemeType.cupertino:
-        return CupertinoScrollbar(
-          child: CustomScrollView(
-            controller: _controller,
-            slivers: [
-              CupertinoSliverRefreshControl(onRefresh: _refresh),
-              _buildCupertinoSliver(),
-            ],
-          ),
-        );
-      default:
-        return RefreshIndicator(
-          onRefresh: _refresh,
-          child: _buildMaterial(),
-        );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
       title: widget.title,
-      body: _buildBody(),
+      body: CupertinoScrollbar(
+        child: CustomScrollView(
+          controller: _controller,
+          slivers: [
+            CupertinoSliverRefreshControl(onRefresh: _refresh),
+            _buildCupertinoSliver(),
+          ],
+        ),
+      ),
       action: widget.actionBuilder?.call(),
     );
   }

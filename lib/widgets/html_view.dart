@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
+
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

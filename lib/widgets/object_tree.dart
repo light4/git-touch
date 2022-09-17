@@ -1,6 +1,6 @@
 import 'package:file_icon/file_icon.dart';
 import 'package:filesize/filesize.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/table_view.dart';
 import 'package:primer/primer.dart';

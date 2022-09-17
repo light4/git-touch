@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
@@ -48,37 +47,15 @@ class MyApp extends StatelessWidget {
 
     return Container(
       key: auth.rootKey,
-      child: theme.theme == AppThemeType.cupertino
-          ? CupertinoApp.router(
-              routeInformationProvider: router.routeInformationProvider,
-              routeInformationParser: router.routeInformationParser,
-              routerDelegate: router.routerDelegate,
-              theme: CupertinoThemeData(brightness: theme.brightness),
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              localeListResolutionCallback: localeListResolutionCallback,
-            )
-          : MaterialApp.router(
-              routeInformationProvider: router.routeInformationProvider,
-              routeInformationParser: router.routeInformationParser,
-              routerDelegate: router.routerDelegate,
-              theme: ThemeData(
-                brightness: theme.brightness,
-                primaryColor:
-                    theme.brightness == Brightness.dark ? null : Colors.white,
-                scaffoldBackgroundColor: theme.palette.background,
-                pageTransitionsTheme: const PageTransitionsTheme(
-                  builders: {
-                    TargetPlatform.android: ZoomPageTransitionsBuilder(),
-                  },
-                ),
-                colorScheme: ColorScheme.fromSwatch()
-                    .copyWith(secondary: theme.palette.primary),
-              ),
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              localeListResolutionCallback: localeListResolutionCallback,
-            ),
+      child: CupertinoApp.router(
+        routeInformationProvider: router.routeInformationProvider,
+        routeInformationParser: router.routeInformationParser,
+        routerDelegate: router.routerDelegate,
+        theme: CupertinoThemeData(brightness: theme.brightness),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        localeListResolutionCallback: localeListResolutionCallback,
+      ),
     );
   }
 }

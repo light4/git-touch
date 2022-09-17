@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:git_touch/scaffolds/common.dart';
 
 class SingleScaffold extends StatelessWidget {
@@ -16,7 +16,7 @@ class SingleScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return CommonScaffold(
       title: title,
-      body: Scrollbar(child: SingleChildScrollView(child: body)),
+      body: CupertinoScrollbar(child: SingleChildScrollView(child: body)),
       action: action,
     );
   }

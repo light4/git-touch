@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:git_touch/models/theme.dart';
+import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 // TODO:
@@ -64,31 +64,19 @@ class LinkWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
 
-    switch (theme.theme) {
-      case AppThemeType.cupertino:
-        Widget w = CupertinoButton(
-          minSize: 0,
-          padding: EdgeInsets.zero,
-          onPressed: () async {
-            if (onTap != null) onTap!();
-            if (url != null) theme.push(context, url!);
-          },
-          child: child,
-        );
-        if (onLongPress != null) {
-          w = GestureDetector(
-              onLongPress: onLongPress as void Function()?, child: w);
-        }
-        return w;
-      default:
-        return InkWell(
-          onTap: () async {
-            if (onTap != null) onTap!();
-            if (url != null) theme.push(context, url!);
-          },
-          onLongPress: onLongPress as void Function()?,
-          child: child,
-        );
+    Widget w = CupertinoButton(
+      minSize: 0,
+      padding: EdgeInsets.zero,
+      onPressed: () async {
+        if (onTap != null) onTap!();
+        if (url != null) theme.push(context, url!);
+      },
+      child: child,
+    );
+    if (onLongPress != null) {
+      w = GestureDetector(
+          onLongPress: onLongPress as void Function()?, child: w);
     }
+    return w;
   }
 }

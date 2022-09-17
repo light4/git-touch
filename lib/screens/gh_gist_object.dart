@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
-import 'package:git_touch/widgets/action_entry.dart';
 
 class GistObjectScreen extends StatelessWidget {
   final String login;
@@ -12,7 +12,8 @@ class GistObjectScreen extends StatelessWidget {
   final String? raw;
   final String? content;
 
-  const GistObjectScreen(this.login, this.id, this.file, {this.raw, this.content});
+  const GistObjectScreen(this.login, this.id, this.file,
+      {this.raw, this.content});
 
   @override
   Widget build(BuildContext context) {

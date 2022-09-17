@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:git_touch/models/code.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/html_view.dart';
+import 'package:path/path.dart' as path;
 import 'package:provider/provider.dart';
 import 'package:uri/uri.dart';
-import 'package:path/path.dart' as path;
 
 class MarkdownViewData {
   final Future<String> future;

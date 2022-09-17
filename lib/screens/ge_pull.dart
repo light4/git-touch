@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
+import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/avatar.dart';
-import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/comment_item.dart';
+import 'package:git_touch/widgets/link.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
-import 'package:git_touch/models/auth.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:tuple/tuple.dart';
 
 class GePullScreen extends StatelessWidget {
@@ -89,17 +89,18 @@ class GePullScreen extends StatelessWidget {
           additions += int.parse(file.additions!);
           deletions += int.parse(file.deletions!);
         }
-        return Column(children: <Widget>[
-          Container(
-              padding: CommonStyle.padding,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  LinkWidget(
-                    url: '/gitee/$owner/$name',
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Column(
+        return Column(
+          children: <Widget>[
+            Container(
+                padding: CommonStyle.padding,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    LinkWidget(
+                      url: '/gitee/$owner/$name',
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             LinkWidget(
@@ -149,7 +150,8 @@ class GePullScreen extends StatelessWidget {
                             LinkWidget(
                               url: '/gitee/$owner/$name/pulls/$number/files',
                               child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -190,71 +192,76 @@ class GePullScreen extends StatelessWidget {
                             ),
                             CommonStyle.border,
                             ListTileTheme(
-                                contentPadding: EdgeInsets.zero,
-                                child: ExpansionTile(
-                                  title: Text(
-                                    'Commits',
-                                    style: TextStyle(
-                                      color: theme.palette.primary,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                              contentPadding: EdgeInsets.zero,
+                              child: ExpansionTile(
+                                title: Text(
+                                  'Commits',
+                                  style: TextStyle(
+                                    color: theme.palette.primary,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  children: [
-                                    for (var commit in commits) ...[
-                                      LinkWidget(
-                                        url:
-                                            '/gitee/$owner/$name/commits/${commit.sha}',
-                                        child: Container(
-                                          padding:
-                                              const EdgeInsets.symmetric(vertical: 8),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Text(
-                                                commit.sha!.substring(0, 7),
-                                                style: TextStyle(
-                                                  color: theme.palette.primary,
-                                                  fontSize: 17,
-                                                  fontFamily:
-                                                      CommonStyle.monospace,
-                                                ),
+                                ),
+                                children: [
+                                  for (var commit in commits) ...[
+                                    LinkWidget(
+                                      url:
+                                          '/gitee/$owner/$name/commits/${commit.sha}',
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(
+                                              commit.sha!.substring(0, 7),
+                                              style: TextStyle(
+                                                color: theme.palette.primary,
+                                                fontSize: 17,
+                                                fontFamily:
+                                                    CommonStyle.monospace,
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
-                                      )
-                                    ]
-                                  ],
-                                )),
-                          ]),
+                                      ),
+                                    )
+                                  ]
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    CommonStyle.border,
+                  ],
+                )),
+            Column(
+              children: [
+                for (var comment in comments) ...[
+                  Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: CommentItem(
+                        avatar: Avatar(
+                          url: comment.user!.avatarUrl,
+                          linkUrl: '/gitee/${comment.user!.login}',
+                        ),
+                        createdAt: DateTime.parse(comment.createdAt!),
+                        body: comment.body,
+                        login: comment.user!.login,
+                        prefix: 'gitee',
+                        commentActionItemList:
+                            _buildCommentActionItem(context, comment),
+                      )),
                   CommonStyle.border,
+                  const SizedBox(height: 16),
                 ],
-              )),
-          Column(children: [
-            for (var comment in comments) ...[
-              Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: CommentItem(
-                    avatar: Avatar(
-                      url: comment.user!.avatarUrl,
-                      linkUrl: '/gitee/${comment.user!.login}',
-                    ),
-                    createdAt: DateTime.parse(comment.createdAt!),
-                    body: comment.body,
-                    login: comment.user!.login,
-                    prefix: 'gitee',
-                    commentActionItemList:
-                        _buildCommentActionItem(context, comment),
-                  )),
-              CommonStyle.border,
-              const SizedBox(height: 16),
-            ],
-          ]),
-        ]);
+              ],
+            ),
+          ],
+        );
       },
     );
   }

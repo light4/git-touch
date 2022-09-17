@@ -1,15 +1,16 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/issue_icon.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'avatar.dart';
-import '../widgets/link.dart';
+
 import '../utils/utils.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
+import '../widgets/link.dart';
+import 'avatar.dart';
 
 class EventItem extends StatelessWidget {
   final GithubEvent e;
@@ -440,7 +441,8 @@ class EventItem extends StatelessWidget {
               "${AppLocalizations.of(context)!.wereAddedTo(addedRepos, e.payload!.installation!.id.toString())}\n ";
         }
         if (removedRepos != "") {
-          finalListOfRepos += "$removedRepos ${AppLocalizations.of(context)!.wereRemovedFrom(removedRepos, e.payload!.installation!.id.toString())}";
+          finalListOfRepos +=
+              "$removedRepos ${AppLocalizations.of(context)!.wereRemovedFrom(removedRepos, e.payload!.installation!.id.toString())}";
         }
         return _buildItem(
           context: context,

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/notification.dart';
@@ -247,56 +246,35 @@ class _HomeState extends State<Home> {
 
     final navigationItems = _buildNavigationItems(auth.activeAccount!.platform);
 
-    switch (theme.theme) {
-      case AppThemeType.cupertino:
-        return WillPopScope(
-          onWillPop: () async {
-            return !(await getNavigatorKey(auth.activeTab)
-                .currentState
-                ?.maybePop())!;
-          },
-          child: CupertinoTabScaffold(
-            tabBuilder: (context, index) {
-              return CupertinoTabView(
-                navigatorKey: getNavigatorKey(index),
-                builder: (context) {
-                  return _buildScreen(index);
-                },
-              );
+    return WillPopScope(
+      onWillPop: () async {
+        return !(await getNavigatorKey(auth.activeTab)
+            .currentState
+            ?.maybePop())!;
+      },
+      child: CupertinoTabScaffold(
+        tabBuilder: (context, index) {
+          return CupertinoTabView(
+            navigatorKey: getNavigatorKey(index),
+            builder: (context) {
+              return _buildScreen(index);
             },
-            tabBar: CupertinoTabBar(
-              items: navigationItems,
-              currentIndex: auth.activeTab,
-              onTap: (index) {
-                if (auth.activeTab == index) {
-                  getNavigatorKey(index)
-                      .currentState
-                      ?.popUntil((route) => route.isFirst);
-                } else {
-                  auth.setActiveTab(index);
-                }
-              },
-            ),
-          ),
-        );
-      default:
-        return Scaffold(
-          body: IndexedStack(
-            index: auth.activeTab,
-            children: [
-              for (var i = 0; i < navigationItems.length; i++) _buildScreen(i)
-            ],
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: theme.palette.primary,
-            items: navigationItems,
-            currentIndex: auth.activeTab,
-            type: BottomNavigationBarType.fixed,
-            onTap: (int index) {
+          );
+        },
+        tabBar: CupertinoTabBar(
+          items: navigationItems,
+          currentIndex: auth.activeTab,
+          onTap: (index) {
+            if (auth.activeTab == index) {
+              getNavigatorKey(index)
+                  .currentState
+                  ?.popUntil((route) => route.isFirst);
+            } else {
               auth.setActiveTab(index);
-            },
-          ),
-        );
-    }
+            }
+          },
+        ),
+      ),
+    );
   }
 }

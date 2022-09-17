@@ -1,5 +1,5 @@
 import 'package:ferry/ferry.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
@@ -10,9 +10,10 @@ import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/timeline_item.dart';
+import 'package:github/github.dart' as github;
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
-import 'package:github/github.dart' as github;
+
 import '../scaffolds/long_list.dart';
 import '../widgets/comment_item.dart';
 

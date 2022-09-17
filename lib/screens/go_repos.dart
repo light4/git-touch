@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gogs.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:git_touch/models/auth.dart';
-import 'package:provider/provider.dart';
 import 'package:git_touch/widgets/repository_item.dart';
+import 'package:provider/provider.dart';
 
 class GoReposScreen extends StatelessWidget {
   final String api;

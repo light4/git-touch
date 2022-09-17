@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/single.dart';
@@ -9,10 +10,10 @@ import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/text_field.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/avatar.dart';
 import '../widgets/link.dart';
 import '../widgets/loading.dart';
-import '../widgets/avatar.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

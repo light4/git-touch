@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
 import '../utils/utils.dart';
 import '../widgets/link.dart';
 
@@ -115,7 +116,8 @@ class IssueItem extends StatelessWidget {
                                 const SizedBox(width: 4),
                                 Text(
                                   author!,
-                                  style: const TextStyle(fontWeight: FontWeight.w600),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ],
                               Expanded(
