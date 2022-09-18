@@ -10,10 +10,10 @@ import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:github/github.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/utils.dart';
-import '../widgets/empty.dart';
-import '../widgets/list_group.dart';
-import '../widgets/notification_item.dart';
+import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/empty.dart';
+import 'package:git_touch/widgets/list_group.dart';
+import 'package:git_touch/widgets/notification_item.dart';
 
 class GhNotificationScreen extends StatefulWidget {
   @override

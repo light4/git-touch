@@ -11,9 +11,9 @@ import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/text_field.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/avatar.dart';
-import '../widgets/link.dart';
-import '../widgets/loading.dart';
+import 'package:git_touch/widgets/avatar.dart';
+import 'package:git_touch/widgets/link.dart';
+import 'package:git_touch/widgets/loading.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

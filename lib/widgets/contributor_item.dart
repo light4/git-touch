@@ -53,7 +53,7 @@ class ContributorItem extends StatelessWidget {
                         color: theme.palette.secondaryText,
                         fontSize: 16,
                       ),
-                      child: Text("Commits: $commits"),
+                      child: Text('Commits: $commits'),
                     ),
                 ],
               ),

@@ -6,7 +6,7 @@ import 'package:git_touch/widgets/issue_icon.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
-import '../models/theme.dart';
+import 'package:git_touch/models/theme.dart';
 
 class NotificationItem extends StatefulWidget {
   final GithubNotificationItem payload;

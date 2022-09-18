@@ -16,10 +16,10 @@ class GtUsersScreen extends StatelessWidget {
         title = 'Followers';
   const GtUsersScreen.following(String login)
       : api = '/users/$login/following',
-        title = "Following";
+        title = 'Following';
   const GtUsersScreen.member(String login)
       : api = '/orgs/$login/members',
-        title = "Members";
+        title = 'Members';
   const GtUsersScreen.stargazers(String owner, String repo)
       : api = '/repos/$owner/$repo/stargazers',
         title = 'Stargazers';

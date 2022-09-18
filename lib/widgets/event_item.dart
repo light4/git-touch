@@ -8,9 +8,9 @@ import 'package:git_touch/widgets/issue_icon.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../utils/utils.dart';
-import '../widgets/link.dart';
-import 'avatar.dart';
+import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/link.dart';
+import 'package:git_touch/widgets/avatar.dart';
 
 class EventItem extends StatelessWidget {
   final GithubEvent e;
@@ -309,7 +309,7 @@ class EventItem extends StatelessWidget {
         ]);
       case 'CheckSuiteEvent':
         // Needs checks permission
-        String conclusion = "";
+        String conclusion = '';
         switch (e.payload!.checkSuite!.conclusion) {
           case 'success':
           case 'failure':
@@ -388,22 +388,22 @@ class EventItem extends StatelessWidget {
           ],
         );
       case 'GollumEvent':
-        String pageNamesCreated = "";
-        String pageNamesEdited = "";
+        String pageNamesCreated = '';
+        String pageNamesEdited = '';
         for (GithubPagesItem page in e.payload!.pages!) {
-          if (page.action == "edited") {
-            pageNamesEdited += ", ${page.pageName!}";
+          if (page.action == 'edited') {
+            pageNamesEdited += ', ${page.pageName!}';
           } else {
-            pageNamesCreated += ", ${page.pageName!}";
+            pageNamesCreated += ', ${page.pageName!}';
           }
         }
         if (pageNamesCreated.isNotEmpty) {
           pageNamesCreated =
-              " ${AppLocalizations.of(context)!.createdPages(pageNamesCreated)}";
+              ' ${AppLocalizations.of(context)!.createdPages(pageNamesCreated)}';
         }
         if (pageNamesEdited.isNotEmpty) {
           pageNamesEdited =
-              " ${AppLocalizations.of(context)!.editedPages(pageNamesEdited)}";
+              ' ${AppLocalizations.of(context)!.editedPages(pageNamesEdited)}';
         }
 
         return _buildItem(
@@ -427,22 +427,22 @@ class EventItem extends StatelessWidget {
             e.payload!.installation!.repositoriesAdded!;
         List<GithubNotificationItemRepo> repositoriesRemoved =
             e.payload!.installation!.repositoriesRemoved!;
-        String addedRepos = "";
-        String removedRepos = "";
+        String addedRepos = '';
+        String removedRepos = '';
         for (GithubNotificationItemRepo repo in repositoriesAdded) {
-          addedRepos += "${repo.fullName!}, ";
+          addedRepos += '${repo.fullName!}, ';
         }
         for (GithubNotificationItemRepo repo in repositoriesRemoved) {
-          removedRepos += "${repo.fullName!}, ";
+          removedRepos += '${repo.fullName!}, ';
         }
-        String finalListOfRepos = "";
-        if (addedRepos != "") {
+        String finalListOfRepos = '';
+        if (addedRepos != '') {
           finalListOfRepos +=
-              "${AppLocalizations.of(context)!.wereAddedTo(addedRepos, e.payload!.installation!.id.toString())}\n ";
+              '${AppLocalizations.of(context)!.wereAddedTo(addedRepos, e.payload!.installation!.id.toString())}\n ';
         }
-        if (removedRepos != "") {
+        if (removedRepos != '') {
           finalListOfRepos +=
-              "$removedRepos ${AppLocalizations.of(context)!.wereRemovedFrom(removedRepos, e.payload!.installation!.id.toString())}";
+              '$removedRepos ${AppLocalizations.of(context)!.wereRemovedFrom(removedRepos, e.payload!.installation!.id.toString())}';
         }
         return _buildItem(
           context: context,
@@ -490,23 +490,23 @@ class EventItem extends StatelessWidget {
         final action = e.payload!.action;
         var messageToDisplay;
         switch (action) {
-          case "purchased":
+          case 'purchased':
             messageToDisplay =
                 AppLocalizations.of(context)!.purchasedMarketplacePlan;
             break;
-          case "cancelled":
+          case 'cancelled':
             messageToDisplay =
                 AppLocalizations.of(context)!.cancelledMarketplacePlan;
             break;
-          case "pending_change":
+          case 'pending_change':
             messageToDisplay =
                 AppLocalizations.of(context)!.pendingMarketplacePlan;
             break;
-          case "pending_change_cancelled":
+          case 'pending_change_cancelled':
             messageToDisplay =
                 AppLocalizations.of(context)!.pendingChangeCancelled;
             break;
-          case "changed":
+          case 'changed':
             messageToDisplay =
                 AppLocalizations.of(context)!.changedMarketplacePlan;
             break;

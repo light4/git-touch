@@ -19,7 +19,7 @@ class GhReleasesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GReleasesData_repository_releases_nodes,
         String?>(
-      title: const AppBarTitle("Releases"),
+      title: const AppBarTitle('Releases'),
       fetch: (page) async {
         final req = GReleasesReq((b) => b
           ..vars.owner = owner

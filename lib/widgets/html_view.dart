@@ -23,7 +23,7 @@ class _HtmlViewState extends State<HtmlView> {
 
   updateHeight() async {
     final value = await controller
-        .runJavascriptReturningResult("document.documentElement.scrollHeight;");
+        .runJavascriptReturningResult('document.documentElement.scrollHeight;');
     // print(value);
     if (mounted) {
       setState(() {

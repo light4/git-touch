@@ -18,10 +18,10 @@ import 'package:uni_links/uni_links.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../utils/utils.dart';
-import 'account.dart';
-import 'gitlab.dart';
-import 'gogs.dart';
+import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/models/account.dart';
+import 'package:git_touch/models/gitlab.dart';
+import 'package:git_touch/models/gogs.dart';
 
 const clientId = 'df930d7d2e219f26142a';
 

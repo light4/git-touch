@@ -57,7 +57,7 @@ class GePullScreen extends StatelessWidget {
     return RefreshStatefulScaffold<
         Tuple4<GiteePull, List<GiteeComment>, List<GiteePullFile>,
             List<GiteeCommit>>>(
-      title: Text("Pull Request: #$number"),
+      title: Text('Pull Request: #$number'),
       fetch: () async {
         final auth = context.read<AuthModel>();
         final items = await Future.wait([

@@ -5,7 +5,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:provider/provider.dart';
 
@@ -66,7 +65,7 @@ class GeContributorsScreen extends StatelessWidget {
                           color: theme.palette.secondaryText,
                           fontSize: 16,
                         ),
-                        child: Text("Contributions: ${v.contributions}"),
+                        child: Text('Contributions: ${v.contributions}'),
                       ),
                   ],
                 ),

@@ -20,7 +20,7 @@ class GeCommitScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.watch<ThemeModel>();
     return RefreshStatefulScaffold<GiteeCommit>(
-      title: Text("Commit: ${sha.substring(0, 7)}"),
+      title: Text('Commit: ${sha.substring(0, 7)}'),
       fetch: () async {
         final auth = context.read<AuthModel>();
         final items = await auth.fetchGitee('/repos/$owner/$name/commits/$sha');

@@ -23,7 +23,7 @@ class BbIssueScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold<Tuple2<BbIssues, Iterable<BbComment>>>(
-      title: Text("Issue: #$number"),
+      title: Text('Issue: #$number'),
       fetch: () async {
         final auth = context.read<AuthModel>();
         final res = await Future.wait([

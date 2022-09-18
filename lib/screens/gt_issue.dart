@@ -55,7 +55,7 @@ class GtIssueScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold<Tuple2<GiteaIssue, List<GiteaComment>>>(
-      title: Text("Issue: #$number"),
+      title: Text('Issue: #$number'),
       fetch: () async {
         final auth = context.read<AuthModel>();
         final items = await Future.wait([

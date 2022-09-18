@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';

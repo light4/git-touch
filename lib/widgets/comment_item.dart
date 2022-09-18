@@ -9,10 +9,10 @@ import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../utils/utils.dart';
-import 'avatar.dart';
-import 'link.dart';
-import 'user_name.dart';
+import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/avatar.dart';
+import 'package:git_touch/widgets/link.dart';
+import 'package:git_touch/widgets/user_name.dart';
 
 class EmojiPayload {
   GReactionContent key;

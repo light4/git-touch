@@ -8,8 +8,8 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/utils.dart';
-import 'comment_item.dart';
+import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/comment_item.dart';
 
 TextSpan createUserSpan(BuildContext context, String? login) {
   return createLinkSpan(context, login, '/github/$login');

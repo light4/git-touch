@@ -15,7 +15,7 @@ class GeUsersScreen extends StatelessWidget {
         title = 'Followers';
   const GeUsersScreen.following(String login)
       : api = '/users/$login/following',
-        title = "Following";
+        title = 'Following';
   // GeUsersScreen.member(String login)
   //     : api = '/orgs/$login/members',
   //       title = "Members";

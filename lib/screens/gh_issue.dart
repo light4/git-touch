@@ -14,8 +14,8 @@ import 'package:github/github.dart' as github;
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
 
-import '../scaffolds/long_list.dart';
-import '../widgets/comment_item.dart';
+import 'package:git_touch/scaffolds/long_list.dart';
+import 'package:git_touch/widgets/comment_item.dart';
 
 class GhIssueScreen extends StatelessWidget {
   final String owner;

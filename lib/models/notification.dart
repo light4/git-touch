@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:tuple/tuple.dart';
 
-import '../utils/utils.dart';
+import 'package:git_touch/utils/utils.dart';
 
 class NotificationGroup {
   String? fullName;

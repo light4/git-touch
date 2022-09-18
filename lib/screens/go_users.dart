@@ -15,7 +15,7 @@ class GoUsersScreen extends StatelessWidget {
         title = 'Followers';
   const GoUsersScreen.following(String login)
       : api = '/users/$login/following',
-        title = "Following";
+        title = 'Following';
 
   @override
   Widget build(BuildContext context) {

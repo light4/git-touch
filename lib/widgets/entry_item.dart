@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
-import 'link.dart';
+import 'package:git_touch/widgets/link.dart';
 
 class EntryItem extends StatelessWidget {
   final int? count;

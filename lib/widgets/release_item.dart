@@ -62,7 +62,7 @@ class ReleaseItem extends StatelessWidget {
                     fontSize: 16,
                   ),
                   child: Text(
-                      "${login!} ${AppLocalizations.of(context)!.released} ${timeago.format(publishedAt!)}"),
+                      '${login!} ${AppLocalizations.of(context)!.released} ${timeago.format(publishedAt!)}'),
                 ),
               ],
             ),

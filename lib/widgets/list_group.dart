@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../models/theme.dart';
-import '../widgets/empty.dart';
+import 'package:git_touch/models/theme.dart';
+import 'package:git_touch/widgets/empty.dart';
 
 class ListGroup<T> extends StatelessWidget {
   final Widget title;

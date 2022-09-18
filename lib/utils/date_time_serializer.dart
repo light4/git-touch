@@ -24,5 +24,5 @@ class DateTimeSerializer implements PrimitiveSerializer<DateTime> {
   Iterable<Type> get types => [DateTime];
 
   @override
-  String get wireName => "DateTime";
+  String get wireName => 'DateTime';
 }

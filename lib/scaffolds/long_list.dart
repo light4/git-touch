@@ -3,9 +3,9 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/error_reload.dart';
-import '../widgets/link.dart';
-import '../widgets/loading.dart';
+import 'package:git_touch/widgets/error_reload.dart';
+import 'package:git_touch/widgets/link.dart';
+import 'package:git_touch/widgets/loading.dart';
 
 class LongListPayload<T, K> {
   T header;
