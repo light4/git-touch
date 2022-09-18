@@ -14,27 +14,15 @@ const userGqlChunk = '''
 ''';
 
 class GhBioWidget extends StatelessWidget {
-  final GUserParts p;
-  const GhBioWidget(this.p);
+  final String? location;
+  final DateTime createdAt;
+  const GhBioWidget({this.location, required this.createdAt});
 
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
 
-    if (isNotNullOrEmpty(p.company)) {
-      return Row(
-        children: <Widget>[
-          Icon(
-            Octicons.organization,
-            size: 15,
-            color: theme.palette.secondaryText,
-          ),
-          const SizedBox(width: 4),
-          Expanded(child: Text(p.company!, overflow: TextOverflow.ellipsis)),
-        ],
-      );
-    }
-    if (isNotNullOrEmpty(p.location)) {
+    if (isNotNullOrEmpty(location)) {
       return Row(
         children: <Widget>[
           Icon(
@@ -43,7 +31,7 @@ class GhBioWidget extends StatelessWidget {
             color: theme.palette.secondaryText,
           ),
           const SizedBox(width: 4),
-          Expanded(child: Text(p.location!, overflow: TextOverflow.ellipsis)),
+          Expanded(child: Text(location!, overflow: TextOverflow.ellipsis)),
         ],
       );
     }
@@ -56,7 +44,7 @@ class GhBioWidget extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Expanded(
-            child: Text('Joined on ${dateFormat.format(p.createdAt)}',
+            child: Text('Joined on ${dateFormat.format(createdAt)}',
                 overflow: TextOverflow.ellipsis)),
       ],
     );
@@ -77,12 +65,19 @@ class UserItem extends StatelessWidget {
     required this.bio,
   }) : url = '/github/$login';
 
-  UserItem.gql(GUserParts p)
+  UserItem.fromGqlUser(GUserParts p)
       : login = p.login,
         name = p.name,
         avatarUrl = p.avatarUrl,
         url = '/github/${p.login}',
-        bio = GhBioWidget(p);
+        bio = GhBioWidget(location: p.location, createdAt: p.createdAt);
+
+  UserItem.fromGqlOrg(GOrgParts p)
+      : login = p.login,
+        name = p.name,
+        avatarUrl = p.avatarUrl,
+        url = '/github/${p.login}',
+        bio = GhBioWidget(location: p.location, createdAt: p.createdAt);
 
   const UserItem.gitlab({
     required this.login,

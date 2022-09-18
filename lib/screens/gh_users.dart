@@ -33,7 +33,7 @@ class GhFollowers extends StatelessWidget {
         );
       },
       itemBuilder: (p) {
-        return UserItem.gql(p);
+        return UserItem.fromGqlUser(p);
       },
     );
   }
@@ -63,7 +63,36 @@ class GhFollowing extends StatelessWidget {
         );
       },
       itemBuilder: (p) {
-        return UserItem.gql(p);
+        return UserItem.fromGqlUser(p);
+      },
+    );
+  }
+}
+
+class GhOrgs extends StatelessWidget {
+  final String login;
+  const GhOrgs(this.login, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListStatefulScaffold<GOrgParts, String?>(
+      title: const AppBarTitle('Members'),
+      fetch: (cursor) async {
+        final auth = context.read<AuthModel>();
+        final req = GOrgsReq((b) {
+          b.vars.login = login;
+          b.vars.after = cursor;
+        });
+        final res = await auth.gqlClient.request(req).first;
+        final p = res.data!.user!.organizations;
+        return ListPayload(
+          cursor: p.pageInfo.endCursor,
+          hasMore: p.pageInfo.hasNextPage,
+          items: p.nodes!,
+        );
+      },
+      itemBuilder: (p) {
+        return UserItem.fromGqlOrg(p);
       },
     );
   }
@@ -93,7 +122,7 @@ class GhMembers extends StatelessWidget {
         );
       },
       itemBuilder: (p) {
-        return UserItem.gql(p);
+        return UserItem.fromGqlUser(p);
       },
     );
   }
@@ -125,7 +154,7 @@ class GhWachers extends StatelessWidget {
         );
       },
       itemBuilder: (p) {
-        return UserItem.gql(p);
+        return UserItem.fromGqlUser(p);
       },
     );
   }
@@ -157,7 +186,7 @@ class GhStargazers extends StatelessWidget {
         );
       },
       itemBuilder: (p) {
-        return UserItem.gql(p);
+        return UserItem.fromGqlUser(p);
       },
     );
   }

@@ -27,7 +27,13 @@ fragment UserParts on User {
   login
   name
   avatarUrl
-  company
+  location
+  createdAt
+}
+fragment OrgParts on Organization {
+  login
+  name
+  avatarUrl
   location
   createdAt
 }
@@ -97,6 +103,18 @@ query Following($login: String!, $after: String) {
       }
       nodes {
         ...UserParts
+      }
+    }
+  }
+}
+query Orgs($login: String!, $after: String) {
+  user(login: $login) {
+    organizations(first: 30, after: $after) {
+      pageInfo {
+        ...PageInfoParts
+      }
+      nodes {
+        ...OrgParts
       }
     }
   }
@@ -183,6 +201,7 @@ query Stars($login: String!, $after: String) {
 # user
 fragment UserPartsFull on User {
   ...UserParts
+  company
   bio
   email
   websiteUrl
