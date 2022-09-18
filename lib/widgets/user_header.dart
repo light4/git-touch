@@ -11,30 +11,34 @@ class UserHeader extends StatelessWidget {
   final String? login;
   final DateTime? createdAt;
   final String? bio;
+  final bool isViewer;
   final List<Widget> rightWidgets;
 
-  UserHeader({
+  const UserHeader({
+    super.key,
     required this.avatarUrl,
     required this.name,
     required this.login,
     required this.createdAt,
     required this.bio,
-    bool isViewer = false,
-    List<Widget>? rightWidgets,
-  }) : rightWidgets = [
-          if (isViewer)
-            const MutationButton(
-              active: false,
-              text: 'Switch accounts',
-              url: '/login',
-            )
-          else
-            ...(rightWidgets ?? []),
-        ];
+    this.isViewer = false,
+    this.rightWidgets = const [],
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
+    final right = isViewer
+        ? [
+            MutationButton(
+              text: 'Switch accounts',
+              onTap: () {
+                theme.push(context, '/login');
+              },
+            )
+          ]
+        : rightWidgets;
+
     return Container(
       padding: CommonStyle.padding,
       child: Column(
@@ -43,9 +47,9 @@ class UserHeader extends StatelessWidget {
           Row(
             children: <Widget>[
               Avatar(url: avatarUrl, size: AvatarSize.extraLarge),
-              if (rightWidgets.isNotEmpty) ...[
+              if (right.isNotEmpty) ...[
                 Expanded(child: Container()),
-                ...rightWidgets,
+                ...right,
               ]
             ],
           ),

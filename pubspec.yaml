@@ -41,7 +41,6 @@ dependencies:
   flutter_markdown:
   flutter_svg:
   flutter_vector_icons:
-    path: ../flutter-vector-icons
   github:
   github_trending:
   gql:
