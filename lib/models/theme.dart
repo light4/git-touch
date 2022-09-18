@@ -232,25 +232,6 @@ class ThemeModel with ChangeNotifier {
     }
   }
 
-  Future<void> showWarning(BuildContext context, String message) async {
-    showCupertinoDialog(
-      context: context,
-      builder: (context) {
-        return CupertinoAlertDialog(
-          title: Text(message),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.pop(context, true);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   Future<bool?> showConfirm(BuildContext context, Widget content) {
     return showCupertinoDialog(
       context: context,
@@ -281,8 +262,9 @@ class ThemeModel with ChangeNotifier {
   String? _selectedItem;
 
   showPicker(BuildContext context, PickerGroupItem<String?> groupItem) async {
-    await showCupertinoModalPopup(
+    await AntPopup.show(
       context: context,
+      closeOnMaskClick: true,
       builder: (context) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.end,

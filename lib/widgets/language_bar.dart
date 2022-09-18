@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:git_touch/models/theme.dart';
@@ -31,8 +32,12 @@ class LanguageBar extends StatelessWidget {
     return CupertinoButton(
       padding: EdgeInsets.zero,
       minSize: 0,
-      onPressed: () {
-        showCupertinoModalPopup(context: context, builder: _buildPopup);
+      onPressed: () async {
+        await AntPopup.show(
+          context: context,
+          closeOnMaskClick: true,
+          builder: _buildPopup,
+        );
       },
       child: Container(
         // color: theme.palette.background,
