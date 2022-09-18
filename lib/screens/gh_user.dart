@@ -23,9 +23,9 @@ import 'package:provider/provider.dart';
 
 class _Repos extends StatelessWidget {
   final String title;
-  final Iterable<GRepoItem>? repos;
+  final Iterable<GRepoParts>? repos;
 
-  _Repos(final Iterable<GRepoItem> pinned, final Iterable<GRepoItem>? repos)
+  _Repos(final Iterable<GRepoParts> pinned, final Iterable<GRepoParts>? repos)
       : title =
             pinned.isNotEmpty ? 'pinned repositories' : 'popular repositories',
         repos = pinned.isNotEmpty ? pinned : repos;
@@ -59,7 +59,7 @@ class _Repos extends StatelessWidget {
 }
 
 class _User extends StatelessWidget {
-  final GUserParts? p;
+  final GUserPartsFull? p;
   final bool isViewer;
   final List<Widget> rightWidgets;
   const _User(this.p, {this.isViewer = false, this.rightWidgets = const []});
@@ -177,7 +177,7 @@ class _User extends StatelessWidget {
         ),
         CommonStyle.verticalGap,
         _Repos(
-          p!.pinnedItems.nodes!.whereType<GRepoItem>(),
+          p!.pinnedItems.nodes!.whereType<GRepoParts>(),
           p!.repositories.nodes,
         ),
         CommonStyle.verticalGap,
@@ -255,8 +255,8 @@ class _Org extends StatelessWidget {
         ),
         CommonStyle.verticalGap,
         _Repos(
-          p!.pinnedItems.nodes!.whereType<GRepoItem>(),
-          p!.pinnableItems.nodes!.whereType<GRepoItem>(),
+          p!.pinnedItems.nodes!.whereType<GRepoParts>(),
+          p!.pinnableItems.nodes!.whereType<GRepoParts>(),
         ),
         CommonStyle.verticalGap,
       ],
@@ -268,7 +268,7 @@ class GhViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthModel>(context);
-    return RefreshStatefulScaffold<GUserParts?>(
+    return RefreshStatefulScaffold<GUserPartsFull?>(
       fetch: () async {
         final req = GViewerReq();
         final OperationResponse<GViewerData, GViewerVars?> res =

@@ -14,7 +14,7 @@ const userGqlChunk = '''
 ''';
 
 class GhBioWidget extends StatelessWidget {
-  final GUserItem p;
+  final GUserParts p;
   const GhBioWidget(this.p);
 
   @override
@@ -77,7 +77,7 @@ class UserItem extends StatelessWidget {
     required this.bio,
   }) : url = '/github/$login';
 
-  UserItem.gql(GUserItem p)
+  UserItem.gql(GUserParts p)
       : login = p.login,
         name = p.name,
         avatarUrl = p.avatarUrl,

@@ -3,7 +3,7 @@ fragment PageInfoParts on PageInfo {
   hasNextPage
   endCursor
 }
-fragment RepoItem on Repository {
+fragment RepoParts on Repository {
   owner {
     login
     avatarUrl
@@ -23,7 +23,7 @@ fragment RepoItem on Repository {
     name
   }
 }
-fragment UserItem on User {
+fragment UserParts on User {
   login
   name
   avatarUrl
@@ -84,7 +84,7 @@ query Followers($login: String!, $after: String) {
         ...PageInfoParts
       }
       nodes {
-        ...UserItem
+        ...UserParts
       }
     }
   }
@@ -96,7 +96,7 @@ query Following($login: String!, $after: String) {
         ...PageInfoParts
       }
       nodes {
-        ...UserItem
+        ...UserParts
       }
     }
   }
@@ -108,7 +108,7 @@ query Members($login: String!, $after: String) {
         ...PageInfoParts
       }
       nodes {
-        ...UserItem
+        ...UserParts
       }
     }
   }
@@ -120,7 +120,7 @@ query Watchers($owner: String!, $name: String!, $after: String) {
         ...PageInfoParts
       }
       nodes {
-        ...UserItem
+        ...UserParts
       }
     }
   }
@@ -136,15 +136,15 @@ query Stargazers($owner: String!, $name: String!, $after: String) {
         ...PageInfoParts
       }
       nodes {
-        ...UserItem
+        ...UserParts
       }
     }
   }
 }
 
 # repos
-fragment ReposRepoItem on Repository {
-  ...RepoItem
+fragment RepoPartsWithTime on Repository {
+  ...RepoParts
   updatedAt
 }
 query Repos($login: String!, $after: String) {
@@ -158,7 +158,7 @@ query Repos($login: String!, $after: String) {
         ...PageInfoParts
       }
       nodes {
-        ...ReposRepoItem
+        ...RepoPartsWithTime
       }
     }
   }
@@ -174,22 +174,17 @@ query Stars($login: String!, $after: String) {
         ...PageInfoParts
       }
       nodes {
-        ...ReposRepoItem
+        ...RepoPartsWithTime
       }
     }
   }
 }
 
 # user
-fragment UserParts on User {
-  login
-  avatarUrl
-  name
+fragment UserPartsFull on User {
+  ...UserParts
   bio
-  company
-  location
   email
-  createdAt
   websiteUrl
   viewerCanFollow # TODO: remove in viewer query
   viewerIsFollowing
@@ -218,27 +213,27 @@ fragment UserParts on User {
   ) {
     totalCount
     nodes {
-      ...RepoItem
+      ...RepoParts
     }
   }
   pinnedItems(first: 6) {
     nodes {
       ... on Repository {
-        ...RepoItem
+        ...RepoParts
       }
     }
   }
 }
 query Viewer {
   viewer {
-    ...UserParts
+    ...UserPartsFull
   }
 }
 query User($login: String!) {
   repositoryOwner(login: $login) {
     url
     ... on User {
-      ...UserParts
+      ...UserPartsFull
     }
     ... on Organization {
       login
@@ -255,7 +250,7 @@ query User($login: String!) {
       pinnedItems(first: 6) {
         nodes {
           ... on Repository {
-            ...RepoItem
+            ...RepoParts
           }
         }
       }
@@ -263,7 +258,7 @@ query User($login: String!) {
         totalCount
         nodes {
           ... on Repository {
-            ...RepoItem
+            ...RepoParts
           }
         }
       }

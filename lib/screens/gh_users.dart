@@ -15,7 +15,7 @@ class GhFollowers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListStatefulScaffold<GUserItem, String?>(
+    return ListStatefulScaffold<GUserParts, String?>(
       title: const AppBarTitle('Followers'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
@@ -45,7 +45,7 @@ class GhFollowing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListStatefulScaffold<GUserItem, String?>(
+    return ListStatefulScaffold<GUserParts, String?>(
       title: const AppBarTitle('Following'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
@@ -75,7 +75,7 @@ class GhMembers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListStatefulScaffold<GUserItem, String?>(
+    return ListStatefulScaffold<GUserParts, String?>(
       title: const AppBarTitle('Members'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
@@ -106,7 +106,7 @@ class GhWachers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListStatefulScaffold<GUserItem, String?>(
+    return ListStatefulScaffold<GUserParts, String?>(
       title: const AppBarTitle('Wachers'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
@@ -138,7 +138,7 @@ class GhStargazers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListStatefulScaffold<GUserItem, String?>(
+    return ListStatefulScaffold<GUserParts, String?>(
       title: const AppBarTitle('Stargazers'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
