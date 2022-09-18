@@ -26,7 +26,7 @@ class GhRepos extends StatelessWidget {
         });
         final OperationResponse<GReposData, GReposVars?> res =
             await auth.gqlClient.request(req).first;
-        final p = res.data!.user!.repositories;
+        final p = res.data!.repositoryOwner!.repositories;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
           hasMore: p.pageInfo.hasNextPage,

@@ -37,7 +37,6 @@ import 'package:git_touch/screens/gh_issue.dart';
 import 'package:git_touch/screens/gh_issue_form.dart';
 import 'package:git_touch/screens/gh_issues.dart';
 import 'package:git_touch/screens/gh_object.dart';
-import 'package:git_touch/screens/gh_org_repos.dart';
 import 'package:git_touch/screens/gh_orgs.dart';
 import 'package:git_touch/screens/gh_pulls.dart';
 import 'package:git_touch/screens/gh_releases.dart';
@@ -122,9 +121,8 @@ final router = GoRouter(
                   case 'stars':
                     return GhStars(login);
                   case 'repositories':
-                    return GhRepos(login);
                   case 'orgrepo':
-                    return GhOrgReposScreen(login);
+                    return GhRepos(login);
                   case 'organizations':
                     return GhUserOrganizationScreen(login);
                   case 'gists':
