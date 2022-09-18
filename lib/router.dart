@@ -120,7 +120,6 @@ final router = GoRouter(
                   case 'stars':
                     return GhStars(login);
                   case 'repositories':
-                  case 'orgrepo':
                     return GhRepos(login);
                   case 'organizations':
                     return GhOrgs(login);

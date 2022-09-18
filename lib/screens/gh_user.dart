@@ -207,7 +207,7 @@ class _Org extends StatelessWidget {
           EntryItem(
             count: p!.pinnableItems.totalCount,
             text: AppLocalizations.of(context)!.repositories,
-            url: '/github/${p!.login}?tab=orgrepo',
+            url: '/github/${p!.login}?tab=repositories',
           ),
           EntryItem(
             count: p!.membersWithRole.totalCount,
