@@ -1105,3 +1105,15 @@ query Releases($name: String!, $owner: String!, $cursor: String) {
     }
   }
 }
+
+# meta
+query Meta {
+  meta {
+    gitHubServicesSha
+    gitIpAddresses
+    hookIpAddresses
+    importerIpAddresses
+    isPasswordAuthenticationVerifiable
+    pagesIpAddresses
+  }
+}

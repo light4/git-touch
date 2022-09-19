@@ -32,6 +32,10 @@ class SettingsScreen extends StatelessWidget {
                 child: Text(AppLocalizations.of(context)!.githubStatus),
                 url: 'https://www.githubstatus.com/',
               ),
+              const TableViewItem(
+                child: Text('Meta'),
+                url: '/settings/github-meta',
+              ),
               TableViewItem(
                 child: Text(AppLocalizations.of(context)!.reviewPermissions),
                 url:

@@ -36,6 +36,7 @@ import 'package:git_touch/screens/gh_gists_files.dart';
 import 'package:git_touch/screens/gh_issue.dart';
 import 'package:git_touch/screens/gh_issue_form.dart';
 import 'package:git_touch/screens/gh_issues.dart';
+import 'package:git_touch/screens/gh_meta.dart';
 import 'package:git_touch/screens/gh_object.dart';
 import 'package:git_touch/screens/gh_pulls.dart';
 import 'package:git_touch/screens/gh_releases.dart';
@@ -98,6 +99,12 @@ final router = GoRouter(
         GoRoute(
           path: 'settings',
           builder: (context, state) => SettingsScreen(),
+          routes: [
+            GoRoute(
+              path: 'github-meta',
+              builder: (context, state) => const GhMetaScreen(),
+            ),
+          ],
         ),
 
         // github
