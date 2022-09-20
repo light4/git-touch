@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -19,6 +20,7 @@ import 'package:git_touch/widgets/repository_item.dart';
 import 'package:git_touch/widgets/table_view.dart';
 import 'package:git_touch/widgets/text_with_at.dart';
 import 'package:git_touch/widgets/user_header.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class _Repos extends StatelessWidget {
@@ -117,26 +119,32 @@ class _User extends StatelessWidget {
           ],
         ),
         CommonStyle.border,
-        TableView(
+        AntList(
           items: [
-            TableViewItem(
-              prefixIconData: Octicons.rss,
+            AntListItem(
+              prefix: const Icon(Octicons.rss),
               child: Text(AppLocalizations.of(context)!.events),
-              url: '/github/$login?tab=events',
+              onClick: () {
+                context.push('/github/$login?tab=events');
+              },
             ),
-            TableViewItem(
-              prefixIconData: Octicons.book,
+            AntListItem(
+              prefix: const Icon(Octicons.book),
               child: Text(AppLocalizations.of(context)!.gists),
-              url: '/github/$login?tab=gists',
+              onClick: () {
+                context.push('/github/$login?tab=gists');
+              },
             ),
-            TableViewItem(
-              prefixIconData: Octicons.home,
+            AntListItem(
+              prefix: const Icon(Octicons.home),
               child: Text(AppLocalizations.of(context)!.organizations),
-              url: '/github/$login?tab=organizations',
+              onClick: () {
+                context.push('/github/$login?tab=organizations');
+              },
             ),
             if (isNotNullOrEmpty(p!.company))
-              TableViewItem(
-                prefixIconData: Octicons.organization,
+              AntListItem(
+                prefix: const Icon(Octicons.organization),
                 child: TextWithAt(
                   text: p!.company!,
                   linkFactory: (text) => '/github/${text.substring(1)}',
@@ -145,8 +153,8 @@ class _User extends StatelessWidget {
                 ),
               ),
             if (isNotNullOrEmpty(p!.location))
-              TableViewItem(
-                prefixIconData: Octicons.location,
+              AntListItem(
+                prefix: const Icon(Octicons.location),
                 child: Text(p!.location!),
                 onClick: () {
                   launchStringUrl(
@@ -154,16 +162,16 @@ class _User extends StatelessWidget {
                 },
               ),
             if (isNotNullOrEmpty(p!.email))
-              TableViewItem(
-                prefixIconData: Octicons.mail,
+              AntListItem(
+                prefix: const Icon(Octicons.mail),
                 child: Text(p!.email),
                 onClick: () {
                   launchStringUrl('mailto:${p!.email}');
                 },
               ),
             if (isNotNullOrEmpty(p!.websiteUrl))
-              TableViewItem(
-                prefixIconData: Octicons.link,
+              AntListItem(
+                prefix: const Icon(Octicons.link),
                 child: Text(p!.websiteUrl!),
                 onClick: () {
                   var url = p!.websiteUrl!;
@@ -215,16 +223,18 @@ class _Org extends StatelessWidget {
             url: '/github/${p!.login}?tab=people',
           ),
         ]),
-        TableView(
+        AntList(
           items: [
-            TableViewItem(
-              prefixIconData: Octicons.rss,
+            AntListItem(
+              prefix: const Icon(Octicons.rss),
               child: Text(AppLocalizations.of(context)!.events),
-              url: '/github/${p!.login}?tab=events',
+              onClick: () {
+                context.push('/github/${p!.login}?tab=events');
+              },
             ),
             if (isNotNullOrEmpty(p!.location))
-              TableViewItem(
-                prefixIconData: Octicons.location,
+              AntListItem(
+                prefix: const Icon(Octicons.location),
                 child: Text(p!.location!),
                 onClick: () {
                   launchStringUrl(
@@ -232,16 +242,16 @@ class _Org extends StatelessWidget {
                 },
               ),
             if (isNotNullOrEmpty(p!.email))
-              TableViewItem(
-                prefixIconData: Octicons.mail,
+              AntListItem(
+                prefix: const Icon(Octicons.mail),
                 child: Text(p!.email!),
                 onClick: () {
                   launchStringUrl('mailto:${p!.email!}');
                 },
               ),
             if (isNotNullOrEmpty(p!.websiteUrl))
-              TableViewItem(
-                prefixIconData: Octicons.link,
+              AntListItem(
+                prefix: const Icon(Octicons.link),
                 child: Text(p!.websiteUrl!),
                 onClick: () {
                   var url = p!.websiteUrl!;

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
@@ -11,7 +12,7 @@ import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/repo_header.dart';
-import 'package:git_touch/widgets/table_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
@@ -90,30 +91,38 @@ class GoRepoScreen extends StatelessWidget {
               ],
             ),
             CommonStyle.border,
-            TableView(
+            AntList(
               items: [
-                TableViewItem(
-                  prefixIconData: Octicons.code,
+                AntListItem(
+                  prefix: const Icon(Octicons.code),
                   child: const Text('Code'),
-                  url: '/gogs/$owner/$name/blob?ref=${branch ?? 'master'}',
+                  onClick: () {
+                    context.push(
+                        '/gogs/$owner/$name/blob?ref=${branch ?? 'master'}');
+                  },
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.issue_opened,
+                AntListItem(
+                  prefix: const Icon(Octicons.issue_opened),
                   child: const Text('Issues'),
-                  url: '/gogs/$owner/$name/issues',
+                  onClick: () {
+                    context.push('/gogs/$owner/$name/issues');
+                  },
                 ),
-                const TableViewItem(
-                  prefixIconData: Octicons.git_pull_request,
-                  child: Text(
+                AntListItem(
+                  prefix: const Icon(Octicons.git_pull_request),
+                  child: const Text(
                       'Pull requests'), // TODO: when API endpoint is available
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.history,
+                AntListItem(
+                  prefix: const Icon(Octicons.history),
                   child: const Text('Commits'),
-                  url: '/gogs/$owner/$name/commits?ref=${branch ?? 'master'}',
+                  onClick: () {
+                    context.push(
+                        '/gogs/$owner/$name/commits?ref=${branch ?? 'master'}');
+                  },
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.git_branch,
+                AntListItem(
+                  prefix: const Icon(Octicons.git_branch),
                   child: Text(AppLocalizations.of(context)!.branches),
                   extra: Text(
                       '${branch ?? 'master'} • ${branches.length.toString()}'),

@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
@@ -8,7 +9,6 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/single.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
 
 class CodeThemeScreen extends StatelessWidget {
@@ -44,10 +44,10 @@ class MyApp extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           CommonStyle.verticalGap,
-          TableView(
+          AntList(
             header: Text(AppLocalizations.of(context)!.fontStyle),
             items: [
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.fontSize),
                 extra: Text(codeProvider.fontSize.toString()),
                 onClick: () {
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
                   );
                 },
               ),
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.fontFamily),
                 extra: Text(codeProvider.fontFamily),
                 onClick: () {
@@ -87,10 +87,10 @@ class MyApp extends StatelessWidget {
             ],
           ),
           CommonStyle.verticalGap,
-          TableView(
+          AntList(
             header: Text(AppLocalizations.of(context)!.syntaxHighlighting),
             items: [
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.light),
                 extra: Text(codeProvider.theme),
                 onClick: () {
@@ -108,7 +108,7 @@ class MyApp extends StatelessWidget {
                   );
                 },
               ),
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.dark),
                 extra: Text(codeProvider.themeDark),
                 onClick: () {

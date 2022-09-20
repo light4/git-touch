@@ -158,7 +158,7 @@ class PrimerBranchName extends StatelessWidget {
   }
 }
 
-launchStringUrl(String? url) async {
+Future<void> launchStringUrl(String? url) async {
   if (url == null) return;
 
   final uri = Uri.parse(url);

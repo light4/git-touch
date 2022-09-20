@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:filesize/filesize.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
@@ -11,7 +12,7 @@ import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/repo_header.dart';
-import 'package:git_touch/widgets/table_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
@@ -80,30 +81,38 @@ class GtRepoScreen extends StatelessWidget {
               ],
             ),
             CommonStyle.border,
-            TableView(
+            AntList(
               items: [
-                TableViewItem(
-                  prefixIconData: Octicons.code,
+                AntListItem(
+                  prefix: const Icon(Octicons.code),
                   child: const Text('Code'),
                   extra: Text(filesize(p.size! * 1000)),
-                  url: '/gitea/$owner/$name/blob',
+                  onClick: () {
+                    context.push('/gitea/$owner/$name/blob');
+                  },
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.issue_opened,
+                AntListItem(
+                  prefix: const Icon(Octicons.issue_opened),
                   child: const Text('Issues'),
                   extra: Text(numberFormat.format(p.openIssuesCount)),
-                  url: '/gitea/$owner/$name/issues',
+                  onClick: () {
+                    context.push('/gitea/$owner/$name/issues');
+                  },
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.git_pull_request,
+                AntListItem(
+                  prefix: const Icon(Octicons.git_pull_request),
                   child: const Text('Pull requests'),
                   extra: Text(numberFormat.format(p.openPrCounter)),
-                  url: '/gitea/$owner/$name/pulls',
+                  onClick: () {
+                    context.push('/gitea/$owner/$name/pulls');
+                  },
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.history,
+                AntListItem(
+                  prefix: const Icon(Octicons.history),
                   child: const Text('Commits'),
-                  url: '/gitea/$owner/$name/commits',
+                  onClick: () {
+                    context.push('/gitea/$owner/$name/commits');
+                  },
                 ),
               ],
             ),

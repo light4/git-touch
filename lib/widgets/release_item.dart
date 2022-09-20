@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
@@ -5,7 +6,6 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -87,11 +87,11 @@ class ReleaseItem extends StatelessWidget {
               ),
             ),
             children: <Widget>[
-              TableView(
+              AntList(
                 items: [
                   if (releaseAssets != null)
                     for (var asset in releaseAssets!.nodes!)
-                      TableViewItem(
+                      AntListItem(
                         child: Text(
                           asset.name,
                           style: TextStyle(
@@ -105,7 +105,7 @@ class ReleaseItem extends StatelessWidget {
                               theme.push(context, asset.downloadUrl);
                             },
                             icon: const Icon(Ionicons.download_outline)),
-                        hideRightChevron: true,
+                        arrow: null,
                       ),
                 ],
               )

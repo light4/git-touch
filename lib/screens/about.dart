@@ -47,12 +47,12 @@
 //             style: TextStyle(fontSize: 20, color: theme.palette.text),
 //           ),
 //           SizedBox(height: 48),
-//           TableView(items: [
-//             TableViewItem(text: Text('Version'), rightWidget: Text(_version)),
-//             TableViewItem(text: Text('Source Code'), url: '/pd4d10/git-touch'),
-//             TableViewItem(
+//           AntList(items: [
+//             AntListItem(text: Text('Version'), rightWidget: Text(_version)),
+//             AntListItem(text: Text('Source Code'), url: '/pd4d10/git-touch'),
+//             AntListItem(
 //                 text: Text('Feedback'), url: '/pd4d10/git-touch/issues/new'),
-//             TableViewItem(
+//             AntListItem(
 //               text: Text('Rate This App'),
 //               onTap: () {
 //                 LaunchReview.launch(

@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
@@ -8,7 +9,6 @@ import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
 
 class GtObjectScreen extends StatelessWidget {
@@ -44,7 +44,7 @@ class GtObjectScreen extends StatelessWidget {
           items.sort((a, b) {
             return sortByKey('dir', a.type, b.type);
           });
-          return TableView(items: [
+          return AntList(items: [
             for (var v in items)
               createObjectTreeItem(
                 name: v.name,

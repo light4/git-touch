@@ -19,8 +19,8 @@ import 'package:git_touch/widgets/language_bar.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:git_touch/widgets/repo_header.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:github/github.dart';
+import 'package:go_router/go_router.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
@@ -240,43 +240,51 @@ class GhRepoScreen extends StatelessWidget {
                   )
               ]),
             ],
-            TableView(
+            AntList(
               items: [
                 if (ref != null)
-                  TableViewItem(
-                    prefixIconData: Octicons.code,
+                  AntListItem(
+                    prefix: const Icon(Octicons.code),
                     child: Text(repo.primaryLanguage?.name ?? 'Code'),
                     extra: Text(
                       (license == null ? '' : '$license • ') +
                           filesize(repo.diskUsage! * 1000),
                     ),
-                    url: '/github/$owner/$name/blob/${ref.name}',
+                    onClick: () {
+                      context.push('/github/$owner/$name/blob/${ref.name}');
+                    },
                   ),
                 if (repo.hasIssuesEnabled)
-                  TableViewItem(
-                    prefixIconData: Octicons.issue_opened,
+                  AntListItem(
+                    prefix: const Icon(Octicons.issue_opened),
                     child: Text(AppLocalizations.of(context)!.issues),
                     extra: Text(numberFormat.format(repo.issues.totalCount)),
-                    url: '/github/$owner/$name/issues',
+                    onClick: () {
+                      context.push('/github/$owner/$name/issues');
+                    },
                   ),
-                TableViewItem(
-                  prefixIconData: Octicons.git_pull_request,
+                AntListItem(
+                  prefix: const Icon(Octicons.git_pull_request),
                   child: Text(AppLocalizations.of(context)!.pullRequests),
                   extra:
                       Text(numberFormat.format(repo.pullRequests.totalCount)),
-                  url: '/github/$owner/$name/pulls',
+                  onClick: () {
+                    context.push('/github/$owner/$name/pulls');
+                  },
                 ),
                 if (ref != null) ...[
-                  TableViewItem(
-                    prefixIconData: Octicons.history,
+                  AntListItem(
+                    prefix: const Icon(Octicons.history),
                     child: Text(AppLocalizations.of(context)!.commits),
                     extra: Text(((ref.target as GRepoCommit).history.totalCount)
                         .toString()),
-                    url: '/github/$owner/$name/commits/${ref.name}',
+                    onClick: () {
+                      context.push('/github/$owner/$name/commits/${ref.name}');
+                    },
                   ),
                   if (repo.refs != null)
-                    TableViewItem(
-                      prefixIconData: Octicons.git_branch,
+                    AntListItem(
+                      prefix: const Icon(Octicons.git_branch),
                       child: Text(AppLocalizations.of(context)!.branches),
                       extra: Text(
                           '${ref.name} • ${numberFormat.format(repo.refs!.totalCount)}'),
@@ -302,8 +310,8 @@ class GhRepoScreen extends StatelessWidget {
                         );
                       },
                     ),
-                  TableViewItem(
-                    prefixIconData: Octicons.organization,
+                  AntListItem(
+                    prefix: const Icon(Octicons.organization),
                     child: Text(AppLocalizations.of(context)!.contributors),
                     extra: FutureBuilder<int>(
                       future: contributionFuture,
@@ -311,12 +319,16 @@ class GhRepoScreen extends StatelessWidget {
                         return Text(snapshot.data?.toString() ?? '');
                       },
                     ),
-                    url: '/github/$owner/$name/contributors',
+                    onClick: () {
+                      context.push('/github/$owner/$name/contributors');
+                    },
                   ),
-                  TableViewItem(
-                    prefixIconData: Octicons.book,
+                  AntListItem(
+                    prefix: const Icon(Octicons.book),
                     child: Text(AppLocalizations.of(context)!.releases),
-                    url: '/github/$owner/$name/releases',
+                    onClick: () {
+                      context.push('/github/$owner/$name/releases');
+                    },
                     extra: Text(repo.releases.totalCount.toString()),
                   ),
                 ],

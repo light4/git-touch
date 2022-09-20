@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
@@ -9,7 +10,7 @@ import 'package:git_touch/utils/locale.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:git_touch/widgets/table_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -26,27 +27,35 @@ class SettingsScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[
           CommonStyle.verticalGap,
-          TableView(header: Text(AppLocalizations.of(context)!.system), items: [
+          AntList(header: Text(AppLocalizations.of(context)!.system), items: [
             if (auth.activeAccount!.platform == PlatformType.github) ...[
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.githubStatus),
-                url: 'https://www.githubstatus.com/',
+                onClick: () {
+                  launchStringUrl('https://www.githubstatus.com/');
+                },
               ),
-              const TableViewItem(
-                child: Text('Meta'),
-                url: '/settings/github-meta',
+              AntListItem(
+                child: const Text('Meta'),
+                onClick: () {
+                  context.push('/settings/github-meta');
+                },
               ),
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.reviewPermissions),
-                url:
-                    'https://github.com/settings/connections/applications/$clientId',
+                onClick: () {
+                  launchStringUrl(
+                      'https://github.com/settings/connections/applications/$clientId');
+                },
                 extra: Text(auth.activeAccount!.login),
               ),
             ],
             if (auth.activeAccount!.platform == PlatformType.gitlab)
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.gitlabStatus),
-                url: '${auth.activeAccount!.domain}/help',
+                onClick: () {
+                  launchStringUrl('${auth.activeAccount!.domain}/help');
+                },
                 extra: FutureBuilder<String>(
                   future:
                       auth.fetchGitlab('/version').then((v) => v['version']),
@@ -56,10 +65,12 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
             if (auth.activeAccount!.platform == PlatformType.gitea)
-              TableViewItem(
-                prefixIconData: Octicons.info,
+              AntListItem(
+                prefix: const Icon(Octicons.info),
                 child: Text(AppLocalizations.of(context)!.giteaStatus),
-                url: '/gitea/status',
+                onClick: () {
+                  context.push('/gitea/status');
+                },
                 extra: FutureBuilder<String>(
                   future: auth.fetchGitea('/version').then((v) => v['version']),
                   builder: (context, snapshot) {
@@ -67,12 +78,14 @@ class SettingsScreen extends StatelessWidget {
                   },
                 ),
               ),
-            TableViewItem(
+            AntListItem(
               child: Text(AppLocalizations.of(context)!.switchAccounts),
-              url: '/login',
+              onClick: () {
+                context.push('/login');
+              },
               extra: Text(auth.activeAccount!.login),
             ),
-            TableViewItem(
+            AntListItem(
               child: Text(AppLocalizations.of(context)!.appLanguage),
               extra: Text(theme.locale == null
                   ? AppLocalizations.of(context)!.followSystem
@@ -107,10 +120,10 @@ class SettingsScreen extends StatelessWidget {
             )
           ]),
           CommonStyle.verticalGap,
-          TableView(
+          AntList(
             header: Text(AppLocalizations.of(context)!.theme),
             items: [
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.brightness),
                 extra: Text(theme.brighnessValue == AppBrightnessType.light
                     ? AppLocalizations.of(context)!.light
@@ -138,12 +151,14 @@ class SettingsScreen extends StatelessWidget {
                   ]);
                 },
               ),
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.codeTheme),
-                url: '/choose-code-theme',
+                onClick: () {
+                  context.push('/choose-code-theme');
+                },
                 extra: Text('${code.fontFamily}, ${code.fontSize}pt'),
               ),
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.markdownRenderEngine),
                 extra: Text(theme.markdown == AppMarkdownType.flutter
                     ? AppLocalizations.of(context)!.flutter
@@ -170,16 +185,22 @@ class SettingsScreen extends StatelessWidget {
             ],
           ),
           CommonStyle.verticalGap,
-          TableView(
+          AntList(
             header: Text(AppLocalizations.of(context)!.feedback),
             items: [
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.submitAnIssue),
                 extra: const Text('git-touch/git-touch'),
-                url:
-                    '${auth.activeAccount!.platform == PlatformType.github ? '/github' : 'https://github.com'}/git-touch/git-touch/issues/new',
+                onClick: () {
+                  const suffix = 'git-touch/git-touch/issues/new';
+                  if (auth.activeAccount!.platform == PlatformType.github) {
+                    context.push('/github/$suffix');
+                  } else {
+                    launchStringUrl('https://github.com/$suffix');
+                  }
+                },
               ),
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.rateThisApp),
                 onClick: () {
                   LaunchReview.launch(
@@ -188,32 +209,41 @@ class SettingsScreen extends StatelessWidget {
                   );
                 },
               ),
-              TableViewItem(
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.email),
                 extra: const Text('pd4d10@gmail.com'),
-                hideRightChevron: true,
-                url: 'mailto:pd4d10@gmail.com',
+                arrow: null,
+                onClick: () {
+                  launchStringUrl('mailto:pd4d10@gmail.com');
+                },
               ),
             ],
           ),
           CommonStyle.verticalGap,
-          TableView(
+          AntList(
             header: Text(AppLocalizations.of(context)!.about),
             items: [
-              TableViewItem(
-                  child: Text(AppLocalizations.of(context)!.version),
-                  extra: FutureBuilder<String>(
-                    future:
-                        PackageInfo.fromPlatform().then((info) => info.version),
-                    builder: (context, snapshot) {
-                      return Text(snapshot.data ?? '');
-                    },
-                  )),
-              TableViewItem(
+              AntListItem(
+                child: Text(AppLocalizations.of(context)!.version),
+                extra: FutureBuilder<String>(
+                  future:
+                      PackageInfo.fromPlatform().then((info) => info.version),
+                  builder: (context, snapshot) {
+                    return Text(snapshot.data ?? '');
+                  },
+                ),
+              ),
+              AntListItem(
                 child: Text(AppLocalizations.of(context)!.sourceCode),
                 extra: const Text('git-touch/git-touch'),
-                url:
-                    '${auth.activeAccount!.platform == PlatformType.github ? '/github' : 'https://github.com'}/git-touch/git-touch',
+                onClick: () {
+                  const suffix = 'git-touch/git-touch';
+                  if (auth.activeAccount!.platform == PlatformType.github) {
+                    context.push('/github/$suffix');
+                  } else {
+                    launchStringUrl('https://github.com/$suffix');
+                  }
+                },
               ),
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gogs.dart';
@@ -6,8 +7,8 @@ import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/repository_item.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:git_touch/widgets/user_header.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
@@ -70,13 +71,15 @@ class GoUserScreen extends StatelessWidget {
               ),
             ]),
             CommonStyle.border,
-            TableView(
+            AntList(
               items: [
-                TableViewItem(
-                  prefixIconData: Octicons.home,
+                AntListItem(
+                  prefix: const Icon(Octicons.home),
                   child: const Text('Organizations'),
-                  url:
-                      '/gogs/${user.username}?tab=organizations&isViewer=$isViewer',
+                  onClick: () {
+                    context.push(
+                        '/gogs/${user.username}?tab=organizations&isViewer=$isViewer');
+                  },
                 ),
               ],
             ),

@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -9,7 +10,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/object_tree.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
 
 class GhGistsFilesScreen extends StatelessWidget {
@@ -31,7 +31,7 @@ class GhGistsFilesScreen extends StatelessWidget {
         return gist;
       },
       bodyBuilder: (payload, _) {
-        return TableView(
+        return AntList(
           items: payload!.files!.map((v) {
             final uri = Uri(
               path: '/github/$login/gists/$id/${v.name}',
@@ -46,7 +46,7 @@ class GhGistsFilesScreen extends StatelessWidget {
               downloadUrl: null,
               size: v.size,
             );
-          }),
+          }).toList(),
         );
       },
     );

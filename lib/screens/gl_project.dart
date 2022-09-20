@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:filesize/filesize.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -13,7 +14,7 @@ import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/language_bar.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/repo_header.dart';
-import 'package:git_touch/widgets/table_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
@@ -155,10 +156,10 @@ class GlProjectScreen extends StatelessWidget {
               },
             ),
             CommonStyle.border,
-            TableView(
+            AntList(
               items: [
-                TableViewItem(
-                  prefixIconData: Octicons.code,
+                AntListItem(
+                  prefix: const Icon(Octicons.code),
                   child: FutureBuilder<Map<String, double>>(
                     future: langFuture,
                     builder: (context, snapshot) {
@@ -175,32 +176,43 @@ class GlProjectScreen extends StatelessWidget {
                   extra: p.statistics == null
                       ? null
                       : Text(filesize(p.statistics!.repositorySize)),
-                  url: '/gitlab/projects/$id/tree/${branch ?? p.defaultBranch}',
+                  onClick: () {
+                    context.push(
+                        '/gitlab/projects/$id/tree/${branch ?? p.defaultBranch}');
+                  },
                 ),
                 if (p.issuesEnabled!)
-                  TableViewItem(
-                    prefixIconData: Octicons.issue_opened,
+                  AntListItem(
+                    prefix: const Icon(Octicons.issue_opened),
                     child: Text(AppLocalizations.of(context)!.issues),
                     extra: Text(numberFormat.format(p.openIssuesCount)),
-                    url: '/gitlab/projects/$id/issues?prefix=$prefix',
+                    onClick: () {
+                      context
+                          .push('/gitlab/projects/$id/issues?prefix=$prefix');
+                    },
                   ),
                 if (p.mergeRequestsEnabled!)
-                  TableViewItem(
-                    prefixIconData: Octicons.git_pull_request,
+                  AntListItem(
+                    prefix: const Icon(Octicons.git_pull_request),
                     child: Text(AppLocalizations.of(context)!.mergeRequests),
-                    url: '/gitlab/projects/$id/merge_requests?prefix=$prefix',
+                    onClick: () {
+                      context.push(
+                          '/gitlab/projects/$id/merge_requests?prefix=$prefix');
+                    },
                   ),
-                TableViewItem(
-                  prefixIconData: Octicons.history,
+                AntListItem(
+                  prefix: const Icon(Octicons.history),
                   child: Text(AppLocalizations.of(context)!.commits),
                   extra: p.statistics == null
                       ? null
                       : Text(p.statistics!.commitCount.toString()),
-                  url:
-                      '/gitlab/projects/$id/commits?prefix=$prefix&branch=${branch ?? p.defaultBranch}', // EDIT
+                  onClick: () {
+                    context.push(
+                        '/gitlab/projects/$id/commits?prefix=$prefix&branch=${branch ?? p.defaultBranch}');
+                  }, // EDIT
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.git_branch,
+                AntListItem(
+                  prefix: const Icon(Octicons.git_branch),
                   child: Text(AppLocalizations.of(context)!.branches),
                   extra: Text(
                       '${(branch ?? p.defaultBranch) ?? ''} • ${branches.length}'),

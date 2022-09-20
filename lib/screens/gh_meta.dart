@@ -1,9 +1,9 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
 
 class GhMetaScreen extends StatelessWidget {
@@ -20,9 +20,9 @@ class GhMetaScreen extends StatelessWidget {
         return res.data!.meta;
       },
       bodyBuilder: (meta, _) {
-        return TableView(
+        return AntList(
           items: [
-            TableViewItem(
+            AntListItem(
               child: const Text('Service SHA'),
               extra: Text(meta.gitHubServicesSha),
             ),

@@ -8,12 +8,11 @@ import 'package:git_touch/scaffolds/single.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:git_touch/widgets/text_field.dart';
-import 'package:provider/provider.dart';
-
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/loading.dart';
+import 'package:git_touch/widgets/text_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitea.dart';
@@ -7,8 +8,8 @@ import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/contribution.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/repository_item.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:git_touch/widgets/user_header.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -129,12 +130,14 @@ class GtUserScreen extends StatelessWidget {
               ]),
               ContributionWidget(weeks: p.userHeatmap),
               CommonStyle.border,
-              TableView(
+              AntList(
                 items: [
-                  TableViewItem(
-                    prefixIconData: Octicons.home,
+                  AntListItem(
+                    prefix: const Icon(Octicons.home),
                     child: const Text('Organizations'),
-                    url: '/gitea/$login?tab=organizations',
+                    onClick: () {
+                      context.push('/gitea/$login?tab=organizations');
+                    },
                   ),
                 ],
               ),

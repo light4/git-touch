@@ -24,30 +24,10 @@ class TableViewHeader extends StatelessWidget {
   }
 }
 
-class TableViewItem {
-  final Widget child;
-  final IconData? prefixIconData;
-  final Widget? prefix;
-  final Widget? extra;
-  final void Function()? onClick;
-  final String? url;
-  final bool hideRightChevron;
-
-  const TableViewItem({
-    required this.child,
-    this.prefixIconData,
-    this.prefix,
-    this.extra,
-    this.onClick,
-    this.url,
-    this.hideRightChevron = false,
-  }) : assert(prefixIconData == null || prefix == null);
-}
-
 class TableViewItemWidget extends StatelessWidget {
   const TableViewItemWidget(this.item, {super.key});
 
-  final TableViewItem item;
+  final AntListItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +35,6 @@ class TableViewItemWidget extends StatelessWidget {
 
     return LinkWidget(
       onTap: item.onClick,
-      url: item.url,
       child: DefaultTextStyle(
         style: TextStyle(fontSize: 17, color: theme.palette.text),
         overflow: TextOverflow.ellipsis,
@@ -64,16 +43,8 @@ class TableViewItemWidget extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: (item.prefix == null && item.prefixIconData == null)
-                    ? 12
-                    : 44,
-                child: Center(
-                    child: item.prefix ??
-                        Icon(
-                          item.prefixIconData,
-                          color: theme.palette.primary,
-                          size: 20,
-                        )),
+                width: (item.prefix == null) ? 12 : 44,
+                child: Center(child: item.prefix),
               ),
               Expanded(child: item.child),
               if (item.extra != null) ...[
@@ -86,8 +57,7 @@ class TableViewItemWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 6)
               ],
-              if ((item.onClick != null || item.url != null) &&
-                  !item.hideRightChevron)
+              if (item.onClick != null)
                 Icon(Ionicons.chevron_forward,
                     size: 20, color: theme.palette.tertiaryText)
               else
@@ -97,44 +67,6 @@ class TableViewItemWidget extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class TableView extends StatelessWidget {
-  final Widget? header;
-  final Iterable<TableViewItem> items;
-
-  const TableView({
-    super.key,
-    this.header,
-    required this.items,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
-
-    return AntList(
-      header: header,
-      items: [
-        for (final item in items)
-          AntListItem(
-            child: item.child,
-            prefix: item.prefix ??
-                (item.prefixIconData == null
-                    ? null
-                    : Icon(item.prefixIconData)),
-            extra: item.extra,
-            onClick: item.onClick != null
-                ? item.onClick!
-                : item.url != null
-                    ? () {
-                        theme.push(context, item.url!);
-                      }
-                    : null,
-          ),
-      ],
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:file_icon/file_icon.dart';
 import 'package:filesize/filesize.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/table_view.dart';
 
 Widget _buildIcon(String type, String name) {
   switch (type) {
@@ -22,32 +21,35 @@ Widget _buildIcon(String type, String name) {
   }
 }
 
-TableViewItem createObjectTreeItem({
+AntListItem createObjectTreeItem({
   required String name,
   required String type,
   required String url,
   String? downloadUrl,
   int? size,
 }) {
-  return TableViewItem(
+  return AntListItem(
     prefix: _buildIcon(type, name),
     child: Text(name),
     extra: size == null ? null : Text(filesize(size)),
-    url: [
-      // Let system browser handle these files
-      //
-      // TODO:
-      // Unhandled Exception: PlatformException(Error, Error while launching
-      // https://github.com/flutter/flutter/issues/49162
+    onClick: () async {
+      final finalUrl = [
+        // Let system browser handle these files
+        //
+        // TODO:
+        // Unhandled Exception: PlatformException(Error, Error while launching
+        // https://github.com/flutter/flutter/issues/49162
 
-      // Docs
-      'pdf', 'docx', 'doc', 'pptx', 'ppt', 'xlsx', 'xls',
-      // Fonts
-      'ttf', 'otf', 'eot', 'woff', 'woff2',
-      'svg',
-    ].contains(name.ext)
-        ? downloadUrl
-        : url,
-    hideRightChevron: size != null,
+        // Docs
+        'pdf', 'docx', 'doc', 'pptx', 'ppt', 'xlsx', 'xls',
+        // Fonts
+        'ttf', 'otf', 'eot', 'woff', 'woff2',
+        'svg',
+      ].contains(name.ext)
+          ? downloadUrl
+          : url;
+      await launchStringUrl(finalUrl);
+    },
+    arrow: size == null ? const Icon(AntIcons.rightOutline) : null,
   );
 }

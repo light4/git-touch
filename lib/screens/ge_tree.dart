@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
@@ -7,7 +8,6 @@ import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/object_tree.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
 
 class GeTreeScreen extends StatelessWidget {
@@ -31,7 +31,7 @@ class GeTreeScreen extends StatelessWidget {
         return items;
       },
       bodyBuilder: (data, _) {
-        return TableView(
+        return AntList(
           items: [
             for (var item in data)
               createObjectTreeItem(

@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
@@ -7,7 +8,6 @@ import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:github/github.dart';
 import 'package:provider/provider.dart';
 
@@ -59,7 +59,7 @@ class GhObjectScreen extends StatelessWidget {
       },
       bodyBuilder: (data, _) {
         if (data.isDirectory) {
-          return TableView(
+          return AntList(
             items: data.tree!.map((v) {
               // if (item.type == 'commit') return null;
               final uri = Uri(
@@ -76,7 +76,7 @@ class GhObjectScreen extends StatelessWidget {
                 downloadUrl: v.downloadUrl,
                 size: v.type == 'file' ? v.size : null,
               );
-            }),
+            }).toList(),
           );
         } else {
           // TODO: Markdown base path

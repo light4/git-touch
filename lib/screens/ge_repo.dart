@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
@@ -13,7 +14,7 @@ import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:git_touch/widgets/repo_header.dart';
-import 'package:git_touch/widgets/table_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
@@ -132,34 +133,43 @@ class GeRepoScreen extends StatelessWidget {
               ],
             ),
             CommonStyle.border,
-            TableView(
+            AntList(
               items: [
-                TableViewItem(
-                  prefixIconData: Octicons.code,
+                AntListItem(
+                  prefix: const Icon(Octicons.code),
                   child: const Text('Code'),
                   extra: Text(p.license ?? ''),
-                  url: '/gitee/$owner/$name/tree/${branch ?? p.defaultBranch}',
+                  onClick: () {
+                    context.push(
+                        '/gitee/$owner/$name/tree/${branch ?? p.defaultBranch}');
+                  },
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.issue_opened,
+                AntListItem(
+                  prefix: const Icon(Octicons.issue_opened),
                   child: const Text('Issues'),
                   extra: Text(numberFormat.format(p.openIssuesCount)),
-                  url: '/gitee/$owner/$name/issues',
+                  onClick: () {
+                    context.push('/gitee/$owner/$name/issues');
+                  },
                 ),
                 if (p.pullRequestsEnabled!)
-                  TableViewItem(
-                    prefixIconData: Octicons.git_pull_request,
+                  AntListItem(
+                    prefix: const Icon(Octicons.git_pull_request),
                     child: const Text('Pull requests'),
-                    url: '/gitee/$owner/$name/pulls',
+                    onClick: () {
+                      context.push('/gitee/$owner/$name/pulls');
+                    },
                   ),
-                TableViewItem(
-                  prefixIconData: Octicons.history,
+                AntListItem(
+                  prefix: const Icon(Octicons.history),
                   child: const Text('Commits'),
-                  url:
-                      '/gitee/$owner/$name/commits?branch=${branch ?? p.defaultBranch}',
+                  onClick: () {
+                    context.push(
+                        '/gitee/$owner/$name/commits?branch=${branch ?? p.defaultBranch}');
+                  },
                 ),
-                TableViewItem(
-                  prefixIconData: Octicons.git_branch,
+                AntListItem(
+                  prefix: const Icon(Octicons.git_branch),
                   child: Text(AppLocalizations.of(context)!.branches),
                   extra: Text(
                       '${(branch ?? p.defaultBranch)!} • ${branches.length}'),
@@ -184,10 +194,13 @@ class GeRepoScreen extends StatelessWidget {
                     );
                   },
                 ),
-                TableViewItem(
-                    prefixIconData: Octicons.organization,
-                    child: const Text('Contributors'),
-                    url: '/gitee/$owner/$name/contributors'),
+                AntListItem(
+                  prefix: const Icon(Octicons.organization),
+                  child: const Text('Contributors'),
+                  onClick: () {
+                    context.push('/gitee/$owner/$name/contributors');
+                  },
+                ),
               ],
             ),
             CommonStyle.verticalGap,

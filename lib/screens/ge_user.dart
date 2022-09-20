@@ -85,10 +85,10 @@ class GeUserScreen extends StatelessWidget {
                 url: '/gitee/$login?tab=following',
               ),
             ]),
-            // TableView(
+            // AntList(
             //   hasIcon: true,
             //   items: [
-            //     TableViewItem(
+            //     AntListItem(
             //       leftIconData: Octicons.home,
             //       text: Text('Organizations'),
             //       url: '/gitee/$login?tab=organizations',
