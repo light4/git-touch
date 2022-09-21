@@ -4,16 +4,15 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/models/theme.dart';
+import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/avatar.dart';
+import 'package:git_touch/widgets/branch_name.dart';
 import 'package:git_touch/widgets/issue_icon.dart';
+import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/link.dart';
-import 'package:git_touch/widgets/avatar.dart';
-
 class EventItem extends StatelessWidget {
-
   const EventItem(this.e);
   final GithubEvent e;
 
@@ -132,7 +131,7 @@ class EventItem extends StatelessWidget {
                       text:
                           '${AppLocalizations.of(context)!.nCommitsTo(e.payload!.commits!.length)} '),
                   WidgetSpan(
-                    child: PrimerBranchName(
+                    child: BranchName(
                         e.payload!.ref!.replaceFirst('refs/heads/', '')),
                   ),
                 ],

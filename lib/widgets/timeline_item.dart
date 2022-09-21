@@ -5,18 +5,17 @@ import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/schema.schema.gql.dart';
 import 'package:git_touch/models/theme.dart';
+import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/branch_name.dart';
+import 'package:git_touch/widgets/comment_item.dart';
 import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:provider/provider.dart';
-
-import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/comment_item.dart';
 
 TextSpan createUserSpan(BuildContext context, String? login) {
   return createLinkSpan(context, login, '/github/$login');
 }
 
 class TimelineEventItem extends StatelessWidget {
-
   const TimelineEventItem({
     this.actor,
     this.iconData = Octicons.diamond,
@@ -402,7 +401,7 @@ class TimelineItem extends StatelessWidget {
               TextSpan(
                   text:
                       ' ${AppLocalizations.of(context)!.headRefForcedPushedEventFirstMessage} '),
-              WidgetSpan(child: PrimerBranchName(p.pullRequest.headRefName)),
+              WidgetSpan(child: BranchName(p.pullRequest.headRefName)),
               TextSpan(
                   text:
                       ' ${AppLocalizations.of(context)!.headRefForcedPushedEventSecondMessage} '),
@@ -428,7 +427,7 @@ class TimelineItem extends StatelessWidget {
               TextSpan(
                   text:
                       ' ${AppLocalizations.of(context)!.headRefForcedPushedEventFirstMessage} '),
-              WidgetSpan(child: PrimerBranchName(p.pullRequest.baseRef!.name)),
+              WidgetSpan(child: BranchName(p.pullRequest.baseRef!.name)),
               TextSpan(
                   text:
                       ' ${AppLocalizations.of(context)!.headRefForcedPushedEventSecondMessage} '),
