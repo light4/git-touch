@@ -246,7 +246,7 @@ final router = GoRouter(
                   ],
                 ),
                 GoRoute(
-                  path: 'pulls',
+                  path: 'pull',
                   builder: (context, state) => GhPullsScreen(
                     state.params['owner']!,
                     state.params['name']!,
