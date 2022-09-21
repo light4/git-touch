@@ -3,13 +3,13 @@ import 'package:git_touch/models/theme.dart';
 import 'package:provider/provider.dart';
 
 class BorderView extends StatelessWidget {
-  final double? height;
-  final double leftPadding;
 
   const BorderView({
     this.height,
     this.leftPadding = 0,
   });
+  final double? height;
+  final double leftPadding;
 
   @override
   Widget build(BuildContext context) {

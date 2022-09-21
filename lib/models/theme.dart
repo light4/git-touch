@@ -30,16 +30,12 @@ class AppMarkdownType {
 }
 
 class PickerItem<T> {
+  PickerItem(this.value, {required this.text});
   final T value;
   final String? text;
-  PickerItem(this.value, {required this.text});
 }
 
 class PickerGroupItem<T> {
-  final T value;
-  final List<PickerItem<T>> items;
-  final Function(T value)? onChange;
-  final Function(T value)? onClose;
 
   PickerGroupItem({
     required this.value,
@@ -47,18 +43,21 @@ class PickerGroupItem<T> {
     this.onChange,
     this.onClose,
   });
+  final T value;
+  final List<PickerItem<T>> items;
+  final Function(T value)? onChange;
+  final Function(T value)? onClose;
 }
 
 class SelectorItem<T> {
+  SelectorItem({required this.value, required this.text});
   T value;
   String text;
-  SelectorItem({required this.value, required this.text});
 }
 
 // No animation. For replacing route
 // TODO: Go back
 class StaticRoute extends PageRouteBuilder {
-  final WidgetBuilder? builder;
   StaticRoute({this.builder})
       : super(
           pageBuilder: (BuildContext context, Animation<double> animation,
@@ -72,16 +71,10 @@ class StaticRoute extends PageRouteBuilder {
             return child;
           },
         );
+  final WidgetBuilder? builder;
 }
 
 class Palette {
-  final Color primary;
-  final Color text;
-  final Color secondaryText;
-  final Color tertiaryText;
-  final Color background;
-  final Color grayBackground;
-  final Color border;
 
   const Palette({
     required this.primary,
@@ -92,6 +85,13 @@ class Palette {
     required this.grayBackground,
     required this.border,
   });
+  final Color primary;
+  final Color text;
+  final Color secondaryText;
+  final Color tertiaryText;
+  final Color background;
+  final Color grayBackground;
+  final Color border;
 }
 
 class ThemeModel with ChangeNotifier {

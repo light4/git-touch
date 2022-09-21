@@ -5,15 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:git_touch/widgets/link.dart';
 
 class EntryItem extends StatelessWidget {
-  final int? count;
-  final String text;
-  final String? url;
 
   const EntryItem({
     required this.text,
     this.count,
     this.url,
   });
+  final int? count;
+  final String text;
+  final String? url;
 
   @override
   Widget build(BuildContext context) {

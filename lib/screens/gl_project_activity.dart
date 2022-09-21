@@ -10,8 +10,8 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class GlProjectActivityScreen extends StatelessWidget {
-  final int id;
   const GlProjectActivityScreen(this.id);
+  final int id;
 
   @override
   Widget build(BuildContext context) {

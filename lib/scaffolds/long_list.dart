@@ -8,11 +8,6 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/loading.dart';
 
 class LongListPayload<T, K> {
-  T header;
-  int totalCount;
-  String? cursor;
-  List<K> leadingItems;
-  List<K>? trailingItems;
 
   LongListPayload({
     required this.header,
@@ -21,6 +16,11 @@ class LongListPayload<T, K> {
     required this.leadingItems,
     this.trailingItems,
   });
+  T header;
+  int totalCount;
+  String? cursor;
+  List<K> leadingItems;
+  List<K>? trailingItems;
 }
 
 // This is a scaffold for issue and pull request
@@ -28,12 +28,6 @@ class LongListPayload<T, K> {
 // We should load leading and trailing items at first fetching, and do load more in the middle
 // e.g. https://github.com/reactjs/rfcs/pull/68
 class LongListStatefulScaffold<T, K> extends StatefulWidget {
-  final Widget title;
-  final Widget Function(T t)? trailingBuilder;
-  final Widget Function(T t) headerBuilder;
-  final Widget Function(K k) itemBuilder;
-  final Future<LongListPayload<T, K>> Function() onRefresh;
-  final Future<LongListPayload<T, K>> Function(String? cursor) onLoadMore;
 
   const LongListStatefulScaffold({
     required this.title,
@@ -43,6 +37,12 @@ class LongListStatefulScaffold<T, K> extends StatefulWidget {
     required this.onRefresh,
     required this.onLoadMore,
   });
+  final Widget title;
+  final Widget Function(T t)? trailingBuilder;
+  final Widget Function(T t) headerBuilder;
+  final Widget Function(K k) itemBuilder;
+  final Future<LongListPayload<T, K>> Function() onRefresh;
+  final Future<LongListPayload<T, K>> Function(String? cursor) onLoadMore;
 
   @override
   _LongListStatefulScaffoldState<T, K> createState() =>

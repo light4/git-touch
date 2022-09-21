@@ -6,10 +6,10 @@ import 'package:git_touch/utils/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class HtmlView extends StatefulWidget {
-  final String html;
   HtmlView(String text, {String? cssText, List<String> cssLinks = const []})
       : html =
             '<meta name="viewport" content="width=device-width">${cssLinks.map((link) => '<link rel="stylesheet" href="$link" crossorigin="anonymous" />').join('')}<style>body{margin:12px}${cssText ?? ''}</style>$text';
+  final String html;
 
   @override
   _HtmlViewState createState() => _HtmlViewState();

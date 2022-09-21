@@ -9,11 +9,11 @@ import 'package:git_touch/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 
 class GoOrgsScreen extends StatelessWidget {
-  final String api;
-  final bool isViewer;
   // TODO: implement list of orgs screen when API is available
   const GoOrgsScreen.ofUser(String login, {required this.isViewer})
       : api = isViewer ? '/users/$login/orgs' : '/user/orgs';
+  final String api;
+  final bool isViewer;
 
   @override
   Widget build(BuildContext context) {

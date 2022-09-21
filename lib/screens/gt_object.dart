@@ -12,10 +12,10 @@ import 'package:git_touch/widgets/object_tree.dart';
 import 'package:provider/provider.dart';
 
 class GtObjectScreen extends StatelessWidget {
+  const GtObjectScreen(this.owner, this.name, {this.path});
   final String owner;
   final String name;
   final String? path;
-  const GtObjectScreen(this.owner, this.name, {this.path});
 
   @override
   Widget build(BuildContext context) {

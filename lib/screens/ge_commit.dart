@@ -11,10 +11,10 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class GeCommitScreen extends StatelessWidget {
+  const GeCommitScreen(this.owner, this.name, this.sha);
   final String owner;
   final String name;
   final String sha;
-  const GeCommitScreen(this.owner, this.name, this.sha);
 
   @override
   Widget build(BuildContext context) {

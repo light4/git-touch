@@ -6,13 +6,6 @@ import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:provider/provider.dart';
 
 class UserHeader extends StatelessWidget {
-  final String? avatarUrl;
-  final String? name;
-  final String? login;
-  final DateTime? createdAt;
-  final String? bio;
-  final bool isViewer;
-  final List<Widget> rightWidgets;
 
   const UserHeader({
     super.key,
@@ -24,6 +17,13 @@ class UserHeader extends StatelessWidget {
     this.isViewer = false,
     this.rightWidgets = const [],
   });
+  final String? avatarUrl;
+  final String? name;
+  final String? login;
+  final DateTime? createdAt;
+  final String? bio;
+  final bool isViewer;
+  final List<Widget> rightWidgets;
 
   @override
   Widget build(BuildContext context) {

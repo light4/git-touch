@@ -18,9 +18,9 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class GtRepoScreen extends StatelessWidget {
+  const GtRepoScreen(this.owner, this.name);
   final String owner;
   final String name;
-  const GtRepoScreen(this.owner, this.name);
 
   @override
   Widget build(BuildContext context) {

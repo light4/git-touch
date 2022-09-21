@@ -6,14 +6,14 @@ import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 
 class GistObjectScreen extends StatelessWidget {
+
+  const GistObjectScreen(this.login, this.id, this.file,
+      {this.raw, this.content});
   final String login;
   final String id;
   final String file;
   final String? raw;
   final String? content;
-
-  const GistObjectScreen(this.login, this.id, this.file,
-      {this.raw, this.content});
 
   @override
   Widget build(BuildContext context) {

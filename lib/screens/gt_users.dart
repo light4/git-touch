@@ -8,8 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GtUsersScreen extends StatelessWidget {
-  final String api;
-  final String title;
 
   const GtUsersScreen.followers(String login)
       : api = '/users/$login/followers',
@@ -26,6 +24,8 @@ class GtUsersScreen extends StatelessWidget {
   const GtUsersScreen.watchers(String owner, String repo)
       : api = '/repos/$owner/$repo/subscribers',
         title = 'Watchers';
+  final String api;
+  final String title;
 
   @override
   Widget build(BuildContext context) {

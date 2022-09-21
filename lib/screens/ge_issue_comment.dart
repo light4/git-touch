@@ -7,14 +7,14 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GeIssueCommentScreen extends StatefulWidget {
+  const GeIssueCommentScreen(this.owner, this.name, this.number,
+      {this.isPr = false, this.body = '', this.id = ''});
   final String owner;
   final String name;
   final String number;
   final bool isPr;
   final String body;
   final String id;
-  const GeIssueCommentScreen(this.owner, this.name, this.number,
-      {this.isPr = false, this.body = '', this.id = ''});
 
   @override
   _GeIssueCommentScreenState createState() => _GeIssueCommentScreenState();

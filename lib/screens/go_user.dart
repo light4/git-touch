@@ -13,9 +13,9 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class GoUserScreen extends StatelessWidget {
+  const GoUserScreen(this.login, {this.isViewer = false});
   final String login;
   final bool isViewer;
-  const GoUserScreen(this.login, {this.isViewer = false});
 
   @override
   Widget build(BuildContext context) {

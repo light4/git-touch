@@ -8,9 +8,9 @@ import 'package:git_touch/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 
 class GlMembersScreen extends StatelessWidget {
+  const GlMembersScreen(this.id, this.type);
   final int id;
   final String type;
-  const GlMembersScreen(this.id, this.type);
 
   // https://docs.gitlab.com/ee/api/access_requests.html#valid-access-levels
   static const accessLevelMap = {

@@ -10,13 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ReleaseItem extends StatelessWidget {
-  final String? login;
-  final DateTime? publishedAt;
-  final String? name;
-  final String? avatarUrl;
-  final String? tagName;
-  final String? description;
-  final GReleasesData_repository_releases_nodes_releaseAssets? releaseAssets;
 
   const ReleaseItem(
       {required this.login,
@@ -26,6 +19,13 @@ class ReleaseItem extends StatelessWidget {
       required this.avatarUrl,
       required this.description,
       this.releaseAssets});
+  final String? login;
+  final DateTime? publishedAt;
+  final String? name;
+  final String? avatarUrl;
+  final String? tagName;
+  final String? description;
+  final GReleasesData_repository_releases_nodes_releaseAssets? releaseAssets;
 
   @override
   Widget build(BuildContext context) {

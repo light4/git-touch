@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:uri/uri.dart';
 
 class MarkdownViewData {
-  final Future<String> future;
   MarkdownViewData(
     BuildContext context, {
     required Future<String> Function() md,
@@ -17,11 +16,12 @@ class MarkdownViewData {
   }) : future = context.read<ThemeModel>().shouldUseMarkdownFlutterView
             ? md()
             : html();
+  final Future<String> future;
 }
 
 class MarkdownView extends StatelessWidget {
-  final MarkdownViewData? data;
   const MarkdownView(this.data);
+  final MarkdownViewData? data;
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +57,8 @@ class MarkdownView extends StatelessWidget {
 
 // TODO: Safari table width
 class MarkdownWebView extends StatelessWidget {
-  final String? html;
   const MarkdownWebView(this.html);
+  final String? html;
 
   @override
   Widget build(BuildContext context) {
@@ -82,15 +82,15 @@ html {
 }
 
 class MarkdownFlutterView extends StatelessWidget {
-  final String? text;
-  final List<String>? basePaths;
-  final EdgeInsetsGeometry padding;
 
   const MarkdownFlutterView(
     this.text, {
     this.basePaths,
     this.padding = const EdgeInsets.all(12),
   });
+  final String? text;
+  final List<String>? basePaths;
+  final EdgeInsetsGeometry padding;
 
   static Map<String, String?>? matchPattern(String url, String pattern) {
     var uri = Uri.parse(url);

@@ -9,8 +9,8 @@ import 'package:git_touch/widgets/event_item.dart';
 import 'package:provider/provider.dart';
 
 class GhEventsScreen extends StatelessWidget {
-  final String login;
   const GhEventsScreen(this.login);
+  final String login;
 
   @override
   Widget build(context) {

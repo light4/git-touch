@@ -8,9 +8,9 @@ import 'package:git_touch/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 
 class GtOrgsScreen extends StatelessWidget {
-  final String api;
   const GtOrgsScreen() : api = '/orgs';
   const GtOrgsScreen.ofUser(String login) : api = '/users/$login/orgs';
+  final String api;
 
   @override
   Widget build(BuildContext context) {

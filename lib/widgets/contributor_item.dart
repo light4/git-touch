@@ -6,10 +6,6 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class ContributorItem extends StatelessWidget {
-  final String? login;
-  final String? avatarUrl;
-  final int? commits;
-  final String url;
 
   const ContributorItem({
     required this.login,
@@ -17,6 +13,10 @@ class ContributorItem extends StatelessWidget {
     required this.commits,
     required this.url,
   });
+  final String? login;
+  final String? avatarUrl;
+  final int? commits;
+  final String url;
 
   @override
   Widget build(BuildContext context) {

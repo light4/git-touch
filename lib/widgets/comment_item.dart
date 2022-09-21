@@ -15,24 +15,21 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/user_name.dart';
 
 class EmojiPayload {
-  GReactionContent key;
-  String text;
-  int count;
-  bool reacted;
   EmojiPayload({
     required this.key,
     required this.text,
     required this.count,
     required this.reacted,
   });
+  GReactionContent key;
+  String text;
+  int count;
+  bool reacted;
 }
 
 typedef EmojiUpdateCallaback = void Function(GReactionContent data);
 
 class GhEmojiAction extends StatefulWidget {
-  final String? id;
-  final Iterable<EmojiPayload> items;
-  final EmojiUpdateCallaback onReaction;
 
   GhEmojiAction(this.id, GReactableParts r, this.onReaction)
       : items = [
@@ -85,6 +82,9 @@ class GhEmojiAction extends StatefulWidget {
             reacted: r.EYES.viewerHasReacted,
           ),
         ];
+  final String? id;
+  final Iterable<EmojiPayload> items;
+  final EmojiUpdateCallaback onReaction;
   @override
   _GhEmojiActionState createState() => _GhEmojiActionState();
 }
@@ -173,14 +173,17 @@ mutation {
   }
 }
 
-class CommentItem extends StatelessWidget {
-  final Avatar avatar;
-  final String? login;
-  final DateTime? createdAt;
-  final String? body;
-  final String prefix;
-  final List<Widget>? widgets;
-  final List<ActionItem>? commentActionItemList;
+class CommentItem extends StatelessWidget { // TODO
+
+  const CommentItem({
+    required this.avatar,
+    required this.login,
+    required this.createdAt,
+    required this.body,
+    required this.prefix,
+    this.widgets,
+    this.commentActionItemList,
+  });
 
   // p.author could be null (deleted user)
   CommentItem.gql(
@@ -195,17 +198,14 @@ class CommentItem extends StatelessWidget {
         body = p.body,
         widgets = [GhEmojiAction(p.id, r, onReaction)],
         prefix = 'github',
-        commentActionItemList = []; // TODO
-
-  const CommentItem({
-    required this.avatar,
-    required this.login,
-    required this.createdAt,
-    required this.body,
-    required this.prefix,
-    this.widgets,
-    this.commentActionItemList,
-  });
+        commentActionItemList = [];
+  final Avatar avatar;
+  final String? login;
+  final DateTime? createdAt;
+  final String? body;
+  final String prefix;
+  final List<Widget>? widgets;
+  final List<ActionItem>? commentActionItemList;
 
   @override
   Widget build(BuildContext context) {

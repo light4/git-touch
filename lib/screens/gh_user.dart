@@ -24,13 +24,13 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class _Repos extends StatelessWidget {
-  final String title;
-  final Iterable<GRepoParts>? repos;
 
   _Repos(final Iterable<GRepoParts> pinned, final Iterable<GRepoParts>? repos)
       : title =
             pinned.isNotEmpty ? 'pinned repositories' : 'popular repositories',
         repos = pinned.isNotEmpty ? pinned : repos;
+  final String title;
+  final Iterable<GRepoParts>? repos;
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +61,10 @@ class _Repos extends StatelessWidget {
 }
 
 class _User extends StatelessWidget {
+  const _User(this.p, {this.isViewer = false, this.rightWidgets = const []});
   final GUserPartsFull? p;
   final bool isViewer;
   final List<Widget> rightWidgets;
-  const _User(this.p, {this.isViewer = false, this.rightWidgets = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -195,8 +195,8 @@ class _User extends StatelessWidget {
 }
 
 class _Org extends StatelessWidget {
-  final GUserData_repositoryOwner__asOrganization? p;
   const _Org(this.p);
+  final GUserData_repositoryOwner__asOrganization? p;
 
   @override
   Widget build(BuildContext context) {
@@ -298,8 +298,8 @@ class GhViewer extends StatelessWidget {
 }
 
 class GhUser extends StatelessWidget {
-  final String login;
   const GhUser(this.login);
+  final String login;
 
   @override
   Widget build(BuildContext context) {

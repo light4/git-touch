@@ -9,10 +9,10 @@ import 'package:git_touch/widgets/blob_view.dart';
 import 'package:provider/provider.dart';
 
 class GlBlobScreen extends StatelessWidget {
+  const GlBlobScreen(this.id, this.ref, {this.path});
   final int id;
   final String ref;
   final String? path;
-  const GlBlobScreen(this.id, this.ref, {this.path});
 
   @override
   Widget build(BuildContext context) {

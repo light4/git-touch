@@ -2,10 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:git_touch/utils/utils.dart';
 
 class TextWithAt extends StatelessWidget {
-  final String text;
-  final String Function(String text) linkFactory;
-  final TextStyle? style;
-  final bool oneLine;
 
   const TextWithAt({
     required this.text,
@@ -13,6 +9,10 @@ class TextWithAt extends StatelessWidget {
     this.style,
     this.oneLine = false,
   });
+  final String text;
+  final String Function(String text) linkFactory;
+  final TextStyle? style;
+  final bool oneLine;
 
   static final _reg = RegExp(r'@[A-Za-z-]+');
 

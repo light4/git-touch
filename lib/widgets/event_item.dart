@@ -13,9 +13,9 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/avatar.dart';
 
 class EventItem extends StatelessWidget {
-  final GithubEvent e;
 
   const EventItem(this.e);
+  final GithubEvent e;
 
   InlineSpan _buildLinkSpan(BuildContext context, String? text, String? url) {
     final theme = Provider.of<ThemeModel>(context);

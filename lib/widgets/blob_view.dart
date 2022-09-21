@@ -11,16 +11,16 @@ import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:provider/provider.dart';
 
 class BlobView extends StatelessWidget {
-  final String? name;
-  final String? text;
-  final String? base64Text;
-  final String? networkUrl;
   const BlobView(
     this.name, {
     this.text,
     this.base64Text,
     this.networkUrl,
   });
+  final String? name;
+  final String? text;
+  final String? base64Text;
+  final String? networkUrl;
 
   String get _text => text ?? base64Text!.base64ToUtf8;
 

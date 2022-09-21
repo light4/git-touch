@@ -16,10 +16,6 @@ TextSpan createUserSpan(BuildContext context, String? login) {
 }
 
 class TimelineEventItem extends StatelessWidget {
-  final String? actor;
-  final IconData iconData;
-  final Color iconColor;
-  final TextSpan? textSpan;
 
   const TimelineEventItem({
     this.actor,
@@ -27,6 +23,10 @@ class TimelineEventItem extends StatelessWidget {
     this.iconColor = Colors.grey,
     this.textSpan,
   });
+  final String? actor;
+  final IconData iconData;
+  final Color iconColor;
+  final TextSpan? textSpan;
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +56,8 @@ class TimelineEventItem extends StatelessWidget {
 }
 
 class TimelineItem extends StatelessWidget {
-  final dynamic node;
   const TimelineItem(this.node);
+  final dynamic node;
 
   Widget _buildFallback(String? type, BuildContext context) {
     return TimelineEventItem(

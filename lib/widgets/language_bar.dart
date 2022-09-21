@@ -7,19 +7,19 @@ import 'package:github/github.dart' as github;
 import 'package:provider/provider.dart';
 
 class LanguageBarItem {
-  String? name;
-  String? hexColor;
-  double? ratio;
   LanguageBarItem({
     required this.name,
     required this.ratio,
     String? hexColor,
   }) : hexColor = hexColor ?? github.languageColors[name!];
+  String? name;
+  String? hexColor;
+  double? ratio;
 }
 
 class LanguageBar extends StatelessWidget {
-  final List<LanguageBarItem> items;
   const LanguageBar(this.items);
+  final List<LanguageBarItem> items;
 
   @override
   Widget build(BuildContext context) {

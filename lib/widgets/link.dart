@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 
 // TODO:
 class CupertinoLink extends StatefulWidget {
-  final Widget? child;
-  final Function? onTap;
 
   const CupertinoLink({this.child, this.onTap});
+  final Widget? child;
+  final Function? onTap;
 
   @override
   _CupertinoLinkState createState() => _CupertinoLinkState();
@@ -48,10 +48,6 @@ class _CupertinoLinkState extends State<CupertinoLink> {
 }
 
 class LinkWidget extends StatelessWidget {
-  final Widget child;
-  final String? url;
-  final Function? onTap;
-  final Function? onLongPress;
 
   const LinkWidget({
     required this.child,
@@ -59,6 +55,10 @@ class LinkWidget extends StatelessWidget {
     this.onTap,
     this.onLongPress,
   });
+  final Widget child;
+  final String? url;
+  final Function? onTap;
+  final Function? onLongPress;
 
   @override
   Widget build(BuildContext context) {

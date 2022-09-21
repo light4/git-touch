@@ -7,11 +7,6 @@ import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class FilesItem extends StatelessWidget {
-  final String? filename;
-  final String? status;
-  final int? additions;
-  final int? deletions;
-  final String? patch;
 
   const FilesItem({
     required this.filename,
@@ -20,6 +15,11 @@ class FilesItem extends StatelessWidget {
     required this.additions,
     required this.patch,
   });
+  final String? filename;
+  final String? status;
+  final int? additions;
+  final int? deletions;
+  final String? patch;
 
   @override
   Widget build(BuildContext context) {

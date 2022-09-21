@@ -10,11 +10,11 @@ import 'package:git_touch/widgets/files_item.dart';
 import 'package:provider/provider.dart';
 
 class GhComparisonScreen extends StatelessWidget {
+  const GhComparisonScreen(this.owner, this.name, this.before, this.head);
   final String owner;
   final String name;
   final String before;
   final String head;
-  const GhComparisonScreen(this.owner, this.name, this.before, this.head);
 
   @override
   Widget build(BuildContext context) {

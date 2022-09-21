@@ -4,13 +4,6 @@ import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/scaffolds/utils.dart';
 
 class RefreshStatefulScaffold<T> extends StatefulWidget {
-  final Widget title;
-  final Widget? Function(T data, void Function(T newData) setData) bodyBuilder;
-  final Future<T> Function() fetch;
-  final Widget? Function(T data, void Function(T newData) setData)?
-      actionBuilder;
-  final Widget? action;
-  final canRefresh;
 
   const RefreshStatefulScaffold({
     required this.title,
@@ -20,6 +13,13 @@ class RefreshStatefulScaffold<T> extends StatefulWidget {
     this.action,
     this.canRefresh = true,
   }) : assert(actionBuilder == null || action == null);
+  final Widget title;
+  final Widget? Function(T data, void Function(T newData) setData) bodyBuilder;
+  final Future<T> Function() fetch;
+  final Widget? Function(T data, void Function(T newData) setData)?
+      actionBuilder;
+  final Widget? action;
+  final canRefresh;
 
   @override
   _RefreshStatefulScaffoldState<T> createState() =>

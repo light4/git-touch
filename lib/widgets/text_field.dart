@@ -3,9 +3,9 @@ import 'package:git_touch/models/theme.dart';
 import 'package:provider/provider.dart';
 
 class MyTextField extends StatelessWidget {
+  const MyTextField({required this.controller, this.placeholder});
   final TextEditingController controller;
   final String? placeholder;
-  const MyTextField({required this.controller, this.placeholder});
 
   @override
   Widget build(BuildContext context) {

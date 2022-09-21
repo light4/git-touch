@@ -10,10 +10,10 @@ enum IssueIconState {
 }
 
 class IssueIcon extends StatelessWidget {
-  final IssueIconState state;
-  final double? size;
 
   const IssueIcon(this.state, {this.size});
+  final IssueIconState state;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {

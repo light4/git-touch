@@ -11,10 +11,10 @@ import 'package:git_touch/widgets/object_tree.dart';
 import 'package:provider/provider.dart';
 
 class GeTreeScreen extends StatelessWidget {
+  const GeTreeScreen(this.owner, this.name, this.sha);
   final String owner;
   final String name;
   final String sha;
-  const GeTreeScreen(this.owner, this.name, this.sha);
 
   @override
   Widget build(BuildContext context) {

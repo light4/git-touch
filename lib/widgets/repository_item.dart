@@ -14,18 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class RepositoryItem extends StatelessWidget {
-  final String? owner;
-  final String? avatarUrl;
-  final String? name;
-  final String? description;
-  final IconData? iconData;
-  final int? starCount;
-  final int? forkCount;
-  final String? primaryLanguageName;
-  final String? primaryLanguageColor;
-  final String? note;
-  final String url;
-  final String? avatarLink;
 
   const RepositoryItem({
     required this.owner,
@@ -120,6 +108,18 @@ class RepositoryItem extends StatelessWidget {
       isFork: v.isFork,
     );
   }
+  final String? owner;
+  final String? avatarUrl;
+  final String? name;
+  final String? description;
+  final IconData? iconData;
+  final int? starCount;
+  final int? forkCount;
+  final String? primaryLanguageName;
+  final String? primaryLanguageColor;
+  final String? note;
+  final String url;
+  final String? avatarLink;
 
   static IconData? _buildIconData(bool? isPrivate, bool? isFork) {
     if (isPrivate == true) return Octicons.lock;

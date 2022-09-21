@@ -5,15 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ActionItem {
-  String? text;
-  bool danger;
-  void Function(BuildContext context)? onTap;
 
   ActionItem({
     required this.text,
     this.onTap,
     this.danger = false,
   });
+  String? text;
+  bool danger;
+  void Function(BuildContext context)? onTap;
 
   static List<ActionItem> getUrlActions(String? url) {
     return [
@@ -33,11 +33,7 @@ class ActionItem {
   }
 }
 
-class ActionButton extends StatelessWidget {
-  final String title;
-  final List<ActionItem> items;
-  final IconData iconData;
-  final int? selected; // TODO: selected, font bold
+class ActionButton extends StatelessWidget { // TODO: selected, font bold
 
   const ActionButton({
     required this.title,
@@ -45,6 +41,10 @@ class ActionButton extends StatelessWidget {
     this.iconData = Ionicons.ellipsis_horizontal,
     this.selected,
   });
+  final String title;
+  final List<ActionItem> items;
+  final IconData iconData;
+  final int? selected;
 
   @override
   Widget build(BuildContext context) {

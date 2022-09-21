@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GlStarrersScreen extends StatelessWidget {
-  final int id;
   const GlStarrersScreen(this.id);
+  final int id;
 
   @override
   Widget build(BuildContext context) {

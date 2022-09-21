@@ -7,9 +7,6 @@ import 'package:git_touch/widgets/repository_item.dart';
 import 'package:provider/provider.dart';
 
 class GoReposScreen extends StatelessWidget {
-  final String api;
-  final String title;
-  final bool isViewer;
 
   const GoReposScreen(String owner, {this.isViewer = false})
       : api = isViewer ? '/users/$owner/repos' : '/user/repos',
@@ -18,6 +15,9 @@ class GoReposScreen extends StatelessWidget {
       : api = '/orgs/$owner/repos',
         title = 'Repositories',
         isViewer = false;
+  final String api;
+  final String title;
+  final bool isViewer;
 
   @override
   Widget build(BuildContext context) {

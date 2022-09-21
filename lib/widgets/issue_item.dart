@@ -34,15 +34,6 @@ comments {
 ''';
 
 class IssueItem extends StatelessWidget {
-  final String? url;
-  final String subtitle;
-  final String? title;
-  final int? commentCount;
-  final DateTime? updatedAt;
-  final String? avatarUrl;
-  final String? author;
-  final Widget? labels;
-  final bool isPr;
 
   const IssueItem({
     required this.url,
@@ -55,6 +46,15 @@ class IssueItem extends StatelessWidget {
     this.labels,
     this.isPr = false,
   });
+  final String? url;
+  final String subtitle;
+  final String? title;
+  final int? commentCount;
+  final DateTime? updatedAt;
+  final String? avatarUrl;
+  final String? author;
+  final Widget? labels;
+  final bool isPr;
 
   @override
   Widget build(BuildContext context) {

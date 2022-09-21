@@ -10,9 +10,9 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class BbUserScreen extends StatelessWidget {
+  const BbUserScreen(this.login, {this.isTeam = false});
   final String? login;
   final bool isTeam;
-  const BbUserScreen(this.login, {this.isTeam = false});
   bool get isViewer => login == null;
 
   @override

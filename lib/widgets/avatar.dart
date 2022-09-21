@@ -14,10 +14,6 @@ class AvatarSize {
 }
 
 class Avatar extends StatelessWidget {
-  final String? url;
-  final double size;
-  final String? linkUrl;
-  final BorderRadius? borderRadius;
 
   const Avatar({
     required this.url,
@@ -25,6 +21,10 @@ class Avatar extends StatelessWidget {
     this.linkUrl,
     this.borderRadius,
   });
+  final String? url;
+  final double size;
+  final String? linkUrl;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {

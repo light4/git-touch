@@ -8,8 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GeReposScreen extends StatelessWidget {
-  final String api;
-  final String title;
 
   const GeReposScreen(String owner)
       : api = '/users/$owner/repos',
@@ -20,6 +18,8 @@ class GeReposScreen extends StatelessWidget {
   const GeReposScreen.forks(String owner, String name)
       : api = '/repos/$owner/$name/forks',
         title = 'Forks';
+  final String api;
+  final String title;
 
   @override
   Widget build(BuildContext context) {

@@ -13,12 +13,12 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class BbIssueScreen extends StatelessWidget {
+
+  const BbIssueScreen(this.owner, this.name, this.number, {this.isPr = false});
   final String owner;
   final String name;
   final String number;
   final bool isPr;
-
-  const BbIssueScreen(this.owner, this.name, this.number, {this.isPr = false});
 
   @override
   Widget build(BuildContext context) {

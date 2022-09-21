@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:git_touch/scaffolds/common.dart';
 
 class SingleScaffold extends StatelessWidget {
-  final Widget title;
-  final Widget body;
-  final Widget? action;
 
   const SingleScaffold({
     required this.title,
     required this.body,
     this.action,
   });
+  final Widget title;
+  final Widget body;
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {

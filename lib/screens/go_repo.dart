@@ -18,10 +18,10 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class GoRepoScreen extends StatelessWidget {
+  const GoRepoScreen(this.owner, this.name, {this.branch});
   final String owner;
   final String name;
   final String? branch;
-  const GoRepoScreen(this.owner, this.name, {this.branch});
 
   @override
   Widget build(BuildContext context) {

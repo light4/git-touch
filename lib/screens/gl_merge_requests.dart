@@ -9,9 +9,9 @@ import 'package:git_touch/widgets/issue_item.dart';
 import 'package:provider/provider.dart';
 
 class GlMergeRequestsScreen extends StatelessWidget {
+  const GlMergeRequestsScreen(this.id, {this.prefix});
   final String id;
   final String? prefix;
-  const GlMergeRequestsScreen(this.id, {this.prefix});
 
   @override
   Widget build(BuildContext context) {

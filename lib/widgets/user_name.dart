@@ -4,10 +4,10 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class UserName extends StatelessWidget {
-  final String? login;
-  final String prefix;
 
   const UserName(this.login, this.prefix);
+  final String? login;
+  final String prefix;
 
   @override
   Widget build(BuildContext context) {

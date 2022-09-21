@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class Loading extends StatelessWidget {
-  final bool more;
 
   const Loading({this.more = false});
+  final bool more;
 
   @override
   Widget build(BuildContext context) {

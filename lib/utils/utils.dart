@@ -129,9 +129,9 @@ bool isNotNullOrEmpty(String? text) {
 
 // TODO: Primer
 class PrimerBranchName extends StatelessWidget {
-  final String? name;
 
   const PrimerBranchName(this.name);
+  final String? name;
 
   static const branchBgColor = Color(0xffeaf5ff);
 
@@ -180,13 +180,13 @@ int sortByKey<T>(T key, T a, T b) {
 const TOTAL_COUNT_FALLBACK = 999; // TODO:
 
 class ListPayload<T, K> {
-  K cursor;
-  bool hasMore;
-  Iterable<T> items;
 
   ListPayload({
     required this.cursor,
     required this.hasMore,
     required this.items,
   });
+  K cursor;
+  bool hasMore;
+  Iterable<T> items;
 }

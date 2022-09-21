@@ -7,8 +7,6 @@ import 'package:git_touch/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 
 class GeUsersScreen extends StatelessWidget {
-  final String api;
-  final String title;
 
   const GeUsersScreen.followers(String login)
       : api = '/users/$login/followers',
@@ -25,6 +23,8 @@ class GeUsersScreen extends StatelessWidget {
   const GeUsersScreen.watchers(String owner, String repo)
       : api = '/repos/$owner/$repo/subscribers',
         title = 'Watchers';
+  final String api;
+  final String title;
 
   @override
   Widget build(BuildContext context) {

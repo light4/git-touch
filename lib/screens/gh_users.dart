@@ -10,8 +10,8 @@ import 'package:git_touch/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 
 class GhFollowers extends StatelessWidget {
-  final String login;
   const GhFollowers(this.login);
+  final String login;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,8 @@ class GhFollowers extends StatelessWidget {
 }
 
 class GhFollowing extends StatelessWidget {
-  final String login;
   const GhFollowing(this.login);
+  final String login;
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +70,8 @@ class GhFollowing extends StatelessWidget {
 }
 
 class GhOrgs extends StatelessWidget {
-  final String login;
   const GhOrgs(this.login, {super.key});
+  final String login;
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +99,8 @@ class GhOrgs extends StatelessWidget {
 }
 
 class GhMembers extends StatelessWidget {
-  final String login;
   const GhMembers(this.login);
+  final String login;
 
   @override
   Widget build(BuildContext context) {
@@ -129,9 +129,9 @@ class GhMembers extends StatelessWidget {
 }
 
 class GhWachers extends StatelessWidget {
+  const GhWachers(this.owner, this.name);
   final String owner;
   final String name;
-  const GhWachers(this.owner, this.name);
 
   @override
   Widget build(BuildContext context) {
@@ -161,9 +161,9 @@ class GhWachers extends StatelessWidget {
 }
 
 class GhStargazers extends StatelessWidget {
+  const GhStargazers(this.owner, this.name);
   final String owner;
   final String name;
-  const GhStargazers(this.owner, this.name);
 
   @override
   Widget build(BuildContext context) {

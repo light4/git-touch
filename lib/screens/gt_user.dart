@@ -24,9 +24,9 @@ class GtUserScreenPayload {
 }
 
 class GtUserScreen extends StatelessWidget {
+  const GtUserScreen(this.login, {this.isViewer = false});
   final String login;
   final bool isViewer;
-  const GtUserScreen(this.login, {this.isViewer = false});
 
   static List<List<ContributionDay>> normalizeHeatmap(List userHeatmap) {
     final heatmapItems = [

@@ -27,10 +27,10 @@ import 'package:tuple/tuple.dart';
 import 'package:universal_io/io.dart';
 
 class GhRepoScreen extends StatelessWidget {
+  const GhRepoScreen(this.owner, this.name, {this.branch});
   final String owner;
   final String name;
   final String? branch;
-  const GhRepoScreen(this.owner, this.name, {this.branch});
 
   String _buildWatchState(GSubscriptionState? state) {
     switch (state) {

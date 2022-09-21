@@ -14,12 +14,12 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class GePullScreen extends StatelessWidget {
+
+  const GePullScreen(this.owner, this.name, this.number, {this.isPr = false});
   final String owner;
   final String name;
   final String number;
   final bool isPr;
-
-  const GePullScreen(this.owner, this.name, this.number, {this.isPr = false});
 
   List<ActionItem> _buildCommentActionItem(
       BuildContext context, GiteeComment comment) {

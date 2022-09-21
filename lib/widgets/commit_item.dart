@@ -7,13 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class CommitItem extends StatelessWidget {
-  final String? url;
-  final String? avatarUrl;
-  final String? avatarLink;
-  final String? message;
-  final String? author;
-  final DateTime? createdAt;
-  final List<Widget>? widgets;
   const CommitItem({
     required this.url,
     required this.avatarUrl,
@@ -23,6 +16,13 @@ class CommitItem extends StatelessWidget {
     required this.createdAt,
     this.widgets,
   });
+  final String? url;
+  final String? avatarUrl;
+  final String? avatarLink;
+  final String? message;
+  final String? author;
+  final DateTime? createdAt;
+  final List<Widget>? widgets;
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);

@@ -10,10 +10,10 @@ import 'package:git_touch/widgets/issue_item.dart';
 import 'package:provider/provider.dart';
 
 class GtIssuesScreen extends StatelessWidget {
+  const GtIssuesScreen(this.owner, this.name, {this.isPr = false});
   final String owner;
   final String name;
   final bool isPr;
-  const GtIssuesScreen(this.owner, this.name, {this.isPr = false});
 
   @override
   Widget build(BuildContext context) {

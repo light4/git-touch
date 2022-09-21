@@ -7,9 +7,9 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class TableViewHeader extends StatelessWidget {
-  final String? title;
 
   const TableViewHeader(this.title, {super.key});
+  final String? title;
 
   @override
   Widget build(BuildContext context) {

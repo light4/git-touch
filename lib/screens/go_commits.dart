@@ -8,10 +8,10 @@ import 'package:git_touch/widgets/commit_item.dart';
 import 'package:provider/provider.dart';
 
 class GoCommitsScreen extends StatelessWidget {
+  const GoCommitsScreen(this.owner, this.name, {this.branch = 'master'});
   final String owner;
   final String name;
   final String? branch;
-  const GoCommitsScreen(this.owner, this.name, {this.branch = 'master'});
 
   // TODO: API only returns most recent commit. No provision for all commits.
   @override

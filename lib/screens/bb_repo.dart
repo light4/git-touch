@@ -17,10 +17,10 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class BbRepoScreen extends StatelessWidget {
+  const BbRepoScreen(this.owner, this.name, {this.branch});
   final String owner;
   final String name;
   final String? branch;
-  const BbRepoScreen(this.owner, this.name, {this.branch});
 
   @override
   Widget build(BuildContext context) {

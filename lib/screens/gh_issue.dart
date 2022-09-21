@@ -18,10 +18,10 @@ import 'package:git_touch/scaffolds/long_list.dart';
 import 'package:git_touch/widgets/comment_item.dart';
 
 class GhIssueScreen extends StatelessWidget {
+  const GhIssueScreen(this.owner, this.name, this.number);
   final String owner;
   final String name;
   final int number;
-  const GhIssueScreen(this.owner, this.name, this.number);
 
   Widget _buildHeader(
     BuildContext context, {

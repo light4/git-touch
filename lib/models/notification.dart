@@ -5,6 +5,8 @@ import 'package:tuple/tuple.dart';
 import 'package:git_touch/utils/utils.dart';
 
 class NotificationGroup {
+
+  NotificationGroup(this.fullName);
   String? fullName;
   List<GithubNotificationItem> items = [];
 
@@ -20,8 +22,6 @@ class NotificationGroup {
   }
 
   String get key => '_$hashCode';
-
-  NotificationGroup(this.fullName);
 }
 
 class NotificationModel with ChangeNotifier {

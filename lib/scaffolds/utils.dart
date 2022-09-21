@@ -3,13 +3,13 @@ import 'package:git_touch/widgets/error_reload.dart';
 import 'package:git_touch/widgets/loading.dart';
 
 class RefreshWrapper extends StatelessWidget {
-  final Widget body;
-  final void Function() onRefresh;
 
   const RefreshWrapper({
     required this.onRefresh,
     required this.body,
   });
+  final Widget body;
+  final void Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,6 @@ class RefreshWrapper extends StatelessWidget {
 }
 
 class ErrorLoadingWrapper extends StatelessWidget {
-  final String error;
-  final bool loading;
-  final void Function() reload;
-  final Widget? Function() bodyBuilder;
 
   const ErrorLoadingWrapper({
     required this.error,
@@ -37,6 +33,10 @@ class ErrorLoadingWrapper extends StatelessWidget {
     required this.reload,
     required this.bodyBuilder,
   });
+  final String error;
+  final bool loading;
+  final void Function() reload;
+  final Widget? Function() bodyBuilder;
 
   @override
   Widget build(BuildContext context) {

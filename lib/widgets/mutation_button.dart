@@ -2,9 +2,6 @@ import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 
 class MutationButton extends StatelessWidget {
-  final bool active;
-  final String text;
-  final VoidCallback onTap;
 
   const MutationButton({
     super.key,
@@ -12,6 +9,9 @@ class MutationButton extends StatelessWidget {
     required this.text,
     required this.onTap,
   });
+  final bool active;
+  final String text;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {

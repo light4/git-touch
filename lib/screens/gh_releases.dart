@@ -11,9 +11,9 @@ import 'package:git_touch/widgets/release_item.dart';
 import 'package:provider/provider.dart';
 
 class GhReleasesScreen extends StatelessWidget {
+  const GhReleasesScreen(this.owner, this.name);
   final String owner;
   final String name;
-  const GhReleasesScreen(this.owner, this.name);
 
   @override
   Widget build(BuildContext context) {

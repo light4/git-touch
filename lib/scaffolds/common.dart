@@ -3,15 +3,15 @@ import 'package:git_touch/models/theme.dart';
 import 'package:provider/provider.dart';
 
 class CommonScaffold extends StatelessWidget {
-  final Widget title;
-  final Widget body;
-  final Widget? action;
 
   const CommonScaffold({
     required this.title,
     required this.body,
     this.action,
   });
+  final Widget title;
+  final Widget body;
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {

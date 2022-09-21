@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 
 class AppBarTitle extends StatelessWidget {
-  final String? text;
 
   const AppBarTitle(this.text);
+  final String? text;
 
   @override
   Widget build(BuildContext context) {

@@ -12,10 +12,10 @@ import 'package:git_touch/widgets/commit_item.dart';
 import 'package:provider/provider.dart';
 
 class GhCommits extends StatelessWidget {
+  const GhCommits(this.owner, this.name, {this.branch});
   final String owner;
   final String name;
   final String? branch;
-  const GhCommits(this.owner, this.name, {this.branch});
 
   Widget _buildStatus(GStatusState? state) {
     const size = 18.0;

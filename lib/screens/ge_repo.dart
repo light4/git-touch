@@ -20,16 +20,16 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class StatusPayload {
+  StatusPayload(this.isWatching, this.isStarred);
   bool isWatching;
   bool isStarred;
-  StatusPayload(this.isWatching, this.isStarred);
 }
 
 class GeRepoScreen extends StatelessWidget {
+  const GeRepoScreen(this.owner, this.name, {this.branch});
   final String owner;
   final String name;
   final String? branch;
-  const GeRepoScreen(this.owner, this.name, {this.branch});
 
   @override
   Widget build(BuildContext context) {

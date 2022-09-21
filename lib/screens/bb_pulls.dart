@@ -8,9 +8,9 @@ import 'package:git_touch/widgets/issue_item.dart';
 import 'package:provider/provider.dart';
 
 class BbPullsScreen extends StatelessWidget {
+  const BbPullsScreen(this.owner, this.name);
   final String owner;
   final String name;
-  const BbPullsScreen(this.owner, this.name);
 
   @override
   Widget build(BuildContext context) {

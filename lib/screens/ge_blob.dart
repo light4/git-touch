@@ -10,11 +10,11 @@ import 'package:git_touch/widgets/blob_view.dart';
 import 'package:provider/provider.dart';
 
 class GeBlobScreen extends StatelessWidget {
+  const GeBlobScreen(this.owner, this.name, this.sha, this.path);
   final String owner;
   final String name;
   final String sha;
   final String path;
-  const GeBlobScreen(this.owner, this.name, this.sha, this.path);
 
   @override
   Widget build(BuildContext context) {

@@ -6,14 +6,6 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class RepoHeader extends StatelessWidget {
-  final String? avatarUrl;
-  final String? avatarLink;
-  final String? owner;
-  final String? name;
-  final String? description;
-  final String? homepageUrl;
-  final List<Widget>? actions;
-  final List<Widget>? trailings;
 
   const RepoHeader({
     required this.avatarUrl,
@@ -25,6 +17,14 @@ class RepoHeader extends StatelessWidget {
     this.actions,
     this.trailings,
   });
+  final String? avatarUrl;
+  final String? avatarLink;
+  final String? owner;
+  final String? name;
+  final String? description;
+  final String? homepageUrl;
+  final List<Widget>? actions;
+  final List<Widget>? trailings;
 
   @override
   Widget build(BuildContext context) {

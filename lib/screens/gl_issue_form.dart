@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GlIssueFormScreen extends StatefulWidget {
-  final int id;
   const GlIssueFormScreen(this.id);
+  final int id;
 
   @override
   _GlIssueFormScreenState createState() => _GlIssueFormScreenState();

@@ -19,9 +19,9 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class GlProjectScreen extends StatelessWidget {
+  const GlProjectScreen(this.id, {this.branch});
   final int id;
   final String? branch;
-  const GlProjectScreen(this.id, {this.branch});
 
   @override
   Widget build(BuildContext context) {

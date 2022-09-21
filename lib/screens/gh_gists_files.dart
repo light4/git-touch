@@ -13,9 +13,9 @@ import 'package:git_touch/widgets/object_tree.dart';
 import 'package:provider/provider.dart';
 
 class GhGistsFilesScreen extends StatelessWidget {
+  const GhGistsFilesScreen(this.login, this.id);
   final String id;
   final String login;
-  const GhGistsFilesScreen(this.login, this.id);
 
   @override
   Widget build(BuildContext context) {

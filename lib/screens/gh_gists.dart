@@ -12,8 +12,8 @@ import 'package:git_touch/widgets/gists_item.dart';
 import 'package:provider/provider.dart';
 
 class GhGistsScreen extends StatelessWidget {
-  final String login;
   const GhGistsScreen(this.login);
+  final String login;
 
   @override
   Widget build(BuildContext context) {

@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:git_touch/utils/utils.dart';
 
 class ErrorReload extends StatelessWidget {
-  final String text;
-  final Function onTap;
 
   const ErrorReload({required this.text, required this.onTap});
+  final String text;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {

@@ -35,16 +35,16 @@ class PlatformType {
 }
 
 class DataWithPage<T> {
-  T data;
-  int cursor;
-  bool hasMore;
-  int total;
   DataWithPage({
     required this.data,
     required this.cursor,
     required this.hasMore,
     required this.total,
   });
+  T data;
+  int cursor;
+  bool hasMore;
+  int total;
 }
 
 class AuthModel with ChangeNotifier {

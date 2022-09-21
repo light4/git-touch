@@ -10,10 +10,10 @@ import 'package:git_touch/widgets/table_view.dart';
 import 'package:provider/provider.dart';
 
 class GlTreeScreen extends StatelessWidget {
+  const GlTreeScreen(this.id, this.ref, {this.path});
   final int id;
   final String ref;
   final String? path;
-  const GlTreeScreen(this.id, this.ref, {this.path});
 
   @override
   Widget build(BuildContext context) {

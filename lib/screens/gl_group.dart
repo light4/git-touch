@@ -12,8 +12,8 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:tuple/tuple.dart';
 
 class GlGroupScreen extends StatelessWidget {
-  final int id;
   const GlGroupScreen(this.id);
+  final int id;
 
   @override
   Widget build(BuildContext context) {

@@ -3,13 +3,6 @@ import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/scaffolds/utils.dart';
 
 class TabScaffold extends StatelessWidget {
-  final Widget title;
-  final Widget body;
-  final Widget? action;
-  final void Function() onRefresh;
-  final List<String> tabs;
-  final int activeTab;
-  final Function(int index) onTabSwitch;
 
   const TabScaffold({
     required this.title,
@@ -20,6 +13,13 @@ class TabScaffold extends StatelessWidget {
     required this.activeTab,
     required this.onTabSwitch,
   });
+  final Widget title;
+  final Widget body;
+  final Widget? action;
+  final void Function() onRefresh;
+  final List<String> tabs;
+  final int activeTab;
+  final Function(int index) onTabSwitch;
 
   @override
   Widget build(BuildContext context) {

@@ -9,14 +9,14 @@ import 'package:provider/provider.dart';
 import 'package:git_touch/models/theme.dart';
 
 class NotificationItem extends StatefulWidget {
-  final GithubNotificationItem payload;
-  final Function markAsRead;
 
   const NotificationItem({
     Key? key,
     required this.payload,
     required this.markAsRead,
   }) : super(key: key);
+  final GithubNotificationItem payload;
+  final Function markAsRead;
 
   @override
   _NotificationItemState createState() => _NotificationItemState();

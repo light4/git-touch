@@ -9,13 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GistsItem extends StatelessWidget {
-  final String? description;
-  final String login;
-  final List<String?> filenames;
-  final String? language;
-  final String? avatarUrl;
-  final DateTime? updatedAt;
-  final String? id;
 
   const GistsItem({
     required this.description,
@@ -26,6 +19,13 @@ class GistsItem extends StatelessWidget {
     required this.updatedAt,
     required this.id,
   });
+  final String? description;
+  final String login;
+  final List<String?> filenames;
+  final String? language;
+  final String? avatarUrl;
+  final DateTime? updatedAt;
+  final String? id;
 
   @override
   Widget build(BuildContext context) {

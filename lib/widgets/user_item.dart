@@ -14,9 +14,9 @@ const userGqlChunk = '''
 ''';
 
 class GhBioWidget extends StatelessWidget {
+  const GhBioWidget({this.location, required this.createdAt});
   final String? location;
   final DateTime createdAt;
-  const GhBioWidget({this.location, required this.createdAt});
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +52,6 @@ class GhBioWidget extends StatelessWidget {
 }
 
 class UserItem extends StatelessWidget {
-  final String? login;
-  final String? name;
-  final String? avatarUrl;
-  final Widget? bio;
-  final String url;
 
   const UserItem.github({
     required this.login,
@@ -122,6 +117,11 @@ class UserItem extends StatelessWidget {
     required this.avatarUrl,
     required this.bio,
   }) : url = '/gogs/$login';
+  final String? login;
+  final String? name;
+  final String? avatarUrl;
+  final Widget? bio;
+  final String url;
 
   @override
   Widget build(BuildContext context) {

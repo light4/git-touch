@@ -14,11 +14,11 @@ import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 
 class BbObjectScreen extends StatelessWidget {
+  const BbObjectScreen(this.owner, this.name, this.ref, {this.path});
   final String owner;
   final String name;
   final String ref;
   final String? path;
-  const BbObjectScreen(this.owner, this.name, this.ref, {this.path});
 
   @override
   Widget build(BuildContext context) {

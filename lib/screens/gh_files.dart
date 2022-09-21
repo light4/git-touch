@@ -10,10 +10,10 @@ import 'package:git_touch/widgets/files_item.dart';
 import 'package:provider/provider.dart';
 
 class GhFilesScreen extends StatelessWidget {
+  const GhFilesScreen(this.owner, this.name, this.pullNumber);
   final String owner;
   final String name;
   final int pullNumber;
-  const GhFilesScreen(this.owner, this.name, this.pullNumber);
 
   @override
   Widget build(BuildContext context) {

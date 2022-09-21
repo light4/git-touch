@@ -14,12 +14,12 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class GtIssueScreen extends StatelessWidget {
+
+  const GtIssueScreen(this.owner, this.name, this.number, {this.isPr = false});
   final String owner;
   final String name;
   final String number;
   final bool isPr;
-
-  const GtIssueScreen(this.owner, this.name, this.number, {this.isPr = false});
 
   List<ActionItem> _buildCommentActionItem(
       BuildContext context, GiteaComment comment) {

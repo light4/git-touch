@@ -12,8 +12,8 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:tuple/tuple.dart';
 
 class GlUserScreen extends StatelessWidget {
-  final int? id;
   const GlUserScreen(this.id);
+  final int? id;
   bool get isViewer => id == null;
 
   @override

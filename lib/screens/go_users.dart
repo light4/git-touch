@@ -7,8 +7,6 @@ import 'package:git_touch/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 
 class GoUsersScreen extends StatelessWidget {
-  final String api;
-  final String title;
 
   const GoUsersScreen.followers(String login)
       : api = '/users/$login/followers',
@@ -16,6 +14,8 @@ class GoUsersScreen extends StatelessWidget {
   const GoUsersScreen.following(String login)
       : api = '/users/$login/following',
         title = 'Following';
+  final String api;
+  final String title;
 
   @override
   Widget build(BuildContext context) {

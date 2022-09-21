@@ -12,9 +12,9 @@ import 'package:git_touch/widgets/issue_item.dart';
 import 'package:provider/provider.dart';
 
 class GhPullsScreen extends StatelessWidget {
+  const GhPullsScreen(this.owner, this.name);
   final String owner;
   final String name;
-  const GhPullsScreen(this.owner, this.name);
 
   @override
   Widget build(BuildContext context) {

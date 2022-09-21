@@ -10,8 +10,8 @@ const contributionEmptyColor = '#ebedf0';
 const contributionColors = ['#9be9a8', '#40c463', '#30a14e', '#216e39'];
 
 class HideScrollbar extends StatelessWidget {
-  final Widget? child;
   const HideScrollbar({Key? key, this.child}) : super(key: key);
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +23,13 @@ class HideScrollbar extends StatelessWidget {
 }
 
 class ContributionDay {
-  String? hexColor;
-  int? count;
   ContributionDay({this.hexColor, this.count})
       : assert(hexColor != null || count != null);
+  String? hexColor;
+  int? count;
 }
 
 class ContributionWidget extends StatelessWidget {
-  final Iterable<Iterable<ContributionDay>>? weeks;
-
-  static Color _revertColor(Color color) {
-    return Color.fromRGBO(
-        0xff - color.red, 0xff - color.green, 0xff - color.blue, 1);
-  }
 
   ContributionWidget({required this.weeks}) {
     int? maxCount;
@@ -59,6 +53,12 @@ class ContributionWidget extends StatelessWidget {
         }
       }
     }
+  }
+  final Iterable<Iterable<ContributionDay>>? weeks;
+
+  static Color _revertColor(Color color) {
+    return Color.fromRGBO(
+        0xff - color.red, 0xff - color.green, 0xff - color.blue, 1);
   }
 
   @override

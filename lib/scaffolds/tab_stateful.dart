@@ -4,11 +4,6 @@ import 'package:git_touch/scaffolds/tab.dart';
 import 'package:git_touch/scaffolds/utils.dart';
 
 class TabStatefulScaffold<T> extends StatefulWidget {
-  final Widget title;
-  final Widget Function(T payload, int activeTab) bodyBuilder;
-  final Future<T> Function(int activeTab) fetchData;
-  final List<String> tabs;
-  final Widget Function(T payload, void Function() refresh)? actionBuilder;
 
   const TabStatefulScaffold({
     required this.title,
@@ -17,6 +12,11 @@ class TabStatefulScaffold<T> extends StatefulWidget {
     required this.tabs,
     this.actionBuilder,
   });
+  final Widget title;
+  final Widget Function(T payload, int activeTab) bodyBuilder;
+  final Future<T> Function(int activeTab) fetchData;
+  final List<String> tabs;
+  final Widget Function(T payload, void Function() refresh)? actionBuilder;
 
   @override
   _TabStatefulScaffoldState<T> createState() => _TabStatefulScaffoldState();

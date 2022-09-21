@@ -8,10 +8,10 @@ import 'package:git_touch/widgets/commit_item.dart';
 import 'package:provider/provider.dart';
 
 class GtCommitsScreen extends StatelessWidget {
-  final String owner;
-  final String name;
   // final String branch; // TODO:
   const GtCommitsScreen(this.owner, this.name);
+  final String owner;
+  final String name;
 
   @override
   Widget build(BuildContext context) {

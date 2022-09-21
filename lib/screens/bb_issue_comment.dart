@@ -7,10 +7,10 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 
 class BbIssueCommentScreen extends StatefulWidget {
+  const BbIssueCommentScreen(this.owner, this.name, this.number);
   final String owner;
   final String name;
   final String number;
-  const BbIssueCommentScreen(this.owner, this.name, this.number);
 
   @override
   _BbIssueCommentScreenState createState() => _BbIssueCommentScreenState();

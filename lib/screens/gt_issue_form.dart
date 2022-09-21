@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GtIssueFormScreen extends StatefulWidget {
+  const GtIssueFormScreen(this.owner, this.name);
   final String owner;
   final String name;
-  const GtIssueFormScreen(this.owner, this.name);
 
   @override
   _GtIssueFormScreenState createState() => _GtIssueFormScreenState();

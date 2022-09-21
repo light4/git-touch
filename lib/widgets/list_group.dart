@@ -5,10 +5,6 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/empty.dart';
 
 class ListGroup<T> extends StatelessWidget {
-  final Widget title;
-  final List<T> items;
-  final Widget Function(T item, int index) itemBuilder;
-  final EdgeInsetsGeometry padding;
 
   const ListGroup({
     required this.title,
@@ -16,6 +12,10 @@ class ListGroup<T> extends StatelessWidget {
     required this.itemBuilder,
     this.padding = const EdgeInsets.only(left: 10, right: 10, bottom: 10),
   });
+  final Widget title;
+  final List<T> items;
+  final Widget Function(T item, int index) itemBuilder;
+  final EdgeInsetsGeometry padding;
 
   Widget _buildItem(BuildContext context, MapEntry<int, T> entry) {
     final theme = Provider.of<ThemeModel>(context);

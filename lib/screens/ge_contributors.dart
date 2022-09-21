@@ -9,9 +9,9 @@ import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:provider/provider.dart';
 
 class GeContributorsScreen extends StatelessWidget {
+  const GeContributorsScreen(this.owner, this.name);
   final String owner;
   final String name;
-  const GeContributorsScreen(this.owner, this.name);
 
   @override
   Widget build(BuildContext context) {

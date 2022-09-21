@@ -12,11 +12,11 @@ import 'package:git_touch/widgets/object_tree.dart';
 import 'package:provider/provider.dart';
 
 class GoObjectScreen extends StatelessWidget {
+  const GoObjectScreen(this.owner, this.name, {this.path, this.ref});
   final String owner;
   final String name;
   final String? path;
   final String? ref;
-  const GoObjectScreen(this.owner, this.name, {this.path, this.ref});
 
   @override
   Widget build(BuildContext context) {

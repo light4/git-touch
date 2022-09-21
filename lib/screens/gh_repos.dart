@@ -11,8 +11,8 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GhRepos extends StatelessWidget {
-  final String login;
   const GhRepos(this.login);
+  final String login;
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +42,8 @@ class GhRepos extends StatelessWidget {
 }
 
 class GhStars extends StatelessWidget {
-  final String login;
   const GhStars(this.login);
+  final String login;
 
   @override
   Widget build(BuildContext context) {

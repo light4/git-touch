@@ -9,10 +9,6 @@ export 'package:git_touch/utils/utils.dart';
 
 // This is a scaffold for infinite scroll screens
 class ListStatefulScaffold<T, K> extends StatefulWidget {
-  final Widget title;
-  final Widget Function()? actionBuilder;
-  final Widget Function(T payload) itemBuilder;
-  final Future<ListPayload<T, K>> Function(K? cursor) fetch;
 
   const ListStatefulScaffold({
     required this.title,
@@ -20,6 +16,10 @@ class ListStatefulScaffold<T, K> extends StatefulWidget {
     required this.itemBuilder,
     this.actionBuilder,
   });
+  final Widget title;
+  final Widget Function()? actionBuilder;
+  final Widget Function(T payload) itemBuilder;
+  final Future<ListPayload<T, K>> Function(K? cursor) fetch;
 
   @override
   _ListStatefulScaffoldState<T, K> createState() =>

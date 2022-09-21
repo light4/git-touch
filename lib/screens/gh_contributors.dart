@@ -9,9 +9,9 @@ import 'package:git_touch/widgets/contributor_item.dart';
 import 'package:provider/provider.dart';
 
 class GhContributorsScreen extends StatelessWidget {
+  const GhContributorsScreen(this.owner, this.name);
   final String owner;
   final String name;
-  const GhContributorsScreen(this.owner, this.name);
 
   @override
   Widget build(BuildContext context) {
