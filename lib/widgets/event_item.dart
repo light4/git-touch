@@ -23,7 +23,7 @@ class EventItem extends StatelessWidget {
       style: TextStyle(color: theme.palette.primary),
       recognizer: TapGestureRecognizer()
         ..onTap = () {
-          theme.push(context, url!);
+          context.pushUrl(url!);
         },
     );
   }

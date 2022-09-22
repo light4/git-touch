@@ -135,8 +135,7 @@ class GoRepoScreen extends StatelessWidget {
                             .toList(),
                         onClose: (ref) {
                           if (ref != branch) {
-                            theme.push(
-                                context, '/gogs/$owner/$name?branch=$ref',
+                            context.pushUrl('/gogs/$owner/$name?branch=$ref',
                                 replace: true);
                           }
                         },

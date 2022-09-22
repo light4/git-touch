@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class GeIssueScreen extends StatelessWidget {
-
   const GeIssueScreen(this.owner, this.name, this.number, {this.isPr = false});
   final String owner;
   final String name;
@@ -36,7 +35,7 @@ class GeIssueScreen extends StatelessWidget {
               'id': comment.id.toString(),
             },
           ).toString();
-          theme.push(context, uri);
+          context.pushUrl(uri);
         },
       ),
       ActionItem(
@@ -45,7 +44,7 @@ class GeIssueScreen extends StatelessWidget {
           await auth.fetchGitee(
               '/repos/$owner/$name/issues/comments/${comment.id}',
               requestType: 'DELETE');
-          await theme.push(context, '/gitee/$owner/$name/issues/$number',
+          await context.pushUrl('/gitee/$owner/$name/issues/$number',
               replace: true);
         },
       ),

@@ -261,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       TextStyle(color: theme.palette.primary),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      theme.push(context,
+                                      context.pushUrl(
                                           'https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/');
                                     },
                                 ),

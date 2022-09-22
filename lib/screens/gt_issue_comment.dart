@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GtIssueCommentScreen extends StatefulWidget {
   const GtIssueCommentScreen(this.owner, this.name, this.number,
@@ -67,8 +67,7 @@ class _GtIssueCommentScreenState extends State<GtIssueCommentScreen> {
                 );
               }
               Navigator.pop(context, '');
-              await theme.push(
-                context,
+              await context.pushUrl(
                 '/gitea/${widget.owner}/${widget.name}/${widget.isPr ? 'pulls' : 'issues'}/${widget.number}',
                 replace: true,
               );

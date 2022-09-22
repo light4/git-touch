@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 // TODO:
 class CupertinoLink extends StatefulWidget {
-
   const CupertinoLink({this.child, this.onTap});
   final Widget? child;
   final Function? onTap;
@@ -48,7 +47,6 @@ class _CupertinoLinkState extends State<CupertinoLink> {
 }
 
 class LinkWidget extends StatelessWidget {
-
   const LinkWidget({
     required this.child,
     this.url,
@@ -69,7 +67,7 @@ class LinkWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       onPressed: () async {
         if (onTap != null) onTap!();
-        if (url != null) theme.push(context, url!);
+        if (url != null) context.pushUrl(url!);
       },
       child: child,
     );

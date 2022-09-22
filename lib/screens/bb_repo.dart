@@ -106,8 +106,8 @@ class BbRepoScreen extends StatelessWidget {
                             .toList(),
                         onClose: (ref) {
                           if (ref != branch) {
-                            theme.push(
-                                context, '/bitbucket/$owner/$name?branch=$ref',
+                            context.pushUrl(
+                                '/bitbucket/$owner/$name?branch=$ref',
                                 replace: true);
                           }
                         },

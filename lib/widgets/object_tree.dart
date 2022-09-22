@@ -30,7 +30,6 @@ AntListItem createObjectTreeItem({
 }) {
   return AntListItem(
     prefix: _buildIcon(type, name),
-    child: Text(name),
     extra: size == null ? null : Text(filesize(size)),
     onClick: () async {
       final finalUrl = [
@@ -51,5 +50,6 @@ AntListItem createObjectTreeItem({
       await launchStringUrl(finalUrl);
     },
     arrow: size == null ? const Icon(AntIcons.rightOutline) : null,
+    child: Text(name),
   );
 }

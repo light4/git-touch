@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
-import 'package:go_router/go_router.dart';
 import 'package:primer/primer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_io/io.dart';
@@ -36,7 +35,6 @@ class PickerItem<T> {
 }
 
 class PickerGroupItem<T> {
-
   PickerGroupItem({
     required this.value,
     required this.items,
@@ -75,7 +73,6 @@ class StaticRoute extends PageRouteBuilder {
 }
 
 class Palette {
-
   const Palette({
     required this.primary,
     required this.text,
@@ -217,19 +214,6 @@ class ThemeModel with ChangeNotifier {
     }
 
     notifyListeners();
-  }
-
-  push(BuildContext context, String url, {bool replace = false}) {
-    // Fimber.d(url);
-    if (url.startsWith('/')) {
-      if (replace) {
-        context.replace(url);
-      } else {
-        context.push(url);
-      }
-    } else {
-      launchStringUrl(url);
-    }
   }
 
   Future<bool?> showConfirm(BuildContext context, Widget content) {

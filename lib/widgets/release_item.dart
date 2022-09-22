@@ -93,7 +93,7 @@ class ReleaseItem extends StatelessWidget {
                       AntListItem(
                         extra: IconButton(
                           onPressed: () {
-                            theme.push(context, asset.downloadUrl);
+                            context.pushUrl(asset.downloadUrl);
                           },
                           icon: const Icon(Ionicons.download_outline),
                         ),

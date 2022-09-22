@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/border_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
@@ -68,7 +69,7 @@ TextSpan createLinkSpan(
     ),
     recognizer: TapGestureRecognizer()
       ..onTap = () {
-        theme.push(context, url);
+        context.pushUrl(url);
       },
   );
 }
@@ -157,4 +158,19 @@ class ListPayload<T, K> {
   K cursor;
   bool hasMore;
   Iterable<T> items;
+}
+
+extension MyHelper on BuildContext {
+  pushUrl(String url, {bool replace = false}) {
+    // Fimber.d(url);
+    if (url.startsWith('/')) {
+      if (replace) {
+        this.replace(url);
+      } else {
+        push(url);
+      }
+    } else {
+      launchStringUrl(url);
+    }
+  }
 }

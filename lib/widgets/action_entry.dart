@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:git_touch/models/theme.dart';
+import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class ActionEntry extends StatelessWidget {
@@ -16,7 +17,7 @@ class ActionEntry extends StatelessWidget {
       padding: EdgeInsets.zero,
       onPressed: () {
         if (onTap != null) onTap!();
-        if (url != null) theme.push(context, url!);
+        if (url != null) context.pushUrl(url!);
       },
       child: Icon(iconData, size: 22),
     );

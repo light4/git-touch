@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class BbIssueCommentScreen extends StatefulWidget {
   const BbIssueCommentScreen(this.owner, this.name, this.number);
@@ -51,8 +51,7 @@ class _BbIssueCommentScreenState extends State<BbIssueCommentScreen> {
                 },
               );
               Navigator.pop(context, true);
-              await theme.push(
-                context,
+              await context.pushUrl(
                 '/bitbucket/${widget.owner}/${widget.name}/issues/${widget.number}',
                 replace: true,
               );

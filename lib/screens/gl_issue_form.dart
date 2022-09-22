@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/S.dart';
 
 class GlIssueFormScreen extends StatefulWidget {
   const GlIssueFormScreen(this.id);
@@ -62,8 +62,7 @@ class _GlIssueFormScreenState extends State<GlIssueFormScreen> {
               ).then((v) {
                 return GitlabIssue.fromJson(v);
               });
-              await theme.push(
-                context,
+              await context.pushUrl(
                 '/gitlab/projects/${widget.id}/issues/${res.iid}',
                 replace: true,
               );

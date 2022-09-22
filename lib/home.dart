@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
             // go to app store
             LaunchReview.launch(writeReview: false);
           } else {
-            context.read<ThemeModel>().push(context, latest.htmlUrl!);
+            context.pushUrl(latest.htmlUrl!);
           }
         }
       }

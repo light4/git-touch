@@ -6,7 +6,6 @@ import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:provider/provider.dart';
 
 class UserHeader extends StatelessWidget {
-
   const UserHeader({
     super.key,
     required this.avatarUrl,
@@ -33,7 +32,7 @@ class UserHeader extends StatelessWidget {
             MutationButton(
               text: 'Switch accounts',
               onTap: () {
-                theme.push(context, '/login');
+                context.pushUrl('/login');
               },
             )
           ]

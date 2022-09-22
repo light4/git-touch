@@ -14,7 +14,6 @@ class AvatarSize {
 }
 
 class Avatar extends StatelessWidget {
-
   const Avatar({
     required this.url,
     this.size = AvatarSize.medium,
@@ -56,7 +55,7 @@ class Avatar extends StatelessWidget {
     return LinkWidget(
       child: widget,
       onTap: () {
-        context.read<ThemeModel>().push(context, linkUrl!);
+        context.pushUrl(linkUrl!);
       },
     );
   }

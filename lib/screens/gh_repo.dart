@@ -300,8 +300,7 @@ class GhRepoScreen extends StatelessWidget {
                                 .toList(),
                             onClose: (ref) {
                               if (ref != branch) {
-                                theme.push(
-                                    context, '/github/$owner/$name?ref=$ref',
+                                context.pushUrl('/github/$owner/$name?ref=$ref',
                                     replace: true);
                               }
                             },

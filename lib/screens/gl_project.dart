@@ -227,8 +227,7 @@ class GlProjectScreen extends StatelessWidget {
                             .toList(),
                         onClose: (ref) {
                           if (ref != branch) {
-                            theme.push(
-                                context, '/gitlab/projects/$id?branch=$ref',
+                            context.pushUrl('/gitlab/projects/$id?branch=$ref',
                                 replace: true);
                           }
                         },
