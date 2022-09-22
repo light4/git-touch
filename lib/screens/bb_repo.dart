@@ -58,15 +58,15 @@ class BbRepoScreen extends StatelessWidget {
             ),
             CommonStyle.border,
             AntList(
-              items: [
+              children: [
                 AntListItem(
                   prefix: const Icon(Octicons.code),
-                  child: const Text('Code'),
                   extra: Text(filesize(p.size)),
                   onClick: () {
                     context.push(
                         '/bitbucket/$owner/$name/src/${branch ?? p.mainbranch!.name}');
                   },
+                  child: const Text('Code'),
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.issue_opened),
@@ -92,7 +92,6 @@ class BbRepoScreen extends StatelessWidget {
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.git_branch),
-                  child: Text(AppLocalizations.of(context)!.branches),
                   extra: Text(
                       '${(branch ?? p.mainbranch!.name)!} • ${branches.length}'),
                   onClick: () async {
@@ -115,6 +114,7 @@ class BbRepoScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  child: Text(AppLocalizations.of(context)!.branches),
                 ),
               ],
             ),

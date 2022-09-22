@@ -82,30 +82,30 @@ class GtRepoScreen extends StatelessWidget {
             ),
             CommonStyle.border,
             AntList(
-              items: [
+              children: [
                 AntListItem(
                   prefix: const Icon(Octicons.code),
-                  child: const Text('Code'),
                   extra: Text(filesize(p.size! * 1000)),
                   onClick: () {
                     context.push('/gitea/$owner/$name/blob');
                   },
+                  child: const Text('Code'),
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.issue_opened),
-                  child: const Text('Issues'),
                   extra: Text(numberFormat.format(p.openIssuesCount)),
                   onClick: () {
                     context.push('/gitea/$owner/$name/issues');
                   },
+                  child: const Text('Issues'),
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.git_pull_request),
-                  child: const Text('Pull requests'),
                   extra: Text(numberFormat.format(p.openPrCounter)),
                   onClick: () {
                     context.push('/gitea/$owner/$name/pulls');
                   },
+                  child: const Text('Pull requests'),
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.history),

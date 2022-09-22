@@ -32,7 +32,7 @@ class GhGistsFilesScreen extends StatelessWidget {
       },
       bodyBuilder: (payload, _) {
         return AntList(
-          items: payload!.files!.map((v) {
+          children: payload!.files!.map((v) {
             final uri = Uri(
               path: '/github/$login/gists/$id/${v.name}',
               queryParameters: {

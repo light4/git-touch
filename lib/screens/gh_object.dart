@@ -60,7 +60,7 @@ class GhObjectScreen extends StatelessWidget {
       bodyBuilder: (data, _) {
         if (data.isDirectory) {
           return AntList(
-            items: data.tree!.map((v) {
+            children: data.tree!.map((v) {
               // if (item.type == 'commit') return null;
               final uri = Uri(
                 path: '/github/$owner/$name/blob/$ref',

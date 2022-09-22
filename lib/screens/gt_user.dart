@@ -131,7 +131,7 @@ class GtUserScreen extends StatelessWidget {
               ContributionWidget(weeks: p.userHeatmap),
               CommonStyle.border,
               AntList(
-                items: [
+                children: [
                   AntListItem(
                     prefix: const Icon(Octicons.home),
                     child: const Text('Organizations'),

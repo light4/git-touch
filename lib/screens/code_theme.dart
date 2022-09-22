@@ -46,9 +46,8 @@ class MyApp extends StatelessWidget {
           CommonStyle.verticalGap,
           AntList(
             header: Text(AppLocalizations.of(context)!.fontStyle),
-            items: [
+            children: [
               AntListItem(
-                child: Text(AppLocalizations.of(context)!.fontSize),
                 extra: Text(codeProvider.fontSize.toString()),
                 onClick: () {
                   theme.showPicker(
@@ -65,9 +64,9 @@ class MyApp extends StatelessWidget {
                     ),
                   );
                 },
+                child: Text(AppLocalizations.of(context)!.fontSize),
               ),
               AntListItem(
-                child: Text(AppLocalizations.of(context)!.fontFamily),
                 extra: Text(codeProvider.fontFamily),
                 onClick: () {
                   theme.showPicker(
@@ -83,15 +82,15 @@ class MyApp extends StatelessWidget {
                     ),
                   );
                 },
+                child: Text(AppLocalizations.of(context)!.fontFamily),
               ),
             ],
           ),
           CommonStyle.verticalGap,
           AntList(
             header: Text(AppLocalizations.of(context)!.syntaxHighlighting),
-            items: [
+            children: [
               AntListItem(
-                child: Text(AppLocalizations.of(context)!.light),
                 extra: Text(codeProvider.theme),
                 onClick: () {
                   theme.showPicker(
@@ -107,9 +106,9 @@ class MyApp extends StatelessWidget {
                     ),
                   );
                 },
+                child: Text(AppLocalizations.of(context)!.light),
               ),
               AntListItem(
-                child: Text(AppLocalizations.of(context)!.dark),
                 extra: Text(codeProvider.themeDark),
                 onClick: () {
                   theme.showPicker(
@@ -125,6 +124,7 @@ class MyApp extends StatelessWidget {
                     ),
                   );
                 },
+                child: Text(AppLocalizations.of(context)!.dark),
               ),
             ],
           ),

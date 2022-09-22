@@ -241,11 +241,10 @@ class GhRepoScreen extends StatelessWidget {
               ]),
             ],
             AntList(
-              items: [
+              children: [
                 if (ref != null)
                   AntListItem(
                     prefix: const Icon(Octicons.code),
-                    child: Text(repo.primaryLanguage?.name ?? 'Code'),
                     extra: Text(
                       (license == null ? '' : '$license • ') +
                           filesize(repo.diskUsage! * 1000),
@@ -253,39 +252,39 @@ class GhRepoScreen extends StatelessWidget {
                     onClick: () {
                       context.push('/github/$owner/$name/blob/${ref.name}');
                     },
+                    child: Text(repo.primaryLanguage?.name ?? 'Code'),
                   ),
                 if (repo.hasIssuesEnabled)
                   AntListItem(
                     prefix: const Icon(Octicons.issue_opened),
-                    child: Text(AppLocalizations.of(context)!.issues),
                     extra: Text(numberFormat.format(repo.issues.totalCount)),
                     onClick: () {
                       context.push('/github/$owner/$name/issues');
                     },
+                    child: Text(AppLocalizations.of(context)!.issues),
                   ),
                 AntListItem(
                   prefix: const Icon(Octicons.git_pull_request),
-                  child: Text(AppLocalizations.of(context)!.pullRequests),
                   extra:
                       Text(numberFormat.format(repo.pullRequests.totalCount)),
                   onClick: () {
                     context.push('/github/$owner/$name/pulls');
                   },
+                  child: Text(AppLocalizations.of(context)!.pullRequests),
                 ),
                 if (ref != null) ...[
                   AntListItem(
                     prefix: const Icon(Octicons.history),
-                    child: Text(AppLocalizations.of(context)!.commits),
                     extra: Text(((ref.target as GRepoCommit).history.totalCount)
                         .toString()),
                     onClick: () {
                       context.push('/github/$owner/$name/commits/${ref.name}');
                     },
+                    child: Text(AppLocalizations.of(context)!.commits),
                   ),
                   if (repo.refs != null)
                     AntListItem(
                       prefix: const Icon(Octicons.git_branch),
-                      child: Text(AppLocalizations.of(context)!.branches),
                       extra: Text(
                           '${ref.name} • ${numberFormat.format(repo.refs!.totalCount)}'),
                       onClick: () async {
@@ -309,10 +308,10 @@ class GhRepoScreen extends StatelessWidget {
                           ),
                         );
                       },
+                      child: Text(AppLocalizations.of(context)!.branches),
                     ),
                   AntListItem(
                     prefix: const Icon(Octicons.organization),
-                    child: Text(AppLocalizations.of(context)!.contributors),
                     extra: FutureBuilder<int>(
                       future: contributionFuture,
                       builder: (context, snapshot) {
@@ -322,14 +321,15 @@ class GhRepoScreen extends StatelessWidget {
                     onClick: () {
                       context.push('/github/$owner/$name/contributors');
                     },
+                    child: Text(AppLocalizations.of(context)!.contributors),
                   ),
                   AntListItem(
                     prefix: const Icon(Octicons.book),
-                    child: Text(AppLocalizations.of(context)!.releases),
                     onClick: () {
                       context.push('/github/$owner/$name/releases');
                     },
                     extra: Text(repo.releases.totalCount.toString()),
+                    child: Text(AppLocalizations.of(context)!.releases),
                   ),
                 ],
               ],

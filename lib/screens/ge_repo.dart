@@ -134,23 +134,23 @@ class GeRepoScreen extends StatelessWidget {
             ),
             CommonStyle.border,
             AntList(
-              items: [
+              children: [
                 AntListItem(
                   prefix: const Icon(Octicons.code),
-                  child: const Text('Code'),
                   extra: Text(p.license ?? ''),
                   onClick: () {
                     context.push(
                         '/gitee/$owner/$name/tree/${branch ?? p.defaultBranch}');
                   },
+                  child: const Text('Code'),
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.issue_opened),
-                  child: const Text('Issues'),
                   extra: Text(numberFormat.format(p.openIssuesCount)),
                   onClick: () {
                     context.push('/gitee/$owner/$name/issues');
                   },
+                  child: const Text('Issues'),
                 ),
                 if (p.pullRequestsEnabled!)
                   AntListItem(
@@ -170,7 +170,6 @@ class GeRepoScreen extends StatelessWidget {
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.git_branch),
-                  child: Text(AppLocalizations.of(context)!.branches),
                   extra: Text(
                       '${(branch ?? p.defaultBranch)!} • ${branches.length}'),
                   onClick: () async {
@@ -193,6 +192,7 @@ class GeRepoScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  child: Text(AppLocalizations.of(context)!.branches),
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.organization),

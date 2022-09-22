@@ -21,10 +21,10 @@ class GhMetaScreen extends StatelessWidget {
       },
       bodyBuilder: (meta, _) {
         return AntList(
-          items: [
+          children: [
             AntListItem(
-              child: const Text('Service SHA'),
               extra: Text(meta.gitHubServicesSha),
+              child: const Text('Service SHA'),
             ),
           ],
         );

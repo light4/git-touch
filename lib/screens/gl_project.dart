@@ -157,9 +157,16 @@ class GlProjectScreen extends StatelessWidget {
             ),
             CommonStyle.border,
             AntList(
-              items: [
+              children: [
                 AntListItem(
                   prefix: const Icon(Octicons.code),
+                  extra: p.statistics == null
+                      ? null
+                      : Text(filesize(p.statistics!.repositorySize)),
+                  onClick: () {
+                    context.push(
+                        '/gitlab/projects/$id/tree/${branch ?? p.defaultBranch}');
+                  },
                   child: FutureBuilder<Map<String, double>>(
                     future: langFuture,
                     builder: (context, snapshot) {
@@ -173,23 +180,16 @@ class GlProjectScreen extends StatelessWidget {
                       }
                     },
                   ),
-                  extra: p.statistics == null
-                      ? null
-                      : Text(filesize(p.statistics!.repositorySize)),
-                  onClick: () {
-                    context.push(
-                        '/gitlab/projects/$id/tree/${branch ?? p.defaultBranch}');
-                  },
                 ),
                 if (p.issuesEnabled!)
                   AntListItem(
                     prefix: const Icon(Octicons.issue_opened),
-                    child: Text(AppLocalizations.of(context)!.issues),
                     extra: Text(numberFormat.format(p.openIssuesCount)),
                     onClick: () {
                       context
                           .push('/gitlab/projects/$id/issues?prefix=$prefix');
                     },
+                    child: Text(AppLocalizations.of(context)!.issues),
                   ),
                 if (p.mergeRequestsEnabled!)
                   AntListItem(
@@ -202,18 +202,17 @@ class GlProjectScreen extends StatelessWidget {
                   ),
                 AntListItem(
                   prefix: const Icon(Octicons.history),
-                  child: Text(AppLocalizations.of(context)!.commits),
                   extra: p.statistics == null
                       ? null
                       : Text(p.statistics!.commitCount.toString()),
                   onClick: () {
                     context.push(
                         '/gitlab/projects/$id/commits?prefix=$prefix&branch=${branch ?? p.defaultBranch}');
-                  }, // EDIT
+                  },
+                  child: Text(AppLocalizations.of(context)!.commits), // EDIT
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.git_branch),
-                  child: Text(AppLocalizations.of(context)!.branches),
                   extra: Text(
                       '${(branch ?? p.defaultBranch) ?? ''} • ${branches.length}'),
                   onClick: () async {
@@ -236,6 +235,7 @@ class GlProjectScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  child: Text(AppLocalizations.of(context)!.branches),
                 ),
               ],
             ),

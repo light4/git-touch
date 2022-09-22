@@ -32,7 +32,7 @@ class GeTreeScreen extends StatelessWidget {
       },
       bodyBuilder: (data, _) {
         return AntList(
-          items: [
+          children: [
             for (var item in data)
               createObjectTreeItem(
                 type: item.type,

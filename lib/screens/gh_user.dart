@@ -24,7 +24,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class _Repos extends StatelessWidget {
-
   _Repos(final Iterable<GRepoParts> pinned, final Iterable<GRepoParts>? repos)
       : title =
             pinned.isNotEmpty ? 'pinned repositories' : 'popular repositories',
@@ -120,7 +119,7 @@ class _User extends StatelessWidget {
         ),
         CommonStyle.border,
         AntList(
-          items: [
+          children: [
             AntListItem(
               prefix: const Icon(Octicons.rss),
               child: Text(AppLocalizations.of(context)!.events),
@@ -224,7 +223,7 @@ class _Org extends StatelessWidget {
           ),
         ]),
         AntList(
-          items: [
+          children: [
             AntListItem(
               prefix: const Icon(Octicons.rss),
               child: Text(AppLocalizations.of(context)!.events),

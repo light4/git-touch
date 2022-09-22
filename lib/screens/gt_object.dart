@@ -44,7 +44,7 @@ class GtObjectScreen extends StatelessWidget {
           items.sort((a, b) {
             return sortByKey('dir', a.type, b.type);
           });
-          return AntList(items: [
+          return AntList(children: [
             for (var v in items)
               createObjectTreeItem(
                 name: v.name,

@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ReleaseItem extends StatelessWidget {
-
   const ReleaseItem(
       {required this.login,
       required this.publishedAt,
@@ -88,10 +87,17 @@ class ReleaseItem extends StatelessWidget {
             ),
             children: <Widget>[
               AntList(
-                items: [
+                children: [
                   if (releaseAssets != null)
                     for (var asset in releaseAssets!.nodes!)
                       AntListItem(
+                        extra: IconButton(
+                          onPressed: () {
+                            theme.push(context, asset.downloadUrl);
+                          },
+                          icon: const Icon(Ionicons.download_outline),
+                        ),
+                        arrow: null,
                         child: Text(
                           asset.name,
                           style: TextStyle(
@@ -100,12 +106,6 @@ class ReleaseItem extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        extra: IconButton(
-                            onPressed: () {
-                              theme.push(context, asset.downloadUrl);
-                            },
-                            icon: const Icon(Ionicons.download_outline)),
-                        arrow: null,
                       ),
                 ],
               )

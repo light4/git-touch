@@ -92,7 +92,7 @@ class GoRepoScreen extends StatelessWidget {
             ),
             CommonStyle.border,
             AntList(
-              items: [
+              children: [
                 AntListItem(
                   prefix: const Icon(Octicons.code),
                   child: const Text('Code'),
@@ -108,9 +108,9 @@ class GoRepoScreen extends StatelessWidget {
                     context.push('/gogs/$owner/$name/issues');
                   },
                 ),
-                AntListItem(
-                  prefix: const Icon(Octicons.git_pull_request),
-                  child: const Text(
+                const AntListItem(
+                  prefix: Icon(Octicons.git_pull_request),
+                  child: Text(
                       'Pull requests'), // TODO: when API endpoint is available
                 ),
                 AntListItem(
@@ -123,7 +123,6 @@ class GoRepoScreen extends StatelessWidget {
                 ),
                 AntListItem(
                   prefix: const Icon(Octicons.git_branch),
-                  child: Text(AppLocalizations.of(context)!.branches),
                   extra: Text(
                       '${branch ?? 'master'} • ${branches.length.toString()}'),
                   onClick: () async {
@@ -144,6 +143,7 @@ class GoRepoScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  child: Text(AppLocalizations.of(context)!.branches),
                 ),
               ],
             ),

@@ -72,7 +72,7 @@ class GoUserScreen extends StatelessWidget {
             ]),
             CommonStyle.border,
             AntList(
-              items: [
+              children: [
                 AntListItem(
                   prefix: const Icon(Octicons.home),
                   child: const Text('Organizations'),
