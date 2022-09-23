@@ -1,9 +1,9 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
-import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 const userGqlChunk = '''
@@ -52,7 +52,6 @@ class GhBioWidget extends StatelessWidget {
 }
 
 class UserItem extends StatelessWidget {
-
   const UserItem.github({
     required this.login,
     required this.name,
@@ -126,61 +125,59 @@ class UserItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
-    return LinkWidget(
-      url: url,
-      child: Container(
-        padding: CommonStyle.padding,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Avatar(url: avatarUrl, size: AvatarSize.large),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    textBaseline: TextBaseline.alphabetic,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    children: <Widget>[
-                      if (name != null && name!.isNotEmpty) ...[
-                        Text(
-                          name!,
-                          style: TextStyle(
-                            color: theme.palette.text,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                      ],
-                      Expanded(
-                        child: Text(
-                          login!,
-                          style: TextStyle(
-                            color: theme.palette.text,
-                            fontSize: 16,
-                          ),
-                          overflow: TextOverflow.ellipsis,
+    return AntListItem(
+      onClick: () {
+        context.pushUrl(url);
+      },
+      child: Row(
+        children: <Widget>[
+          Avatar(url: avatarUrl, size: AvatarSize.large),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  textBaseline: TextBaseline.alphabetic,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  children: <Widget>[
+                    if (name != null && name!.isNotEmpty) ...[
+                      Text(
+                        name!,
+                        style: TextStyle(
+                          color: theme.palette.text,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
+                      const SizedBox(width: 8),
                     ],
-                  ),
-                  const SizedBox(height: 6),
-                  if (bio != null)
-                    DefaultTextStyle(
-                      style: TextStyle(
-                        color: theme.palette.secondaryText,
-                        fontSize: 16,
+                    Expanded(
+                      child: Text(
+                        login!,
+                        style: TextStyle(
+                          color: theme.palette.text,
+                          fontSize: 16,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      child: bio!,
                     ),
-                ],
-              ),
-            )
-          ],
-        ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                if (bio != null)
+                  DefaultTextStyle(
+                    style: TextStyle(
+                      color: theme.palette.secondaryText,
+                      fontSize: 16,
+                    ),
+                    child: bio!,
+                  ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

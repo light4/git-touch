@@ -6,7 +6,6 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class RepoHeader extends StatelessWidget {
-
   const RepoHeader({
     required this.avatarUrl,
     required this.avatarLink,

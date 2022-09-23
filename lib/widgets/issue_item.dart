@@ -1,11 +1,10 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
+import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
-import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/link.dart';
 
 const issueGqlChunk = '''
 url
@@ -34,7 +33,6 @@ comments {
 ''';
 
 class IssueItem extends StatelessWidget {
-
   const IssueItem({
     required this.url,
     required this.subtitle,
@@ -60,100 +58,90 @@ class IssueItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
 
-    return LinkWidget(
-      url: url,
-      child: Container(
-        padding: CommonStyle.padding,
-        // color: payload.unread ? Colors.white : Colors.black12,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
+    return AntListItem(
+      arrow: null,
+      onClick: () {
+        context.pushUrl(url!);
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Icon(isPr ? Octicons.git_pull_request : Octicons.issue_opened,
+              color: GithubPalette.open, size: 20),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Icon(isPr ? Octicons.git_pull_request : Octicons.issue_opened,
-                    color: GithubPalette.open, size: 20),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: join(const SizedBox(height: 8), [
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(text: '$title '),
-                              TextSpan(
-                                text: subtitle,
-                                style: TextStyle(
-                                  color: theme.palette.tertiaryText,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                          style: TextStyle(
-                            fontSize: 17,
-                            color: theme.palette.text,
-                            fontWeight: FontWeight.w600,
-                          ),
+              children: join(const SizedBox(height: 8), [
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(text: '$title '),
+                      TextSpan(
+                        text: subtitle,
+                        style: TextStyle(
+                          color: theme.palette.tertiaryText,
+                          fontWeight: FontWeight.normal,
                         ),
-                        if (labels != null) labels!,
-                        DefaultTextStyle(
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: theme.palette.secondaryText,
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              // FIXME: Deleted user
-                              if (avatarUrl != null) ...[
-                                Avatar(
-                                  size: AvatarSize.extraSmall,
-                                  url: avatarUrl,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  author!,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                              Expanded(
-                                  child: Text(
-                                ' opened ${timeago.format(updatedAt!)}',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: theme.palette.secondaryText,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              )),
-                              if (commentCount! > 0) ...[
-                                const Expanded(child: SizedBox()),
-                                Icon(Octicons.comment,
-                                    size: 14,
-                                    color: theme.palette.secondaryText),
-                                const SizedBox(width: 3),
-                                Text(numberFormat.format(commentCount))
-                              ],
-                            ],
-                          ),
-                        )
-                      ]),
-                    ),
+                      ),
+                    ],
+                  ),
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: theme.palette.text,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                // Column(
-                //   children: <Widget>[
-                //     Icon(Octicons.check, color: Colors.black45),
-                //     Icon(Octicons.unmute, color: Colors.black45)
-                //   ],
-                // ),
-              ],
+                if (labels != null) labels!,
+                DefaultTextStyle(
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: theme.palette.secondaryText,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      // FIXME: Deleted user
+                      if (avatarUrl != null) ...[
+                        Avatar(
+                          size: AvatarSize.extraSmall,
+                          url: avatarUrl,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          author!,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                      Expanded(
+                          child: Text(
+                        ' opened ${timeago.format(updatedAt!)}',
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: theme.palette.secondaryText,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      )),
+                      if (commentCount! > 0) ...[
+                        const Expanded(child: SizedBox()),
+                        Icon(Octicons.comment,
+                            size: 14, color: theme.palette.secondaryText),
+                        const SizedBox(width: 3),
+                        Text(numberFormat.format(commentCount))
+                      ],
+                    ],
+                  ),
+                )
+              ]),
             ),
-          ],
-        ),
+          ),
+          // Column(
+          //   children: <Widget>[
+          //     Icon(Octicons.check, color: Colors.black45),
+          //     Icon(Octicons.unmute, color: Colors.black45)
+          //   ],
+          // ),
+        ],
       ),
     );
   }

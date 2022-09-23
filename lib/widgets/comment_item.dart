@@ -3,16 +3,15 @@ import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/schema.schema.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
+import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
+import 'package:git_touch/widgets/avatar.dart';
+import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
+import 'package:git_touch/widgets/user_name.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
-import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/avatar.dart';
-import 'package:git_touch/widgets/link.dart';
-import 'package:git_touch/widgets/user_name.dart';
 
 class EmojiPayload {
   EmojiPayload({
@@ -30,7 +29,6 @@ class EmojiPayload {
 typedef EmojiUpdateCallaback = void Function(GReactionContent data);
 
 class GhEmojiAction extends StatefulWidget {
-
   GhEmojiAction(this.id, GReactableParts r, this.onReaction)
       : items = [
           EmojiPayload(
@@ -173,7 +171,8 @@ mutation {
   }
 }
 
-class CommentItem extends StatelessWidget { // TODO
+class CommentItem extends StatelessWidget {
+  // TODO
 
   const CommentItem({
     required this.avatar,

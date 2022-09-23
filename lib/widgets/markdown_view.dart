@@ -133,7 +133,7 @@ class MarkdownFlutterView extends StatelessWidget {
             var y = path.join(x, url);
             if (y.startsWith('/')) y = y.substring(1);
 
-            return context.pushUrl(
+            context.pushUrl(
                 '/${basePaths![0]}/${basePaths![1]}/${basePaths![2]}?path=${y.urlencode}');
           }
 
@@ -148,7 +148,7 @@ class MarkdownFlutterView extends StatelessWidget {
             for (var p in matchedPaths) {
               final m = matchPattern(url, p);
               if (m != null) {
-                return context.pushUrl(
+                context.pushUrl(
                     url.replaceFirst(RegExp(r'https://github.com'), '/github'));
               }
             }

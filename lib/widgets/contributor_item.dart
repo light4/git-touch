@@ -1,12 +1,11 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
-import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class ContributorItem extends StatelessWidget {
-
   const ContributorItem({
     required this.login,
     required this.avatarUrl,
@@ -21,45 +20,44 @@ class ContributorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
-    return LinkWidget(
-      url: url,
-      child: Container(
-        padding: CommonStyle.padding,
-        child: Row(
-          children: <Widget>[
-            Avatar(url: avatarUrl, size: AvatarSize.large),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        login!,
-                        style: TextStyle(
-                          color: theme.palette.primary,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 6),
-                  if (commits != null)
-                    DefaultTextStyle(
+    return AntListItem(
+      onClick: () {
+        context.pushUrl(url);
+      },
+      child: Row(
+        children: <Widget>[
+          Avatar(url: avatarUrl, size: AvatarSize.large),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text(
+                      login!,
                       style: TextStyle(
-                        color: theme.palette.secondaryText,
-                        fontSize: 16,
+                        color: theme.palette.primary,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
-                      child: Text('Commits: $commits'),
                     ),
-                ],
-              ),
-            )
-          ],
-        ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                if (commits != null)
+                  DefaultTextStyle(
+                    style: TextStyle(
+                      color: theme.palette.secondaryText,
+                      fontSize: 16,
+                    ),
+                    child: Text('Commits: $commits'),
+                  ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

@@ -161,7 +161,7 @@ class ListPayload<T, K> {
 }
 
 extension MyHelper on BuildContext {
-  pushUrl(String url, {bool replace = false}) {
+  Future<void> pushUrl(String url, {bool replace = false}) async {
     // Fimber.d(url);
     if (url.startsWith('/')) {
       if (replace) {

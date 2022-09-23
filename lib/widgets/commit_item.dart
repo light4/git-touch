@@ -1,8 +1,8 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
-import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -26,51 +26,49 @@ class CommitItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
-    return LinkWidget(
-      url: url,
-      child: Container(
-        padding: CommonStyle.padding,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            if (avatarUrl != null) ...[
-              Avatar(url: avatarUrl, linkUrl: avatarLink),
-              const SizedBox(width: 10),
-            ],
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    message!,
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: theme.palette.text,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: <Widget>[
-                      Text(author!,
-                          style: TextStyle(
-                              fontSize: 15, color: theme.palette.primary)),
-                      Text(
-                        ' committed ${timeago.format(createdAt!)}',
-                        style: TextStyle(
-                          color: theme.palette.secondaryText,
-                          fontSize: 15,
-                        ),
-                      ),
-                      if (widgets != null) ...widgets!,
-                    ],
-                  )
-                ],
-              ),
-            )
+    return AntListItem(
+      onClick: () {
+        context.pushUrl(url!);
+      },
+      child: Row(
+        children: <Widget>[
+          if (avatarUrl != null) ...[
+            Avatar(url: avatarUrl, linkUrl: avatarLink),
+            const SizedBox(width: 10),
           ],
-        ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  message!,
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: theme.palette.text,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: <Widget>[
+                    Text(author!,
+                        style: TextStyle(
+                            fontSize: 15, color: theme.palette.primary)),
+                    Text(
+                      ' committed ${timeago.format(createdAt!)}',
+                      style: TextStyle(
+                        color: theme.palette.secondaryText,
+                        fontSize: 15,
+                      ),
+                    ),
+                    if (widgets != null) ...widgets!,
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
