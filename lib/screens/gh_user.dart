@@ -17,7 +17,6 @@ import 'package:git_touch/widgets/contribution.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
 import 'package:git_touch/widgets/repository_item.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:git_touch/widgets/text_with_at.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:go_router/go_router.dart';
@@ -33,27 +32,22 @@ class _Repos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return AntList(
+      header: Text(title),
       children: [
-        TableViewHeader(title),
-        ...join(
-          CommonStyle.border,
-          repos!.map((v) {
-            return RepositoryItem.gh(
-              owner: v.owner.login,
-              avatarUrl: v.owner.avatarUrl,
-              name: v.name,
-              description: v.description,
-              starCount: v.stargazers.totalCount,
-              forkCount: v.forks.totalCount,
-              primaryLanguageName: v.primaryLanguage?.name,
-              primaryLanguageColor: v.primaryLanguage?.color,
-              isPrivate: v.isPrivate,
-              isFork: v.isFork,
-            );
-          }).toList(),
-        ),
+        for (final v in repos!)
+          RepositoryItem.gh(
+            owner: v.owner.login,
+            avatarUrl: v.owner.avatarUrl,
+            name: v.name,
+            description: v.description,
+            starCount: v.stargazers.totalCount,
+            forkCount: v.forks.totalCount,
+            primaryLanguageName: v.primaryLanguage?.name,
+            primaryLanguageColor: v.primaryLanguage?.color,
+            isPrivate: v.isPrivate,
+            isFork: v.isFork,
+          ),
       ],
     );
   }

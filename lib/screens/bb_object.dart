@@ -8,7 +8,6 @@ import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
-import 'package:git_touch/widgets/table_view.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
@@ -54,15 +53,13 @@ class BbObjectScreen extends StatelessWidget {
         if (pl is String) {
           return BlobView(path, text: pl);
         } else if (pl is BbTree) {
-          return TableViewItemWidget(
-            createObjectTreeItem(
-              name: basename(pl.path),
-              type: pl.type,
-              // size: v.type == 'commit_file' ? v.size : null,
-              size: pl.size,
-              url: '/bitbucket/$owner/$name/src/$ref?path=${pl.path.urlencode}',
-              downloadUrl: pl.links!['self']['href'] as String?,
-            ),
+          return createObjectTreeItem(
+            name: basename(pl.path),
+            type: pl.type,
+            // size: v.type == 'commit_file' ? v.size : null,
+            size: pl.size,
+            url: '/bitbucket/$owner/$name/src/$ref?path=${pl.path.urlencode}',
+            downloadUrl: pl.links!['self']['href'] as String?,
           );
         } else {
           return Container();

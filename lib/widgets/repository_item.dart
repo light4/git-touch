@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class RepositoryItem extends StatelessWidget {
-
   const RepositoryItem({
     required this.owner,
     required this.avatarUrl,
