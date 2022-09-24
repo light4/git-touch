@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
@@ -53,7 +54,10 @@ class MyApp extends StatelessWidget {
         routeInformationProvider: router.routeInformationProvider,
         routeInformationParser: router.routeInformationParser,
         routerDelegate: router.routerDelegate,
-        theme: CupertinoThemeData(brightness: theme.brightness),
+        theme: CupertinoThemeData(
+          brightness: theme.brightness,
+          primaryColor: AntTheme.of(context).colorPrimary,
+        ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         localeListResolutionCallback: localeListResolutionCallback,

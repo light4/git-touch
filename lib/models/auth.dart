@@ -5,9 +5,13 @@ import 'package:ferry/ferry.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:git_touch/models/account.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/models/gitea.dart';
 import 'package:git_touch/models/gitee.dart';
+import 'package:git_touch/models/gitlab.dart';
+import 'package:git_touch/models/gogs.dart';
+import 'package:git_touch/utils/utils.dart';
 import 'package:github/github.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:http/http.dart' as http;
@@ -17,11 +21,6 @@ import 'package:uni_links/uni_links.dart';
 // import 'package:in_app_review/in_app_review.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/models/account.dart';
-import 'package:git_touch/models/gitlab.dart';
-import 'package:git_touch/models/gogs.dart';
 
 const clientId = 'df930d7d2e219f26142a';
 

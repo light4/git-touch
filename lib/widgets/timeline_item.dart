@@ -1,5 +1,6 @@
 import 'dart:core';
 
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
@@ -301,17 +302,24 @@ class TimelineItem extends StatelessWidget {
         return Column(
           children: <Widget>[
             TimelineEventItem(
-                actor: p.author!.login,
-                iconColor: GithubPalette.open,
-                iconData: Octicons.check,
-                textSpan: p.state == GPullRequestReviewState.APPROVED
-                    ? TextSpan(
-                        text:
-                            ' ${AppLocalizations.of(context)!.approvedChanges}')
-                    : p.state == GPullRequestReviewState.COMMENTED
-                        ? TextSpan(
-                            text: ' ${AppLocalizations.of(context)!.reviewed} ')
-                        : warningSpan),
+              actor: p.author!.login,
+              iconColor: GithubPalette.open,
+              iconData: Octicons.check,
+              textSpan: p.state == GPullRequestReviewState.APPROVED
+                  ? TextSpan(
+                      text: ' ${AppLocalizations.of(context)!.approvedChanges}',
+                    )
+                  : p.state == GPullRequestReviewState.COMMENTED
+                      ? TextSpan(
+                          text: ' ${AppLocalizations.of(context)!.reviewed} ',
+                        )
+                      : TextSpan(
+                          text: 'xxx', // TODO:
+                          style: TextStyle(
+                            color: AntTheme.of(context).colorDanger,
+                          ),
+                        ),
+            ),
             Container(
               padding: CommonStyle.padding.copyWith(left: 50),
               child: Column(

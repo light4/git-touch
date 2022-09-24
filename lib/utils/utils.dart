@@ -1,4 +1,3 @@
-import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
@@ -47,13 +46,14 @@ class CommonStyle {
   static final monospace = Platform.isIOS ? 'Menlo' : 'monospace'; // FIXME:
 }
 
-Color getFontColorByBrightness(Color color) {
-  final grayscale = color.red * 0.3 + color.green * 0.59 + color.blue * 0.11;
-  // Fimber.d('color: $color, $grayscale');
+// TODO:
+// Color getFontColorByBrightness(Color color) {
+//   var grayscale = color.red * 0.3 + color.green * 0.59 + color.blue * 0.11;
+//   // Fimber.d('color: $color, $grayscale');
 
-  final showWhite = grayscale < 128;
-  return showWhite ? AntTheme.white : AntTheme.text;
-}
+//   var showWhite = grayscale < 128;
+//   return showWhite ? AntTheme.of(context).white : AntTheme.of(context).text;
+// }
 
 TextSpan createLinkSpan(
   BuildContext context,
@@ -88,11 +88,6 @@ class GithubPalette {
 
 // final pageSize = 5;
 const PAGE_SIZE = 30;
-
-var createWarning =
-    (text) => Text(text, style: const TextStyle(color: AntTheme.danger));
-var warningSpan =
-    const TextSpan(text: 'xxx', style: TextStyle(color: AntTheme.danger));
 
 List<T> join<T>(T seperator, List<T> xs) {
   final result = <T>[];

@@ -9,7 +9,7 @@ class BranchName extends StatelessWidget {
   Widget build(BuildContext context) {
     return AntTag(
       fill: AntTagFill.outline,
-      color: AntTheme.primary,
+      color: AntTheme.of(context).colorPrimary,
       round: true,
       child: Text(name),
     );

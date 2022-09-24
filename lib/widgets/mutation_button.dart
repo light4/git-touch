@@ -2,7 +2,6 @@ import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 
 class MutationButton extends StatelessWidget {
-
   const MutationButton({
     super.key,
     this.active = false,
@@ -16,7 +15,7 @@ class MutationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AntButton(
-      color: AntTheme.primary,
+      color: AntTheme.of(context).colorPrimary,
       fill: active ? AntButtonFill.solid : AntButtonFill.outline,
       shape: AntButtonShape.rounded,
       onClick: onTap,

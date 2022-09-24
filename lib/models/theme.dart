@@ -58,14 +58,10 @@ class SelectorItem<T> {
 class StaticRoute extends PageRouteBuilder {
   StaticRoute({this.builder})
       : super(
-          pageBuilder: (context, animation,
-              secondaryAnimation) {
+          pageBuilder: (context, animation, secondaryAnimation) {
             return builder!(context);
           },
-          transitionsBuilder: (context,
-              animation,
-              secondaryAnimation,
-              child) {
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return child;
           },
         );
@@ -335,7 +331,8 @@ class ThemeModel with ChangeNotifier {
           AntActionSheetAction(
             text: Text(
               item.text!,
-              style: TextStyle(color: item.danger ? AntTheme.danger : null),
+              style: TextStyle(
+                  color: item.danger ? AntTheme.of(context).colorDanger : null),
             ),
             onClick: () {
               item.onTap?.call(context);
