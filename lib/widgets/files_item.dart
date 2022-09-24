@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/theme_map.dart';
@@ -7,7 +8,6 @@ import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class FilesItem extends StatelessWidget {
-
   const FilesItem({
     required this.filename,
     required this.status,
@@ -26,13 +26,13 @@ class FilesItem extends StatelessWidget {
     final theme = Provider.of<ThemeModel>(context);
     final codeProvider = Provider.of<CodeModel>(context);
     return Card(
-      color: theme.palette.background,
+      color: AntTheme.of(context).colorBackground,
       margin: const EdgeInsets.all(0),
       child: ExpansionTile(
         title: Text(
           filename!,
           style: TextStyle(
-            color: theme.palette.primary,
+            color: AntTheme.of(context).colorPrimary,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),

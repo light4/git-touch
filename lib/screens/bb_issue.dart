@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/bitbucket.dart';
@@ -13,7 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class BbIssueScreen extends StatelessWidget {
-
   const BbIssueScreen(this.owner, this.name, this.number, {this.isPr = false});
   final String owner;
   final String name;
@@ -65,7 +65,7 @@ class BbIssueScreen extends StatelessWidget {
                           '$owner / $name',
                           style: TextStyle(
                             fontSize: 17,
-                            color: theme.palette.secondaryText,
+                            color: AntTheme.of(context).colorTextSecondary,
                           ),
                         ),
                         const SizedBox(width: 4),
@@ -73,7 +73,7 @@ class BbIssueScreen extends StatelessWidget {
                           '#$number',
                           style: TextStyle(
                             fontSize: 17,
-                            color: theme.palette.tertiaryText,
+                            color: AntTheme.of(context).colorWeak,
                           ),
                         ),
                       ],

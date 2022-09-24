@@ -1,11 +1,11 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:provider/provider.dart';
 import 'package:git_touch/widgets/link.dart';
+import 'package:provider/provider.dart';
 
 class EntryItem extends StatelessWidget {
-
   const EntryItem({
     required this.text,
     this.count,
@@ -31,14 +31,14 @@ class EntryItem extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
-                  color: theme.palette.text,
+                  color: AntTheme.of(context).colorText,
                 ),
               ),
               Text(
                 text,
                 style: TextStyle(
                   fontSize: 14,
-                  color: theme.palette.secondaryText,
+                  color: AntTheme.of(context).colorTextSecondary,
                   fontWeight: FontWeight.w500,
                 ),
               )

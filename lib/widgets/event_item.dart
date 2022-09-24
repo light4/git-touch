@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
@@ -20,7 +21,7 @@ class EventItem extends StatelessWidget {
     final theme = Provider.of<ThemeModel>(context);
     return TextSpan(
       text: text,
-      style: TextStyle(color: theme.palette.primary),
+      style: TextStyle(color: AntTheme.of(context).colorPrimary),
       recognizer: TapGestureRecognizer()
         ..onTap = () {
           context.pushUrl(url!);
@@ -65,7 +66,7 @@ class EventItem extends StatelessWidget {
                       TextSpan(
                         style: TextStyle(
                           fontSize: 17,
-                          color: theme.palette.text,
+                          color: AntTheme.of(context).colorText,
                         ),
                         children: [
                           _buildLinkSpan(context, e.actor!.login,
@@ -80,7 +81,7 @@ class EventItem extends StatelessWidget {
                         Text(timeago.format(e.createdAt!),
                             style: TextStyle(
                               fontSize: 14,
-                              color: theme.palette.tertiaryText,
+                              color: AntTheme.of(context).colorWeak,
                             )),
                       ],
                     ),
@@ -102,7 +103,7 @@ class EventItem extends StatelessWidget {
       spans: [
         TextSpan(
           text: ' ${e.type!}',
-          style: TextStyle(color: theme.palette.primary),
+          style: TextStyle(color: AntTheme.of(context).colorPrimary),
         )
       ],
       card: Text(
@@ -117,15 +118,16 @@ class EventItem extends StatelessWidget {
           '/github/${e.repoOwner}/${e.repoName}/compare/${e.payload!.before}/${e.payload!.head}',
       child: Container(
         padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-            color: theme.palette.grayBackground,
-            borderRadius: const BorderRadius.all(Radius.circular(4))),
+        decoration: const BoxDecoration(
+            color: Color(0xffcccccc),
+            borderRadius: BorderRadius.all(Radius.circular(4))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text.rich(
               TextSpan(
-                style: TextStyle(color: theme.palette.text, fontSize: 15),
+                style: TextStyle(
+                    color: AntTheme.of(context).colorText, fontSize: 15),
                 children: [
                   TextSpan(
                       text:
@@ -144,7 +146,7 @@ class EventItem extends StatelessWidget {
                   Text(
                     commit.sha!.substring(0, 7),
                     style: TextStyle(
-                      color: theme.palette.primary,
+                      color: AntTheme.of(context).colorPrimary,
                       fontSize: 15,
                       fontFamily: CommonStyle.monospace,
                     ),
@@ -155,7 +157,8 @@ class EventItem extends StatelessWidget {
                       commit.message!,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: TextStyle(color: theme.palette.text, fontSize: 15),
+                      style: TextStyle(
+                          color: AntTheme.of(context).colorText, fontSize: 15),
                     ),
                   )
                 ],
@@ -175,7 +178,7 @@ class EventItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: theme.palette.grayBackground,
+            color: AntTheme.of(context).colorBox,
             borderRadius: const BorderRadius.all(Radius.circular(4))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,7 +188,7 @@ class EventItem extends StatelessWidget {
                 Text(
                   e.payload!.comment!.commitId!.substring(0, 7),
                   style: TextStyle(
-                    color: theme.palette.primary,
+                    color: AntTheme.of(context).colorPrimary,
                     fontSize: 15,
                     fontFamily: CommonStyle.monospace,
                   ),
@@ -196,7 +199,8 @@ class EventItem extends StatelessWidget {
                     e.payload!.comment!.body!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: TextStyle(color: theme.palette.text, fontSize: 15),
+                    style: TextStyle(
+                        color: AntTheme.of(context).colorText, fontSize: 15),
                   ),
                 )
               ],
@@ -234,7 +238,7 @@ class EventItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: theme.palette.grayBackground,
+            color: AntTheme.of(context).colorBox,
             borderRadius: const BorderRadius.all(Radius.circular(4))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -249,7 +253,7 @@ class EventItem extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
-                      color: theme.palette.text,
+                      color: AntTheme.of(context).colorText,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -261,8 +265,9 @@ class EventItem extends StatelessWidget {
                 body,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
-                style:
-                    TextStyle(color: theme.palette.secondaryText, fontSize: 15),
+                style: TextStyle(
+                    color: AntTheme.of(context).colorTextSecondary,
+                    fontSize: 15),
               ),
             Row(
               children: <Widget>[
@@ -271,20 +276,20 @@ class EventItem extends StatelessWidget {
                 Text(issue.user!.login!,
                     style: TextStyle(
                       fontSize: 14,
-                      color: theme.palette.tertiaryText,
+                      color: AntTheme.of(context).colorWeak,
                     )),
                 Expanded(child: Container()),
                 if (issue.comments != null) ...[
                   Icon(
                     Octicons.comment,
                     size: 14,
-                    color: theme.palette.tertiaryText,
+                    color: AntTheme.of(context).colorWeak,
                   ),
                   const SizedBox(width: 4),
                   Text(issue.comments.toString(),
                       style: TextStyle(
                         fontSize: 14,
-                        color: theme.palette.tertiaryText,
+                        color: AntTheme.of(context).colorWeak,
                       )),
                 ]
               ],
@@ -422,8 +427,7 @@ class EventItem extends StatelessWidget {
           ],
         );
       case 'InstallationRepositoriesEvent':
-        final repositoriesAdded =
-            e.payload!.installation!.repositoriesAdded!;
+        final repositoriesAdded = e.payload!.installation!.repositoriesAdded!;
         final repositoriesRemoved =
             e.payload!.installation!.repositoriesRemoved!;
         var addedRepos = '';

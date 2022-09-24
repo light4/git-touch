@@ -28,7 +28,7 @@ class GhBioWidget extends StatelessWidget {
           Icon(
             Octicons.location,
             size: 15,
-            color: theme.palette.secondaryText,
+            color: AntTheme.of(context).colorTextSecondary,
           ),
           const SizedBox(width: 4),
           Expanded(child: Text(location!, overflow: TextOverflow.ellipsis)),
@@ -40,7 +40,7 @@ class GhBioWidget extends StatelessWidget {
         Icon(
           Octicons.clock,
           size: 15,
-          color: theme.palette.secondaryText,
+          color: AntTheme.of(context).colorTextSecondary,
         ),
         const SizedBox(width: 4),
         Expanded(
@@ -146,7 +146,7 @@ class UserItem extends StatelessWidget {
                       Text(
                         name!,
                         style: TextStyle(
-                          color: theme.palette.text,
+                          color: AntTheme.of(context).colorText,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
@@ -157,7 +157,7 @@ class UserItem extends StatelessWidget {
                       child: Text(
                         login!,
                         style: TextStyle(
-                          color: theme.palette.text,
+                          color: AntTheme.of(context).colorText,
                           fontSize: 16,
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -169,7 +169,7 @@ class UserItem extends StatelessWidget {
                 if (bio != null)
                   DefaultTextStyle(
                     style: TextStyle(
-                      color: theme.palette.secondaryText,
+                      color: AntTheme.of(context).colorTextSecondary,
                       fontSize: 16,
                     ),
                     child: bio!,

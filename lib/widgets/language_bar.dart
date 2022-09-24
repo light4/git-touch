@@ -40,7 +40,7 @@ class LanguageBar extends StatelessWidget {
         );
       },
       child: Container(
-        // color: theme.palette.background,
+        // color: AntTheme.of(context).background,
         padding: CommonStyle.padding.copyWith(top: 8, bottom: 8),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),
@@ -65,7 +65,7 @@ class LanguageBar extends StatelessWidget {
   Widget _buildPopup(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
     return Container(
-      color: theme.palette.background,
+      color: AntTheme.of(context).colorBackground,
       padding: CommonStyle.padding,
       height: 300,
       child: SingleChildScrollView(
@@ -87,10 +87,10 @@ class LanguageBar extends StatelessWidget {
                   Text(
                     edge.name!,
                     style: TextStyle(
-                      color: theme.palette.text,
+                      color: AntTheme.of(context).colorText,
                       fontSize: 18,
                       decoration: TextDecoration.underline,
-                      decorationColor: theme.palette.background,
+                      decorationColor: AntTheme.of(context).colorBackground,
                     ),
                   ),
                 ]),
@@ -100,10 +100,10 @@ class LanguageBar extends StatelessWidget {
                 child: Text(
                   '${(edge.ratio! * 100).toStringAsFixed(1)}%',
                   style: TextStyle(
-                    color: theme.palette.secondaryText,
+                    color: AntTheme.of(context).colorTextSecondary,
                     fontSize: 18,
                     decoration: TextDecoration.underline,
-                    decorationColor: theme.palette.background,
+                    decorationColor: AntTheme.of(context).colorBackground,
                   ),
                 ),
               ),

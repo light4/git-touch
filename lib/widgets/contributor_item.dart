@@ -38,7 +38,7 @@ class ContributorItem extends StatelessWidget {
                     Text(
                       login!,
                       style: TextStyle(
-                        color: theme.palette.primary,
+                        color: AntTheme.of(context).colorPrimary,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -49,7 +49,7 @@ class ContributorItem extends StatelessWidget {
                 if (commits != null)
                   DefaultTextStyle(
                     style: TextStyle(
-                      color: theme.palette.secondaryText,
+                      color: AntTheme.of(context).colorTextSecondary,
                       fontSize: 16,
                     ),
                     child: Text('Commits: $commits'),

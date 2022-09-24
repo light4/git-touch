@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
@@ -49,7 +50,8 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Container(
         padding: CommonStyle.padding,
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: theme.palette.border)),
+          border: Border(
+              bottom: BorderSide(color: AntTheme.of(context).colorBorder)),
         ),
         child: Row(
           children: <Widget>[
@@ -61,12 +63,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: <Widget>[
                   Text(
                     account.login,
-                    style: TextStyle(fontSize: 20, color: theme.palette.text),
+                    style: TextStyle(
+                        fontSize: 20, color: AntTheme.of(context).colorText),
                   ),
                   const Padding(padding: EdgeInsets.only(top: 6)),
                   Text(
                     account.domain,
-                    style: TextStyle(color: theme.palette.secondaryText),
+                    style: TextStyle(
+                        color: AntTheme.of(context).colorTextSecondary),
                   )
                 ],
               ),
@@ -88,7 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: theme.palette.border)),
+          border: Border(
+              bottom: BorderSide(color: AntTheme.of(context).colorBorder)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -173,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   'user, repo, read:org, notifications',
                                   style: TextStyle(
                                       fontSize: 16,
-                                      color: theme.palette.primary),
+                                      color: AntTheme.of(context).colorPrimary),
                                 )
                               ]),
                             );
@@ -212,7 +217,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               'api, read_user, read_repository',
                               style: TextStyle(
-                                  fontSize: 16, color: theme.palette.primary),
+                                  fontSize: 16,
+                                  color: AntTheme.of(context).colorPrimary),
                             )
                           ],
                         ),
@@ -257,8 +263,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 TextSpan(
                                   text: 'this guide',
-                                  style:
-                                      TextStyle(color: theme.palette.primary),
+                                  style: TextStyle(
+                                      color: AntTheme.of(context).colorPrimary),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       context.pushUrl(
@@ -279,7 +285,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               'Account: read\nTeam membership: read\nProjects: read\nRepositories: read\nPull requests: read\nIssues: read\nSnippets: read',
                               style: TextStyle(
-                                  fontSize: 16, color: theme.palette.primary),
+                                  fontSize: 16,
+                                  color: AntTheme.of(context).colorPrimary),
                             )
                           ],
                         ),
@@ -316,7 +323,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               Text(
                                 'https://codeberg.org',
                                 style: TextStyle(
-                                    fontSize: 16, color: theme.palette.primary),
+                                    fontSize: 16,
+                                    color: AntTheme.of(context).colorPrimary),
                               ),
                             ],
                           ));
@@ -375,7 +383,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       AppLocalizations.of(context)!.longPressToRemoveAccount,
                       style: TextStyle(
                         fontSize: 16,
-                        color: theme.palette.secondaryText,
+                        color: AntTheme.of(context).colorTextSecondary,
                       ),
                     ),
                   )

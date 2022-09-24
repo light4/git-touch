@@ -37,7 +37,7 @@ class BlobView extends StatelessWidget {
       case 'webp':
         // return PhotoView(
         //   imageProvider: MemoryImage(Uint8List.fromList(bits)),
-        //   backgroundDecoration: BoxDecoration(color: theme.palette.background),
+        //   backgroundDecoration: BoxDecoration(color: AntTheme.of(context).background),
         // );
         return base64Text == null
             ? Image.network(

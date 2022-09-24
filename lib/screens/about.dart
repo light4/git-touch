@@ -44,7 +44,7 @@
 //           SizedBox(height: 12),
 //           Text(
 //             'GitTouch',
-//             style: TextStyle(fontSize: 20, color: theme.palette.text),
+//             style: TextStyle(fontSize: 20, color: AntTheme.of(context).text),
 //           ),
 //           SizedBox(height: 48),
 //           AntList(items: [

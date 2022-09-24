@@ -1,15 +1,14 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
+import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/issue_icon.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
-import 'package:git_touch/models/theme.dart';
-
 class NotificationItem extends StatefulWidget {
-
   const NotificationItem({
     Key? key,
     required this.payload,
@@ -68,8 +67,9 @@ class _NotificationItemState extends State<NotificationItem> {
     final theme = Provider.of<ThemeModel>(context);
     return Icon(
       payload.unread! ? Ionicons.checkmark : Octicons.dot_fill,
-      color:
-          loading ? theme.palette.grayBackground : theme.palette.tertiaryText,
+      color: loading
+          ? AntTheme.of(context).colorBox
+          : AntTheme.of(context).colorWeak,
       size: 24,
     );
   }
@@ -133,7 +133,8 @@ class _NotificationItemState extends State<NotificationItem> {
                 child: Text(
                   payload.subject!.title!,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 15, color: theme.palette.text),
+                  style: TextStyle(
+                      fontSize: 15, color: AntTheme.of(context).colorText),
                 ),
               ),
               LinkWidget(onTap: _markAsRead, child: _buildCheckIcon()),

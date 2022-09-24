@@ -1,14 +1,13 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:provider/provider.dart';
-
 import 'package:git_touch/widgets/error_reload.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/loading.dart';
+import 'package:provider/provider.dart';
 
 class LongListPayload<T, K> {
-
   LongListPayload({
     required this.header,
     required this.totalCount,
@@ -28,7 +27,6 @@ class LongListPayload<T, K> {
 // We should load leading and trailing items at first fetching, and do load more in the middle
 // e.g. https://github.com/reactjs/rfcs/pull/68
 class LongListStatefulScaffold<T, K> extends StatefulWidget {
-
   const LongListStatefulScaffold({
     required this.title,
     this.trailingBuilder,
@@ -125,20 +123,21 @@ class _LongListStatefulScaffoldState<T, K>
             child: Container(
               padding: CommonStyle.padding,
               decoration: BoxDecoration(
-                border: Border.all(color: theme.palette.text),
+                border: Border.all(color: AntTheme.of(context).colorText),
               ),
               child: Column(
                 children: <Widget>[
                   Text('$count hidden items',
-                      style:
-                          TextStyle(color: theme.palette.text, fontSize: 15)),
+                      style: TextStyle(
+                          color: AntTheme.of(context).colorText, fontSize: 15)),
                   const Padding(padding: EdgeInsets.only(top: 4)),
                   loadingMore
                       ? const CupertinoActivityIndicator()
                       : Text(
                           'Load more...',
                           style: TextStyle(
-                              color: theme.palette.primary, fontSize: 16),
+                              color: AntTheme.of(context).colorPrimary,
+                              fontSize: 16),
                         ),
                 ],
               ),
@@ -177,7 +176,9 @@ class _LongListStatefulScaffoldState<T, K>
 
   @override
   Widget build(BuildContext context) {
-    final slivers = <Widget>[CupertinoSliverRefreshControl(onRefresh: _refresh)];
+    final slivers = <Widget>[
+      CupertinoSliverRefreshControl(onRefresh: _refresh)
+    ];
     if (payload != null) {
       slivers.add(
         SliverToBoxAdapter(child: widget.headerBuilder(payload!.header)),

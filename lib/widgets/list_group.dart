@@ -1,11 +1,10 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/empty.dart';
+import 'package:provider/provider.dart';
 
 class ListGroup<T> extends StatelessWidget {
-
   const ListGroup({
     required this.title,
     required this.items,
@@ -21,7 +20,8 @@ class ListGroup<T> extends StatelessWidget {
     final theme = Provider.of<ThemeModel>(context);
     return Container(
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: theme.palette.border)),
+        border:
+            Border(top: BorderSide(color: AntTheme.of(context).colorBorder)),
       ),
       child: itemBuilder(entry.value, entry.key),
     );
@@ -34,7 +34,7 @@ class ListGroup<T> extends StatelessWidget {
       padding: padding,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: theme.palette.border),
+          border: Border.all(color: AntTheme.of(context).colorBorder),
           borderRadius: const BorderRadius.all(Radius.circular(3)),
         ),
         child: Column(

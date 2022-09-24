@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:git_touch/models/theme.dart';
@@ -9,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GistsItem extends StatelessWidget {
-
   const GistsItem({
     required this.description,
     required this.login,
@@ -56,14 +56,14 @@ class GistsItem extends StatelessWidget {
                               text: '$login / ',
                               style: TextStyle(
                                 fontSize: 18,
-                                color: theme.palette.primary,
+                                color: AntTheme.of(context).colorPrimary,
                               ),
                             ),
                             TextSpan(
                               text: filenames[0],
                               style: TextStyle(
                                 fontSize: 18,
-                                color: theme.palette.primary,
+                                color: AntTheme.of(context).colorPrimary,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -78,7 +78,7 @@ class GistsItem extends StatelessWidget {
                     Text(
                       description!,
                       style: TextStyle(
-                        color: theme.palette.secondaryText,
+                        color: AntTheme.of(context).colorTextSecondary,
                         fontSize: 16,
                       ),
                     ),
@@ -89,13 +89,14 @@ class GistsItem extends StatelessWidget {
                       'Updated ${timeago.format(updatedAt!)}',
                       style: TextStyle(
                         fontSize: 14,
-                        color: theme.palette.tertiaryText,
+                        color: AntTheme.of(context).colorWeak,
                       ),
                     ),
                     const SizedBox(height: 10),
                   ],
                   DefaultTextStyle(
-                    style: TextStyle(color: theme.palette.text, fontSize: 14),
+                    style: TextStyle(
+                        color: AntTheme.of(context).colorText, fontSize: 14),
                     child: Row(
                       children: <Widget>[
                         if (language != null)

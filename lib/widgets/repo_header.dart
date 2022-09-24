@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
@@ -47,7 +48,7 @@ class RepoHeader extends StatelessWidget {
                   '$owner / $name',
                   style: TextStyle(
                     fontSize: 20,
-                    color: theme.palette.primary,
+                    color: AntTheme.of(context).colorPrimary,
                   ),
                   overflow: TextOverflow.visible,
                 ),
@@ -59,7 +60,7 @@ class RepoHeader extends StatelessWidget {
             Text(
               description!,
               style: TextStyle(
-                color: theme.palette.secondaryText,
+                color: AntTheme.of(context).colorTextSecondary,
                 fontSize: 17,
               ),
             ),
@@ -69,7 +70,7 @@ class RepoHeader extends StatelessWidget {
               child: Text(
                 homepageUrl!,
                 style: TextStyle(
-                  color: theme.palette.primary,
+                  color: AntTheme.of(context).colorPrimary,
                   fontSize: 17,
                 ),
               ),

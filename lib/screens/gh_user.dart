@@ -139,7 +139,8 @@ class _User extends StatelessWidget {
                 child: TextWithAt(
                   text: p.company!,
                   linkFactory: (text) => '/github/${text.substring(1)}',
-                  style: TextStyle(fontSize: 17, color: theme.palette.text),
+                  style: TextStyle(
+                      fontSize: 17, color: AntTheme.of(context).colorText),
                   oneLine: true,
                 ),
               ),

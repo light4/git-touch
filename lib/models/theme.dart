@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
-import 'package:primer/primer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_io/io.dart';
 
@@ -66,25 +65,6 @@ class StaticRoute extends PageRouteBuilder {
           },
         );
   final WidgetBuilder? builder;
-}
-
-class Palette {
-  const Palette({
-    required this.primary,
-    required this.text,
-    required this.secondaryText,
-    required this.tertiaryText,
-    required this.background,
-    required this.grayBackground,
-    required this.border,
-  });
-  final Color primary;
-  final Color text;
-  final Color secondaryText;
-  final Color tertiaryText;
-  final Color background;
-  final Color grayBackground;
-  final Color border;
 }
 
 class ThemeModel with ChangeNotifier {
@@ -161,35 +141,6 @@ class ThemeModel with ChangeNotifier {
     notifyListeners();
   }
 
-  final paletteLight = Palette(
-    primary: PrimerColors.blue500,
-    text: Colors.black,
-    secondaryText: Colors.grey.shade800,
-    tertiaryText: Colors.grey.shade600,
-    background: Colors.white,
-    grayBackground: Colors.grey.shade100,
-    border: Colors.grey.shade300,
-  );
-  final paletteDark = Palette(
-    primary: PrimerColors.blue500,
-    text: Colors.grey.shade300,
-    secondaryText: Colors.grey.shade400,
-    tertiaryText: Colors.grey.shade500,
-    background: Colors.black,
-    grayBackground: Colors.grey.shade900,
-    border: Colors.grey.shade700,
-  );
-
-  Palette get palette {
-    switch (brightness) {
-      case Brightness.dark:
-        return paletteDark;
-      case Brightness.light:
-      default:
-        return paletteLight;
-    }
-  }
-
   Future<void> init() async {
     markdownCss = await rootBundle.loadString('images/github-markdown.css');
 
@@ -252,10 +203,10 @@ class ThemeModel with ChangeNotifier {
             Container(
               alignment: Alignment.bottomCenter,
               decoration: BoxDecoration(
-                color: palette.background,
+                color: AntTheme.of(context).colorBackground,
                 border: Border(
                   bottom: BorderSide(
-                    color: palette.grayBackground,
+                    color: AntTheme.of(context).colorBox,
                     width: 0.0,
                   ),
                 ),
@@ -291,7 +242,7 @@ class ThemeModel with ChangeNotifier {
             SizedBox(
               height: 216,
               child: CupertinoPicker(
-                backgroundColor: palette.background,
+                backgroundColor: AntTheme.of(context).colorBackground,
                 itemExtent: 40,
                 scrollController: FixedExtentScrollController(
                     initialItem: groupItem.items
@@ -312,7 +263,9 @@ class ThemeModel with ChangeNotifier {
                 },
                 children: <Widget>[
                   for (var v in groupItem.items)
-                    Text(v.text!, style: TextStyle(color: palette.text)),
+                    Text(v.text!,
+                        style:
+                            TextStyle(color: AntTheme.of(context).colorText)),
                 ],
               ),
             )

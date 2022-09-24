@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
@@ -31,7 +32,7 @@ class _GeIssueFormScreenState extends State<GeIssueFormScreen> {
           Padding(
             padding: CommonStyle.padding,
             child: CupertinoTextField(
-              style: TextStyle(color: theme.palette.text),
+              style: TextStyle(color: AntTheme.of(context).colorText),
               placeholder: AppLocalizations.of(context)!.title,
               onChanged: (v) {
                 setState(() {
@@ -43,7 +44,7 @@ class _GeIssueFormScreenState extends State<GeIssueFormScreen> {
           Padding(
             padding: CommonStyle.padding,
             child: CupertinoTextField(
-              style: TextStyle(color: theme.palette.text),
+              style: TextStyle(color: AntTheme.of(context).colorText),
               placeholder: AppLocalizations.of(context)!.body,
               onChanged: (v) {
                 setState(() {

@@ -40,7 +40,8 @@ class TimelineEventItem extends StatelessWidget {
         Expanded(
           child: Text.rich(
             TextSpan(
-              style: TextStyle(color: theme.palette.text, fontSize: 16),
+              style: TextStyle(
+                  color: AntTheme.of(context).colorText, fontSize: 16),
               children: [
                 // TODO: actor is null
                 createUserSpan(context, actor),
@@ -415,12 +416,12 @@ class TimelineItem extends StatelessWidget {
                       ' ${AppLocalizations.of(context)!.headRefForcedPushedEventSecondMessage} '),
               TextSpan(
                 text: p.beforeCommit!.oid.substring(0, 7),
-                style: TextStyle(color: theme.palette.primary),
+                style: TextStyle(color: AntTheme.of(context).colorPrimary),
               ),
               TextSpan(text: ' ${AppLocalizations.of(context)!.to} '),
               TextSpan(
                 text: p.afterCommit!.oid.substring(0, 7),
-                style: TextStyle(color: theme.palette.primary),
+                style: TextStyle(color: AntTheme.of(context).colorPrimary),
               ),
             ],
           ),
@@ -441,12 +442,12 @@ class TimelineItem extends StatelessWidget {
                       ' ${AppLocalizations.of(context)!.headRefForcedPushedEventSecondMessage} '),
               TextSpan(
                 text: p.beforeCommit!.oid.substring(0, 7),
-                style: TextStyle(color: theme.palette.primary),
+                style: TextStyle(color: AntTheme.of(context).colorPrimary),
               ),
               TextSpan(text: ' ${AppLocalizations.of(context)!.to} '),
               TextSpan(
                 text: p.afterCommit!.oid.substring(0, 7),
-                style: TextStyle(color: theme.palette.primary),
+                style: TextStyle(color: AntTheme.of(context).colorPrimary),
               ),
             ],
           ),

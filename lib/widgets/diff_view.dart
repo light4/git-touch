@@ -57,7 +57,7 @@
 //                 Text(
 //                   c.heading,
 //                   style: TextStyle(
-//                     color: theme.palette.tertiaryText,
+//                     color: AntTheme.of(context).tertiaryText,
 //                     backgroundColor: Color(0xfffafafa),
 //                   ),
 //                 ),
@@ -79,7 +79,7 @@
 //       style: TextStyle(
 //         fontFamily: code.fontFamilyUsed,
 //         fontSize: 14,
-//         color: theme.palette.text,
+//         color: AntTheme.of(context).text,
 //       ),
 //     );
 //   }

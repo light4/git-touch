@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/theme.dart';
@@ -66,7 +67,8 @@ class GhTrendingScreen extends StatelessWidget {
                                     Icon(
                                       Octicons.repo,
                                       size: 17,
-                                      color: theme.palette.secondaryText,
+                                      color: AntTheme.of(context)
+                                          .colorTextSecondary,
                                     ),
                                     const SizedBox(width: 4),
                                     Expanded(
@@ -74,7 +76,8 @@ class GhTrendingScreen extends StatelessWidget {
                                       '${v.username} / ${v.repo!.name}',
                                       style: TextStyle(
                                         fontSize: 17,
-                                        color: theme.palette.secondaryText,
+                                        color: AntTheme.of(context)
+                                            .colorTextSecondary,
                                       ),
                                       overflow: TextOverflow.ellipsis,
                                     ))

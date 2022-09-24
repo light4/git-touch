@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
@@ -57,7 +58,7 @@ class UserHeader extends StatelessWidget {
             Text(
               name!,
               style: TextStyle(
-                color: theme.palette.text,
+                color: AntTheme.of(context).colorText,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
@@ -67,7 +68,7 @@ class UserHeader extends StatelessWidget {
           Text(
             login!,
             style: TextStyle(
-              color: theme.palette.primary,
+              color: AntTheme.of(context).colorPrimary,
               fontSize: 18,
             ),
           ),
@@ -78,13 +79,13 @@ class UserHeader extends StatelessWidget {
                 Icon(
                   Octicons.clock,
                   size: 16,
-                  color: theme.palette.tertiaryText,
+                  color: AntTheme.of(context).colorWeak,
                 ),
                 const SizedBox(width: 4),
                 Text(
                   'Joined on ${dateFormat.format(createdAt!)}',
                   style: TextStyle(
-                    color: theme.palette.tertiaryText,
+                    color: AntTheme.of(context).colorWeak,
                     fontSize: 16,
                   ),
                 ),
@@ -95,7 +96,7 @@ class UserHeader extends StatelessWidget {
             Text(
               bio!,
               style: TextStyle(
-                color: theme.palette.secondaryText,
+                color: AntTheme.of(context).colorTextSecondary,
                 fontSize: 17,
               ),
             )

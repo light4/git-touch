@@ -47,7 +47,7 @@ class ReleaseItem extends StatelessWidget {
                     Text(
                       tagName!,
                       style: TextStyle(
-                        color: theme.palette.primary,
+                        color: AntTheme.of(context).colorPrimary,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -57,7 +57,7 @@ class ReleaseItem extends StatelessWidget {
                 const SizedBox(height: 6),
                 DefaultTextStyle(
                   style: TextStyle(
-                    color: theme.palette.secondaryText,
+                    color: AntTheme.of(context).colorTextSecondary,
                     fontSize: 16,
                   ),
                   child: Text(
@@ -74,13 +74,13 @@ class ReleaseItem extends StatelessWidget {
           const SizedBox(height: 10),
         ],
         Card(
-          color: theme.palette.grayBackground,
+          color: AntTheme.of(context).colorBox,
           margin: const EdgeInsets.all(0),
           child: ExpansionTile(
             title: Text(
               'Assets (${releaseAssets?.nodes?.length ?? 0})',
               style: TextStyle(
-                color: theme.palette.secondaryText,
+                color: AntTheme.of(context).colorTextSecondary,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
@@ -101,7 +101,7 @@ class ReleaseItem extends StatelessWidget {
                         child: Text(
                           asset.name,
                           style: TextStyle(
-                            color: theme.palette.primary,
+                            color: AntTheme.of(context).colorPrimary,
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                           ),

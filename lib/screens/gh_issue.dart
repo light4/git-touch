@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
@@ -5,17 +6,16 @@ import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
 import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
+import 'package:git_touch/scaffolds/long_list.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/avatar.dart';
+import 'package:git_touch/widgets/comment_item.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/timeline_item.dart';
 import 'package:github/github.dart' as github;
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
-
-import 'package:git_touch/scaffolds/long_list.dart';
-import 'package:git_touch/widgets/comment_item.dart';
 
 class GhIssueScreen extends StatelessWidget {
   const GhIssueScreen(this.owner, this.name, this.number);
@@ -50,7 +50,7 @@ class GhIssueScreen extends StatelessWidget {
                       '$owner / $name',
                       style: TextStyle(
                         fontSize: 17,
-                        color: theme.palette.secondaryText,
+                        color: AntTheme.of(context).colorTextSecondary,
                       ),
                     ),
                     const SizedBox(width: 4),
@@ -58,7 +58,7 @@ class GhIssueScreen extends StatelessWidget {
                       '#$number',
                       style: TextStyle(
                         fontSize: 17,
-                        color: theme.palette.tertiaryText,
+                        color: AntTheme.of(context).colorWeak,
                       ),
                     ),
                   ],
@@ -226,7 +226,7 @@ class GhIssueScreen extends StatelessWidget {
                     children: <Widget>[
                       Text('${pr.changedFiles} files changed',
                           style: TextStyle(
-                            color: theme.palette.secondaryText,
+                            color: AntTheme.of(context).colorTextSecondary,
                             fontSize: 17,
                           )),
                       Row(
@@ -243,7 +243,7 @@ class GhIssueScreen extends StatelessWidget {
                                 fontSize: 15,
                               )),
                           Icon(Ionicons.chevron_forward,
-                              color: theme.palette.border),
+                              color: AntTheme.of(context).colorBorder),
                         ],
                       )
                     ],

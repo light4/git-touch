@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
@@ -64,7 +65,7 @@ TextSpan createLinkSpan(
   return TextSpan(
     text: text,
     style: TextStyle(
-      color: theme.palette.primary,
+      color: AntTheme.of(context).colorPrimary,
       fontWeight: FontWeight.w600,
     ),
     recognizer: TapGestureRecognizer()

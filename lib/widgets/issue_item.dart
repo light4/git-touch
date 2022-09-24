@@ -80,7 +80,7 @@ class IssueItem extends StatelessWidget {
                       TextSpan(
                         text: subtitle,
                         style: TextStyle(
-                          color: theme.palette.tertiaryText,
+                          color: AntTheme.of(context).colorWeak,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -88,7 +88,7 @@ class IssueItem extends StatelessWidget {
                   ),
                   style: TextStyle(
                     fontSize: 17,
-                    color: theme.palette.text,
+                    color: AntTheme.of(context).colorText,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -96,7 +96,7 @@ class IssueItem extends StatelessWidget {
                 DefaultTextStyle(
                   style: TextStyle(
                     fontSize: 14,
-                    color: theme.palette.secondaryText,
+                    color: AntTheme.of(context).colorTextSecondary,
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,14 +118,15 @@ class IssueItem extends StatelessWidget {
                         ' opened ${timeago.format(updatedAt!)}',
                         style: TextStyle(
                           fontSize: 17,
-                          color: theme.palette.secondaryText,
+                          color: AntTheme.of(context).colorTextSecondary,
                         ),
                         overflow: TextOverflow.ellipsis,
                       )),
                       if (commentCount! > 0) ...[
                         const Expanded(child: SizedBox()),
                         Icon(Octicons.comment,
-                            size: 14, color: theme.palette.secondaryText),
+                            size: 14,
+                            color: AntTheme.of(context).colorTextSecondary),
                         const SizedBox(width: 3),
                         Text(numberFormat.format(commentCount))
                       ],

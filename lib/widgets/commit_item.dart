@@ -44,7 +44,7 @@ class CommitItem extends StatelessWidget {
                   message!,
                   style: TextStyle(
                     fontSize: 17,
-                    color: theme.palette.text,
+                    color: AntTheme.of(context).colorText,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
@@ -54,11 +54,12 @@ class CommitItem extends StatelessWidget {
                   children: <Widget>[
                     Text(author!,
                         style: TextStyle(
-                            fontSize: 15, color: theme.palette.primary)),
+                            fontSize: 15,
+                            color: AntTheme.of(context).colorPrimary)),
                     Text(
                       ' committed ${timeago.format(createdAt!)}',
                       style: TextStyle(
-                        color: theme.palette.secondaryText,
+                        color: AntTheme.of(context).colorTextSecondary,
                         fontSize: 15,
                       ),
                     ),

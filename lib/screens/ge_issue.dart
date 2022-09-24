@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
@@ -91,7 +92,7 @@ class GeIssueScreen extends StatelessWidget {
                           '$owner / $name',
                           style: TextStyle(
                             fontSize: 17,
-                            color: theme.palette.secondaryText,
+                            color: AntTheme.of(context).colorTextSecondary,
                           ),
                         ),
                         const SizedBox(width: 4),
@@ -99,7 +100,7 @@ class GeIssueScreen extends StatelessWidget {
                           '#$number',
                           style: TextStyle(
                             fontSize: 17,
-                            color: theme.palette.tertiaryText,
+                            color: AntTheme.of(context).colorWeak,
                           ),
                         ),
                       ],

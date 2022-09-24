@@ -1,10 +1,10 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:provider/provider.dart';
 
 class UserName extends StatelessWidget {
-
   const UserName(this.login, this.prefix);
   final String? login;
   final String prefix;
@@ -23,7 +23,7 @@ class UserName extends StatelessWidget {
           login!,
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            color: theme.palette.primary,
+            color: AntTheme.of(context).colorPrimary,
           ),
         ),
       ),

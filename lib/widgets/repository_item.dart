@@ -165,14 +165,14 @@ class RepositoryItem extends StatelessWidget {
                       text: '$owner / ',
                       style: TextStyle(
                         fontSize: 18,
-                        color: theme.palette.primary,
+                        color: AntTheme.of(context).colorPrimary,
                       ),
                     ),
                     TextSpan(
                       text: name,
                       style: TextStyle(
                         fontSize: 18,
-                        color: theme.palette.primary,
+                        color: AntTheme.of(context).colorPrimary,
                         fontWeight: FontWeight.w600,
                       ),
                       // overflow: TextOverflow.ellipsis,
@@ -184,9 +184,10 @@ class RepositoryItem extends StatelessWidget {
               if (iconData != null) ...[
                 const SizedBox(width: 6),
                 DefaultTextStyle(
-                  style: TextStyle(color: theme.palette.secondaryText),
+                  style:
+                      TextStyle(color: AntTheme.of(context).colorTextSecondary),
                   child: Icon(iconData,
-                      size: 18, color: theme.palette.secondaryText),
+                      size: 18, color: AntTheme.of(context).colorTextSecondary),
                 ),
               ]
             ],
@@ -196,7 +197,7 @@ class RepositoryItem extends StatelessWidget {
             Text(
               description!,
               style: TextStyle(
-                color: theme.palette.secondaryText,
+                color: AntTheme.of(context).colorTextSecondary,
                 fontSize: 16,
               ),
             ),
@@ -207,13 +208,14 @@ class RepositoryItem extends StatelessWidget {
               note!,
               style: TextStyle(
                 fontSize: 14,
-                color: theme.palette.tertiaryText,
+                color: AntTheme.of(context).colorWeak,
               ),
             ),
             const SizedBox(height: 10),
           ],
           DefaultTextStyle(
-            style: TextStyle(color: theme.palette.text, fontSize: 14),
+            style:
+                TextStyle(color: AntTheme.of(context).colorText, fontSize: 14),
             child: Row(
               children: <Widget>[
                 if (primaryLanguageName != null) ...[
@@ -234,14 +236,15 @@ class RepositoryItem extends StatelessWidget {
                   const SizedBox(width: 24),
                 ],
                 if (starCount! > 0) ...[
-                  Icon(Octicons.star, size: 16, color: theme.palette.text),
+                  Icon(Octicons.star,
+                      size: 16, color: AntTheme.of(context).colorText),
                   const SizedBox(width: 2),
                   Text(numberFormat.format(starCount)),
                   const SizedBox(width: 24),
                 ],
                 if (forkCount! > 0) ...[
                   Icon(Octicons.repo_forked,
-                      size: 16, color: theme.palette.text),
+                      size: 16, color: AntTheme.of(context).colorText),
                   const SizedBox(width: 2),
                   Text(numberFormat.format(forkCount)),
                 ],

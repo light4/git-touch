@@ -1,9 +1,9 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:provider/provider.dart';
 
 class BorderView extends StatelessWidget {
-
   const BorderView({
     this.height,
     this.leftPadding = 0,
@@ -21,7 +21,7 @@ class BorderView extends StatelessWidget {
         margin: EdgeInsets.only(left: leftPadding),
         decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: theme.palette.border, width: 0),
+            top: BorderSide(color: AntTheme.of(context).colorBorder, width: 0),
           ),
         ),
       );
@@ -33,14 +33,16 @@ class BorderView extends StatelessWidget {
           width: leftPadding,
           height: height,
           child: DecoratedBox(
-            decoration: BoxDecoration(color: theme.palette.background),
+            decoration:
+                BoxDecoration(color: AntTheme.of(context).colorBackground),
           ),
         ),
         Expanded(
           child: SizedBox(
             height: height,
             child: DecoratedBox(
-              decoration: BoxDecoration(color: theme.palette.border),
+              decoration:
+                  BoxDecoration(color: AntTheme.of(context).colorBorder),
             ),
           ),
         ),

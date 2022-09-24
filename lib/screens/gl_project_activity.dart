@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
@@ -44,7 +45,7 @@ class GlProjectActivityScreen extends StatelessWidget {
                             TextSpan(
                               text: data.author!.name,
                               style: TextStyle(
-                                color: theme.palette.primary,
+                                color: AntTheme.of(context).colorPrimary,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

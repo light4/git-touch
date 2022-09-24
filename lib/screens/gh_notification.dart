@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
@@ -6,14 +7,13 @@ import 'package:git_touch/models/github.dart';
 import 'package:git_touch/models/notification.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/tab_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:github/github.dart';
-import 'package:provider/provider.dart';
-
 import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/empty.dart';
 import 'package:git_touch/widgets/list_group.dart';
 import 'package:git_touch/widgets/notification_item.dart';
+import 'package:github/github.dart';
+import 'package:provider/provider.dart';
 
 class GhNotificationScreen extends StatefulWidget {
   @override
@@ -117,7 +117,7 @@ ${item.key}: pullRequest(number: ${item.subject!.number}) {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: theme.palette.text,
+              color: AntTheme.of(context).colorText,
             ),
           ),
           GestureDetector(
@@ -132,7 +132,7 @@ ${item.key}: pullRequest(number: ${item.subject!.number}) {
             },
             child: Icon(
               Ionicons.checkmark_done,
-              color: theme.palette.tertiaryText,
+              color: AntTheme.of(context).colorWeak,
               size: 24,
             ),
           ),

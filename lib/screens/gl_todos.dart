@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitlab.dart';
@@ -13,7 +14,7 @@ class GlTodosScreen extends StatelessWidget {
     final theme = Provider.of<ThemeModel>(context);
     return TextSpan(
       text: p.author!.name,
-      style: TextStyle(color: theme.palette.primary),
+      style: TextStyle(color: AntTheme.of(context).colorPrimary),
     );
   }
 
@@ -21,7 +22,7 @@ class GlTodosScreen extends StatelessWidget {
     final theme = Provider.of<ThemeModel>(context);
     return TextSpan(
       text: '${p.project!.pathWithNamespace}!${p.target!.iid}',
-      style: TextStyle(color: theme.palette.primary),
+      style: TextStyle(color: AntTheme.of(context).colorPrimary),
     );
   }
 
@@ -86,7 +87,8 @@ class GlTodosScreen extends StatelessWidget {
                       child: Text.rich(
                         TextSpan(
                           style: TextStyle(
-                              color: theme.palette.text, fontSize: 17),
+                              color: AntTheme.of(context).colorText,
+                              fontSize: 17),
                           children: [
                             ..._buildItem(context, item),
                           ],

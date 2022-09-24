@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
@@ -51,7 +52,7 @@ class GeContributorsScreen extends StatelessWidget {
                         Text(
                           v.name!,
                           style: TextStyle(
-                            color: theme.palette.primary,
+                            color: AntTheme.of(context).colorPrimary,
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
@@ -62,7 +63,7 @@ class GeContributorsScreen extends StatelessWidget {
                     if (v.contributions != null)
                       DefaultTextStyle(
                         style: TextStyle(
-                          color: theme.palette.secondaryText,
+                          color: AntTheme.of(context).colorTextSecondary,
                           fontSize: 16,
                         ),
                         child: Text('Contributions: ${v.contributions}'),

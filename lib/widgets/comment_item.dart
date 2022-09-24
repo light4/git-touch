@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
 import 'package:git_touch/graphql/__generated__/schema.schema.gql.dart';
@@ -138,7 +139,8 @@ mutation {
                     const SizedBox(width: 4),
                     Text(numberFormat.format(item.count),
                         style: TextStyle(
-                            color: theme.palette.primary, fontSize: 14))
+                            color: AntTheme.of(context).colorPrimary,
+                            fontSize: 14))
                   ],
                 ),
               ),
@@ -160,8 +162,10 @@ mutation {
             child: Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: <Widget>[
-                Text('+', style: TextStyle(color: theme.palette.primary)),
-                Icon(Octicons.smiley, color: theme.palette.primary, size: 18),
+                Text('+',
+                    style: TextStyle(color: AntTheme.of(context).colorPrimary)),
+                Icon(Octicons.smiley,
+                    color: AntTheme.of(context).colorPrimary, size: 18),
               ],
             ),
           ),
@@ -224,7 +228,7 @@ class CommentItem extends StatelessWidget {
                 Text(
                   timeago.format(createdAt!),
                   style: TextStyle(
-                      color: theme.palette.tertiaryText, fontSize: 13),
+                      color: AntTheme.of(context).colorWeak, fontSize: 13),
                 ),
               ],
             ),

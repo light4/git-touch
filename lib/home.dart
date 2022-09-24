@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
@@ -155,8 +156,8 @@ class _HomeState extends State<Home> {
         Positioned(
           right: -2,
           top: -2,
-          child:
-              Icon(Octicons.dot_fill, color: theme.palette.primary, size: 14),
+          child: Icon(Octicons.dot_fill,
+              color: AntTheme.of(context).colorPrimary, size: 14),
         )
       ],
     );

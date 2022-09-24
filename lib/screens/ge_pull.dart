@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
@@ -114,7 +115,8 @@ class GePullScreen extends StatelessWidget {
                                     '$owner / $name',
                                     style: TextStyle(
                                       fontSize: 17,
-                                      color: theme.palette.secondaryText,
+                                      color: AntTheme.of(context)
+                                          .colorTextSecondary,
                                     ),
                                   ),
                                   const SizedBox(width: 4),
@@ -122,7 +124,7 @@ class GePullScreen extends StatelessWidget {
                                     '#$number',
                                     style: TextStyle(
                                       fontSize: 17,
-                                      color: theme.palette.tertiaryText,
+                                      color: AntTheme.of(context).colorWeak,
                                     ),
                                   ),
                                 ],
@@ -157,7 +159,8 @@ class GePullScreen extends StatelessWidget {
                                     Text(
                                       '${files.length} files changed',
                                       style: TextStyle(
-                                        color: theme.palette.secondaryText,
+                                        color: AntTheme.of(context)
+                                            .colorTextSecondary,
                                         fontSize: 17,
                                       ),
                                     ),
@@ -180,7 +183,8 @@ class GePullScreen extends StatelessWidget {
                                         ),
                                         Icon(
                                           Ionicons.chevron_forward,
-                                          color: theme.palette.border,
+                                          color:
+                                              AntTheme.of(context).colorBorder,
                                         ),
                                       ],
                                     )
@@ -195,7 +199,7 @@ class GePullScreen extends StatelessWidget {
                                 title: Text(
                                   'Commits',
                                   style: TextStyle(
-                                    color: theme.palette.primary,
+                                    color: AntTheme.of(context).colorPrimary,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -215,7 +219,8 @@ class GePullScreen extends StatelessWidget {
                                             Text(
                                               commit.sha!.substring(0, 7),
                                               style: TextStyle(
-                                                color: theme.palette.primary,
+                                                color: AntTheme.of(context)
+                                                    .colorPrimary,
                                                 fontSize: 17,
                                                 fontFamily:
                                                     CommonStyle.monospace,

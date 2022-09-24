@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
@@ -98,7 +99,7 @@ class _GlSearchScreenState extends State<GlSearchScreen> {
 
     return CommonScaffold(
       title: Container(
-        color: theme.palette.background,
+        color: AntTheme.of(context).colorBackground,
         child: CupertinoTextField(
           prefix: Row(
             children: const <Widget>[

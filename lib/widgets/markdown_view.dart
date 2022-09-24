@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:git_touch/models/code.dart';
@@ -100,8 +101,8 @@ class MarkdownFlutterView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
     final code = Provider.of<CodeModel>(context);
-    final basicStyle =
-        TextStyle(fontSize: 16, color: theme.palette.text, height: 1.5);
+    final basicStyle = TextStyle(
+        fontSize: 16, color: AntTheme.of(context).colorText, height: 1.5);
     final hStyle =
         basicStyle.copyWith(fontWeight: FontWeight.w600, height: 1.25);
 
@@ -157,10 +158,10 @@ class MarkdownFlutterView extends StatelessWidget {
           launchStringUrl(url);
         },
         styleSheet: MarkdownStyleSheet(
-          a: basicStyle.copyWith(color: theme.palette.primary),
+          a: basicStyle.copyWith(color: AntTheme.of(context).colorPrimary),
           p: basicStyle,
           code: basicStyle.copyWith(
-            backgroundColor: theme.palette.grayBackground,
+            backgroundColor: AntTheme.of(context).colorBox,
             fontSize: 16 * 0.85,
             height: 1.45,
             fontFamily: code.fontStyle.fontFamily,
@@ -171,11 +172,12 @@ class MarkdownFlutterView extends StatelessWidget {
           h4: hStyle,
           h5: hStyle.copyWith(fontSize: 14),
           h6: hStyle.copyWith(
-              fontSize: 16 * 0.85, color: theme.palette.tertiaryText),
+              fontSize: 16 * 0.85, color: AntTheme.of(context).colorWeak),
           em: basicStyle.copyWith(fontStyle: FontStyle.italic),
           strong: basicStyle.copyWith(fontWeight: FontWeight.w600),
           del: const TextStyle(decoration: TextDecoration.lineThrough),
-          blockquote: basicStyle.copyWith(color: theme.palette.tertiaryText),
+          blockquote:
+              basicStyle.copyWith(color: AntTheme.of(context).colorWeak),
           img: basicStyle,
           checkbox: basicStyle,
           blockSpacing: 16,
@@ -194,14 +196,14 @@ class MarkdownFlutterView extends StatelessWidget {
           ),
           codeblockPadding: const EdgeInsets.all(16),
           codeblockDecoration: BoxDecoration(
-            color: theme.palette.grayBackground,
+            color: AntTheme.of(context).colorBox,
             borderRadius: BorderRadius.circular(3),
           ),
           horizontalRuleDecoration: BoxDecoration(
             border: Border(
               top: BorderSide(
                 width: 4,
-                color: theme.palette.grayBackground,
+                color: AntTheme.of(context).colorBox,
               ),
             ),
           ),
