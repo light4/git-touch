@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
           case 3:
             return GhSearchScreen();
           case 4:
-            return GhViewer();
+            return const GhViewerScreen();
         }
         break;
       case PlatformType.gitlab:

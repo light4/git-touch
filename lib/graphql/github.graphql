@@ -203,6 +203,7 @@ fragment UserPartsFull on User {
   ...UserParts
   company
   bio
+  url
   email
   websiteUrl
   viewerCanFollow # TODO: remove in viewer query
@@ -243,42 +244,42 @@ fragment UserPartsFull on User {
     }
   }
 }
+
 query Viewer {
   viewer {
     ...UserPartsFull
   }
 }
+
 query User($login: String!) {
-  repositoryOwner(login: $login) {
+  user(login: $login) {
+    ...UserPartsFull
+  }
+  organization(login: $login) {
+    login
+    avatarUrl
+    name
     url
-    ... on User {
-      ...UserPartsFull
+    description
+    location
+    email
+    websiteUrl
+    createdAt
+    membersWithRole {
+      totalCount
     }
-    ... on Organization {
-      login
-      avatarUrl
-      name
-      description
-      location
-      email
-      websiteUrl
-      createdAt
-      membersWithRole {
-        totalCount
-      }
-      pinnedItems(first: 6) {
-        nodes {
-          ... on Repository {
-            ...RepoParts
-          }
+    pinnedItems(first: 6) {
+      nodes {
+        ... on Repository {
+          ...RepoParts
         }
       }
-      pinnableItems(first: 6, types: [REPOSITORY]) {
-        totalCount
-        nodes {
-          ... on Repository {
-            ...RepoParts
-          }
+    }
+    pinnableItems(first: 6, types: [REPOSITORY]) {
+      totalCount
+      nodes {
+        ... on Repository {
+          ...RepoParts
         }
       }
     }

@@ -135,7 +135,7 @@ final router = GoRouter(
                   case 'events':
                     return GhEventsScreen(login);
                   default:
-                    return GhUser(login);
+                    return GhUserScreen(login);
                 }
               },
               routes: [

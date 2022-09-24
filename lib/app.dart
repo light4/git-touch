@@ -7,6 +7,8 @@ import 'package:intl/locale.dart' as l;
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthModel>(context);
