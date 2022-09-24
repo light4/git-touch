@@ -29,7 +29,7 @@ class BbPullsScreen extends StatelessWidget {
         );
       },
       itemBuilder: (v) {
-        int pullNumber =
+        final pullNumber =
             int.parse(v.pullRequestLink!.replaceFirst(RegExp(r'.*\/'), ''));
         return IssueItem(
           avatarUrl: v.author!.avatarUrl,

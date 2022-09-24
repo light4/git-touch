@@ -47,12 +47,11 @@ class GoRepoScreen extends StatelessWidget {
               return utf8.decode(res.bodyBytes).normalizedHtml;
             });
         final readmeData = MarkdownViewData(context, md: md, html: html);
-        List<GogsBranch> branches =
+        final branches =
             await auth.fetchGogs('/repos/$owner/$name/branches').then((v) {
-          if (v is! List) {
-            return [];
-          } // Valid API Response only returned if repo contains >= 2 branches
-          return [for (var branch in v) GogsBranch.fromJson(branch)];
+          return [
+            for (var branch in (v is List ? v : [])) GogsBranch.fromJson(branch)
+          ]; // Valid API Response only returned if repo contains >= 2 branches
         });
 
         return Tuple3(repo, readmeData, branches);

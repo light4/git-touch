@@ -42,7 +42,7 @@ class _GlSearchScreenState extends State<GlSearchScreen> {
   Future<void> _query() async {
     if (_loading || _keyword.isEmpty) return;
 
-    var keyword = _controller!.text;
+    final keyword = _controller!.text;
     setState(() {
       _loading = true;
     });

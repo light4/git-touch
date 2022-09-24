@@ -58,14 +58,14 @@ class SelectorItem<T> {
 class StaticRoute extends PageRouteBuilder {
   StaticRoute({this.builder})
       : super(
-          pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
+          pageBuilder: (context, animation,
+              secondaryAnimation) {
             return builder!(context);
           },
-          transitionsBuilder: (BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child) {
+          transitionsBuilder: (context,
+              animation,
+              secondaryAnimation,
+              child) {
             return child;
           },
         );

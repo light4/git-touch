@@ -39,11 +39,11 @@ class CodeModel with ChangeNotifier {
   }
 
   Future<void> init() async {
-    var prefs = await SharedPreferences.getInstance();
-    var vh = prefs.getString(StorageKeys.codeTheme);
-    var vdh = prefs.getString(StorageKeys.codeThemeDark);
-    var vs = prefs.getInt(StorageKeys.iCodeFontSize);
-    var vf = prefs.getString(StorageKeys.codeFontFamily);
+    final prefs = await SharedPreferences.getInstance();
+    final vh = prefs.getString(StorageKeys.codeTheme);
+    final vdh = prefs.getString(StorageKeys.codeThemeDark);
+    final vs = prefs.getInt(StorageKeys.iCodeFontSize);
+    final vf = prefs.getString(StorageKeys.codeFontFamily);
 
     Fimber.d('read code: $vh, $vs, $vf');
     if (themeMap.keys.contains(vh)) {
@@ -63,7 +63,7 @@ class CodeModel with ChangeNotifier {
   }
 
   setTheme(String v) async {
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
     await prefs.setString(StorageKeys.codeTheme, v);
     Fimber.d('write code theme: $v');
@@ -73,7 +73,7 @@ class CodeModel with ChangeNotifier {
   }
 
   setThemeDark(String v) async {
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
     await prefs.setString(StorageKeys.codeThemeDark, v);
     Fimber.d('write code theme dark: $v');
@@ -83,7 +83,7 @@ class CodeModel with ChangeNotifier {
   }
 
   setFontSize(int v) async {
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
     await prefs.setInt(StorageKeys.iCodeFontSize, v);
     Fimber.d('write code font size: $v');
@@ -93,7 +93,7 @@ class CodeModel with ChangeNotifier {
   }
 
   setFontFamily(String v) async {
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
     await prefs.setString(StorageKeys.codeFontFamily, v);
     Fimber.d('write code font family: $v');

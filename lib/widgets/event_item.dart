@@ -308,7 +308,7 @@ class EventItem extends StatelessWidget {
         ]);
       case 'CheckSuiteEvent':
         // Needs checks permission
-        String conclusion = '';
+        var conclusion = '';
         switch (e.payload!.checkSuite!.conclusion) {
           case 'success':
           case 'failure':
@@ -387,9 +387,9 @@ class EventItem extends StatelessWidget {
           ],
         );
       case 'GollumEvent':
-        String pageNamesCreated = '';
-        String pageNamesEdited = '';
-        for (GithubPagesItem page in e.payload!.pages!) {
+        var pageNamesCreated = '';
+        var pageNamesEdited = '';
+        for (final page in e.payload!.pages!) {
           if (page.action == 'edited') {
             pageNamesEdited += ', ${page.pageName!}';
           } else {
@@ -409,7 +409,7 @@ class EventItem extends StatelessWidget {
             context: context,
             spans: [TextSpan(text: ' $pageNamesCreated\n$pageNamesEdited ')]);
       case 'InstallationEvent':
-        String? action = e.payload!.action;
+        var action = e.payload!.action;
         if (action == 'new_permissions_accepted') {
           action = AppLocalizations.of(context)!.newPermissionsAccepted;
         }
@@ -422,19 +422,19 @@ class EventItem extends StatelessWidget {
           ],
         );
       case 'InstallationRepositoriesEvent':
-        List<GithubNotificationItemRepo> repositoriesAdded =
+        final repositoriesAdded =
             e.payload!.installation!.repositoriesAdded!;
-        List<GithubNotificationItemRepo> repositoriesRemoved =
+        final repositoriesRemoved =
             e.payload!.installation!.repositoriesRemoved!;
-        String addedRepos = '';
-        String removedRepos = '';
-        for (GithubNotificationItemRepo repo in repositoriesAdded) {
+        var addedRepos = '';
+        var removedRepos = '';
+        for (final repo in repositoriesAdded) {
           addedRepos += '${repo.fullName!}, ';
         }
-        for (GithubNotificationItemRepo repo in repositoriesRemoved) {
+        for (final repo in repositoriesRemoved) {
           removedRepos += '${repo.fullName!}, ';
         }
-        String finalListOfRepos = '';
+        var finalListOfRepos = '';
         if (addedRepos != '') {
           finalListOfRepos +=
               '${AppLocalizations.of(context)!.wereAddedTo(addedRepos, e.payload!.installation!.id.toString())}\n ';
@@ -531,7 +531,7 @@ class EventItem extends StatelessWidget {
           ],
         );
       case 'ProjectCardEvent':
-        String? action = e.payload!.action;
+        var action = e.payload!.action;
         if (action == 'converted') {
           action = ' ${AppLocalizations.of(context)!.convertProjectCard} ';
         } else {

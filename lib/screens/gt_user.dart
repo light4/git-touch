@@ -32,7 +32,7 @@ class GtUserScreen extends StatelessWidget {
     final heatmapItems = [
       for (final v in userHeatmap) GiteaHeatmapItem.fromJson(v)
     ];
-    List<List<ContributionDay>> heatmapWeeks = [[]];
+    final heatmapWeeks = <List<ContributionDay>>[[]];
     for (var i = 0; i < heatmapItems.length; i++) {
       if (i > 0 &&
           heatmapItems[i].timestamp! - heatmapItems[i - 1].timestamp! > 86400) {

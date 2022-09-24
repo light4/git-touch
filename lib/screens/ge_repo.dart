@@ -58,14 +58,14 @@ class GeRepoScreen extends StatelessWidget {
             await auth.fetchGitee('/repos/$owner/$name/branches').then((v) {
           return [for (var branch in v) GiteeBranch.fromJson(branch)];
         });
-        bool isStarred = await auth
+        final isStarred = await auth
             .fetchGitee('/user/starred/$owner/$name', requestType: 'NO CONTENT')
             .then((v) => v.statusCode == HttpStatus.noContent);
-        bool isWatching = await auth
+        final isWatching = await auth
             .fetchGitee('/user/subscriptions/$owner/$name',
                 requestType: 'NO CONTENT')
             .then((v) => v.statusCode == HttpStatus.noContent);
-        StatusPayload statusPayload = StatusPayload(isWatching, isStarred);
+        final statusPayload = StatusPayload(isWatching, isStarred);
         return Tuple4(repo, readmeData, branches, statusPayload);
       },
       bodyBuilder: (t, setData) {
@@ -88,7 +88,7 @@ class GeRepoScreen extends StatelessWidget {
                       active: t.item4.isWatching,
                       text: t.item4.isWatching ? 'Ignore' : 'Watch',
                       onTap: () async {
-                        final String watchType =
+                        final watchType =
                             t.item4.isWatching ? 'ignoring' : 'watching';
                         await context.read<AuthModel>().fetchGitee(
                             '/user/subscriptions/$owner/$name?watch_type=$watchType',

@@ -83,7 +83,7 @@ class GePullScreen extends StatelessWidget {
         final theme = context.read<ThemeModel>();
         var additions = 0;
         var deletions = 0;
-        for (var file in files) {
+        for (final file in files) {
           additions += int.parse(file.additions!);
           deletions += int.parse(file.deletions!);
         }

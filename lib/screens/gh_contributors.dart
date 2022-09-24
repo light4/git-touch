@@ -34,7 +34,7 @@ class GhContributorsScreen extends StatelessWidget {
         );
       },
       itemBuilder: (v) {
-        final String? login = v.login;
+        final login = v.login;
         return ContributorItem(
           avatarUrl: v.avatarUrl,
           commits: v.contributions,

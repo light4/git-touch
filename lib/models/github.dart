@@ -353,8 +353,8 @@ class GithubGistsItem {
   Map<String, GistFiles>? files;
   GithubEventUser? owner;
   List<GistFiles> get fileNames {
-    List<GistFiles> filenames = [];
-    files!.forEach((String key, GistFiles value) {
+    final filenames = <GistFiles>[];
+    files!.forEach((key, value) {
       filenames.add(value);
     });
     return filenames;

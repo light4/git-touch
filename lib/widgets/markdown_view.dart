@@ -92,7 +92,7 @@ class MarkdownFlutterView extends StatelessWidget {
   final EdgeInsetsGeometry padding;
 
   static Map<String, String?>? matchPattern(String url, String pattern) {
-    var uri = Uri.parse(url);
+    final uri = Uri.parse(url);
     return UriParser(UriTemplate(pattern)).match(uri)?.parameters;
   }
 
@@ -145,7 +145,7 @@ class MarkdownFlutterView extends StatelessWidget {
               '/{owner}/{name}',
               '/{login}'
             ];
-            for (var p in matchedPaths) {
+            for (final p in matchedPaths) {
               final m = matchPattern(url, p);
               if (m != null) {
                 context.pushUrl(

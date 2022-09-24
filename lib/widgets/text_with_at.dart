@@ -21,8 +21,8 @@ class TextWithAt extends StatelessWidget {
     final matches = _reg.allMatches(text).map((m) => m.group(0)).toList();
     final chunks = text.split(_reg);
 
-    List<TextSpan> spans = [];
-    for (var index in List.generate(matches.length, (i) => (i))) {
+    final spans = <TextSpan>[];
+    for (final index in List.generate(matches.length, (i) => (i))) {
       if (chunks[index].isNotEmpty) {
         spans.add(TextSpan(text: chunks[index]));
       }

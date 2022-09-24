@@ -35,8 +35,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var codeProvider = Provider.of<CodeModel>(context);
-    var theme = Provider.of<ThemeModel>(context);
+    final codeProvider = Provider.of<CodeModel>(context);
+    final theme = Provider.of<ThemeModel>(context);
 
     return SingleScaffold(
       title: AppBarTitle(AppLocalizations.of(context)!.codeTheme),
@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
                       items: CodeModel.fontFamilies
                           .map((v) => PickerItem(v, text: v))
                           .toList(),
-                      onChange: (String? value) {
+                      onChange: (value) {
                         codeProvider.setFontFamily(value!);
                       },
                     ),

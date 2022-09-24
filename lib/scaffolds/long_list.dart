@@ -89,7 +89,7 @@ class _LongListStatefulScaffoldState<T, K>
       loadingMore = true;
     });
     try {
-      LongListPayload<T?, K> p = await widget.onLoadMore(payload!.cursor);
+      final LongListPayload<T?, K> p = await widget.onLoadMore(payload!.cursor);
       payload!.totalCount = p.totalCount;
       payload!.cursor = p.cursor;
       payload!.leadingItems.addAll(p.leadingItems);
@@ -109,12 +109,12 @@ class _LongListStatefulScaffoldState<T, K>
       return CommonStyle.border;
     }
 
-    int realIndex = index ~/ 2;
+    final realIndex = index ~/ 2;
 
     if (realIndex < payload!.leadingItems.length) {
       return widget.itemBuilder(payload!.leadingItems[realIndex]);
     } else if (realIndex == payload!.leadingItems.length) {
-      var count = payload!.totalCount -
+      final count = payload!.totalCount -
           payload!.leadingItems.length +
           payload!.trailingItems!.length;
       return Container(
@@ -153,7 +153,7 @@ class _LongListStatefulScaffoldState<T, K>
   }
 
   int get _itemCount {
-    int count = payload!.leadingItems.length + payload!.trailingItems!.length;
+    var count = payload!.leadingItems.length + payload!.trailingItems!.length;
     if (payload!.totalCount > count) {
       count++;
     }
@@ -177,7 +177,7 @@ class _LongListStatefulScaffoldState<T, K>
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> slivers = [CupertinoSliverRefreshControl(onRefresh: _refresh)];
+    final slivers = <Widget>[CupertinoSliverRefreshControl(onRefresh: _refresh)];
     if (payload != null) {
       slivers.add(
         SliverToBoxAdapter(child: widget.headerBuilder(payload!.header)),

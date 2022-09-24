@@ -31,9 +31,9 @@ class GhNotificationScreenState extends State<GhNotificationScreen> {
       context.read<NotificationModel>().setCount(ns.length);
     }
 
-    Map<String, NotificationGroup> groupMap = {};
+    final groupMap = <String, NotificationGroup>{};
 
-    for (var item in ns) {
+    for (final item in ns) {
       final repo = item.repository!.fullName ?? ''; // TODO: nullable
       if (groupMap[repo] == null) {
         groupMap[repo] = NotificationGroup(repo);
@@ -57,7 +57,7 @@ class GhNotificationScreenState extends State<GhNotificationScreen> {
         schema +=
             '${group.key}: repository(owner: "${group.owner}", name: "${group.name}") {';
 
-        for (var item in group.items) {
+        for (final item in group.items) {
           switch (item.subject!.type) {
             case 'Issue':
               schema += '''
@@ -83,13 +83,13 @@ ${item.key}: pullRequest(number: ${item.subject!.number}) {
       if (schema == '{}') return groupMap;
 
       // Fimber.d(schema);
-      var data = await context.read<AuthModel>().query(schema);
+      final data = await context.read<AuthModel>().query(schema);
       groupMap.forEach((repo, group) {
-        for (var item in group.items) {
-          var groupData = data[group.key];
+        for (final item in group.items) {
+          final groupData = data[group.key];
           if (groupData == null) continue;
 
-          var itemData = data[group.key][item.key];
+          final itemData = data[group.key][item.key];
           if (itemData != null) {
             item.state = itemData['state'];
           }

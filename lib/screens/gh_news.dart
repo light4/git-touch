@@ -21,7 +21,7 @@ class GhNewsScreenState extends State<GhNewsScreen> {
     Future.microtask(() async {
       // Check if there are unread notification items.
       // 1 item is enough since count is not displayed for now.
-      var items = await context
+      final items = await context
           .read<AuthModel>()
           .ghClient
           .getJSON('/notifications?per_page=1');

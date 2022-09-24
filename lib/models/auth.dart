@@ -238,7 +238,7 @@ class AuthModel with ChangeNotifier {
     Map<String, dynamic> body = const {},
   }) async {
     late http.Response res;
-    Map<String, String> headers = {
+    final headers = <String, String>{
       'Authorization': 'token $token',
       HttpHeaders.contentTypeHeader: 'application/json'
     };
@@ -342,7 +342,7 @@ class AuthModel with ChangeNotifier {
     Map<String, dynamic> body = const {},
   }) async {
     late http.Response res;
-    Map<String, String> headers = {
+    final headers = <String, String>{
       'Authorization': 'token $token',
       HttpHeaders.contentTypeHeader: 'application/json'
     };
@@ -418,7 +418,7 @@ class AuthModel with ChangeNotifier {
     Map<String, dynamic> body = const {},
   }) async {
     http.Response res;
-    Map<String, String> headers = {
+    final headers = <String, String>{
       'Authorization': 'token $token',
       HttpHeaders.contentTypeHeader: 'application/json'
     };
@@ -612,11 +612,11 @@ class AuthModel with ChangeNotifier {
       Fimber.e('getUriLinksStream failed', ex: err);
     });
 
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
     // Read accounts
     try {
-      String? str = prefs.getString(StorageKeys.accounts);
+      final str = prefs.getString(StorageKeys.accounts);
       // Fimber.d('read accounts: $str');
       _accounts = (json.decode(str ?? '[]') as List)
           .map((item) => Account.fromJson(item))

@@ -42,7 +42,7 @@ void main() async {
           ChangeNotifierProvider(create: (context) => authModel),
           ChangeNotifierProvider(create: (context) => codeModel),
         ],
-        child: MyApp(),
+        child: const MyApp(),
       ));
     },
   );

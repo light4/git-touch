@@ -48,10 +48,10 @@ class CommonStyle {
 }
 
 Color getFontColorByBrightness(Color color) {
-  var grayscale = color.red * 0.3 + color.green * 0.59 + color.blue * 0.11;
+  final grayscale = color.red * 0.3 + color.green * 0.59 + color.blue * 0.11;
   // Fimber.d('color: $color, $grayscale');
 
-  var showWhite = grayscale < 128;
+  final showWhite = grayscale < 128;
   return showWhite ? AntTheme.white : AntTheme.text;
 }
 
@@ -90,12 +90,12 @@ class GithubPalette {
 const PAGE_SIZE = 30;
 
 var createWarning =
-    (String text) => Text(text, style: const TextStyle(color: AntTheme.danger));
+    (text) => Text(text, style: const TextStyle(color: AntTheme.danger));
 var warningSpan =
     const TextSpan(text: 'xxx', style: TextStyle(color: AntTheme.danger));
 
 List<T> join<T>(T seperator, List<T> xs) {
-  List<T> result = [];
+  final result = <T>[];
   xs.asMap().forEach((index, x) {
     if (x == null) return;
 
@@ -109,7 +109,7 @@ List<T> join<T>(T seperator, List<T> xs) {
 }
 
 List<T> joinAll<T>(T seperator, List<List<T>> xss) {
-  List<T> result = [];
+  final result = <T>[];
   xss.asMap().forEach((index, x) {
     if (x.isEmpty) return;
 

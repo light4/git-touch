@@ -26,6 +26,10 @@ linter:
     always_use_package_imports: true
     sort_constructors_first: true
     sort_unnamed_constructors_first: true
+    avoid_types_on_closure_parameters: true
+    omit_local_variable_types: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
 
 analyzer:
   exclude:

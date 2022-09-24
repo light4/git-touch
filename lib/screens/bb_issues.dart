@@ -34,7 +34,7 @@ class BbIssuesScreen extends StatelessWidget {
         );
       },
       itemBuilder: (v) {
-        int issueNumber =
+        final issueNumber =
             int.parse(v.issueLink!.replaceFirst(RegExp(r'.*\/'), ''));
         return IssueItem(
           avatarUrl: v.reporter!.avatarUrl,

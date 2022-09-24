@@ -65,7 +65,7 @@ class _ListStatefulScaffoldState<T, K>
       loading = true;
     });
     try {
-      final ListPayload<T, K> p = await widget.fetch(null);
+      final p = await widget.fetch(null);
       items = p.items.toList();
       cursor = p.cursor;
       hasMore = p.hasMore;
@@ -87,7 +87,7 @@ class _ListStatefulScaffoldState<T, K>
       loadingMore = true;
     });
     try {
-      ListPayload<T, K> p = await widget.fetch(cursor);
+      final p = await widget.fetch(cursor);
       items.addAll(p.items);
       cursor = p.cursor;
       hasMore = p.hasMore;
