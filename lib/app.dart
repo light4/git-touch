@@ -48,19 +48,32 @@ class MyApp extends StatelessWidget {
       return supportedLocales.firstWhere((l) => l.languageCode == 'en');
     };
 
-    return Container(
+    return AntTheme(
       key: auth.rootKey,
-      child: CupertinoApp.router(
-        routeInformationProvider: router.routeInformationProvider,
-        routeInformationParser: router.routeInformationParser,
-        routerDelegate: router.routerDelegate,
-        theme: CupertinoThemeData(
-          brightness: theme.brightness,
-          primaryColor: AntTheme.of(context).colorPrimary,
-        ),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        localeListResolutionCallback: localeListResolutionCallback,
+      data: AntThemeData(brightness: theme.brightness),
+      child: Builder(
+        builder: (context) {
+          final antTheme = AntTheme.of(context);
+
+          return CupertinoApp.router(
+            routeInformationProvider: router.routeInformationProvider,
+            routeInformationParser: router.routeInformationParser,
+            routerDelegate: router.routerDelegate,
+            theme: CupertinoThemeData(
+              brightness: theme.brightness,
+              primaryColor: antTheme.colorPrimary,
+              textTheme: CupertinoTextThemeData(
+                textStyle: TextStyle(
+                  fontSize: antTheme.fontSizeMain,
+                  color: antTheme.colorText,
+                ),
+              ),
+            ),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            localeListResolutionCallback: localeListResolutionCallback,
+          );
+        },
       ),
     );
   }
