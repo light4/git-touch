@@ -274,6 +274,7 @@ query User($login: String!) {
     email
     websiteUrl
     createdAt
+    viewerIsFollowing
     sponsors {
       totalCount
     }

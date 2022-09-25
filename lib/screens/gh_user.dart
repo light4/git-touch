@@ -196,99 +196,6 @@ class _User extends StatelessWidget {
   }
 }
 
-class _Org extends StatelessWidget {
-  const _Org(this.p);
-  final GUserData_organization p;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        UserHeader(
-          avatarUrl: p.avatarUrl,
-          name: p.name,
-          login: p.login,
-          createdAt: p.createdAt,
-          bio: p.description,
-        ),
-        CommonStyle.border,
-        Row(
-          children: [
-            EntryItem(
-              count: p.sponsors.totalCount,
-              text: 'Sponsors',
-              url: 'https://github.com/sponsors/${p.login}',
-            ),
-            EntryItem(
-              count: p.membersWithRole.totalCount,
-              text: AppLocalizations.of(context)!.members,
-              url: '/github/${p.login}?tab=people',
-            ),
-          ],
-        ),
-        AntList(mode: AntListMode.card, children: [
-          if (isNotNullOrEmpty(p.location))
-            AntListItem(
-              prefix: const Icon(Octicons.location),
-              child: Text(p.location!),
-              onClick: () {
-                launchStringUrl(
-                    'https://www.google.com/maps/place/${p.location!.replaceAll(RegExp(r'\s+'), '')}');
-              },
-            ),
-          if (isNotNullOrEmpty(p.email))
-            AntListItem(
-              prefix: const Icon(Octicons.mail),
-              child: Text(p.email!),
-              onClick: () {
-                launchStringUrl('mailto:${p.email!}');
-              },
-            ),
-          if (isNotNullOrEmpty(p.websiteUrl))
-            AntListItem(
-              prefix: const Icon(Octicons.link),
-              child: Text(p.websiteUrl!),
-              onClick: () {
-                var url = p.websiteUrl!;
-                if (!url.startsWith('http')) {
-                  url = 'http://$url';
-                }
-                launchStringUrl(url);
-              },
-            ),
-        ]),
-        AntList(
-          mode: AntListMode.card,
-          children: [
-            AntListItem(
-              prefix: const Icon(Octicons.repo),
-              extra: Text(p.pinnableItems.totalCount.toString()),
-              child: Text(AppLocalizations.of(context)!.repositories),
-              onClick: () {
-                context.pushUrl('/github/${p.login}?tab=repositories');
-              },
-            ),
-            AntListItem(
-              prefix: const Icon(Octicons.rss),
-              child: Text(AppLocalizations.of(context)!.events),
-              onClick: () {
-                context.push('/github/${p.login}?tab=events');
-              },
-            ),
-          ],
-        ),
-        CommonStyle.verticalGap,
-        _Repos(
-          p.pinnedItems.nodes!.whereType<GRepoParts>(),
-          p.pinnableItems.nodes!.whereType<GRepoParts>(),
-        ),
-        CommonStyle.verticalGap,
-      ],
-    );
-  }
-}
-
 class GhViewerScreen extends StatelessWidget {
   const GhViewerScreen({super.key});
 
@@ -363,7 +270,110 @@ class GhUserScreen extends StatelessWidget {
             ],
           );
         } else if (data?.organization != null) {
-          return _Org(data!.organization!);
+          final p = data!.organization!;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              UserHeader(
+                avatarUrl: p.avatarUrl,
+                name: p.name,
+                login: p.login,
+                createdAt: p.createdAt,
+                bio: p.description,
+                rightWidgets: [
+                  MutationButton(
+                    active: p.viewerIsFollowing,
+                    text: p.viewerIsFollowing
+                        ? AppLocalizations.of(context)!.unfollow
+                        : AppLocalizations.of(context)!.follow,
+                    onTap: () async {
+                      if (p.viewerIsFollowing) {
+                        await auth.ghClient.users.unfollowUser(p.login);
+                      } else {
+                        await auth.ghClient.users.followUser(p.login);
+                      }
+                      setData(data.rebuild((b) {
+                        b.organization.viewerIsFollowing =
+                            !b.organization.viewerIsFollowing!;
+                      }));
+                    },
+                  ),
+                ],
+              ),
+              CommonStyle.border,
+              Row(
+                children: [
+                  EntryItem(
+                    count: p.sponsors.totalCount,
+                    text: 'Sponsors',
+                    url: 'https://github.com/sponsors/${p.login}',
+                  ),
+                  EntryItem(
+                    count: p.membersWithRole.totalCount,
+                    text: AppLocalizations.of(context)!.members,
+                    url: '/github/${p.login}?tab=people',
+                  ),
+                ],
+              ),
+              AntList(mode: AntListMode.card, children: [
+                if (isNotNullOrEmpty(p.location))
+                  AntListItem(
+                    prefix: const Icon(Octicons.location),
+                    child: Text(p.location!),
+                    onClick: () {
+                      launchStringUrl(
+                          'https://www.google.com/maps/place/${p.location!.replaceAll(RegExp(r'\s+'), '')}');
+                    },
+                  ),
+                if (isNotNullOrEmpty(p.email))
+                  AntListItem(
+                    prefix: const Icon(Octicons.mail),
+                    child: Text(p.email!),
+                    onClick: () {
+                      launchStringUrl('mailto:${p.email!}');
+                    },
+                  ),
+                if (isNotNullOrEmpty(p.websiteUrl))
+                  AntListItem(
+                    prefix: const Icon(Octicons.link),
+                    child: Text(p.websiteUrl!),
+                    onClick: () {
+                      var url = p.websiteUrl!;
+                      if (!url.startsWith('http')) {
+                        url = 'http://$url';
+                      }
+                      launchStringUrl(url);
+                    },
+                  ),
+              ]),
+              AntList(
+                mode: AntListMode.card,
+                children: [
+                  AntListItem(
+                    prefix: const Icon(Octicons.repo),
+                    extra: Text(p.pinnableItems.totalCount.toString()),
+                    child: Text(AppLocalizations.of(context)!.repositories),
+                    onClick: () {
+                      context.pushUrl('/github/${p.login}?tab=repositories');
+                    },
+                  ),
+                  AntListItem(
+                    prefix: const Icon(Octicons.rss),
+                    child: Text(AppLocalizations.of(context)!.events),
+                    onClick: () {
+                      context.push('/github/${p.login}?tab=events');
+                    },
+                  ),
+                ],
+              ),
+              CommonStyle.verticalGap,
+              _Repos(
+                p.pinnedItems.nodes!.whereType<GRepoParts>(),
+                p.pinnableItems.nodes!.whereType<GRepoParts>(),
+              ),
+              CommonStyle.verticalGap,
+            ],
+          );
         }
         return null; // TODO: not found
       },
