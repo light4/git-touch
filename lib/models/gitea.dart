@@ -60,8 +60,7 @@ class GiteaTree {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GiteaBlob extends GiteaTree {
-  GiteaBlob({required String type, required String name})
-      : super(name: name, type: type);
+  GiteaBlob({required super.type, required super.name});
   factory GiteaBlob.fromJson(Map<String, dynamic> json) =>
       _$GiteaBlobFromJson(json);
   String? content;

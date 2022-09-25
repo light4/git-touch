@@ -10,10 +10,10 @@ import 'package:provider/provider.dart';
 
 class NotificationItem extends StatefulWidget {
   const NotificationItem({
-    Key? key,
+    super.key,
     required this.payload,
     required this.markAsRead,
-  }) : super(key: key);
+  });
   final GithubNotificationItem payload;
   final Function markAsRead;
 

@@ -10,7 +10,7 @@ const contributionEmptyColor = '#ebedf0';
 const contributionColors = ['#9be9a8', '#40c463', '#30a14e', '#216e39'];
 
 class HideScrollbar extends StatelessWidget {
-  const HideScrollbar({Key? key, this.child}) : super(key: key);
+  const HideScrollbar({super.key, this.child});
   final Widget? child;
 
   @override

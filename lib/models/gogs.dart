@@ -62,8 +62,7 @@ class GogsTree {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GogsBlob extends GogsTree {
-  GogsBlob({required String type, required String name})
-      : super(name: name, type: type);
+  GogsBlob({required super.type, required super.name});
   factory GogsBlob.fromJson(Map<String, dynamic> json) =>
       _$GogsBlobFromJson(json);
   String? content;
