@@ -28,104 +28,105 @@ class SettingsScreen extends StatelessWidget {
         children: <Widget>[
           CommonStyle.verticalGap,
           AntList(
-              header: Text(AppLocalizations.of(context)!.system),
-              children: [
-                if (auth.activeAccount!.platform == PlatformType.github) ...[
-                  AntListItem(
-                    child: Text(AppLocalizations.of(context)!.githubStatus),
-                    onClick: () {
-                      launchStringUrl('https://www.githubstatus.com/');
-                    },
-                  ),
-                  AntListItem(
-                    child: const Text('Meta'),
-                    onClick: () {
-                      context.push('/settings/github-meta');
-                    },
-                  ),
-                  AntListItem(
-                    onClick: () {
-                      launchStringUrl(
-                          'https://github.com/settings/connections/applications/$clientId');
-                    },
-                    extra: Text(auth.activeAccount!.login),
-                    child:
-                        Text(AppLocalizations.of(context)!.reviewPermissions),
-                  ),
-                ],
-                if (auth.activeAccount!.platform == PlatformType.gitlab)
-                  AntListItem(
-                    onClick: () {
-                      launchStringUrl('${auth.activeAccount!.domain}/help');
-                    },
-                    extra: FutureBuilder<String>(
-                      future: auth
-                          .fetchGitlab('/version')
-                          .then((v) => v['version']),
-                      builder: (context, snapshot) {
-                        return Text(snapshot.data ?? '');
-                      },
-                    ),
-                    child: Text(AppLocalizations.of(context)!.gitlabStatus),
-                  ),
-                if (auth.activeAccount!.platform == PlatformType.gitea)
-                  AntListItem(
-                    prefix: const Icon(Octicons.info),
-                    onClick: () {
-                      context.push('/gitea/status');
-                    },
-                    extra: FutureBuilder<String>(
-                      future:
-                          auth.fetchGitea('/version').then((v) => v['version']),
-                      builder: (context, snapshot) {
-                        return Text(snapshot.data ?? '');
-                      },
-                    ),
-                    child: Text(AppLocalizations.of(context)!.giteaStatus),
-                  ),
+            mode: AntListMode.card,
+            header: Text(AppLocalizations.of(context)!.system),
+            children: [
+              if (auth.activeAccount!.platform == PlatformType.github) ...[
                 AntListItem(
+                  child: Text(AppLocalizations.of(context)!.githubStatus),
                   onClick: () {
-                    context.push('/login');
+                    launchStringUrl('https://www.githubstatus.com/');
                   },
-                  extra: Text(auth.activeAccount!.login),
-                  child: Text(AppLocalizations.of(context)!.switchAccounts),
                 ),
                 AntListItem(
-                  extra: Text(theme.locale == null
-                      ? AppLocalizations.of(context)!.followSystem
-                      : localeNameMap[theme.locale!] ?? theme.locale!),
+                  child: const Text('Meta'),
                   onClick: () {
-                    // TODO: too many options, better use a new page
-                    theme.showActions(context, [
-                      for (final key in [
-                        null,
-                        ...AppLocalizations.supportedLocales
-                            .map((l) => l.toString())
-                            .where((key) => localeNameMap[key] != null)
-                      ])
-                        ActionItem(
-                          text: key == null
-                              ? AppLocalizations.of(context)!.followSystem
-                              : localeNameMap[key],
-                          onTap: (_) async {
-                            final res = await theme.showConfirm(
-                              context,
-                              const Text(
-                                  'The app will reload to make the language setting take effect'),
-                            );
-                            if (res == true && theme.locale != key) {
-                              await theme.setLocale(key);
-                              auth.reloadApp();
-                            }
-                          },
-                        )
-                    ]);
+                    context.push('/settings/github-meta');
                   },
-                  child: Text(AppLocalizations.of(context)!.appLanguage),
-                )
-              ]),
+                ),
+                AntListItem(
+                  onClick: () {
+                    launchStringUrl(
+                        'https://github.com/settings/connections/applications/$clientId');
+                  },
+                  extra: Text(auth.activeAccount!.login),
+                  child: Text(AppLocalizations.of(context)!.reviewPermissions),
+                ),
+              ],
+              if (auth.activeAccount!.platform == PlatformType.gitlab)
+                AntListItem(
+                  onClick: () {
+                    launchStringUrl('${auth.activeAccount!.domain}/help');
+                  },
+                  extra: FutureBuilder<String>(
+                    future:
+                        auth.fetchGitlab('/version').then((v) => v['version']),
+                    builder: (context, snapshot) {
+                      return Text(snapshot.data ?? '');
+                    },
+                  ),
+                  child: Text(AppLocalizations.of(context)!.gitlabStatus),
+                ),
+              if (auth.activeAccount!.platform == PlatformType.gitea)
+                AntListItem(
+                  prefix: const Icon(Octicons.info),
+                  onClick: () {
+                    context.push('/gitea/status');
+                  },
+                  extra: FutureBuilder<String>(
+                    future:
+                        auth.fetchGitea('/version').then((v) => v['version']),
+                    builder: (context, snapshot) {
+                      return Text(snapshot.data ?? '');
+                    },
+                  ),
+                  child: Text(AppLocalizations.of(context)!.giteaStatus),
+                ),
+              AntListItem(
+                onClick: () {
+                  context.push('/login');
+                },
+                extra: Text(auth.activeAccount!.login),
+                child: Text(AppLocalizations.of(context)!.switchAccounts),
+              ),
+              AntListItem(
+                extra: Text(theme.locale == null
+                    ? AppLocalizations.of(context)!.followSystem
+                    : localeNameMap[theme.locale!] ?? theme.locale!),
+                onClick: () {
+                  // TODO: too many options, better use a new page
+                  theme.showActions(context, [
+                    for (final key in [
+                      null,
+                      ...AppLocalizations.supportedLocales
+                          .map((l) => l.toString())
+                          .where((key) => localeNameMap[key] != null)
+                    ])
+                      ActionItem(
+                        text: key == null
+                            ? AppLocalizations.of(context)!.followSystem
+                            : localeNameMap[key],
+                        onTap: (_) async {
+                          final res = await theme.showConfirm(
+                            context,
+                            const Text(
+                                'The app will reload to make the language setting take effect'),
+                          );
+                          if (res == true && theme.locale != key) {
+                            await theme.setLocale(key);
+                            auth.reloadApp();
+                          }
+                        },
+                      )
+                  ]);
+                },
+                child: Text(AppLocalizations.of(context)!.appLanguage),
+              )
+            ],
+          ),
           CommonStyle.verticalGap,
           AntList(
+            mode: AntListMode.card,
             header: Text(AppLocalizations.of(context)!.theme),
             children: [
               AntListItem(
@@ -191,6 +192,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           CommonStyle.verticalGap,
           AntList(
+            mode: AntListMode.card,
             header: Text(AppLocalizations.of(context)!.feedback),
             children: [
               AntListItem(
@@ -226,6 +228,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           CommonStyle.verticalGap,
           AntList(
+            mode: AntListMode.card,
             header: Text(AppLocalizations.of(context)!.about),
             children: [
               AntListItem(

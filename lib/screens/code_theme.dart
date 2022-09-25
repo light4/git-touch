@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         children: <Widget>[
           CommonStyle.verticalGap,
           AntList(
+            mode: AntListMode.card,
             header: Text(AppLocalizations.of(context)!.fontStyle),
             children: [
               AntListItem(
@@ -88,6 +89,7 @@ class MyApp extends StatelessWidget {
           ),
           CommonStyle.verticalGap,
           AntList(
+            mode: AntListMode.card,
             header: Text(AppLocalizations.of(context)!.syntaxHighlighting),
             children: [
               AntListItem(
@@ -109,6 +111,15 @@ class MyApp extends StatelessWidget {
                 child: Text(AppLocalizations.of(context)!.light),
               ),
               AntListItem(
+                child: HighlightView(
+                  _getCode(false),
+                  language: 'dart',
+                  theme: themeMap[codeProvider.theme]!,
+                  textStyle: codeProvider.fontStyle,
+                  padding: CommonStyle.padding,
+                ),
+              ),
+              AntListItem(
                 extra: Text(codeProvider.themeDark),
                 onClick: () {
                   theme.showPicker(
@@ -126,21 +137,16 @@ class MyApp extends StatelessWidget {
                 },
                 child: Text(AppLocalizations.of(context)!.dark),
               ),
+              AntListItem(
+                child: HighlightView(
+                  _getCode(true),
+                  language: 'dart',
+                  theme: themeMap[codeProvider.themeDark]!,
+                  textStyle: codeProvider.fontStyle,
+                  padding: CommonStyle.padding,
+                ),
+              )
             ],
-          ),
-          HighlightView(
-            _getCode(false),
-            language: 'dart',
-            theme: themeMap[codeProvider.theme]!,
-            textStyle: codeProvider.fontStyle,
-            padding: CommonStyle.padding,
-          ),
-          HighlightView(
-            _getCode(true),
-            language: 'dart',
-            theme: themeMap[codeProvider.themeDark]!,
-            textStyle: codeProvider.fontStyle,
-            padding: CommonStyle.padding,
           ),
         ],
       ),
