@@ -208,7 +208,7 @@ fragment UserPartsFull on User {
   websiteUrl
   viewerCanFollow # TODO: remove in viewer query
   viewerIsFollowing
-  starredRepositories {
+  sponsors {
     totalCount
   }
   followers {
@@ -226,6 +226,9 @@ fragment UserPartsFull on User {
       }
     }
   }
+  organizations {
+    totalCount
+  }
   repositories(
     first: 6
     ownerAffiliations: OWNER
@@ -235,6 +238,12 @@ fragment UserPartsFull on User {
     nodes {
       ...RepoParts
     }
+  }
+  starredRepositories {
+    totalCount
+  }
+  gists {
+    totalCount
   }
   pinnedItems(first: 6) {
     nodes {
@@ -265,6 +274,9 @@ query User($login: String!) {
     email
     websiteUrl
     createdAt
+    sponsors {
+      totalCount
+    }
     membersWithRole {
       totalCount
     }

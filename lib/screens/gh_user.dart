@@ -32,20 +32,9 @@ class _Repos extends StatelessWidget {
   Widget build(BuildContext context) {
     return AntList(
       header: Text(title),
+      mode: AntListMode.card,
       children: [
-        for (final v in repos!)
-          RepositoryItem.gh(
-            owner: v.owner.login,
-            avatarUrl: v.owner.avatarUrl,
-            name: v.name,
-            description: v.description,
-            starCount: v.stargazers.totalCount,
-            forkCount: v.forks.totalCount,
-            primaryLanguageName: v.primaryLanguage?.name,
-            primaryLanguageColor: v.primaryLanguage?.color,
-            isPrivate: v.isPrivate,
-            isFork: v.isFork,
-          ),
+        for (final v in repos!) RepositoryItem.gql(v),
       ],
     );
   }
@@ -60,7 +49,6 @@ class _User extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
-    final login = p.login;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -75,28 +63,25 @@ class _User extends StatelessWidget {
           rightWidgets: rightWidgets,
         ),
         CommonStyle.border,
-        Row(children: [
-          EntryItem(
-            count: p.repositories.totalCount,
-            text: AppLocalizations.of(context)!.repositories,
-            url: '/github/$login?tab=repositories',
-          ),
-          EntryItem(
-            count: p.starredRepositories.totalCount,
-            text: AppLocalizations.of(context)!.stars,
-            url: '/github/$login?tab=stars',
-          ),
-          EntryItem(
-            count: p.followers.totalCount,
-            text: AppLocalizations.of(context)!.followers,
-            url: '/github/$login?tab=followers',
-          ),
-          EntryItem(
-            count: p.following.totalCount,
-            text: AppLocalizations.of(context)!.following,
-            url: '/github/$login?tab=following',
-          ),
-        ]),
+        Row(
+          children: [
+            EntryItem(
+              count: p.sponsors.totalCount,
+              text: 'Sponsors',
+              url: 'https://github.com/sponsors/${p.login}',
+            ),
+            EntryItem(
+              count: p.followers.totalCount,
+              text: AppLocalizations.of(context)!.followers,
+              url: '/github/${p.login}?tab=followers',
+            ),
+            EntryItem(
+              count: p.following.totalCount,
+              text: AppLocalizations.of(context)!.following,
+              url: '/github/${p.login}?tab=following',
+            ),
+          ],
+        ),
         CommonStyle.border,
         ContributionWidget(
           weeks: [
@@ -111,28 +96,8 @@ class _User extends StatelessWidget {
         ),
         CommonStyle.border,
         AntList(
+          mode: AntListMode.card,
           children: [
-            AntListItem(
-              prefix: const Icon(Octicons.rss),
-              child: Text(AppLocalizations.of(context)!.events),
-              onClick: () {
-                context.push('/github/$login?tab=events');
-              },
-            ),
-            AntListItem(
-              prefix: const Icon(Octicons.book),
-              child: Text(AppLocalizations.of(context)!.gists),
-              onClick: () {
-                context.push('/github/$login?tab=gists');
-              },
-            ),
-            AntListItem(
-              prefix: const Icon(Octicons.home),
-              child: Text(AppLocalizations.of(context)!.organizations),
-              onClick: () {
-                context.push('/github/$login?tab=organizations');
-              },
-            ),
             if (isNotNullOrEmpty(p.company))
               AntListItem(
                 prefix: const Icon(Octicons.organization),
@@ -176,6 +141,51 @@ class _User extends StatelessWidget {
           ],
         ),
         CommonStyle.verticalGap,
+        AntList(
+          mode: AntListMode.card,
+          children: [
+            AntListItem(
+              prefix: const Icon(Octicons.organization),
+              extra: Text(p.organizations.totalCount.toString()),
+              onClick: () {
+                context.push('/github/${p.login}?tab=organizations');
+              },
+              child: Text(AppLocalizations.of(context)!.organizations),
+            ),
+            AntListItem(
+              prefix: const Icon(Octicons.repo),
+              extra: Text(p.repositories.totalCount.toString()),
+              onClick: () {
+                context.pushUrl('/github/${p.login}?tab=repositories');
+              },
+              child: Text(AppLocalizations.of(context)!.repositories),
+            ),
+            AntListItem(
+              prefix: const Icon(Octicons.star),
+              extra: Text(p.starredRepositories.totalCount.toString()),
+              onClick: () {
+                context.pushUrl('/github/${p.login}?tab=stars');
+              },
+              child: Text(AppLocalizations.of(context)!.stars),
+            ),
+            AntListItem(
+              prefix: const Icon(Octicons.book),
+              extra: Text(p.gists.totalCount.toString()),
+              child: Text(AppLocalizations.of(context)!.gists),
+              onClick: () {
+                context.push('/github/${p.login}?tab=gists');
+              },
+            ),
+            AntListItem(
+              prefix: const Icon(Octicons.rss),
+              child: Text(AppLocalizations.of(context)!.events),
+              onClick: () {
+                context.push('/github/${p.login}?tab=events');
+              },
+            ),
+          ],
+        ),
+        CommonStyle.verticalGap,
         _Repos(
           p.pinnedItems.nodes!.whereType<GRepoParts>(),
           p.repositories.nodes,
@@ -203,20 +213,62 @@ class _Org extends StatelessWidget {
           bio: p.description,
         ),
         CommonStyle.border,
-        Row(children: [
-          EntryItem(
-            count: p.pinnableItems.totalCount,
-            text: AppLocalizations.of(context)!.repositories,
-            url: '/github/${p.login}?tab=repositories',
-          ),
-          EntryItem(
-            count: p.membersWithRole.totalCount,
-            text: AppLocalizations.of(context)!.members,
-            url: '/github/${p.login}?tab=people',
-          ),
+        Row(
+          children: [
+            EntryItem(
+              count: p.sponsors.totalCount,
+              text: 'Sponsors',
+              url: 'https://github.com/sponsors/${p.login}',
+            ),
+            EntryItem(
+              count: p.membersWithRole.totalCount,
+              text: AppLocalizations.of(context)!.members,
+              url: '/github/${p.login}?tab=people',
+            ),
+          ],
+        ),
+        AntList(mode: AntListMode.card, children: [
+          if (isNotNullOrEmpty(p.location))
+            AntListItem(
+              prefix: const Icon(Octicons.location),
+              child: Text(p.location!),
+              onClick: () {
+                launchStringUrl(
+                    'https://www.google.com/maps/place/${p.location!.replaceAll(RegExp(r'\s+'), '')}');
+              },
+            ),
+          if (isNotNullOrEmpty(p.email))
+            AntListItem(
+              prefix: const Icon(Octicons.mail),
+              child: Text(p.email!),
+              onClick: () {
+                launchStringUrl('mailto:${p.email!}');
+              },
+            ),
+          if (isNotNullOrEmpty(p.websiteUrl))
+            AntListItem(
+              prefix: const Icon(Octicons.link),
+              child: Text(p.websiteUrl!),
+              onClick: () {
+                var url = p.websiteUrl!;
+                if (!url.startsWith('http')) {
+                  url = 'http://$url';
+                }
+                launchStringUrl(url);
+              },
+            ),
         ]),
         AntList(
+          mode: AntListMode.card,
           children: [
+            AntListItem(
+              prefix: const Icon(Octicons.repo),
+              extra: Text(p.pinnableItems.totalCount.toString()),
+              child: Text(AppLocalizations.of(context)!.repositories),
+              onClick: () {
+                context.pushUrl('/github/${p.login}?tab=repositories');
+              },
+            ),
             AntListItem(
               prefix: const Icon(Octicons.rss),
               child: Text(AppLocalizations.of(context)!.events),
@@ -224,35 +276,6 @@ class _Org extends StatelessWidget {
                 context.push('/github/${p.login}?tab=events');
               },
             ),
-            if (isNotNullOrEmpty(p.location))
-              AntListItem(
-                prefix: const Icon(Octicons.location),
-                child: Text(p.location!),
-                onClick: () {
-                  launchStringUrl(
-                      'https://www.google.com/maps/place/${p.location!.replaceAll(RegExp(r'\s+'), '')}');
-                },
-              ),
-            if (isNotNullOrEmpty(p.email))
-              AntListItem(
-                prefix: const Icon(Octicons.mail),
-                child: Text(p.email!),
-                onClick: () {
-                  launchStringUrl('mailto:${p.email!}');
-                },
-              ),
-            if (isNotNullOrEmpty(p.websiteUrl))
-              AntListItem(
-                prefix: const Icon(Octicons.link),
-                child: Text(p.websiteUrl!),
-                onClick: () {
-                  var url = p.websiteUrl!;
-                  if (!url.startsWith('http')) {
-                    url = 'http://$url';
-                  }
-                  launchStringUrl(url);
-                },
-              ),
           ],
         ),
         CommonStyle.verticalGap,

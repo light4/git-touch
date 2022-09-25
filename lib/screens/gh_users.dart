@@ -76,7 +76,7 @@ class GhOrgs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GOrgParts, String?>(
-      title: const AppBarTitle('Members'),
+      title: const AppBarTitle('Organizations'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GOrgsReq((b) {

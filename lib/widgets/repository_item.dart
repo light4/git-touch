@@ -92,7 +92,7 @@ class RepositoryItem extends StatelessWidget {
         avatarLink = '/github/$owner',
         url = '/github/$owner/$name';
 
-  factory RepositoryItem.gql(GRepoParts v, {required note}) {
+  factory RepositoryItem.gql(GRepoParts v, {String? note}) {
     return RepositoryItem.gh(
       owner: v.owner.login,
       avatarUrl: v.owner.avatarUrl,
