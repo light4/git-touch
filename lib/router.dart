@@ -254,7 +254,7 @@ final router = GoRouter(
                 ),
                 GoRoute(
                   path: 'pull',
-                  redirect: (state) =>
+                  redirect: (_, state) =>
                       '/github/${state.params['owner']!}/${state.params['name']!}/pulls',
                   routes: [
                     GoRoute(
