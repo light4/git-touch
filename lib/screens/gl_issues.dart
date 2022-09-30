@@ -45,7 +45,7 @@ class GlIssuesScreen extends StatelessWidget {
             ? null
             : Wrap(spacing: 4, runSpacing: 4, children: [
                 for (var label in p.labels!)
-                  HexColorTag(name: label, color: '#428BCA')
+                  HexColorTag(name: label, color: '428BCA')
               ]),
         url: '/gitlab/projects/${p.projectId}/issues/${p.iid}',
       ),

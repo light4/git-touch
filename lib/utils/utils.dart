@@ -47,15 +47,6 @@ class CommonStyle {
   static final monospace = Platform.isIOS ? 'Menlo' : 'monospace'; // FIXME:
 }
 
-// TODO:
-// Color getFontColorByBrightness(Color color) {
-//   var grayscale = color.red * 0.3 + color.green * 0.59 + color.blue * 0.11;
-//   // Fimber.d('color: $color, $grayscale');
-
-//   var showWhite = grayscale < 128;
-//   return showWhite ? AntTheme.of(context).white : AntTheme.of(context).text;
-// }
-
 TextSpan createLinkSpan(
   BuildContext context,
   String? text,

@@ -52,7 +52,7 @@ class GhIssuesScreen extends StatelessWidget {
               ? null
               : Wrap(spacing: 4, runSpacing: 4, children: [
                   for (var label in p.labels!.nodes!)
-                    HexColorTag(name: label.name, color: '#${label.color}')
+                    HexColorTag(name: label.name, color: label.color)
                 ]),
           url: '/github/$owner/$name/issues/${p.number}',
         );
