@@ -246,11 +246,16 @@ final router = GoRouter(
                   ],
                 ),
                 GoRoute(
-                  path: 'pull',
+                  path: 'pulls',
                   builder: (context, state) => GhPullsScreen(
                     state.params['owner']!,
                     state.params['name']!,
                   ),
+                ),
+                GoRoute(
+                  path: 'pull',
+                  redirect: (state) =>
+                      '/github/${state.params['owner']!}/${state.params['name']!}/pulls',
                   routes: [
                     GoRoute(
                       path: ':number',
