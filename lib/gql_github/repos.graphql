@@ -1,0 +1,38 @@
+# import './fragments.graphql'
+
+fragment RepoPartsWithTime on Repository {
+  ...RepoParts
+  updatedAt
+}
+query Repos($login: String!, $after: String) {
+  repositoryOwner(login: $login) {
+    repositories(
+      first: 30
+      after: $after
+      orderBy: { field: UPDATED_AT, direction: DESC }
+    ) {
+      pageInfo {
+        ...PageInfoParts
+      }
+      nodes {
+        ...RepoPartsWithTime
+      }
+    }
+  }
+}
+query Stars($login: String!, $after: String) {
+  user(login: $login) {
+    starredRepositories(
+      first: 30
+      after: $after
+      orderBy: { field: STARRED_AT, direction: DESC }
+    ) {
+      pageInfo {
+        ...PageInfoParts
+      }
+      nodes {
+        ...RepoPartsWithTime
+      }
+    }
+  }
+}

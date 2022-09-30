@@ -1,10 +1,8 @@
-import 'package:ferry/ferry.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
-import 'package:git_touch/graphql/__generated__/schema.schema.gql.dart';
+import 'package:git_touch/gql_github/__generated__/commits.data.gql.dart';
+import 'package:git_touch/gql_github/__generated__/commits.req.gql.dart';
+import 'package:git_touch/gql_github/__generated__/schema.schema.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
@@ -42,7 +40,7 @@ class GhCommits extends StatelessWidget {
           b.vars.ref = branch ?? '';
           b.vars.after = cursor;
         });
-        final OperationResponse<GCommitsData, GCommitsVars?> res =
+        final res =
             await context.read<AuthModel>().gqlClient.request(req).first;
         final ref = res.data!.repository!.defaultBranchRef ??
             res.data!.repository!.ref!;

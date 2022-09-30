@@ -1,0 +1,101 @@
+# import './fragments.graphql'
+
+fragment UserPartsFull on User {
+  ...UserParts
+  company
+  bio
+  url
+  email
+  websiteUrl
+  viewerCanFollow # TODO: remove in viewer query
+  viewerIsFollowing
+  sponsors {
+    totalCount
+  }
+  followers {
+    totalCount
+  }
+  following {
+    totalCount
+  }
+  contributionsCollection {
+    contributionCalendar {
+      weeks {
+        contributionDays {
+          color
+        }
+      }
+    }
+  }
+  organizations {
+    totalCount
+  }
+  repositories(
+    first: 6
+    ownerAffiliations: OWNER
+    orderBy: { field: STARGAZERS, direction: DESC }
+  ) {
+    totalCount
+    nodes {
+      ...RepoParts
+    }
+  }
+  starredRepositories {
+    totalCount
+  }
+  gists {
+    totalCount
+  }
+  pinnedItems(first: 6) {
+    nodes {
+      ... on Repository {
+        ...RepoParts
+      }
+    }
+  }
+}
+
+query Viewer {
+  viewer {
+    ...UserPartsFull
+  }
+}
+
+query User($login: String!) {
+  user(login: $login) {
+    ...UserPartsFull
+  }
+  organization(login: $login) {
+    login
+    avatarUrl
+    name
+    url
+    description
+    location
+    email
+    websiteUrl
+    createdAt
+    viewerIsFollowing
+    sponsors {
+      totalCount
+    }
+    membersWithRole {
+      totalCount
+    }
+    pinnedItems(first: 6) {
+      nodes {
+        ... on Repository {
+          ...RepoParts
+        }
+      }
+    }
+    pinnableItems(first: 6, types: [REPOSITORY]) {
+      totalCount
+      nodes {
+        ... on Repository {
+          ...RepoParts
+        }
+      }
+    }
+  }
+}

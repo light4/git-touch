@@ -1,9 +1,7 @@
-import 'package:ferry/ferry.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
+import 'package:git_touch/gql_github/__generated__/issues.data.gql.dart';
+import 'package:git_touch/gql_github/__generated__/issues.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/action_entry.dart';
@@ -31,7 +29,7 @@ class GhIssuesScreen extends StatelessWidget {
           b.vars.name = name;
           b.vars.cursor = cursor;
         });
-        final OperationResponse<GIssuesData, GIssuesVars?> res =
+        final res =
             await context.read<AuthModel>().gqlClient.request(req).first;
         final issues = res.data!.repository!.issues;
         return ListPayload(

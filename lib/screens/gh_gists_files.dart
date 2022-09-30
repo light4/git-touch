@@ -1,11 +1,9 @@
 import 'package:antd_mobile/antd_mobile.dart';
-import 'package:ferry/ferry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
+import 'package:git_touch/gql_github/__generated__/gist.data.gql.dart';
+import 'package:git_touch/gql_github/__generated__/gist.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
@@ -25,7 +23,7 @@ class GhGistsFilesScreen extends StatelessWidget {
         final req = GGistReq((b) => b
           ..vars.login = login
           ..vars.name = id);
-        final OperationResponse<GGistData, GGistVars?> res =
+        final res =
             await context.read<AuthModel>().gqlClient.request(req).first;
         final gist = res.data!.user!.gist;
         return gist;

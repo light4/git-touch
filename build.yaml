@@ -4,7 +4,7 @@ targets:
       ferry_generator|graphql_builder:
         enabled: true
         options:
-          schema: git_touch|lib/graphql/schema.graphql
+          schema: git_touch|lib/gql_github/schema.graphql
           type_overrides:
             DateTime:
               name: DateTime
@@ -15,7 +15,7 @@ targets:
       ferry_generator|serializer_builder:
         enabled: true
         options:
-          schema: git_touch|lib/graphql/schema.graphql
+          schema: git_touch|lib/gql_github/schema.graphql
           custom_serializers:
             - import: package:git_touch/utils/date_time_serializer.dart
               name: DateTimeSerializer

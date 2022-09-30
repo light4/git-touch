@@ -1,7 +1,7 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
-import 'package:git_touch/graphql/__generated__/schema.schema.gql.dart';
+import 'package:git_touch/gql_github/__generated__/issue.data.gql.dart';
+import 'package:git_touch/gql_github/__generated__/schema.schema.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';

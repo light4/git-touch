@@ -1,8 +1,6 @@
-import 'package:ferry/ferry.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
+import 'package:git_touch/gql_github/__generated__/fragments.data.gql.dart';
+import 'package:git_touch/gql_github/__generated__/users.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
@@ -23,8 +21,7 @@ class GhFollowers extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final OperationResponse<GFollowersData, GFollowersVars?> res =
-            await auth.gqlClient.request(req).first;
+        final res = await auth.gqlClient.request(req).first;
         final p = res.data!.user!.followers;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -53,8 +50,7 @@ class GhFollowing extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final OperationResponse<GFollowingData, GFollowingVars?> res =
-            await auth.gqlClient.request(req).first;
+        final res = await auth.gqlClient.request(req).first;
         final p = res.data!.user!.following;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -112,8 +108,7 @@ class GhMembers extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final OperationResponse<GMembersData, GMembersVars?> res =
-            await auth.gqlClient.request(req).first;
+        final res = await auth.gqlClient.request(req).first;
         final p = res.data!.organization!.membersWithRole;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -144,8 +139,7 @@ class GhWachers extends StatelessWidget {
           b.vars.name = name;
           b.vars.after = cursor;
         });
-        final OperationResponse<GWatchersData, GWatchersVars?> res =
-            await auth.gqlClient.request(req).first;
+        final res = await auth.gqlClient.request(req).first;
         final p = res.data!.repository!.watchers;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -176,8 +170,7 @@ class GhStargazers extends StatelessWidget {
           b.vars.name = name;
           b.vars.after = cursor;
         });
-        final OperationResponse<GStargazersData, GStargazersVars?> res =
-            await auth.gqlClient.request(req).first;
+        final res = await auth.gqlClient.request(req).first;
         final p = res.data!.repository!.stargazers;
         return ListPayload(
           cursor: p.pageInfo.endCursor,

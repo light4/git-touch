@@ -1,8 +1,6 @@
-import 'package:ferry/ferry.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
+import 'package:git_touch/gql_github/__generated__/repos.data.gql.dart';
+import 'package:git_touch/gql_github/__generated__/repos.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
@@ -24,8 +22,7 @@ class GhRepos extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final OperationResponse<GReposData, GReposVars?> res =
-            await auth.gqlClient.request(req).first;
+        final res = await auth.gqlClient.request(req).first;
         final p = res.data!.repositoryOwner!.repositories;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -55,8 +52,7 @@ class GhStars extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final OperationResponse<GStarsData, GStarsVars?> res =
-            await auth.gqlClient.request(req).first;
+        final res = await auth.gqlClient.request(req).first;
         final p = res.data!.user!.starredRepositories;
         return ListPayload(
           cursor: p.pageInfo.endCursor,

@@ -1,9 +1,7 @@
-import 'package:ferry/ferry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/graphql/__generated__/github.data.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.req.gql.dart';
-import 'package:git_touch/graphql/__generated__/github.var.gql.dart';
+import 'package:git_touch/gql_github/__generated__/releases.data.gql.dart';
+import 'package:git_touch/gql_github/__generated__/releases.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
@@ -25,7 +23,7 @@ class GhReleasesScreen extends StatelessWidget {
           ..vars.owner = owner
           ..vars.name = name
           ..vars.cursor = page);
-        final OperationResponse<GReleasesData, GReleasesVars?> res =
+        final res =
             await context.read<AuthModel>().gqlClient.request(req).first;
         final releases = res.data!.repository!.releases;
         return ListPayload(

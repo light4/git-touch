@@ -1,0 +1,41 @@
+fragment PageInfoParts on PageInfo {
+  hasNextPage
+  endCursor
+}
+
+fragment RepoParts on Repository {
+  owner {
+    login
+    avatarUrl
+  }
+  name
+  description
+  isPrivate
+  isFork
+  stargazers {
+    totalCount
+  }
+  forks {
+    totalCount
+  }
+  primaryLanguage {
+    color
+    name
+  }
+}
+
+fragment UserParts on User {
+  login
+  name
+  avatarUrl
+  location
+  createdAt
+}
+
+fragment OrgParts on Organization {
+  login
+  name
+  avatarUrl
+  location
+  createdAt
+}
