@@ -1,5 +1,3 @@
-# import './fragments.graphql'
-
 query Releases($name: String!, $owner: String!, $cursor: String) {
   repository(name: $name, owner: $owner) {
     releases(
@@ -8,7 +6,8 @@ query Releases($name: String!, $owner: String!, $cursor: String) {
       orderBy: { field: CREATED_AT, direction: DESC }
     ) {
       pageInfo {
-        ...PageInfoParts
+        hasNextPage
+        endCursor
       }
       nodes {
         tagName

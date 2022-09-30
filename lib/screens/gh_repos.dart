@@ -14,7 +14,7 @@ class GhRepos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListStatefulScaffold<GRepoPartsWithTime, String?>(
+    return ListStatefulScaffold<GRepoParts, String?>(
       title: const AppBarTitle('Repositories'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
@@ -44,7 +44,7 @@ class GhStars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListStatefulScaffold<GRepoPartsWithTime, String?>(
+    return ListStatefulScaffold<GRepoParts, String?>(
       title: const AppBarTitle('Stars'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();

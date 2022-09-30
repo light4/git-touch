@@ -1,9 +1,25 @@
-# import './fragments.graphql'
-
-fragment RepoPartsWithTime on Repository {
-  ...RepoParts
+fragment RepoParts on Repository {
+  owner {
+    login
+    avatarUrl
+  }
+  name
+  description
+  isPrivate
+  isFork
+  stargazers {
+    totalCount
+  }
+  forks {
+    totalCount
+  }
+  primaryLanguage {
+    color
+    name
+  }
   updatedAt
 }
+
 query Repos($login: String!, $after: String) {
   repositoryOwner(login: $login) {
     repositories(
@@ -12,14 +28,16 @@ query Repos($login: String!, $after: String) {
       orderBy: { field: UPDATED_AT, direction: DESC }
     ) {
       pageInfo {
-        ...PageInfoParts
+        hasNextPage
+        endCursor
       }
       nodes {
-        ...RepoPartsWithTime
+        ...RepoParts
       }
     }
   }
 }
+
 query Stars($login: String!, $after: String) {
   user(login: $login) {
     starredRepositories(
@@ -28,10 +46,11 @@ query Stars($login: String!, $after: String) {
       orderBy: { field: STARRED_AT, direction: DESC }
     ) {
       pageInfo {
-        ...PageInfoParts
+        hasNextPage
+        endCursor
       }
       nodes {
-        ...RepoPartsWithTime
+        ...RepoParts
       }
     }
   }

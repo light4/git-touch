@@ -1,10 +1,9 @@
-# import './fragments.graphql'
-
 query Gists($login: String!, $after: String) {
   user(login: $login) {
     gists(first: 30, after: $after) {
       pageInfo {
-        ...PageInfoParts
+        hasNextPage
+        endCursor
       }
       nodes {
         name

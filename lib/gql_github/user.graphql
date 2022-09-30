@@ -1,7 +1,30 @@
-# import './fragments.graphql'
+fragment RepoParts on Repository {
+  owner {
+    login
+    avatarUrl
+  }
+  name
+  description
+  isPrivate
+  isFork
+  stargazers {
+    totalCount
+  }
+  forks {
+    totalCount
+  }
+  primaryLanguage {
+    color
+    name
+  }
+}
 
-fragment UserPartsFull on User {
-  ...UserParts
+fragment UserParts on User {
+  login
+  name
+  avatarUrl
+  location
+  createdAt
   company
   bio
   url
@@ -57,13 +80,13 @@ fragment UserPartsFull on User {
 
 query Viewer {
   viewer {
-    ...UserPartsFull
+    ...UserParts
   }
 }
 
 query User($login: String!) {
   user(login: $login) {
-    ...UserPartsFull
+    ...UserParts
   }
   organization(login: $login) {
     login

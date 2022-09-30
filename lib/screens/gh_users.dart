@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/gql_github/__generated__/fragments.data.gql.dart';
+import 'package:git_touch/gql_github/__generated__/users.data.gql.dart';
 import 'package:git_touch/gql_github/__generated__/users.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';

@@ -2,7 +2,6 @@ import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/gql_github/__generated__/fragments.data.gql.dart';
 import 'package:git_touch/gql_github/__generated__/user.data.gql.dart';
 import 'package:git_touch/gql_github/__generated__/user.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
@@ -35,7 +34,19 @@ class _Repos extends StatelessWidget {
       header: Text(title),
       mode: AntListMode.card,
       children: [
-        for (final v in repos!) RepositoryItem.gql(v),
+        for (final v in repos!)
+          RepositoryItem.gh(
+            owner: v.owner.login,
+            avatarUrl: v.owner.avatarUrl,
+            name: v.name,
+            description: v.description,
+            starCount: v.stargazers.totalCount,
+            forkCount: v.forks.totalCount,
+            primaryLanguageName: v.primaryLanguage?.name,
+            primaryLanguageColor: v.primaryLanguage?.color,
+            isPrivate: v.isPrivate,
+            isFork: v.isFork,
+          ),
       ],
     );
   }
@@ -43,7 +54,7 @@ class _Repos extends StatelessWidget {
 
 class _User extends StatelessWidget {
   const _User(this.p, {this.isViewer = false, this.rightWidgets = const []});
-  final GUserPartsFull p;
+  final GUserParts p;
   final bool isViewer;
   final List<Widget> rightWidgets;
 
@@ -203,7 +214,7 @@ class GhViewerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthModel>(context);
-    return RefreshStatefulScaffold<GUserPartsFull?>(
+    return RefreshStatefulScaffold<GUserParts?>(
       fetch: () async {
         final req = GViewerReq();
         final res = await auth.gqlClient.request(req).first;

@@ -1,9 +1,8 @@
-# import './fragments.graphql'
-
 fragment CommitsRefCommit on Commit {
   history(first: 30, after: $after) {
     pageInfo {
-      ...PageInfoParts
+      hasNextPage
+      endCursor
     }
     nodes {
       url
