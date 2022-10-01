@@ -18,6 +18,7 @@ import 'package:git_touch/widgets/user_header.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gql_github/user.data.gql.dart';
 import 'package:gql_github/user.req.gql.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:provider/provider.dart';
 
 class _Repos extends StatelessWidget {
@@ -126,8 +127,7 @@ class _User extends StatelessWidget {
                 prefix: const Icon(Octicons.location),
                 child: Text(p.location!),
                 onClick: () {
-                  launchStringUrl(
-                      'https://www.google.com/maps/place/${p.location!.replaceAll(RegExp(r'\s+'), '')}');
+                  MapsLauncher.launchQuery(p.location!);
                 },
               ),
             if (isNotNullOrEmpty(p.email))

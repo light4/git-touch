@@ -72,6 +72,7 @@ dependencies:
   google_fonts:
   go_router:
   from_css_color:
+  maps_launcher:
   antd_mobile:
     path: ../ant-design-mobile-flutter
 
