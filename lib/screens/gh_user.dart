@@ -217,7 +217,7 @@ class GhViewerScreen extends StatelessWidget {
     return RefreshStatefulScaffold<GUserParts?>(
       fetch: () async {
         final req = GViewerReq();
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         return res.data?.viewer;
       },
       title: AppBarTitle(AppLocalizations.of(context)!.me),
@@ -243,7 +243,7 @@ class GhUserScreen extends StatelessWidget {
     return RefreshStatefulScaffold<GUserData?>(
       fetch: () async {
         final req = GUserReq((b) => b..vars.login = login);
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         return res.data;
       },
       title: AppBarTitle(login),

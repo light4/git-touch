@@ -664,7 +664,8 @@ class AuthModel with ChangeNotifier {
             StorageKeys.getDefaultStartTabKey(activeAccount!.platform)) ??
         0;
     _ghClient = null;
-    _gqlClient = null;
+    _ghGqlClient = null;
+    _glGqlClient = null;
     notifyListeners();
 
     // TODO: strategy
@@ -689,20 +690,30 @@ class AuthModel with ChangeNotifier {
     return _ghClient!;
   }
 
-  Client? _gqlClient;
-  Client get gqlClient {
-    _gqlClient ??= Client(
+  Client? _ghGqlClient;
+  Client get ghGqlClient {
+    return _ghGqlClient ??= Client(
       link: HttpLink(
         '$_apiPrefix/graphql',
         defaultHeaders: {HttpHeaders.authorizationHeader: 'token $token'},
       ),
       // https://ferrygraphql.com/docs/fetch-policies#default-fetchpolicies
-      defaultFetchPolicies: {
-        OperationType.query: FetchPolicy.NetworkOnly,
-      },
+      defaultFetchPolicies: {OperationType.query: FetchPolicy.NetworkOnly},
     );
+  }
 
-    return _gqlClient!;
+  Client? _glGqlClient;
+  Client get glGqlClient {
+    return _glGqlClient ??= Client(
+      link: HttpLink(
+        Uri.parse(activeAccount!.domain)
+            .replace(path: '/api/graphql')
+            .toString(),
+        defaultHeaders: {'Private-Token': token},
+      ),
+      // https://ferrygraphql.com/docs/fetch-policies#default-fetchpolicies
+      defaultFetchPolicies: {OperationType.query: FetchPolicy.NetworkOnly},
+    );
   }
 
   Future<dynamic> query(String query, [String? token]) async {

@@ -21,7 +21,7 @@ class GhFollowers extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         final p = res.data!.user!.followers;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -50,7 +50,7 @@ class GhFollowing extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         final p = res.data!.user!.following;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -79,7 +79,7 @@ class GhOrgs extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         final p = res.data!.user!.organizations;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -108,7 +108,7 @@ class GhMembers extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         final p = res.data!.organization!.membersWithRole;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -139,7 +139,7 @@ class GhWachers extends StatelessWidget {
           b.vars.name = name;
           b.vars.after = cursor;
         });
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         final p = res.data!.repository!.watchers;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -170,7 +170,7 @@ class GhStargazers extends StatelessWidget {
           b.vars.name = name;
           b.vars.after = cursor;
         });
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         final p = res.data!.repository!.stargazers;
         return ListPayload(
           cursor: p.pageInfo.endCursor,

@@ -22,7 +22,7 @@ class GhRepos extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         final p = res.data!.repositoryOwner!.repositories;
         return ListPayload(
           cursor: p.pageInfo.endCursor,
@@ -52,7 +52,7 @@ class GhStars extends StatelessWidget {
           b.vars.login = login;
           b.vars.after = cursor;
         });
-        final res = await auth.gqlClient.request(req).first;
+        final res = await auth.ghGqlClient.request(req).first;
         final p = res.data!.user!.starredRepositories;
         return ListPayload(
           cursor: p.pageInfo.endCursor,

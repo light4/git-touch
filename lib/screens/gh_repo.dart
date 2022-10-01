@@ -56,7 +56,7 @@ class GhRepoScreen extends StatelessWidget {
           ..vars.branchSpecified = branch != null
           ..vars.branch = branch ?? '');
         final res =
-            await context.read<AuthModel>().gqlClient.request(req).first;
+            await context.read<AuthModel>().ghGqlClient.request(req).first;
         final repo = res.data!.repository;
 
         final ghClient = context.read<AuthModel>().ghClient;

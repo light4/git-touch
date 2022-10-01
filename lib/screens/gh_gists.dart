@@ -22,7 +22,7 @@ class GhGistsScreen extends StatelessWidget {
           ..vars.login = login
           ..vars.after = page);
         final res =
-            await context.read<AuthModel>().gqlClient.request(req).first;
+            await context.read<AuthModel>().ghGqlClient.request(req).first;
         final gists = res.data!.user!.gists;
         return ListPayload(
           cursor: gists.pageInfo.endCursor,

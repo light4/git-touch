@@ -16,7 +16,7 @@ class GhMetaScreen extends StatelessWidget {
       fetch: () async {
         final req = GMetaReq();
         final res =
-            await context.read<AuthModel>().gqlClient.request(req).first;
+            await context.read<AuthModel>().ghGqlClient.request(req).first;
         return res.data!.meta;
       },
       bodyBuilder: (meta, _) {

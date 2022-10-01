@@ -24,7 +24,7 @@ class GhReleasesScreen extends StatelessWidget {
           ..vars.name = name
           ..vars.cursor = page);
         final res =
-            await context.read<AuthModel>().gqlClient.request(req).first;
+            await context.read<AuthModel>().ghGqlClient.request(req).first;
         final releases = res.data!.repository!.releases;
         return ListPayload(
           cursor: releases.pageInfo.endCursor,
