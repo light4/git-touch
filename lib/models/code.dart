@@ -8,21 +8,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CodeModel with ChangeNotifier {
   static var themes = themeMap.keys.toList();
   static const fontSizes = [12, 13, 14, 15, 16, 17, 18, 19, 20];
-  static const fontFamilies = [
+  static final fontFamilies = [
     'System',
-    'JetBrains Mono',
-    'Fira Code',
-    'Inconsolata',
-    'PT Mono',
-    'Source Code Pro',
-    'Ubuntu Mono',
-    // 'Cascadia Code', // TODO: https://github.com/google/fonts/issues/2179
+    ...GoogleFonts.asMap().keys,
   ];
 
   String _theme = 'vs';
   String _themeDark = 'vs2015';
   int _fontSize = 14;
-  String _fontFamily = 'JetBrains Mono';
+  String _fontFamily = 'System';
 
   String get theme => _theme;
   String get themeDark => _themeDark;

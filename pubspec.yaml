@@ -134,7 +134,6 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - images/
-    - google_fonts/
 
 flutter_intl:
   enabled: true

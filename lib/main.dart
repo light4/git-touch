@@ -6,7 +6,6 @@ import 'package:git_touch/models/code.dart';
 import 'package:git_touch/models/notification.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -18,8 +17,6 @@ void main() async {
     },
     // Init your App.
     appRunner: () async {
-      GoogleFonts.config.allowRuntimeFetching = false;
-
       final notificationModel = NotificationModel();
       final themeModel = ThemeModel();
       final authModel = AuthModel();
