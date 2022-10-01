@@ -2,8 +2,6 @@ import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/gql_github/__generated__/user.data.gql.dart';
-import 'package:git_touch/gql_github/__generated__/user.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
@@ -18,6 +16,8 @@ import 'package:git_touch/widgets/repository_item.dart';
 import 'package:git_touch/widgets/text_with_at.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gql_github/user.data.gql.dart';
+import 'package:gql_github/user.req.gql.dart';
 import 'package:provider/provider.dart';
 
 class _Repos extends StatelessWidget {

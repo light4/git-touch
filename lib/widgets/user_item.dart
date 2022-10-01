@@ -1,9 +1,9 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/gql_github/__generated__/users.data.gql.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
+import 'package:gql_github/users.data.gql.dart';
 import 'package:provider/provider.dart';
 
 const userGqlChunk = '''

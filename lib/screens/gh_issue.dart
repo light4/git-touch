@@ -1,7 +1,5 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/gql_github/__generated__/issue.data.gql.dart';
-import 'package:git_touch/gql_github/__generated__/issue.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/long_list.dart';
@@ -12,6 +10,8 @@ import 'package:git_touch/widgets/comment_item.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/timeline_item.dart';
 import 'package:github/github.dart' as github;
+import 'package:gql_github/issue.data.gql.dart';
+import 'package:gql_github/issue.req.gql.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
 

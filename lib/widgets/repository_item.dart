@@ -2,7 +2,6 @@ import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:from_css_color/from_css_color.dart';
-import 'package:git_touch/gql_github/__generated__/repos.data.gql.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/models/gogs.dart';
@@ -10,6 +9,7 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:github/github.dart' as github;
+import 'package:gql_github/repos.data.gql.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 

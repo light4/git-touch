@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/gql_github/__generated__/users.data.gql.dart';
-import 'package:git_touch/gql_github/__generated__/users.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/user_item.dart';
+import 'package:gql_github/users.data.gql.dart';
+import 'package:gql_github/users.req.gql.dart';
 import 'package:provider/provider.dart';
 
 class GhFollowers extends StatelessWidget {

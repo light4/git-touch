@@ -31,6 +31,10 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  gql_github:
+    path: ./packages/gql_github
+  gql_gitlab:
+    path: ./packages/gql_gitlab
   cupertino_icons:
   ferry:
   ferry_flutter:

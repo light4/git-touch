@@ -385,6 +385,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.1"
+  gql_github:
+    dependency: "direct main"
+    description:
+      path: "packages/gql_github"
+      relative: true
+    source: path
+    version: "0.0.0"
+  gql_gitlab:
+    dependency: "direct main"
+    description:
+      path: "packages/gql_gitlab"
+      relative: true
+    source: path
+    version: "0.0.0"
   gql_http_link:
     dependency: "direct main"
     description:

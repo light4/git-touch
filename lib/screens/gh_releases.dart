@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/gql_github/__generated__/releases.data.gql.dart';
-import 'package:git_touch/gql_github/__generated__/releases.req.gql.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/release_item.dart';
+import 'package:gql_github/releases.data.gql.dart';
+import 'package:gql_github/releases.req.gql.dart';
 import 'package:provider/provider.dart';
 
 class GhReleasesScreen extends StatelessWidget {
