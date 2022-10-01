@@ -62,6 +62,9 @@ class MyApp extends StatelessWidget {
             theme: CupertinoThemeData(
               brightness: theme.brightness,
               primaryColor: antTheme.colorPrimary,
+              scaffoldBackgroundColor: theme.brightness == Brightness.dark
+                  ? const Color(0x00ff2629)
+                  : const Color(0xfffafbfc),
               textTheme: CupertinoTextThemeData(
                 textStyle: TextStyle(
                   fontSize: antTheme.fontSizeMain,
