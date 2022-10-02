@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/models/notification.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/tab_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
@@ -106,7 +105,6 @@ ${item.key}: pullRequest(number: ${item.subject!.number}) {
     MapEntry<String, NotificationGroup> entry,
     Map<String, NotificationGroup> groupMap,
   ) {
-    final theme = Provider.of<ThemeModel>(context);
     final group = entry.value;
     return ListGroup(
       title: Row(

@@ -2,7 +2,6 @@ import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
@@ -24,7 +23,6 @@ class GePullScreen extends StatelessWidget {
   List<ActionItem> _buildCommentActionItem(
       BuildContext context, GiteeComment comment) {
     final auth = context.read<AuthModel>();
-    final theme = context.read<ThemeModel>();
     return [
       ActionItem(
         text: 'Edit',
@@ -81,7 +79,6 @@ class GePullScreen extends StatelessWidget {
         final comments = data.item2;
         final files = data.item3;
         final commits = data.item4;
-        final theme = context.read<ThemeModel>();
         var additions = 0;
         var deletions = 0;
         for (final file in files) {

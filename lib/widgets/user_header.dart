@@ -1,10 +1,8 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
-import 'package:provider/provider.dart';
 
 class UserHeader extends StatelessWidget {
   const UserHeader({
@@ -27,7 +25,6 @@ class UserHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     final right = isViewer
         ? [
             MutationButton(

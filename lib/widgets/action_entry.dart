@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:provider/provider.dart';
 
 class ActionEntry extends StatelessWidget {
   const ActionEntry({this.url, this.iconData, this.onTap});
@@ -11,7 +9,6 @@ class ActionEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return CupertinoButton(
       minSize: 0,
       padding: EdgeInsets.zero,

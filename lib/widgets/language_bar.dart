@@ -1,10 +1,8 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:from_css_color/from_css_color.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:github/github.dart' as github;
-import 'package:provider/provider.dart';
 
 class LanguageBarItem {
   LanguageBarItem({
@@ -63,7 +61,6 @@ class LanguageBar extends StatelessWidget {
   }
 
   Widget _buildPopup(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return Container(
       color: AntTheme.of(context).colorBackground,
       padding: CommonStyle.padding,

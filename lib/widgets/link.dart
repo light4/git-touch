@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:provider/provider.dart';
 
 // TODO:
 class CupertinoLink extends StatefulWidget {
@@ -60,8 +58,6 @@ class LinkWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
-
     Widget w = CupertinoButton(
       minSize: 0,
       padding: EdgeInsets.zero,

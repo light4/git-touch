@@ -2,7 +2,6 @@ import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/bitbucket.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
@@ -45,7 +44,6 @@ class BbIssueScreen extends StatelessWidget {
       bodyBuilder: (data, _) {
         final issue = data.item1;
         final comments = data.item2;
-        final theme = context.read<ThemeModel>();
         return Column(children: <Widget>[
           Container(
               padding: CommonStyle.padding,

@@ -4,13 +4,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/github.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/branch_name.dart';
 import 'package:git_touch/widgets/issue_icon.dart';
 import 'package:git_touch/widgets/link.dart';
-import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class EventItem extends StatelessWidget {
@@ -18,7 +16,6 @@ class EventItem extends StatelessWidget {
   final GithubEvent e;
 
   InlineSpan _buildLinkSpan(BuildContext context, String? text, String? url) {
-    final theme = Provider.of<ThemeModel>(context);
     return TextSpan(
       text: text,
       style: TextStyle(color: AntTheme.of(context).colorPrimary),
@@ -45,7 +42,6 @@ class EventItem extends StatelessWidget {
     required List<InlineSpan> spans,
     Widget? card,
   }) {
-    final theme = Provider.of<ThemeModel>(context);
     return Container(
       padding: CommonStyle.padding,
       child: Column(
@@ -97,7 +93,6 @@ class EventItem extends StatelessWidget {
   }
 
   Widget _buildDefaultItem(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return _buildItem(
       context: context,
       spans: [
@@ -112,7 +107,6 @@ class EventItem extends StatelessWidget {
   }
 
   Widget _buildCommitsCard(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return LinkWidget(
       url:
           '/github/${e.repoOwner}/${e.repoName}/compare/${e.payload!.before}/${e.payload!.head}',
@@ -172,7 +166,6 @@ class EventItem extends StatelessWidget {
 
   // Todo: Add a screen for the url
   Widget _buildCommitCommentCard(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return LinkWidget(
       url: e.payload!.comment!.htmlUrl,
       child: Container(
@@ -214,7 +207,6 @@ class EventItem extends StatelessWidget {
   Widget _buildIssueCard(
       BuildContext context, GithubEventIssue issue, String? body,
       {isPullRequest = false}) {
-    final theme = Provider.of<ThemeModel>(context);
     IssueIconState state;
     if (isPullRequest) {
       if (issue.merged == true) {

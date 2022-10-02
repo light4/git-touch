@@ -1,7 +1,6 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/tab_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
@@ -9,7 +8,6 @@ import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_item.dart';
 import 'package:github_trending/github_trending.dart';
-import 'package:provider/provider.dart';
 
 class GhTrendingScreen extends StatelessWidget {
   static final trending = GithubTrending(prefix: 'https://gtrend.yapie.me');
@@ -30,7 +28,6 @@ class GhTrendingScreen extends StatelessWidget {
         }
       },
       bodyBuilder: (payload, activeTab) {
-        final theme = Provider.of<ThemeModel>(context);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: join(

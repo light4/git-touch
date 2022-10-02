@@ -3,14 +3,12 @@ import 'dart:core';
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/branch_name.dart';
 import 'package:git_touch/widgets/comment_item.dart';
 import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:gql_github/issue.data.gql.dart';
 import 'package:gql_github/schema.schema.gql.dart';
-import 'package:provider/provider.dart';
 
 TextSpan createUserSpan(BuildContext context, String? login) {
   return createLinkSpan(context, login, '/github/$login');
@@ -30,8 +28,6 @@ class TimelineEventItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
-
     return Row(
       children: <Widget>[
         const SizedBox(width: 6),
@@ -73,8 +69,6 @@ class TimelineItem extends StatelessWidget {
   }
 
   Widget _buildByType(BuildContext context, String? type) {
-    final theme = Provider.of<ThemeModel>(context);
-
     switch (type) {
       // common types
       case 'PullRequestCommit':

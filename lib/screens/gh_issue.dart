@@ -1,7 +1,6 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/long_list.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
@@ -29,7 +28,6 @@ class GhIssueScreen extends StatelessWidget {
     required Widget body,
     Iterable<Widget> extraWidgets = const [],
   }) {
-    final theme = Provider.of<ThemeModel>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
@@ -134,7 +132,6 @@ class GhIssueScreen extends StatelessWidget {
         }
       },
       headerBuilder: (p) {
-        final theme = Provider.of<ThemeModel>(context);
         if (p.issueOrPullRequest!.G__typename == 'Issue') {
           final issue = p.issueOrPullRequest
               as GIssueData_repository_issueOrPullRequest__asIssue;

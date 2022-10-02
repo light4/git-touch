@@ -2,7 +2,6 @@ import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/issue_icon.dart';
 import 'package:git_touch/widgets/link.dart';
@@ -64,7 +63,6 @@ class _NotificationItemState extends State<NotificationItem> {
   }
 
   Widget _buildCheckIcon() {
-    final theme = Provider.of<ThemeModel>(context);
     return Icon(
       payload.unread! ? Ionicons.checkmark : Octicons.dot_fill,
       color: loading
@@ -115,7 +113,6 @@ class _NotificationItemState extends State<NotificationItem> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return LinkWidget(
       url: _url,
       onTap: _markAsRead,

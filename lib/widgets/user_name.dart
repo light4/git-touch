@@ -1,8 +1,6 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/link.dart';
-import 'package:provider/provider.dart';
 
 class UserName extends StatelessWidget {
   const UserName(this.login, this.prefix);
@@ -11,7 +9,6 @@ class UserName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return LinkWidget(
       url: '/$prefix/$login',
       child: Container(

@@ -1,11 +1,9 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/error_reload.dart';
 import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/loading.dart';
-import 'package:provider/provider.dart';
 
 class LongListPayload<T, K> {
   LongListPayload({
@@ -101,8 +99,6 @@ class _LongListStatefulScaffoldState<T, K>
   }
 
   Widget _buildItem(BuildContext context, int index) {
-    final theme = Provider.of<ThemeModel>(context);
-
     if (index % 2 == 1) {
       return CommonStyle.border;
     }

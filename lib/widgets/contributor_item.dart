@@ -1,9 +1,7 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
-import 'package:provider/provider.dart';
 
 class ContributorItem extends StatelessWidget {
   const ContributorItem({
@@ -19,7 +17,6 @@ class ContributorItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return AntListItem(
       onClick: () {
         context.pushUrl(url);

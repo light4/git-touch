@@ -1,12 +1,10 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/border_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:primer/primer.dart';
-import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -52,7 +50,6 @@ TextSpan createLinkSpan(
   String? text,
   String url,
 ) {
-  final theme = Provider.of<ThemeModel>(context);
   return TextSpan(
     text: text,
     style: TextStyle(

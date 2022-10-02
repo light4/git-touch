@@ -99,7 +99,6 @@ class MarkdownFlutterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     final code = Provider.of<CodeModel>(context);
     final basicStyle = TextStyle(
         fontSize: 16, color: AntTheme.of(context).colorText, height: 1.5);
@@ -123,8 +122,6 @@ class MarkdownFlutterView extends StatelessWidget {
           }
         },
         onTapLink: (text, url, title) {
-          final theme = context.read<ThemeModel>();
-
           if (basePaths != null &&
               !url!.startsWith('https://') &&
               !url.startsWith('http://')) {

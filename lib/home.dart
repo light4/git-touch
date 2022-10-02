@@ -143,7 +143,6 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildNotificationIcon(BuildContext context, IconData iconData) {
-    final theme = Provider.of<ThemeModel>(context);
     final count = Provider.of<NotificationModel>(context).count;
     if (count == 0) {
       return Icon(iconData);
@@ -239,7 +238,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     final auth = Provider.of<AuthModel>(context);
 
     if (auth.activeAccount == null) {

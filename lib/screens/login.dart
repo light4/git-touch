@@ -86,7 +86,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildAddItem(
       {IconData? brand, required String text, Function? onTap}) {
-    final theme = Provider.of<ThemeModel>(context);
     return LinkWidget(
       onTap: onTap,
       child: Container(

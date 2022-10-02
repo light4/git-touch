@@ -1,7 +1,5 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/models/theme.dart';
-import 'package:provider/provider.dart';
 
 class BorderView extends StatelessWidget {
   const BorderView({
@@ -13,8 +11,6 @@ class BorderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
-
     if (height == null) {
       // Physical pixel
       return Container(

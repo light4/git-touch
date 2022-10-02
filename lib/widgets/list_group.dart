@@ -1,8 +1,6 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/widgets/empty.dart';
-import 'package:provider/provider.dart';
 
 class ListGroup<T> extends StatelessWidget {
   const ListGroup({
@@ -17,7 +15,6 @@ class ListGroup<T> extends StatelessWidget {
   final EdgeInsetsGeometry padding;
 
   Widget _buildItem(BuildContext context, MapEntry<int, T> entry) {
-    final theme = Provider.of<ThemeModel>(context);
     return Container(
       decoration: BoxDecoration(
         border:
@@ -29,7 +26,6 @@ class ListGroup<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return Container(
       padding: padding,
       child: Container(
