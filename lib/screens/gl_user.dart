@@ -5,7 +5,7 @@ import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -58,7 +58,7 @@ class GlUserScreen extends StatelessWidget {
             Column(
               children: <Widget>[
                 for (var v in projects)
-                  RepositoryItem.gl(
+                  RepoItem.gl(
                     payload: v,
                     note: 'Updated ${timeago.format(v.lastActivityAt!)}',
                   )

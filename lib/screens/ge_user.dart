@@ -8,7 +8,7 @@ import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -99,7 +99,7 @@ class GeUserScreen extends StatelessWidget {
             Column(
               children: <Widget>[
                 for (var v in repos)
-                  RepositoryItem(
+                  RepoItem(
                     owner: v.namespace!.path,
                     avatarUrl: v.owner!.avatarUrl,
                     name: v.path,

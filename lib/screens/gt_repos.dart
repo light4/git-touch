@@ -3,12 +3,11 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitea.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GtReposScreen extends StatelessWidget {
-
   const GtReposScreen(String owner)
       : api = '/users/$owner/repos',
         title = 'Repositories';
@@ -38,7 +37,7 @@ class GtReposScreen extends StatelessWidget {
         );
       },
       itemBuilder: (v) {
-        return RepositoryItem(
+        return RepoItem(
           owner: v.owner!.login,
           avatarUrl: v.owner!.avatarUrl,
           name: v.name,

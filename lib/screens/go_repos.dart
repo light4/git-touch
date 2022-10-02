@@ -3,11 +3,10 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gogs.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:provider/provider.dart';
 
 class GoReposScreen extends StatelessWidget {
-
   const GoReposScreen(String owner, {this.isViewer = false})
       : api = isViewer ? '/users/$owner/repos' : '/user/repos',
         title = 'Repositories';
@@ -33,7 +32,7 @@ class GoReposScreen extends StatelessWidget {
         );
       },
       itemBuilder: (v) {
-        return RepositoryItem.go(
+        return RepoItem.go(
           payload: v,
           name: v.fullName!.split('/')[1],
           owner: v.owner!.username,

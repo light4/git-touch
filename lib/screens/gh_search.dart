@@ -7,7 +7,7 @@ import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/issue_item.dart';
 import 'package:git_touch/widgets/loading.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_item.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
@@ -138,7 +138,7 @@ class _GhSearchScreenState extends State<GhSearchScreen> {
     switch (_activeTab) {
       case 0:
         final updatedAt = timeago.format(DateTime.parse(p['updatedAt']));
-        return RepositoryItem.gh(
+        return RepoItem.gh(
           owner: p['owner']['login'],
           avatarUrl: p['owner']['avatarUrl'],
           name: p['name'],

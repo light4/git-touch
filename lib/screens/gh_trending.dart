@@ -6,7 +6,7 @@ import 'package:git_touch/scaffolds/tab_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/link.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_item.dart';
 import 'package:github_trending/github_trending.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +38,7 @@ class GhTrendingScreen extends StatelessWidget {
             activeTab == 0
                 ? [
                     for (var v in payload.cast<GithubTrendingRepository>())
-                      RepositoryItem.gh(
+                      RepoItem.gh(
                         owner: v.author,
                         avatarUrl: v.avatar,
                         name: v.name,

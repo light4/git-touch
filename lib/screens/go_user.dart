@@ -6,7 +6,7 @@ import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/entry_item.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -87,7 +87,7 @@ class GoUserScreen extends StatelessWidget {
             Column(
               children: <Widget>[
                 for (var v in repos) ...[
-                  RepositoryItem.go(
+                  RepoItem.go(
                     payload: v,
                     name: v.fullName!.split('/')[1],
                     owner: v.owner!.username,

@@ -7,7 +7,7 @@ import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/contribution.dart';
 import 'package:git_touch/widgets/entry_item.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -145,7 +145,7 @@ class GtUserScreen extends StatelessWidget {
               Column(
                 children: <Widget>[
                   for (var v in p.userRepos)
-                    RepositoryItem(
+                    RepoItem(
                       owner: v.owner!.login,
                       avatarUrl: v.owner!.avatarUrl,
                       name: v.name,
@@ -187,7 +187,7 @@ class GtUserScreen extends StatelessWidget {
               Column(
                 children: <Widget>[
                   for (var v in p.orgRepos)
-                    RepositoryItem(
+                    RepoItem(
                       owner: v.owner!.login,
                       avatarUrl: v.owner!.avatarUrl,
                       name: v.name,

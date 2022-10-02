@@ -4,7 +4,7 @@ import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
@@ -58,9 +58,7 @@ class BbUserScreen extends StatelessWidget {
             ),
             CommonStyle.border,
             Column(
-              children: <Widget>[
-                for (var v in repos) RepositoryItem.bb(payload: v)
-              ],
+              children: <Widget>[for (var v in repos) RepoItem.bb(payload: v)],
             )
           ],
         );

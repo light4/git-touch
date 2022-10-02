@@ -5,16 +5,14 @@ import 'package:from_css_color/from_css_color.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/models/gogs.dart';
-import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:github/github.dart' as github;
 import 'package:gql_github/repos.data.gql.dart';
-import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class RepositoryItem extends StatelessWidget {
-  const RepositoryItem({
+class RepoItem extends StatelessWidget {
+  const RepoItem({
     required this.owner,
     required this.avatarUrl,
     required this.name,
@@ -29,7 +27,7 @@ class RepositoryItem extends StatelessWidget {
     required this.avatarLink,
   });
 
-  RepositoryItem.go({
+  RepoItem.go({
     required GogsRepository payload,
     this.primaryLanguageName,
     this.primaryLanguageColor,
@@ -44,7 +42,7 @@ class RepositoryItem extends StatelessWidget {
         starCount = payload.starsCount,
         iconData = payload.private! ? Octicons.lock : null;
 
-  RepositoryItem.bb({
+  RepoItem.bb({
     required BbRepo payload,
     this.primaryLanguageName,
     this.primaryLanguageColor,
@@ -59,7 +57,7 @@ class RepositoryItem extends StatelessWidget {
         starCount = 0,
         iconData = payload.isPrivate! ? Octicons.lock : null;
 
-  RepositoryItem.gl({
+  RepoItem.gl({
     required GitlabProject payload,
     this.primaryLanguageName,
     this.primaryLanguageColor,
@@ -76,7 +74,7 @@ class RepositoryItem extends StatelessWidget {
             : '/gitlab/user/${payload.namespace!.id}',
         iconData = _buildGlIconData(payload.visibility);
 
-  RepositoryItem.gh({
+  RepoItem.gh({
     required this.owner,
     required this.avatarUrl,
     required this.name,
@@ -92,8 +90,8 @@ class RepositoryItem extends StatelessWidget {
         avatarLink = '/github/$owner',
         url = '/github/$owner/$name';
 
-  factory RepositoryItem.gql(GRepoParts v, {String? note}) {
-    return RepositoryItem.gh(
+  factory RepoItem.gql(GRepoParts v, {String? note}) {
+    return RepoItem.gh(
       owner: v.owner.login,
       avatarUrl: v.owner.avatarUrl,
       name: v.name,
@@ -141,7 +139,6 @@ class RepositoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeModel>(context);
     return AntListItem(
       arrow: null,
       onClick: () {

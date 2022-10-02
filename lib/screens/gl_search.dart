@@ -7,7 +7,7 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/loading.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_item.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
@@ -77,7 +77,7 @@ class _GlSearchScreenState extends State<GlSearchScreen> {
     if (_activeTab == 0) {
       final p = project as GitlabProject;
       final updatedAt = timeago.format(p.lastActivityAt!);
-      return RepositoryItem.gl(
+      return RepoItem.gl(
         payload: p,
         note: 'Updated $updatedAt',
       );

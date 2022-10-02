@@ -8,7 +8,7 @@ import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/issue_item.dart';
 import 'package:git_touch/widgets/loading.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_item.dart';
 import 'package:primer/primer.dart';
 import 'package:provider/provider.dart';
@@ -85,7 +85,7 @@ class _GeSearchScreenState extends State<GeSearchScreen> {
   Widget _buildItem(p) {
     switch (_activeTab) {
       case 0:
-        return RepositoryItem(
+        return RepoItem(
           owner: p.namespace.path,
           avatarUrl: p.owner.avatarUrl,
           name: p.path,

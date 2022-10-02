@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:gql_github/repos.data.gql.dart';
 import 'package:gql_github/repos.req.gql.dart';
 import 'package:provider/provider.dart';
@@ -31,8 +31,7 @@ class GhRepos extends StatelessWidget {
         );
       },
       itemBuilder: (p) {
-        return RepositoryItem.gql(p,
-            note: 'Updated ${timeago.format(p.updatedAt)}');
+        return RepoItem.gql(p, note: 'Updated ${timeago.format(p.updatedAt)}');
       },
     );
   }
@@ -61,8 +60,7 @@ class GhStars extends StatelessWidget {
         );
       },
       itemBuilder: (p) {
-        return RepositoryItem.gql(p,
-            note: 'Updated ${timeago.format(p.updatedAt)}');
+        return RepoItem.gql(p, note: 'Updated ${timeago.format(p.updatedAt)}');
       },
     );
   }

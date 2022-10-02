@@ -12,7 +12,7 @@ import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/contribution.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
-import 'package:git_touch/widgets/repository_item.dart';
+import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/text_with_at.dart';
 import 'package:git_touch/widgets/user_header.dart';
 import 'package:go_router/go_router.dart';
@@ -33,10 +33,9 @@ class _Repos extends StatelessWidget {
   Widget build(BuildContext context) {
     return AntList(
       header: Text(title),
-      mode: AntListMode.card,
       children: [
         for (final v in repos!)
-          RepositoryItem.gh(
+          RepoItem.gh(
             owner: v.owner.login,
             avatarUrl: v.owner.avatarUrl,
             name: v.name,
@@ -109,7 +108,6 @@ class _User extends StatelessWidget {
         ),
         CommonStyle.border,
         AntList(
-          mode: AntListMode.card,
           children: [
             if (isNotNullOrEmpty(p.company))
               AntListItem(
@@ -154,7 +152,6 @@ class _User extends StatelessWidget {
         ),
         CommonStyle.verticalGap,
         AntList(
-          mode: AntListMode.card,
           children: [
             AntListItem(
               prefix: const Icon(Octicons.organization),
@@ -327,39 +324,41 @@ class GhUserScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              AntList(mode: AntListMode.card, children: [
-                if (isNotNullOrEmpty(p.location))
-                  AntListItem(
-                    prefix: const Icon(Octicons.location),
-                    child: Text(p.location!),
-                    onClick: () {
-                      launchStringUrl(
-                          'https://www.google.com/maps/place/${p.location!.replaceAll(RegExp(r'\s+'), '')}');
-                    },
-                  ),
-                if (isNotNullOrEmpty(p.email))
-                  AntListItem(
-                    prefix: const Icon(Octicons.mail),
-                    child: Text(p.email!),
-                    onClick: () {
-                      launchStringUrl('mailto:${p.email!}');
-                    },
-                  ),
-                if (isNotNullOrEmpty(p.websiteUrl))
-                  AntListItem(
-                    prefix: const Icon(Octicons.link),
-                    child: Text(p.websiteUrl!),
-                    onClick: () {
-                      var url = p.websiteUrl!;
-                      if (!url.startsWith('http')) {
-                        url = 'http://$url';
-                      }
-                      launchStringUrl(url);
-                    },
-                  ),
-              ]),
               AntList(
-                mode: AntListMode.card,
+                children: [
+                  if (isNotNullOrEmpty(p.location))
+                    AntListItem(
+                      prefix: const Icon(Octicons.location),
+                      child: Text(p.location!),
+                      onClick: () {
+                        launchStringUrl(
+                            'https://www.google.com/maps/place/${p.location!.replaceAll(RegExp(r'\s+'), '')}');
+                      },
+                    ),
+                  if (isNotNullOrEmpty(p.email))
+                    AntListItem(
+                      prefix: const Icon(Octicons.mail),
+                      child: Text(p.email!),
+                      onClick: () {
+                        launchStringUrl('mailto:${p.email!}');
+                      },
+                    ),
+                  if (isNotNullOrEmpty(p.websiteUrl))
+                    AntListItem(
+                      prefix: const Icon(Octicons.link),
+                      child: Text(p.websiteUrl!),
+                      onClick: () {
+                        var url = p.websiteUrl!;
+                        if (!url.startsWith('http')) {
+                          url = 'http://$url';
+                        }
+                        launchStringUrl(url);
+                      },
+                    ),
+                ],
+              ),
+              CommonStyle.verticalGap,
+              AntList(
                 children: [
                   AntListItem(
                     prefix: const Icon(Octicons.repo),
