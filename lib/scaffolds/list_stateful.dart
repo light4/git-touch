@@ -1,3 +1,4 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/utils/utils.dart';
@@ -103,20 +104,6 @@ class _ListStatefulScaffoldState<T, K>
     }
   }
 
-  Widget _buildItem(BuildContext context, int index) {
-    if (index == 2 * items.length) {
-      if (hasMore != false) {
-        return const Loading(more: true);
-      } else {
-        return Container();
-      }
-    } else if (index % 2 == 1) {
-      return CommonStyle.border;
-    } else {
-      return widget.itemBuilder(items[index ~/ 2]);
-    }
-  }
-
   Widget _buildCupertinoSliver() {
     if (error.isNotEmpty) {
       return SliverToBoxAdapter(
@@ -127,11 +114,18 @@ class _ListStatefulScaffoldState<T, K>
     } else if (items.isEmpty) {
       return SliverToBoxAdapter(child: EmptyWidget());
     } else {
-      return SliverList(
-        delegate: SliverChildBuilderDelegate(
-          _buildItem,
-          childCount: 2 * items.length + 1,
-        ),
+      return AntSliverList(
+        count: items.length + 1,
+        itemBuilder: (context, index) {
+          if (index == items.length) {
+            if (hasMore != false) {
+              return const Loading(more: true);
+            } else {
+              return Container();
+            }
+          }
+          return widget.itemBuilder(items[index]);
+        },
       );
     }
   }
