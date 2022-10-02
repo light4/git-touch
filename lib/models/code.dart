@@ -10,7 +10,20 @@ class CodeModel with ChangeNotifier {
   static const fontSizes = [12, 13, 14, 15, 16, 17, 18, 19, 20];
   static final fontFamilies = [
     'System',
-    ...GoogleFonts.asMap().keys,
+
+    // https://fonts.google.com/?category=Monospace
+    ...GoogleFonts.asMap().keys.where((element) =>
+        element.endsWith('Mono') ||
+        [
+          'Inconsolata',
+          'Source Code Pro',
+          'Nanum Gothic Coding',
+          'Cousine',
+          'Anonymous Pro',
+          'Courier Prime',
+          'VT323',
+          'Fira Code'
+        ].contains(element)),
   ];
 
   String _theme = 'vs';
