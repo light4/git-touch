@@ -47,12 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ]);
       },
-      child: Container(
-        padding: CommonStyle.padding,
-        decoration: BoxDecoration(
-          border: Border(
-              bottom: BorderSide(color: AntTheme.of(context).colorBorder)),
-        ),
+      child: AntListItem(
         child: Row(
           children: <Widget>[
             Avatar(url: account.avatarUrl, size: AvatarSize.large),
@@ -88,12 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
       {IconData? brand, required String text, Function? onTap}) {
     return LinkWidget(
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        decoration: BoxDecoration(
-          border: Border(
-              bottom: BorderSide(color: AntTheme.of(context).colorBorder)),
-        ),
+      child: AntListItem(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -138,256 +128,260 @@ class _LoginScreenState extends State<LoginScreen> {
       title: AppBarTitle(AppLocalizations.of(context)!.selectAccount),
       body: auth.loading
           ? const Center(child: Loading())
-          : Container(
-              child: Column(
-                children: [
-                  ...List.generate(auth.accounts!.length, _buildAccountItem),
-                  _buildAddItem(
-                    text: AppLocalizations.of(context)!.githubAccount,
-                    brand: Ionicons.logo_github,
-                    onTap: () async {
-                      theme.showActions(context, [
-                        ActionItem(
-                          text: 'via OAuth',
-                          onTap: (_) {
-                            auth.redirectToGithubOauth();
-                          },
-                        ),
-                        ActionItem(
-                          text: 'via OAuth (Public repos only)',
-                          onTap: (_) {
-                            auth.redirectToGithubOauth(true);
-                          },
-                        ),
-                        ActionItem(
-                          text: 'via Personal token',
-                          onTap: (_) async {
-                            final result = await theme.showConfirm(
-                              context,
-                              _buildPopup(context, notes: [
-                                Text(
-                                  AppLocalizations.of(context)!
-                                      .permissionRequiredMessage,
-                                  style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  'user, repo, read:org, notifications',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: AntTheme.of(context).colorPrimary),
-                                )
-                              ]),
-                            );
-                            if (result == true) {
-                              try {
-                                await auth
-                                    .loginWithToken(_tokenController.text);
-                                _tokenController.clear();
-                              } catch (err) {
-                                showError(err);
+          : Column(
+              children: [
+                AntList(
+                  children: [
+                    ...List.generate(auth.accounts!.length, _buildAccountItem),
+                    _buildAddItem(
+                      text: AppLocalizations.of(context)!.githubAccount,
+                      brand: Ionicons.logo_github,
+                      onTap: () async {
+                        theme.showActions(context, [
+                          ActionItem(
+                            text: 'via OAuth',
+                            onTap: (_) {
+                              auth.redirectToGithubOauth();
+                            },
+                          ),
+                          ActionItem(
+                            text: 'via OAuth (Public repos only)',
+                            onTap: (_) {
+                              auth.redirectToGithubOauth(true);
+                            },
+                          ),
+                          ActionItem(
+                            text: 'via Personal token',
+                            onTap: (_) async {
+                              final result = await theme.showConfirm(
+                                context,
+                                _buildPopup(context, notes: [
+                                  Text(
+                                    AppLocalizations.of(context)!
+                                        .permissionRequiredMessage,
+                                    style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    'user, repo, read:org, notifications',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color:
+                                            AntTheme.of(context).colorPrimary),
+                                  )
+                                ]),
+                              );
+                              if (result == true) {
+                                try {
+                                  await auth
+                                      .loginWithToken(_tokenController.text);
+                                  _tokenController.clear();
+                                } catch (err) {
+                                  showError(err);
+                                }
                               }
-                            }
-                          },
-                        ),
-                      ]);
-                    },
-                  ),
-                  _buildAddItem(
-                    text: AppLocalizations.of(context)!.gitlabAccount,
-                    brand: Ionicons.git_branch_outline,
-                    onTap: () async {
-                      _domainController.text = 'https://gitlab.com';
-                      final result = await theme.showConfirm(
-                        context,
-                        _buildPopup(
+                            },
+                          ),
+                        ]);
+                      },
+                    ),
+                    _buildAddItem(
+                      text: AppLocalizations.of(context)!.gitlabAccount,
+                      brand: Ionicons.git_branch_outline,
+                      onTap: () async {
+                        _domainController.text = 'https://gitlab.com';
+                        final result = await theme.showConfirm(
                           context,
-                          showDomain: true,
-                          notes: [
-                            Text(
-                              AppLocalizations.of(context)!
-                                  .permissionRequiredMessage,
-                              style: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w400),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              'api, read_user, read_repository',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: AntTheme.of(context).colorPrimary),
-                            )
-                          ],
-                        ),
-                      );
-                      if (result == true) {
-                        try {
-                          await auth.loginToGitlab(
-                              _domainController.text, _tokenController.text);
-                          _tokenController.clear();
-                        } catch (err) {
-                          showError(err);
-                        }
-                      }
-                    },
-                  ),
-                  _buildAddItem(
-                    text: AppLocalizations.of(context)!.bitbucketAccount,
-                    brand: Ionicons.logo_bitbucket,
-                    onTap: () async {
-                      _domainController.text = 'https://bitbucket.org';
-                      final result = await theme.showConfirm(
-                        context,
-                        Column(
-                          children: <Widget>[
-                            MyTextField(
-                                controller: _domainController,
-                                placeholder: 'Domain'),
-                            const SizedBox(height: 8),
-                            MyTextField(
-                                placeholder: 'Username',
-                                controller: _usernameController),
-                            const SizedBox(height: 8),
-                            MyTextField(
-                                placeholder: 'App password',
-                                controller: _passwordController),
-                            const SizedBox(height: 8),
-                            Text.rich(
-                              TextSpan(children: [
-                                const TextSpan(
-                                  text:
-                                      'Note: App password is different with the password. Follow ',
-                                ),
-                                TextSpan(
-                                  text: 'this guide',
-                                  style: TextStyle(
-                                      color: AntTheme.of(context).colorPrimary),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      context.pushUrl(
-                                          'https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/');
-                                    },
-                                ),
-                                const TextSpan(text: ' to create one.')
-                              ]),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              AppLocalizations.of(context)!
-                                  .permissionRequiredMessage,
-                              style: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w400),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              'Account: read\nTeam membership: read\nProjects: read\nRepositories: read\nPull requests: read\nIssues: read\nSnippets: read',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: AntTheme.of(context).colorPrimary),
-                            )
-                          ],
-                        ),
-                      );
-                      if (result == true) {
-                        try {
-                          await auth.loginToBb(
-                              _domainController.text,
-                              _usernameController.text,
-                              _passwordController.text);
-                        } catch (err) {
-                          showError(err);
-                        }
-                      }
-                    },
-                  ),
-                  _buildAddItem(
-                    text: AppLocalizations.of(context)!.giteaAccount,
-                    brand: Ionicons.git_branch_outline, // TODO: brand icon
-                    onTap: () async {
-                      _domainController.text = 'https://gitea.com';
-                      final result = await theme.showConfirm(
-                          context,
-                          Column(
-                            children: [
-                              _buildPopup(context, showDomain: true),
-                              const Text.rich(TextSpan(children: [
-                                TextSpan(
-                                  text:
-                                      'Note: To login with Codeberg change the domain name to: ',
-                                ),
-                              ])),
+                          _buildPopup(
+                            context,
+                            showDomain: true,
+                            notes: [
+                              Text(
+                                AppLocalizations.of(context)!
+                                    .permissionRequiredMessage,
+                                style: const TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w400),
+                              ),
                               const SizedBox(height: 8),
                               Text(
-                                'https://codeberg.org',
+                                'api, read_user, read_repository',
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: AntTheme.of(context).colorPrimary),
-                              ),
+                              )
                             ],
-                          ));
-                      if (result == true) {
-                        try {
-                          await auth.loginToGitea(
-                              _domainController.text, _tokenController.text);
-                          _tokenController.clear();
-                        } catch (err) {
-                          showError(err);
+                          ),
+                        );
+                        if (result == true) {
+                          try {
+                            await auth.loginToGitlab(
+                                _domainController.text, _tokenController.text);
+                            _tokenController.clear();
+                          } catch (err) {
+                            showError(err);
+                          }
                         }
-                      }
-                    },
-                  ),
-                  _buildAddItem(
-                    text: '${AppLocalizations.of(context)!.giteeAccount}(码云)',
-                    brand: Ionicons.git_branch_outline, // TODO: brand icon
-                    onTap: () async {
-                      final result = await theme.showConfirm(
-                        context,
-                        _buildPopup(context),
-                      );
-                      if (result == true) {
-                        try {
-                          await auth.loginToGitee(_tokenController.text);
-                          _tokenController.clear();
-                        } catch (err) {
-                          showError(err);
-                        }
-                      }
-                    },
-                  ),
-                  _buildAddItem(
-                    text: 'Gogs Account',
-                    brand: Ionicons.git_branch_outline, // TODO: brand icon
-                    onTap: () async {
-                      _domainController.text = 'https://gogs.com';
-                      final result = await theme.showConfirm(
-                        context,
-                        _buildPopup(context, showDomain: true),
-                      );
-                      if (result == true) {
-                        try {
-                          await auth.loginToGogs(
-                              _domainController.text, _tokenController.text);
-                          _tokenController.clear();
-                        } catch (err) {
-                          showError(err);
-                        }
-                      }
-                    },
-                  ),
-                  Container(
-                    padding: CommonStyle.padding,
-                    child: Text(
-                      AppLocalizations.of(context)!.longPressToRemoveAccount,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: AntTheme.of(context).colorTextSecondary,
-                      ),
+                      },
                     ),
-                  )
-                ],
-              ),
+                    _buildAddItem(
+                      text: AppLocalizations.of(context)!.bitbucketAccount,
+                      brand: Ionicons.logo_bitbucket,
+                      onTap: () async {
+                        _domainController.text = 'https://bitbucket.org';
+                        final result = await theme.showConfirm(
+                          context,
+                          Column(
+                            children: <Widget>[
+                              MyTextField(
+                                  controller: _domainController,
+                                  placeholder: 'Domain'),
+                              const SizedBox(height: 8),
+                              MyTextField(
+                                  placeholder: 'Username',
+                                  controller: _usernameController),
+                              const SizedBox(height: 8),
+                              MyTextField(
+                                  placeholder: 'App password',
+                                  controller: _passwordController),
+                              const SizedBox(height: 8),
+                              Text.rich(
+                                TextSpan(children: [
+                                  const TextSpan(
+                                    text:
+                                        'Note: App password is different with the password. Follow ',
+                                  ),
+                                  TextSpan(
+                                    text: 'this guide',
+                                    style: TextStyle(
+                                        color:
+                                            AntTheme.of(context).colorPrimary),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        context.pushUrl(
+                                            'https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/');
+                                      },
+                                  ),
+                                  const TextSpan(text: ' to create one.')
+                                ]),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                AppLocalizations.of(context)!
+                                    .permissionRequiredMessage,
+                                style: const TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w400),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Account: read\nTeam membership: read\nProjects: read\nRepositories: read\nPull requests: read\nIssues: read\nSnippets: read',
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: AntTheme.of(context).colorPrimary),
+                              )
+                            ],
+                          ),
+                        );
+                        if (result == true) {
+                          try {
+                            await auth.loginToBb(
+                                _domainController.text,
+                                _usernameController.text,
+                                _passwordController.text);
+                          } catch (err) {
+                            showError(err);
+                          }
+                        }
+                      },
+                    ),
+                    _buildAddItem(
+                      text: AppLocalizations.of(context)!.giteaAccount,
+                      brand: Ionicons.git_branch_outline, // TODO: brand icon
+                      onTap: () async {
+                        _domainController.text = 'https://gitea.com';
+                        final result = await theme.showConfirm(
+                            context,
+                            Column(
+                              children: [
+                                _buildPopup(context, showDomain: true),
+                                const Text.rich(TextSpan(children: [
+                                  TextSpan(
+                                    text:
+                                        'Note: To login with Codeberg change the domain name to: ',
+                                  ),
+                                ])),
+                                const SizedBox(height: 8),
+                                Text(
+                                  'https://codeberg.org',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: AntTheme.of(context).colorPrimary),
+                                ),
+                              ],
+                            ));
+                        if (result == true) {
+                          try {
+                            await auth.loginToGitea(
+                                _domainController.text, _tokenController.text);
+                            _tokenController.clear();
+                          } catch (err) {
+                            showError(err);
+                          }
+                        }
+                      },
+                    ),
+                    _buildAddItem(
+                      text: '${AppLocalizations.of(context)!.giteeAccount}(码云)',
+                      brand: Ionicons.git_branch_outline, // TODO: brand icon
+                      onTap: () async {
+                        final result = await theme.showConfirm(
+                          context,
+                          _buildPopup(context),
+                        );
+                        if (result == true) {
+                          try {
+                            await auth.loginToGitee(_tokenController.text);
+                            _tokenController.clear();
+                          } catch (err) {
+                            showError(err);
+                          }
+                        }
+                      },
+                    ),
+                    _buildAddItem(
+                      text: 'Gogs Account',
+                      brand: Ionicons.git_branch_outline, // TODO: brand icon
+                      onTap: () async {
+                        _domainController.text = 'https://gogs.com';
+                        final result = await theme.showConfirm(
+                          context,
+                          _buildPopup(context, showDomain: true),
+                        );
+                        if (result == true) {
+                          try {
+                            await auth.loginToGogs(
+                                _domainController.text, _tokenController.text);
+                            _tokenController.clear();
+                          } catch (err) {
+                            showError(err);
+                          }
+                        }
+                      },
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: CommonStyle.padding,
+                  child: Text(
+                    AppLocalizations.of(context)!.longPressToRemoveAccount,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AntTheme.of(context).colorTextSecondary,
+                    ),
+                  ),
+                )
+              ],
             ),
     );
   }

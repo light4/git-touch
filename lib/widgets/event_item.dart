@@ -42,8 +42,7 @@ class EventItem extends StatelessWidget {
     required List<InlineSpan> spans,
     Widget? card,
   }) {
-    return Container(
-      padding: CommonStyle.padding,
+    return AntListItem(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
