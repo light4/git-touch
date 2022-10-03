@@ -30,6 +30,7 @@ fragment UserParts on User {
   url
   email
   websiteUrl
+  twitterUsername
   viewerCanFollow # TODO: remove in viewer query
   viewerIsFollowing
   sponsors {

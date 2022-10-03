@@ -145,6 +145,14 @@ class _User extends StatelessWidget {
                   launchStringUrl(url);
                 },
               ),
+            if (p.twitterUsername != null)
+              AntListItem(
+                prefix: const Icon(Ionicons.logo_twitter),
+                child: Text('@${p.twitterUsername!}'),
+                onClick: () {
+                  launchStringUrl('https://twitter.com/${p.twitterUsername}');
+                },
+              ),
           ],
         ),
         CommonStyle.verticalGap,
