@@ -4,7 +4,6 @@ import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/scaffolds/utils.dart';
 
 class RefreshStatefulScaffold<T> extends StatefulWidget {
-
   const RefreshStatefulScaffold({
     required this.title,
     required this.bodyBuilder,

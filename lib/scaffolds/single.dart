@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:git_touch/scaffolds/common.dart';
 
 class SingleScaffold extends StatelessWidget {
-
   const SingleScaffold({
     required this.title,
     required this.body,

@@ -30,7 +30,6 @@ class ContributionDay {
 }
 
 class ContributionWidget extends StatelessWidget {
-
   ContributionWidget({required this.weeks}) {
     int? maxCount;
     for (final week in weeks!) {

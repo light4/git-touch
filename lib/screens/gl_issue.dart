@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class GlIssueScreen extends StatelessWidget {
-
   const GlIssueScreen(this.projectId, this.iid, {this.isMr = false});
   final int projectId;
   final int iid;

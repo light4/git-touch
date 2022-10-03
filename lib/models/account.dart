@@ -3,7 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'account.g.dart';
 
 @JsonSerializable(includeIfNull: false)
-class Account { // For Bitbucket
+class Account {
+  // For Bitbucket
 
   // equals(Account a) {
   //   final uri = Uri.parse(domain);

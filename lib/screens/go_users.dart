@@ -7,7 +7,6 @@ import 'package:git_touch/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 
 class GoUsersScreen extends StatelessWidget {
-
   const GoUsersScreen.followers(String login)
       : api = '/users/$login/followers',
         title = 'Followers';

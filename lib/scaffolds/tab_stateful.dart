@@ -4,7 +4,6 @@ import 'package:git_touch/scaffolds/tab.dart';
 import 'package:git_touch/scaffolds/utils.dart';
 
 class TabStatefulScaffold<T> extends StatefulWidget {
-
   const TabStatefulScaffold({
     required this.title,
     required this.bodyBuilder,

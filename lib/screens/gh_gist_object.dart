@@ -6,7 +6,6 @@ import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 
 class GistObjectScreen extends StatelessWidget {
-
   const GistObjectScreen(this.login, this.id, this.file,
       {this.raw, this.content});
   final String login;

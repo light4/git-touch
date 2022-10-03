@@ -6,7 +6,6 @@ part 'github.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubEvent {
-
   GithubEvent();
 
   factory GithubEvent.fromJson(Map<String, dynamic> json) =>
@@ -31,7 +30,6 @@ class GithubEvent {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubEventUser {
-
   GithubEventUser();
 
   factory GithubEventUser.fromJson(Map<String, dynamic> json) =>
@@ -42,7 +40,6 @@ class GithubEventUser {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubEventRepo {
-
   GithubEventRepo();
 
   factory GithubEventRepo.fromJson(Map<String, dynamic> json) =>
@@ -80,7 +77,6 @@ class GithubEventPayload {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubEventIssue {
-
   GithubEventIssue();
 
   factory GithubEventIssue.fromJson(Map<String, dynamic> json) =>
@@ -100,7 +96,6 @@ class GithubEventIssue {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubEventComment {
-
   GithubEventComment();
 
   factory GithubEventComment.fromJson(Map<String, dynamic> json) =>
@@ -113,7 +108,6 @@ class GithubEventComment {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubEventCommit {
-
   GithubEventCommit();
 
   factory GithubEventCommit.fromJson(Map<String, dynamic> json) =>
@@ -124,7 +118,6 @@ class GithubEventCommit {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubEventRelease {
-
   GithubEventRelease();
 
   factory GithubEventRelease.fromJson(Map<String, dynamic> json) =>
@@ -136,7 +129,6 @@ class GithubEventRelease {
 // Notification
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubNotificationItem {
-
   GithubNotificationItem();
 
   factory GithubNotificationItem.fromJson(Map<String, dynamic> json) =>
@@ -155,7 +147,6 @@ class GithubNotificationItem {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubNotificationItemSubject {
-
   GithubNotificationItemSubject();
 
   factory GithubNotificationItemSubject.fromJson(Map<String, dynamic> json) =>
@@ -173,7 +164,6 @@ class GithubNotificationItemSubject {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubNotificationItemRepo {
-
   GithubNotificationItemRepo();
 
   factory GithubNotificationItemRepo.fromJson(Map<String, dynamic> json) =>
@@ -343,7 +333,6 @@ class GistFiles {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class GithubGistsItem {
-
   GithubGistsItem();
   factory GithubGistsItem.fromJson(Map<String, dynamic> json) =>
       _$GithubGistsItemFromJson(json);

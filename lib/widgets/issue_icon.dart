@@ -10,7 +10,6 @@ enum IssueIconState {
 }
 
 class IssueIcon extends StatelessWidget {
-
   const IssueIcon(this.state, {this.size});
   final IssueIconState state;
   final double? size;

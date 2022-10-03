@@ -3,7 +3,6 @@ import 'package:git_touch/models/theme.dart';
 import 'package:provider/provider.dart';
 
 class CommonScaffold extends StatelessWidget {
-
   const CommonScaffold({
     required this.title,
     required this.body,

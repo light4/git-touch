@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class GtUsersScreen extends StatelessWidget {
-
   const GtUsersScreen.followers(String login)
       : api = '/users/$login/followers',
         title = 'Followers';

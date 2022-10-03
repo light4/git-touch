@@ -1,11 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/github.dart';
+import 'package:git_touch/utils/utils.dart';
 import 'package:tuple/tuple.dart';
 
-import 'package:git_touch/utils/utils.dart';
-
 class NotificationGroup {
-
   NotificationGroup(this.fullName);
   String? fullName;
   List<GithubNotificationItem> items = [];

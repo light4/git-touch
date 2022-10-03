@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 class AppBarTitle extends StatelessWidget {
-
   const AppBarTitle(this.text);
   final String? text;
 

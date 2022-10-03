@@ -3,7 +3,6 @@ import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/scaffolds/utils.dart';
 
 class TabScaffold extends StatelessWidget {
-
   const TabScaffold({
     required this.title,
     required this.body,

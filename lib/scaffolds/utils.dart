@@ -3,7 +3,6 @@ import 'package:git_touch/widgets/error_reload.dart';
 import 'package:git_touch/widgets/loading.dart';
 
 class RefreshWrapper extends StatelessWidget {
-
   const RefreshWrapper({
     required this.onRefresh,
     required this.body,
@@ -26,7 +25,6 @@ class RefreshWrapper extends StatelessWidget {
 }
 
 class ErrorLoadingWrapper extends StatelessWidget {
-
   const ErrorLoadingWrapper({
     required this.error,
     required this.loading,
