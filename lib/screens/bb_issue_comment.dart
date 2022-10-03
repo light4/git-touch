@@ -13,7 +13,7 @@ class BbIssueCommentScreen extends StatefulWidget {
   final String number;
 
   @override
-  _BbIssueCommentScreenState createState() => _BbIssueCommentScreenState();
+  State<BbIssueCommentScreen> createState() => _BbIssueCommentScreenState();
 }
 
 class _BbIssueCommentScreenState extends State<BbIssueCommentScreen> {

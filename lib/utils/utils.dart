@@ -76,7 +76,7 @@ class GithubPalette {
 }
 
 // final pageSize = 5;
-const PAGE_SIZE = 30;
+const kPageSize = 30;
 
 List<T> join<T>(T seperator, List<T> xs) {
   final result = <T>[];
@@ -131,7 +131,7 @@ int sortByKey<T>(T key, T a, T b) {
   return 0;
 }
 
-const TOTAL_COUNT_FALLBACK = 999; // TODO:
+const kTotalCountFallback = 999; // TODO:
 
 class ListPayload<T, K> {
   ListPayload({

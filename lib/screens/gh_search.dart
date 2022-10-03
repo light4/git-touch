@@ -14,7 +14,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class GhSearchScreen extends StatefulWidget {
   @override
-  _GhSearchScreenState createState() => _GhSearchScreenState();
+  State<GhSearchScreen> createState() => _GhSearchScreenState();
 }
 
 class _GhSearchScreenState extends State<GhSearchScreen> {
@@ -49,7 +49,7 @@ class _GhSearchScreenState extends State<GhSearchScreen> {
       final auth = context.read<AuthModel>();
       final data = await auth.query('''
 {
-  repository: search(first: $PAGE_SIZE, type: REPOSITORY, query: "$keyword") {
+  repository: search(first: $kPageSize, type: REPOSITORY, query: "$keyword") {
     nodes {
       ... on Repository {
         owner {
@@ -75,7 +75,7 @@ class _GhSearchScreenState extends State<GhSearchScreen> {
       }
     }
   }
-  user: search(first: $PAGE_SIZE, type: USER, query: "$keyword") {
+  user: search(first: $kPageSize, type: USER, query: "$keyword") {
     nodes {
       ... on Organization {
         __typename
@@ -89,7 +89,7 @@ class _GhSearchScreenState extends State<GhSearchScreen> {
       }
     }
   }
-  issue: search(first: $PAGE_SIZE, type: ISSUE, query: "$keyword") {
+  issue: search(first: $kPageSize, type: ISSUE, query: "$keyword") {
     nodes {
       ... on PullRequest {
         __typename

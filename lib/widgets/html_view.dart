@@ -12,7 +12,7 @@ class HtmlView extends StatefulWidget {
   final String html;
 
   @override
-  _HtmlViewState createState() => _HtmlViewState();
+  State<HtmlView> createState() => _HtmlViewState();
 }
 
 class _HtmlViewState extends State<HtmlView> {

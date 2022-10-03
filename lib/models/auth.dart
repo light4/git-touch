@@ -200,7 +200,7 @@ class AuthModel with ChangeNotifier {
       hasMore: next != null,
       total: int.tryParse(
               res.headers['X-Total'] ?? res.headers['x-total'] ?? '') ??
-          TOTAL_COUNT_FALLBACK,
+          kTotalCountFallback,
     );
   }
 
@@ -285,7 +285,7 @@ class AuthModel with ChangeNotifier {
   Future<DataWithPage> fetchGiteaWithPage(String path,
       {int? page, int? limit}) async {
     page = page ?? 1;
-    limit = limit ?? PAGE_SIZE;
+    limit = limit ?? kPageSize;
 
     var uri = Uri.parse('${activeAccount!.domain}/api/v1$path');
     uri = uri.replace(
@@ -303,7 +303,7 @@ class AuthModel with ChangeNotifier {
       cursor: page + 1,
       hasMore: info is List && info.isNotEmpty,
       total: int.tryParse(res.headers['x-total-count'] ?? '') ??
-          TOTAL_COUNT_FALLBACK,
+          kTotalCountFallback,
     );
   }
 
@@ -389,7 +389,7 @@ class AuthModel with ChangeNotifier {
   Future<DataWithPage> fetchGogsWithPage(String path,
       {int? page, int? limit}) async {
     page = page ?? 1;
-    limit = limit ?? PAGE_SIZE;
+    limit = limit ?? kPageSize;
 
     var uri = Uri.parse('${activeAccount!.domain}/api/v1$path');
     uri = uri.replace(
@@ -407,7 +407,7 @@ class AuthModel with ChangeNotifier {
       cursor: page + 1,
       hasMore: info is List && info.isNotEmpty,
       total: int.tryParse(res.headers['x-total-count'] ?? '') ??
-          TOTAL_COUNT_FALLBACK,
+          kTotalCountFallback,
     );
   }
 
@@ -476,7 +476,7 @@ class AuthModel with ChangeNotifier {
   Future<DataWithPage> fetchGiteeWithPage(String path,
       {int? page, int? limit}) async {
     page = page ?? 1;
-    limit = limit ?? PAGE_SIZE;
+    limit = limit ?? kPageSize;
 
     var uri = Uri.parse('${activeAccount!.domain}/api/v5$path');
     uri = uri.replace(
@@ -491,7 +491,7 @@ class AuthModel with ChangeNotifier {
 
     final totalPage = int.tryParse(res.headers['total_page'] ?? '');
     final totalCount =
-        int.tryParse(res.headers['total_count'] ?? '') ?? TOTAL_COUNT_FALLBACK;
+        int.tryParse(res.headers['total_count'] ?? '') ?? kTotalCountFallback;
 
     return DataWithPage(
       data: info,
@@ -542,7 +542,7 @@ class AuthModel with ChangeNotifier {
       userInfo: '${activeAccount!.login}:${activeAccount!.appPassword}',
       path: input.path,
       queryParameters: {
-        'pagelen': PAGE_SIZE.toString(),
+        'pagelen': kPageSize.toString(),
         ...input.queryParameters
       },
     );

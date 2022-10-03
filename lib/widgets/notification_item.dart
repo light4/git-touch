@@ -17,7 +17,7 @@ class NotificationItem extends StatefulWidget {
   final Function markAsRead;
 
   @override
-  _NotificationItemState createState() => _NotificationItemState();
+  State<NotificationItem> createState() => _NotificationItemState();
 }
 
 class _NotificationItemState extends State<NotificationItem> {

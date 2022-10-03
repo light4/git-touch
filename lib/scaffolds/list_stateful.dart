@@ -22,7 +22,7 @@ class ListStatefulScaffold<T, K> extends StatefulWidget {
   final Future<ListPayload<T, K>> Function(K? cursor) fetch;
 
   @override
-  _ListStatefulScaffoldState<T, K> createState() =>
+  State<ListStatefulScaffold<T, K>> createState() =>
       _ListStatefulScaffoldState();
 }
 

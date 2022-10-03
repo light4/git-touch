@@ -13,7 +13,7 @@ class GeIssueFormScreen extends StatefulWidget {
   final String name;
 
   @override
-  _GeIssueFormScreenState createState() => _GeIssueFormScreenState();
+  State<GeIssueFormScreen> createState() => _GeIssueFormScreenState();
 }
 
 class _GeIssueFormScreenState extends State<GeIssueFormScreen> {

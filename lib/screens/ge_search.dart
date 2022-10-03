@@ -15,7 +15,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class GeSearchScreen extends StatefulWidget {
   @override
-  _GeSearchScreenState createState() => _GeSearchScreenState();
+  State<GeSearchScreen> createState() => _GeSearchScreenState();
 }
 
 class _GeSearchScreenState extends State<GeSearchScreen> {
@@ -107,7 +107,7 @@ class _GeSearchScreenState extends State<GeSearchScreen> {
           author: p.user.login,
           avatarUrl: p.user.avatarUrl,
           commentCount: p.comments,
-          subtitle: '#' + p.number,
+          subtitle: '#${p.number}',
           title: p.title,
           updatedAt: DateTime.parse(p.updatedAt),
           url:

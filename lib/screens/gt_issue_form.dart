@@ -13,7 +13,7 @@ class GtIssueFormScreen extends StatefulWidget {
   final String name;
 
   @override
-  _GtIssueFormScreenState createState() => _GtIssueFormScreenState();
+  State<GtIssueFormScreen> createState() => _GtIssueFormScreenState();
 }
 
 class _GtIssueFormScreenState extends State<GtIssueFormScreen> {

@@ -10,7 +10,7 @@
 // /// Unused
 // class AboutScreen extends StatefulWidget {
 //   @override
-//   _AboutScreenState createState() => _AboutScreenState();
+//   State<AboutScreen> createState() => _AboutScreenState();
 // }
 
 // class _AboutScreenState extends State<AboutScreen> {

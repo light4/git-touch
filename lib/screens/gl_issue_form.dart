@@ -12,7 +12,7 @@ class GlIssueFormScreen extends StatefulWidget {
   final int id;
 
   @override
-  _GlIssueFormScreenState createState() => _GlIssueFormScreenState();
+  State<GlIssueFormScreen> createState() => _GlIssueFormScreenState();
 }
 
 class _GlIssueFormScreenState extends State<GlIssueFormScreen> {

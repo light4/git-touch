@@ -18,7 +18,7 @@ class TabStatefulScaffold<T> extends StatefulWidget {
   final Widget Function(T payload, void Function() refresh)? actionBuilder;
 
   @override
-  _TabStatefulScaffoldState<T> createState() => _TabStatefulScaffoldState();
+  State<TabStatefulScaffold<T>> createState() => _TabStatefulScaffoldState();
 }
 
 class _TabStatefulScaffoldState<T> extends State<TabStatefulScaffold<T>> {

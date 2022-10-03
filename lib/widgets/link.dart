@@ -8,7 +8,7 @@ class CupertinoLink extends StatefulWidget {
   final Function? onTap;
 
   @override
-  _CupertinoLinkState createState() => _CupertinoLinkState();
+  State<CupertinoLink> createState() => _CupertinoLinkState();
 }
 
 class _CupertinoLinkState extends State<CupertinoLink> {

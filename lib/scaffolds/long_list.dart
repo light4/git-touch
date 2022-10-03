@@ -41,7 +41,7 @@ class LongListStatefulScaffold<T, K> extends StatefulWidget {
   final Future<LongListPayload<T, K>> Function(String? cursor) onLoadMore;
 
   @override
-  _LongListStatefulScaffoldState<T, K> createState() =>
+  State<LongListStatefulScaffold<T, K>> createState() =>
       _LongListStatefulScaffoldState();
 }
 

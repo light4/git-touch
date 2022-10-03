@@ -13,7 +13,7 @@ class BbIssueFormScreen extends StatefulWidget {
   final String name;
 
   @override
-  _BbIssueFormScreenState createState() => _BbIssueFormScreenState();
+  State<BbIssueFormScreen> createState() => _BbIssueFormScreenState();
 }
 
 class _BbIssueFormScreenState extends State<BbIssueFormScreen> {

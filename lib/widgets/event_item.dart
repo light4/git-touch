@@ -482,7 +482,7 @@ class EventItem extends StatelessWidget {
         );
       case 'MarketplacePurchaseEvent':
         final action = e.payload!.action;
-        var messageToDisplay;
+        String? messageToDisplay;
         switch (action) {
           case 'purchased':
             messageToDisplay =

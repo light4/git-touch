@@ -8,7 +8,7 @@ import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as p;
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 
@@ -54,7 +54,7 @@ class BbObjectScreen extends StatelessWidget {
           return BlobView(path, text: pl);
         } else if (pl is BbTree) {
           return createObjectTreeItem(
-            name: basename(pl.path),
+            name: p.basename(pl.path),
             type: pl.type,
             // size: v.type == 'commit_file' ? v.size : null,
             size: pl.size,

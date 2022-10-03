@@ -17,7 +17,7 @@ class GtIssueCommentScreen extends StatefulWidget {
   final String id;
 
   @override
-  _GtIssueCommentScreenState createState() => _GtIssueCommentScreenState();
+  State<GtIssueCommentScreen> createState() => _GtIssueCommentScreenState();
 }
 
 class _GtIssueCommentScreenState extends State<GtIssueCommentScreen> {

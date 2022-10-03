@@ -14,7 +14,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class GlSearchScreen extends StatefulWidget {
   @override
-  _GlSearchScreenState createState() => _GlSearchScreenState();
+  State<GlSearchScreen> createState() => _GlSearchScreenState();
 }
 
 class _GlSearchScreenState extends State<GlSearchScreen> {

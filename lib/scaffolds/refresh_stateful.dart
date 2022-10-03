@@ -18,10 +18,10 @@ class RefreshStatefulScaffold<T> extends StatefulWidget {
   final Widget? Function(T data, void Function(T newData) setData)?
       actionBuilder;
   final Widget? action;
-  final canRefresh;
+  final bool canRefresh;
 
   @override
-  _RefreshStatefulScaffoldState<T> createState() =>
+  State<RefreshStatefulScaffold<T>> createState() =>
       _RefreshStatefulScaffoldState();
 }
 

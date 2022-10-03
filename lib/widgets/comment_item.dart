@@ -85,7 +85,7 @@ class GhEmojiAction extends StatefulWidget {
   final Iterable<EmojiPayload> items;
   final EmojiUpdateCallaback onReaction;
   @override
-  _GhEmojiActionState createState() => _GhEmojiActionState();
+  State<GhEmojiAction> createState() => _GhEmojiActionState();
 }
 
 class _GhEmojiActionState extends State<GhEmojiAction> {

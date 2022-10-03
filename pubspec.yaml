@@ -73,6 +73,7 @@ dependencies:
   go_router:
   from_css_color:
   maps_launcher:
+  path:
   antd_mobile:
     path: ../ant-design-mobile-flutter
 
