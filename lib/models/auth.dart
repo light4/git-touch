@@ -107,7 +107,7 @@ class AuthModel with ChangeNotifier {
     await loginWithToken(token);
   }
 
-  Future<void> loginWithToken(String token) async {
+  Future<void> loginWithToken(String t) async {
     try {
       final queryData = await query('''
 {
@@ -116,12 +116,12 @@ class AuthModel with ChangeNotifier {
     avatarUrl
   }
 }
-''', token);
+''', t);
 
       await _addAccount(Account(
         platform: PlatformType.github,
         domain: 'https://github.com',
-        token: token,
+        token: t,
         login: queryData['viewer']['login'] as String,
         avatarUrl: queryData['viewer']['avatarUrl'] as String,
       ));
@@ -716,13 +716,13 @@ class AuthModel with ChangeNotifier {
     );
   }
 
-  Future<dynamic> query(String query, [String? token]) async {
-    token ??= token;
+  Future<dynamic> query(String query, [String? t]) async {
+    t ??= token;
 
     final res = await http
         .post(Uri.parse('$_apiPrefix/graphql'),
             headers: {
-              HttpHeaders.authorizationHeader: 'token $token',
+              HttpHeaders.authorizationHeader: 'token $t',
               HttpHeaders.contentTypeHeader: 'application/json'
             },
             body: json.encode({'query': query}))
