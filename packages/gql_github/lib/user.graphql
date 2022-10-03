@@ -98,6 +98,7 @@ query User($login: String!) {
     location
     email
     websiteUrl
+    twitterUsername
     createdAt
     viewerIsFollowing
     sponsors {
