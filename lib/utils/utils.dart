@@ -17,11 +17,11 @@ export 'package:flutter_vector_icons/flutter_vector_icons.dart'
 export 'extensions.dart';
 
 class StorageKeys {
-  @deprecated
+  @Deprecated('Use `accounts` instead')
   static const account = 'account';
-  @deprecated
+  @Deprecated('Use `accounts` instead')
   static const github = 'github';
-  @deprecated
+  @Deprecated('Split into several keys')
   static const iTheme = 'theme';
 
   static const accounts = 'accounts';
