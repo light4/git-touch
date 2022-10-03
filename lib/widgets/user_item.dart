@@ -18,7 +18,7 @@ class GhBioWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isNotNullOrEmpty(location)) {
+    if (location != null) {
       return Row(
         children: <Widget>[
           Icon(

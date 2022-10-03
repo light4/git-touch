@@ -108,10 +108,6 @@ List<T> joinAll<T>(T seperator, List<List<T>> xss) {
 
 final numberFormat = NumberFormat();
 
-bool isNotNullOrEmpty(String? text) {
-  return text != null && text.isNotEmpty;
-}
-
 Future<void> launchStringUrl(String? url) async {
   if (url == null) return;
 

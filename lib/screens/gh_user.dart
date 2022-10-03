@@ -106,7 +106,7 @@ class _User extends StatelessWidget {
         CommonStyle.border,
         AntList(
           children: [
-            if (isNotNullOrEmpty(p.company))
+            if (p.company != null)
               AntListItem(
                 prefix: const Icon(Octicons.organization),
                 child: TextWithAt(
@@ -117,7 +117,7 @@ class _User extends StatelessWidget {
                   oneLine: true,
                 ),
               ),
-            if (isNotNullOrEmpty(p.location))
+            if (p.location != null)
               AntListItem(
                 prefix: const Icon(Octicons.location),
                 child: Text(p.location!),
@@ -125,7 +125,7 @@ class _User extends StatelessWidget {
                   MapsLauncher.launchQuery(p.location!);
                 },
               ),
-            if (isNotNullOrEmpty(p.email))
+            if (p.email.isNotEmpty)
               AntListItem(
                 prefix: const Icon(Octicons.mail),
                 child: Text(p.email),
@@ -133,7 +133,7 @@ class _User extends StatelessWidget {
                   launchStringUrl('mailto:${p.email}');
                 },
               ),
-            if (isNotNullOrEmpty(p.websiteUrl))
+            if (p.websiteUrl != null)
               AntListItem(
                 prefix: const Icon(Octicons.link),
                 child: Text(p.websiteUrl!),
@@ -331,7 +331,7 @@ class GhUserScreen extends StatelessWidget {
               ),
               AntList(
                 children: [
-                  if (isNotNullOrEmpty(p.location))
+                  if (p.location != null)
                     AntListItem(
                       prefix: const Icon(Octicons.location),
                       child: Text(p.location!),
@@ -340,7 +340,7 @@ class GhUserScreen extends StatelessWidget {
                             'https://www.google.com/maps/place/${p.location!.replaceAll(RegExp(r'\s+'), '')}');
                       },
                     ),
-                  if (isNotNullOrEmpty(p.email))
+                  if (p.email != null)
                     AntListItem(
                       prefix: const Icon(Octicons.mail),
                       child: Text(p.email!),
@@ -348,7 +348,7 @@ class GhUserScreen extends StatelessWidget {
                         launchStringUrl('mailto:${p.email!}');
                       },
                     ),
-                  if (isNotNullOrEmpty(p.websiteUrl))
+                  if (p.websiteUrl != null)
                     AntListItem(
                       prefix: const Icon(Octicons.link),
                       child: Text(p.websiteUrl!),
