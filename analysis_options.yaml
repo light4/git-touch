@@ -31,8 +31,13 @@ linter:
     prefer_final_in_for_each: true
     prefer_final_locals: true
     use_super_parameters: true
+    use_key_in_widget_constructors: false # waiting for auto fix: https://github.com/dart-lang/sdk/issues/50056
+    avoid_print: false # TODO:
 
 analyzer:
+  errors:
+    todo: ignore
+    fixme: ignore
   exclude:
     - "**/*.gql.dart"
     - "**/*.g.dart"
