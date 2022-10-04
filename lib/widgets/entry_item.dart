@@ -1,7 +1,6 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/link.dart';
 
 class EntryItem extends StatelessWidget {
   const EntryItem({
@@ -15,11 +14,19 @@ class EntryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = AntTheme.of(context);
+
     return Expanded(
-      child: LinkWidget(
-        url: url,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14),
+      child: Container(
+        color: theme.colorBackground,
+        child: AntButton(
+          block: true,
+          size: AntButtonSize.large,
+          fill: AntButtonFill.none,
+          color: theme.colorPrimary,
+          onClick: () {
+            if (url != null) context.pushUrl(url!);
+          },
           child: Column(
             children: <Widget>[
               Text(
@@ -27,14 +34,14 @@ class EntryItem extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
-                  color: AntTheme.of(context).colorText,
+                  color: theme.colorText,
                 ),
               ),
               Text(
                 text,
                 style: TextStyle(
                   fontSize: 14,
-                  color: AntTheme.of(context).colorTextSecondary,
+                  color: theme.colorTextSecondary,
                   fontWeight: FontWeight.w500,
                 ),
               )

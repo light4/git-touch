@@ -103,7 +103,6 @@ class _User extends StatelessWidget {
               ]
           ],
         ),
-        CommonStyle.border,
         AntList(
           children: [
             if (p.company != null)

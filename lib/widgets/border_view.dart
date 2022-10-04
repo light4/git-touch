@@ -17,7 +17,7 @@ class BorderView extends StatelessWidget {
         margin: EdgeInsets.only(left: leftPadding),
         decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: AntTheme.of(context).colorBorder, width: 0),
+            top: BorderSide(color: AntTheme.of(context).colorBorder, width: 1),
           ),
         ),
       );

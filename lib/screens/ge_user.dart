@@ -65,22 +65,22 @@ class GeUserScreen extends StatelessWidget {
             CommonStyle.border,
             Row(children: [
               EntryItem(
-                count: user.publicRepos,
+                count: user.publicRepos!,
                 text: 'Repositories',
                 url: '/gitee/$login?tab=repositories',
               ),
               EntryItem(
-                count: user.stared,
+                count: user.stared!,
                 text: 'Stars',
                 url: '/gitee/$login?tab=stars',
               ),
               EntryItem(
-                count: user.followers,
+                count: user.followers!,
                 text: 'Followers',
                 url: '/gitee/$login?tab=followers',
               ),
               EntryItem(
-                count: user.following,
+                count: user.following!,
                 text: 'Following',
                 url: '/gitee/$login?tab=following',
               ),

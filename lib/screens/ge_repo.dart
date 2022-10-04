@@ -116,17 +116,17 @@ class GeRepoScreen extends StatelessWidget {
             Row(
               children: <Widget>[
                 EntryItem(
-                  count: p.watchersCount,
+                  count: p.watchersCount!,
                   text: 'Watchers',
                   url: '/gitee/$owner/$name/watchers',
                 ),
                 EntryItem(
-                  count: p.stargazersCount,
+                  count: p.stargazersCount!,
                   text: 'Stars',
                   url: '/gitee/$owner/$name/stargazers',
                 ),
                 EntryItem(
-                  count: p.forksCount,
+                  count: p.forksCount!,
                   text: 'Forks',
                   url: '/gitee/$owner/$name/forks',
                 ),

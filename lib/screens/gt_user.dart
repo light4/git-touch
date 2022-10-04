@@ -111,7 +111,7 @@ class GtUserScreen extends StatelessWidget {
               CommonStyle.border,
               Row(children: [
                 EntryItem(
-                  count: p.userRepoCount,
+                  count: p.userRepoCount!,
                   text: 'Repositories',
                   url: '/gitea/$login?tab=repositories',
                 ),

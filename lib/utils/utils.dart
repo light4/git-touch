@@ -39,6 +39,7 @@ class StorageKeys {
 }
 
 class CommonStyle {
+  CommonStyle._();
   static const padding = EdgeInsets.all(12);
   static const border = BorderView();
   static const verticalGap = SizedBox(height: 18);

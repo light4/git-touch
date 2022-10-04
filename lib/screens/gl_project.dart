@@ -121,19 +121,19 @@ class GlProjectScreen extends StatelessWidget {
                   future: memberCountFuture,
                   builder: (context, snapshot) {
                     return EntryItem(
-                      count: snapshot.data,
+                      count: snapshot.data!,
                       text: AppLocalizations.of(context)!.members,
                       url: '/gitlab/projects/$id/members',
                     );
                   },
                 ),
                 EntryItem(
-                  count: p.starCount,
+                  count: p.starCount!,
                   text: AppLocalizations.of(context)!.stars,
                   url: '/gitlab/projects/$id/starrers',
                 ),
                 EntryItem(
-                  count: p.forksCount,
+                  count: p.forksCount!,
                   text: AppLocalizations.of(context)!.forks, // TODO:
                 ),
               ],

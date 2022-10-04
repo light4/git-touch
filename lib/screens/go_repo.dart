@@ -76,15 +76,15 @@ class GoRepoScreen extends StatelessWidget {
               children: <Widget>[
                 // TODO: when API is available
                 EntryItem(
-                  count: p.watchersCount,
+                  count: p.watchersCount!,
                   text: 'Watchers',
                 ),
                 EntryItem(
-                  count: p.starsCount,
+                  count: p.starsCount!,
                   text: 'Stars',
                 ),
                 EntryItem(
-                  count: p.forksCount,
+                  count: p.forksCount!,
                   text: 'Forks',
                 ),
               ],
