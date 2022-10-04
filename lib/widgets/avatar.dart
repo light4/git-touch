@@ -18,12 +18,12 @@ class Avatar extends StatelessWidget {
     required this.url,
     this.size = AvatarSize.medium,
     this.linkUrl,
-    this.isOrg = false,
+    this.square = false,
   });
   final String? url;
   final double size;
   final String? linkUrl;
-  final bool isOrg;
+  final bool square;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class Avatar extends StatelessWidget {
     final fallbackWidget = Image.asset(fallback, width: size, height: size);
 
     final widget = ClipRRect(
-      borderRadius: BorderRadius.circular(isOrg ? 4 : size),
+      borderRadius: BorderRadius.circular(square ? 4 : size),
       child: url == null
           ? fallbackWidget
           : FadeInImage.assetNetwork(

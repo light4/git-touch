@@ -18,8 +18,50 @@ import 'package:git_touch/widgets/user_header.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gql_github/user.data.gql.dart';
 import 'package:gql_github/user.req.gql.dart';
+import 'package:intl/intl.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:provider/provider.dart';
+
+class _SponsorItem extends StatelessWidget {
+  const _SponsorItem({
+    required this.count,
+    required this.login,
+    required this.nodes,
+    required this.sponsoring,
+  });
+  final int count;
+  final String login;
+  final Iterable<GSponsorConnectionParts_nodes> nodes;
+  final bool sponsoring;
+
+  @override
+  Widget build(BuildContext context) {
+    return AntListItem(
+      prefix: Icon(sponsoring ? Octicons.heart : Octicons.heart_fill),
+      extra: Text(count.toString()),
+      onClick: () {
+        context.pushUrl(sponsoring
+            ? 'https://github.com/$login?tab=sponsoring'
+            : 'https://github.com/sponsors/$login#sponsors');
+      },
+      child: Row(
+        children: [
+          Text(toBeginningOfSentenceCase(
+              sponsoring ? 'sponsoring' : 'sponsors')!),
+          const Spacer(),
+          for (final sponsor in nodes) ...[
+            const SizedBox(width: 6),
+            Avatar(
+              square: sponsor.G__typename != 'User',
+              url: (sponsor as dynamic).avatarUrl, // TODO: same key here
+              size: AvatarSize.small,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
 
 class _Repos extends StatelessWidget {
   _Repos(final Iterable<GRepoParts> pinned, final Iterable<GRepoParts>? repos)
@@ -153,58 +195,18 @@ class _User extends StatelessWidget {
         CommonStyle.verticalGap,
         AntList(children: [
           if (p.sponsors.totalCount > 0)
-            AntListItem(
-              prefix: const Icon(Octicons.heart_fill),
-              extra: Text(p.sponsors.totalCount.toString()),
-              child: Row(
-                children: [
-                  const Text('Sponsors'),
-                  const Spacer(),
-                  for (final sponsor in p.sponsors.nodes!) ...[
-                    const SizedBox(width: 6),
-                    Avatar(
-                      isOrg: sponsor.G__typename != 'User',
-                      url: sponsor.G__typename == 'User'
-                          ? (sponsor as GUserData_user_sponsors_nodes__asUser)
-                              .avatarUrl
-                          : (sponsor
-                                  as GUserParts_sponsors_nodes__asOrganization)
-                              .avatarUrl,
-                      size: AvatarSize.small,
-                    ),
-                  ],
-                ],
-              ),
-              onClick: () {
-                context.goNamed('/github/${p.login}?tab=sponsors');
-              },
+            _SponsorItem(
+              count: p.sponsors.totalCount,
+              login: p.login,
+              nodes: p.sponsors.nodes!,
+              sponsoring: false,
             ),
           if (p.sponsoring.totalCount > 0)
-            AntListItem(
-              prefix: const Icon(Octicons.heart),
-              extra: Text(p.sponsoring.totalCount.toString()),
-              child: Row(
-                children: [
-                  const Text('Sponsoring'),
-                  const Spacer(),
-                  for (final sponsor in p.sponsoring.nodes!) ...[
-                    const SizedBox(width: 6),
-                    Avatar(
-                      isOrg: sponsor.G__typename != 'User',
-                      url: sponsor.G__typename == 'User'
-                          ? (sponsor as GUserData_user_sponsoring_nodes__asUser)
-                              .avatarUrl
-                          : (sponsor
-                                  as GUserParts_sponsoring_nodes__asOrganization)
-                              .avatarUrl,
-                      size: AvatarSize.small,
-                    ),
-                  ],
-                ],
-              ),
-              onClick: () {
-                context.goNamed('/github/${p.login}?tab=sponsoring');
-              },
+            _SponsorItem(
+              count: p.sponsoring.totalCount,
+              login: p.login,
+              nodes: p.sponsoring.nodes!,
+              sponsoring: true,
             ),
           if (p.organizations.totalCount > 0)
             AntListItem(
@@ -217,7 +219,7 @@ class _User extends StatelessWidget {
                   for (final org in p.organizations.nodes!) ...[
                     const SizedBox(width: 6),
                     Avatar(
-                      isOrg: true,
+                      square: true,
                       url: org.avatarUrl,
                       size: AvatarSize.small,
                     ),
@@ -349,7 +351,9 @@ class GhUserScreen extends StatelessWidget {
                 )
             ],
           );
-        } else if (data?.organization != null) {
+        }
+
+        if (data?.organization != null) {
           final p = data!.organization!;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -377,21 +381,6 @@ class GhUserScreen extends StatelessWidget {
                             !b.organization.viewerIsFollowing!;
                       }));
                     },
-                  ),
-                ],
-              ),
-              CommonStyle.border,
-              Row(
-                children: [
-                  EntryItem(
-                    count: p.sponsors.totalCount,
-                    text: 'Sponsors',
-                    url: 'https://github.com/sponsors/${p.login}',
-                  ),
-                  EntryItem(
-                    count: p.membersWithRole.totalCount,
-                    text: AppLocalizations.of(context)!.members,
-                    url: '/github/${p.login}?tab=people',
                   ),
                 ],
               ),
@@ -440,6 +429,25 @@ class GhUserScreen extends StatelessWidget {
               CommonStyle.verticalGap,
               AntList(
                 children: [
+                  if (p.sponsors.totalCount > 0)
+                    _SponsorItem(
+                      count: p.sponsors.totalCount,
+                      login: p.login,
+                      nodes: p.sponsors.nodes!,
+                      sponsoring: false,
+                    ),
+                  if (p.sponsoring.totalCount > 0)
+                    _SponsorItem(
+                      count: p.sponsoring.totalCount,
+                      login: p.login,
+                      nodes: p.sponsoring.nodes!,
+                      sponsoring: true,
+                    ),
+                ],
+              ),
+              CommonStyle.verticalGap,
+              AntList(
+                children: [
                   AntListItem(
                     prefix: const Icon(Octicons.repo),
                     extra: Text(p.pinnableItems.totalCount.toString()),
@@ -466,6 +474,7 @@ class GhUserScreen extends StatelessWidget {
             ],
           );
         }
+
         return null; // TODO: not found
       },
     );

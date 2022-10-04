@@ -19,6 +19,19 @@ fragment RepoParts on Repository {
   }
 }
 
+fragment SponsorConnectionParts on SponsorConnection {
+  totalCount
+  nodes {
+    __typename
+    ... on User {
+      avatarUrl
+    }
+    ... on Organization {
+      avatarUrl
+    }
+  }
+}
+
 fragment UserParts on User {
   login
   name
@@ -48,29 +61,11 @@ fragment UserParts on User {
       }
     }
   }
-  sponsors(first: 3) {
-    totalCount
-    nodes {
-      __typename
-      ... on User {
-        avatarUrl
-      }
-      ... on Organization {
-        avatarUrl
-      }
-    }
-  }
   sponsoring(first: 3) {
-    totalCount
-    nodes {
-      __typename
-      ... on User {
-        avatarUrl
-      }
-      ... on Organization {
-        avatarUrl
-      }
-    }
+    ...SponsorConnectionParts
+  }
+  sponsors(first: 3) {
+    ...SponsorConnectionParts
   }
   organizations(first: 3) {
     totalCount
@@ -125,11 +120,14 @@ query User($login: String!) {
     twitterUsername
     createdAt
     viewerIsFollowing
-    sponsors {
-      totalCount
-    }
     membersWithRole {
       totalCount
+    }
+    sponsoring(first: 3) {
+      ...SponsorConnectionParts
+    }
+    sponsors(first: 3) {
+      ...SponsorConnectionParts
     }
     pinnedItems(first: 6) {
       nodes {
