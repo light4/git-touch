@@ -33,9 +33,6 @@ fragment UserParts on User {
   twitterUsername
   viewerCanFollow # TODO: remove in viewer query
   viewerIsFollowing
-  sponsors {
-    totalCount
-  }
   followers {
     totalCount
   }
@@ -51,10 +48,33 @@ fragment UserParts on User {
       }
     }
   }
-  organizations(first: 10) {
+  sponsors(first: 3) {
     totalCount
     nodes {
-      login
+      __typename
+      ... on User {
+        avatarUrl
+      }
+      ... on Organization {
+        avatarUrl
+      }
+    }
+  }
+  sponsoring(first: 3) {
+    totalCount
+    nodes {
+      __typename
+      ... on User {
+        avatarUrl
+      }
+      ... on Organization {
+        avatarUrl
+      }
+    }
+  }
+  organizations(first: 3) {
+    totalCount
+    nodes {
       avatarUrl
     }
   }

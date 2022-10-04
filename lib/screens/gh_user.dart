@@ -76,11 +76,6 @@ class _User extends StatelessWidget {
         Row(
           children: [
             EntryItem(
-              count: p.sponsors.totalCount,
-              text: 'Sponsors',
-              url: 'https://github.com/sponsors/${p.login}',
-            ),
-            EntryItem(
               count: p.followers.totalCount,
               text: AppLocalizations.of(context)!.followers,
               url: '/github/${p.login}?tab=followers',
@@ -156,33 +151,86 @@ class _User extends StatelessWidget {
           ],
         ),
         CommonStyle.verticalGap,
-        if (p.organizations.totalCount > 0)
-          AntList(
-            header: Text(
-              '${AppLocalizations.of(context)!.organizations} (${p.organizations.totalCount})',
-            ),
-            children: [
-              AntListItem(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Wrap(
-                    spacing: 8,
-                    children: [
-                      for (final org in p.organizations.nodes!)
-                        Avatar(
-                          isOrg: true,
-                          url: org.avatarUrl,
-                          linkUrl: '/github/${org.login}',
-                        ),
-                    ],
-                  ),
-                ),
+        AntList(children: [
+          if (p.sponsors.totalCount > 0)
+            AntListItem(
+              prefix: const Icon(Octicons.heart_fill),
+              extra: Text(p.sponsors.totalCount.toString()),
+              child: Row(
+                children: [
+                  const Text('Sponsors'),
+                  const Spacer(),
+                  for (final sponsor in p.sponsors.nodes!) ...[
+                    const SizedBox(width: 6),
+                    Avatar(
+                      isOrg: sponsor.G__typename != 'User',
+                      url: sponsor.G__typename == 'User'
+                          ? (sponsor as GUserData_user_sponsors_nodes__asUser)
+                              .avatarUrl
+                          : (sponsor
+                                  as GUserParts_sponsors_nodes__asOrganization)
+                              .avatarUrl,
+                      size: AvatarSize.small,
+                    ),
+                  ],
+                ],
               ),
-            ],
-          ),
+              onClick: () {
+                context.goNamed('/github/${p.login}?tab=sponsors');
+              },
+            ),
+          if (p.sponsoring.totalCount > 0)
+            AntListItem(
+              prefix: const Icon(Octicons.heart),
+              extra: Text(p.sponsoring.totalCount.toString()),
+              child: Row(
+                children: [
+                  const Text('Sponsoring'),
+                  const Spacer(),
+                  for (final sponsor in p.sponsoring.nodes!) ...[
+                    const SizedBox(width: 6),
+                    Avatar(
+                      isOrg: sponsor.G__typename != 'User',
+                      url: sponsor.G__typename == 'User'
+                          ? (sponsor as GUserData_user_sponsoring_nodes__asUser)
+                              .avatarUrl
+                          : (sponsor
+                                  as GUserParts_sponsoring_nodes__asOrganization)
+                              .avatarUrl,
+                      size: AvatarSize.small,
+                    ),
+                  ],
+                ],
+              ),
+              onClick: () {
+                context.goNamed('/github/${p.login}?tab=sponsoring');
+              },
+            ),
+          if (p.organizations.totalCount > 0)
+            AntListItem(
+              prefix: const Icon(Octicons.organization),
+              extra: Text(p.organizations.totalCount.toString()),
+              child: Row(
+                children: [
+                  Text(AppLocalizations.of(context)!.organizations),
+                  const Spacer(),
+                  for (final org in p.organizations.nodes!) ...[
+                    const SizedBox(width: 6),
+                    Avatar(
+                      isOrg: true,
+                      url: org.avatarUrl,
+                      size: AvatarSize.small,
+                    ),
+                  ],
+                ],
+              ),
+              onClick: () {
+                context.pushUrl('/github/${p.login}?tab=organizations');
+              },
+            ),
+        ]),
         CommonStyle.verticalGap,
         AntList(
-          header: const Text('Overview'),
           children: [
             AntListItem(
               prefix: const Icon(Octicons.repo),
