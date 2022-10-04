@@ -52,9 +52,10 @@ class _BbIssueFormScreenState extends State<BbIssueFormScreen> {
               maxLines: 10,
             ),
           ),
-          CupertinoButton.filled(
+          AntButton(
+            color: AntTheme.of(context).colorPrimary,
             child: Text(AppLocalizations.of(context)!.submit),
-            onPressed: () async {
+            onClick: () async {
               await auth.fetchBbJson(
                 '/repositories/${widget.owner}/${widget.name}/issues',
                 isPost: true,

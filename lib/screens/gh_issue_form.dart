@@ -51,9 +51,10 @@ class _GhIssueFormScreenState extends State<GhIssueFormScreen> {
               maxLines: 10,
             ),
           ),
-          CupertinoButton.filled(
+          AntButton(
+            color: AntTheme.of(context).colorPrimary,
             child: Text(AppLocalizations.of(context)!.submit),
-            onPressed: () async {
+            onClick: () async {
               final slug = RepositorySlug(widget.owner, widget.name);
               final res = await context
                   .read<AuthModel>()

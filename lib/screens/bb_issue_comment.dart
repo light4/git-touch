@@ -39,9 +39,10 @@ class _BbIssueCommentScreenState extends State<BbIssueCommentScreen> {
               maxLines: 10,
             ),
           ),
-          CupertinoButton.filled(
+          AntButton(
+            color: AntTheme.of(context).colorPrimary,
             child: const Text('Comment'),
-            onPressed: () async {
+            onClick: () async {
               await auth.fetchBb(
                 '/repositories/${widget.owner}/${widget.name}/issues/${widget.number}/comments',
                 isPost: true,

@@ -49,9 +49,10 @@ class _GtIssueCommentScreenState extends State<GtIssueCommentScreen> {
               maxLines: 10,
             ),
           ),
-          CupertinoButton.filled(
+          AntButton(
+            color: AntTheme.of(context).colorPrimary,
             child: const Text('Comment'),
-            onPressed: () async {
+            onClick: () async {
               if (!isEdit) {
                 await auth.fetchGitea(
                   '/repos/${widget.owner}/${widget.name}/${widget.isPr ? 'pulls' : 'issues'}/${widget.number}/comments',

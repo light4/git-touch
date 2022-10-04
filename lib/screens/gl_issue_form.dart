@@ -51,9 +51,10 @@ class _GlIssueFormScreenState extends State<GlIssueFormScreen> {
               maxLines: 10,
             ),
           ),
-          CupertinoButton.filled(
+          AntButton(
+            color: AntTheme.of(context).colorPrimary,
             child: Text(AppLocalizations.of(context)!.submit),
-            onPressed: () async {
+            onClick: () async {
               final res = await auth.fetchGitlab(
                 '/projects/${widget.id}/issues',
                 isPost: true,

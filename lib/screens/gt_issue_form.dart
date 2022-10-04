@@ -52,9 +52,10 @@ class _GtIssueFormScreenState extends State<GtIssueFormScreen> {
               maxLines: 10,
             ),
           ),
-          CupertinoButton.filled(
+          AntButton(
+            color: AntTheme.of(context).colorPrimary,
             child: Text(AppLocalizations.of(context)!.submit),
-            onPressed: () async {
+            onClick: () async {
               await auth.fetchGitea(
                 '/repos/${widget.owner}/${widget.name}/issues',
                 requestType: 'POST',
