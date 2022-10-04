@@ -19,13 +19,14 @@ class LanguageBar extends StatelessWidget {
   const LanguageBar(this.items);
   final List<LanguageBarItem> items;
 
+  static const _padding = 8.0;
+
   @override
   Widget build(BuildContext context) {
     final langWidth = MediaQuery.of(context).size.width -
-        CommonStyle.padding.left -
-        CommonStyle.padding.right -
-        items.length +
-        1;
+        _padding * 2 - // left, right
+        (items.length - 1) - // space between items
+        1; // buffer for rounding
 
     return CupertinoButton(
       padding: EdgeInsets.zero,
@@ -37,23 +38,20 @@ class LanguageBar extends StatelessWidget {
           builder: _buildPopup,
         );
       },
-      child: Container(
-        // color: AntTheme.of(context).background,
-        padding: CommonStyle.padding.copyWith(top: 8, bottom: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(_padding),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: SizedBox(
-            height: 10,
-            child: Row(
-              children: join(
-                const SizedBox(width: 1),
-                items
-                    .map((lang) => Container(
-                        color: fromCssColor(lang.hexColor!),
-                        width: langWidth * lang.ratio!))
-                    .toList(),
-              ),
-            ),
+          borderRadius: BorderRadius.circular(100),
+          child: Wrap(
+            spacing: 1,
+            children: [
+              for (final lang in items)
+                Container(
+                  color: fromCssColor(lang.hexColor!),
+                  width: langWidth * lang.ratio!,
+                  height: 12,
+                )
+            ],
           ),
         ),
       ),
