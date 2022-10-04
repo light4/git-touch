@@ -229,18 +229,18 @@ final router = GoRouter(
                   ),
                   routes: [
                     GoRoute(
+                      path: 'new',
+                      builder: (context, state) => GhIssueFormScreen(
+                        state.params['owner']!,
+                        state.params['name']!,
+                      ),
+                    ),
+                    GoRoute(
                       path: ':number',
                       builder: (context, state) => GhIssueScreen(
                         state.params['owner']!,
                         state.params['name']!,
                         int.parse(state.params['number']!),
-                      ),
-                    ),
-                    GoRoute(
-                      path: 'new',
-                      builder: (context, state) => GhIssueFormScreen(
-                        state.params['owner']!,
-                        state.params['name']!,
                       ),
                     ),
                   ],
@@ -360,16 +360,16 @@ final router = GoRouter(
                         ),
                     routes: [
                       GoRoute(
+                        path: 'new',
+                        builder: (context, state) => GlIssueFormScreen(
+                          int.parse(state.params['id']!),
+                        ),
+                      ),
+                      GoRoute(
                         path: ':iid',
                         builder: (context, state) => GlIssueScreen(
                           int.parse(state.params['id']!),
                           int.parse(state.params['iid']!),
-                        ),
-                      ),
-                      GoRoute(
-                        path: 'new',
-                        builder: (context, state) => GlIssueFormScreen(
-                          int.parse(state.params['id']!),
                         ),
                       ),
                     ]),
