@@ -8,6 +8,7 @@ import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/action_entry.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
+import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/contribution.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
@@ -155,16 +156,34 @@ class _User extends StatelessWidget {
           ],
         ),
         CommonStyle.verticalGap,
-        AntList(
-          children: [
-            AntListItem(
-              prefix: const Icon(Octicons.organization),
-              extra: Text(p.organizations.totalCount.toString()),
-              onClick: () {
-                context.push('/github/${p.login}?tab=organizations');
-              },
-              child: Text(AppLocalizations.of(context)!.organizations),
+        if (p.organizations.totalCount > 0)
+          AntList(
+            header: Text(
+              '${AppLocalizations.of(context)!.organizations} (${p.organizations.totalCount})',
             ),
+            children: [
+              AntListItem(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Wrap(
+                    spacing: 8,
+                    children: [
+                      for (final org in p.organizations.nodes!)
+                        Avatar(
+                          isOrg: true,
+                          url: org.avatarUrl,
+                          linkUrl: '/github/${org.login}',
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        CommonStyle.verticalGap,
+        AntList(
+          header: const Text('Overview'),
+          children: [
             AntListItem(
               prefix: const Icon(Octicons.repo),
               extra: Text(p.repositories.totalCount.toString()),

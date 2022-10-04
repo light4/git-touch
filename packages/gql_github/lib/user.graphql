@@ -51,8 +51,12 @@ fragment UserParts on User {
       }
     }
   }
-  organizations {
+  organizations(first: 10) {
     totalCount
+    nodes {
+      login
+      avatarUrl
+    }
   }
   repositories(
     first: 6

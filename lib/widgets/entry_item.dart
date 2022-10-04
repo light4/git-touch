@@ -43,6 +43,7 @@ class EntryItem extends StatelessWidget {
                   fontSize: 14,
                   color: theme.colorTextSecondary,
                   fontWeight: FontWeight.w500,
+                  // overflow: TextOverflow.ellipsis,
                 ),
               )
             ],
