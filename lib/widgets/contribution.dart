@@ -9,19 +9,6 @@ import 'package:provider/provider.dart';
 const contributionEmptyColor = '#ebedf0';
 const contributionColors = ['#9be9a8', '#40c463', '#30a14e', '#216e39'];
 
-class HideScrollbar extends StatelessWidget {
-  const HideScrollbar({super.key, this.child});
-  final Widget? child;
-
-  @override
-  Widget build(BuildContext context) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: (_) => true,
-      child: child!,
-    );
-  }
-}
-
 class ContributionDay {
   ContributionDay({this.hexColor, this.count})
       : assert(hexColor != null || count != null);
@@ -63,13 +50,11 @@ class ContributionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.watch<ThemeModel>();
-    return Container(
-      alignment: Alignment.center,
-      padding: CommonStyle.padding,
-      child: HideScrollbar(
-          child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        reverse: true,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      reverse: true,
+      child: Padding(
+        padding: CommonStyle.padding,
         child: Wrap(
           spacing: 3,
           children: [
@@ -93,7 +78,7 @@ class ContributionWidget extends StatelessWidget {
               )
           ],
         ),
-      )),
+      ),
     );
   }
 }
