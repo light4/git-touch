@@ -9,8 +9,6 @@ import 'package:tuple/tuple.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-export 'package:flutter/material.dart'
-    show Card, ExpansionTile, IconButton; // TODO: remove
 export 'package:flutter_vector_icons/flutter_vector_icons.dart'
     show Octicons, Ionicons;
 

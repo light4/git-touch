@@ -26,20 +26,23 @@ class FilesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeModel>(context);
     final codeProvider = Provider.of<CodeModel>(context);
-    return Card(
-      color: AntTheme.of(context).colorBackground,
-      margin: const EdgeInsets.all(0),
-      child: ExpansionTile(
-        title: Text(
-          filename!,
-          style: TextStyle(
-            color: AntTheme.of(context).colorPrimary,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
+    return AntCollapse(
+      activeKey: const [''],
+      onChange: (_) {
+        // TODO: set active
+      },
+      panels: [
+        AntCollapsePanel(
+          key: '',
+          title: Text(
+            filename!,
+            style: TextStyle(
+              color: AntTheme.of(context).colorPrimary,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
-        children: <Widget>[
-          SingleChildScrollView(
+          child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: HighlightView(
               patch!,
@@ -51,8 +54,8 @@ class FilesItem extends StatelessWidget {
               textStyle: codeProvider.fontStyle,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

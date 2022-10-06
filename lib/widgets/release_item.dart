@@ -1,21 +1,22 @@
 import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
-import 'package:git_touch/utils/utils.dart';
+import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:gql_github/releases.data.gql.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class ReleaseItem extends StatelessWidget {
-  const ReleaseItem(
-      {required this.login,
-      required this.publishedAt,
-      required this.name,
-      required this.tagName,
-      required this.avatarUrl,
-      required this.description,
-      this.releaseAssets});
+class ReleaseItem extends StatefulWidget {
+  const ReleaseItem({
+    required this.login,
+    required this.publishedAt,
+    required this.name,
+    required this.tagName,
+    required this.avatarUrl,
+    required this.description,
+    this.releaseAssets,
+  });
   final String? login;
   final DateTime? publishedAt;
   final String? name;
@@ -25,6 +26,13 @@ class ReleaseItem extends StatelessWidget {
   final GReleasesData_repository_releases_nodes_releaseAssets? releaseAssets;
 
   @override
+  State<ReleaseItem> createState() => _ReleaseItemState();
+}
+
+class _ReleaseItemState extends State<ReleaseItem> {
+  var _isExpanded = false;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -32,7 +40,7 @@ class ReleaseItem extends StatelessWidget {
           height: 12,
         ),
         Row(children: <Widget>[
-          Avatar(url: avatarUrl, size: AvatarSize.large),
+          Avatar(url: widget.avatarUrl, size: AvatarSize.large),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -42,7 +50,7 @@ class ReleaseItem extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     Text(
-                      tagName!,
+                      widget.tagName!,
                       style: TextStyle(
                         color: AntTheme.of(context).colorPrimary,
                         fontSize: 18,
@@ -58,43 +66,36 @@ class ReleaseItem extends StatelessWidget {
                     fontSize: 16,
                   ),
                   child: Text(
-                      '${login!} ${AppLocalizations.of(context)!.released} ${timeago.format(publishedAt!)}'),
+                      '${widget.login!} ${AppLocalizations.of(context)!.released} ${timeago.format(widget.publishedAt!)}'),
                 ),
               ],
             ),
           ),
         ]),
-        if (description != null && description!.isNotEmpty) ...[
+        if (widget.description != null && widget.description!.isNotEmpty) ...[
           MarkdownFlutterView(
-            description,
+            widget.description,
           ),
           const SizedBox(height: 10),
         ],
-        Card(
-          color: AntTheme.of(context).colorBox,
-          margin: const EdgeInsets.all(0),
-          child: ExpansionTile(
-            title: Text(
-              'Assets (${releaseAssets?.nodes?.length ?? 0})',
-              style: TextStyle(
-                color: AntTheme.of(context).colorTextSecondary,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            children: <Widget>[
-              AntList(
+        AntCollapse(
+          activeKey: _isExpanded ? [''] : [],
+          onChange: (_) {
+            setState(() {
+              _isExpanded = !_isExpanded;
+            });
+          },
+          panels: [
+            AntCollapsePanel(
+              key: '',
+              title:
+                  Text('Assets (${widget.releaseAssets?.nodes?.length ?? 0})'),
+              child: AntList(
                 children: [
-                  if (releaseAssets != null)
-                    for (var asset in releaseAssets!.nodes!)
+                  if (widget.releaseAssets != null)
+                    for (var asset in widget.releaseAssets!.nodes!)
                       AntListItem(
-                        extra: IconButton(
-                          onPressed: () {
-                            context.pushUrl(asset.downloadUrl);
-                          },
-                          icon: const Icon(Ionicons.download_outline),
-                        ),
-                        arrow: null,
+                        arrow: const Icon(Ionicons.download_outline),
                         child: Text(
                           asset.name,
                           style: TextStyle(
@@ -103,11 +104,14 @@ class ReleaseItem extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
+                        onClick: () {
+                          context.pushUrl(asset.downloadUrl);
+                        },
                       ),
                 ],
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         )
       ],
     );

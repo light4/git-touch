@@ -1,5 +1,5 @@
 import 'package:antd_mobile/antd_mobile.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
@@ -165,16 +165,18 @@ class GePullScreen extends StatelessWidget {
                                       children: <Widget>[
                                         Text(
                                           '+$additions',
-                                          style: const TextStyle(
-                                            color: Colors.green,
+                                          style: TextStyle(
+                                            color: AntTheme.of(context)
+                                                .colorSuccess,
                                             fontSize: 15,
                                           ),
                                         ),
                                         const SizedBox(width: 2),
                                         Text(
                                           '-$deletions',
-                                          style: const TextStyle(
-                                            color: Colors.red,
+                                          style: TextStyle(
+                                            color: AntTheme.of(context)
+                                                .colorDanger,
                                             fontSize: 15,
                                           ),
                                         ),
@@ -190,46 +192,42 @@ class GePullScreen extends StatelessWidget {
                               ),
                             ),
                             CommonStyle.border,
-                            ListTileTheme(
-                              contentPadding: EdgeInsets.zero,
-                              child: ExpansionTile(
-                                title: Text(
-                                  'Commits',
-                                  style: TextStyle(
-                                    color: AntTheme.of(context).colorPrimary,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                children: [
-                                  for (var commit in commits) ...[
-                                    LinkWidget(
-                                      url:
-                                          '/gitee/$owner/$name/commits/${commit.sha}',
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 8),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            Text(
-                                              commit.sha!.substring(0, 7),
-                                              style: TextStyle(
-                                                color: AntTheme.of(context)
-                                                    .colorPrimary,
-                                                fontSize: 17,
-                                                fontFamily:
-                                                    CommonStyle.monospace,
-                                              ),
+                            Column(
+                              // title: Text(
+                              //   'Commits',
+                              //   style: TextStyle(
+                              //     color: AntTheme.of(context).colorPrimary,
+                              //     fontSize: 18,
+                              //     fontWeight: FontWeight.w600,
+                              //   ),
+                              // ),
+                              children: [
+                                for (var commit in commits) ...[
+                                  LinkWidget(
+                                    url:
+                                        '/gitee/$owner/$name/commits/${commit.sha}',
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            commit.sha!.substring(0, 7),
+                                            style: TextStyle(
+                                              color: AntTheme.of(context)
+                                                  .colorPrimary,
+                                              fontSize: 17,
+                                              fontFamily: CommonStyle.monospace,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                    )
-                                  ]
-                                ],
-                              ),
+                                    ),
+                                  )
+                                ]
+                              ],
                             ),
                           ],
                         ),
