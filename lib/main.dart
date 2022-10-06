@@ -1,11 +1,9 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/app.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/code.dart';
 import 'package:git_touch/models/notification.dart';
 import 'package:git_touch/models/theme.dart';
-import 'package:git_touch/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -26,11 +24,6 @@ void main() async {
         authModel.init(),
         codeModel.init(),
       ]);
-
-      // To match status bar color to app bar color
-      SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-      ));
 
       runApp(MultiProvider(
         providers: [

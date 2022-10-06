@@ -1,5 +1,5 @@
+import 'package:antd_mobile/antd_mobile.dart';
 import 'package:flutter/widgets.dart';
-import 'package:git_touch/utils/utils.dart';
 
 class ErrorReload extends StatelessWidget {
   const ErrorReload({required this.text, required this.onTap});
@@ -19,18 +19,19 @@ class ErrorReload extends StatelessWidget {
           const Padding(padding: EdgeInsets.only(top: 10)),
           Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w300,
-              color: Colors.redAccent,
+              color: AntTheme.of(context).colorDanger,
             ),
           ),
           const Padding(padding: EdgeInsets.only(top: 10)),
           GestureDetector(
             onTap: onTap as void Function()?,
-            child: const Text(
+            child: Text(
               'Reload',
-              style: TextStyle(fontSize: 20, color: Colors.blueAccent),
+              style: TextStyle(
+                  fontSize: 20, color: AntTheme.of(context).colorPrimary),
             ),
           ),
         ],

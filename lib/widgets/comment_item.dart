@@ -1,4 +1,5 @@
 import 'package:antd_mobile/antd_mobile.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/theme.dart';
@@ -130,7 +131,7 @@ mutation {
                       ? (theme.brightness == Brightness.dark
                           ? PrimerColors.blue900
                           : PrimerColors.blue000)
-                      : Colors.transparent,
+                      : null,
                 ),
                 child: Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,

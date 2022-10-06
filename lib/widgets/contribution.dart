@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:git_touch/models/theme.dart';

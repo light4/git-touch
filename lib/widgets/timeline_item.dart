@@ -18,12 +18,12 @@ class TimelineEventItem extends StatelessWidget {
   const TimelineEventItem({
     this.actor,
     this.iconData = Octicons.diamond,
-    this.iconColor = Colors.grey,
+    this.iconColor,
     this.textSpan,
   });
   final String? actor;
   final IconData iconData;
-  final Color iconColor;
+  final Color? iconColor;
   final TextSpan? textSpan;
 
   @override

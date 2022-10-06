@@ -24,7 +24,7 @@ class _NotificationItemState extends State<NotificationItem> {
   GithubNotificationItem get payload => widget.payload;
   bool loading = false;
 
-  Widget _buildIcon(IconData data, [Color color = Colors.black54]) {
+  Widget _buildIcon(IconData data, [Color? color]) {
     return Icon(data, color: color, size: 20);
   }
 

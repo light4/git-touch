@@ -226,14 +226,14 @@ class GhIssueScreen extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Text('+${pr.additions}',
-                              style: const TextStyle(
-                                color: Colors.green,
+                              style: TextStyle(
+                                color: AntTheme.of(context).colorSuccess,
                                 fontSize: 15,
                               )),
                           const SizedBox(width: 2),
                           Text('-${pr.deletions}',
-                              style: const TextStyle(
-                                color: Colors.red,
+                              style: TextStyle(
+                                color: AntTheme.of(context).colorDanger,
                                 fontSize: 15,
                               )),
                           Icon(Ionicons.chevron_forward,
