@@ -253,32 +253,25 @@ final router = GoRouter(
                   ),
                 ),
                 GoRoute(
-                  path: 'pull',
-                  redirect: (_, state) =>
-                      '/github/${state.params['owner']!}/${state.params['name']!}/pulls',
+                  path: 'pull/:number',
+                  builder: (context, state) => GhIssueScreen(
+                    state.params['owner']!,
+                    state.params['name']!,
+                    int.parse(state.params['number']!),
+                  ),
                   routes: [
                     GoRoute(
-                      path: ':number',
-                      builder: (context, state) => GhIssueScreen(
-                        state.params['owner']!,
-                        state.params['name']!,
-                        int.parse(state.params['number']!),
-                      ),
-                      routes: [
-                        GoRoute(
-                          path: 'files',
-                          builder: (context, state) {
-                            return GhFilesScreen(
-                              state.params['owner']!,
-                              state.params['name']!,
-                              int.parse(state.params['number']!),
-                            );
-                          },
-                        ),
-                      ],
+                      path: 'files',
+                      builder: (context, state) {
+                        return GhFilesScreen(
+                          state.params['owner']!,
+                          state.params['name']!,
+                          int.parse(state.params['number']!),
+                        );
+                      },
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ],
