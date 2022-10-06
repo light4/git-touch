@@ -23,8 +23,8 @@ class HexColorTag extends StatelessWidget {
         name,
         style: TextStyle(
           color: c.computeLuminance() > 0.5
-              ? theme.colorBackground
-              : theme.colorText,
+              ? theme.colorText
+              : theme.colorBackground,
         ),
       ),
     );
