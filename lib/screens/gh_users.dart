@@ -123,15 +123,15 @@ class GhMembers extends StatelessWidget {
   }
 }
 
-class GhWachers extends StatelessWidget {
-  const GhWachers(this.owner, this.name);
+class GhWatchers extends StatelessWidget {
+  const GhWatchers(this.owner, this.name);
   final String owner;
   final String name;
 
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GUserParts, String?>(
-      title: const AppBarTitle('Wachers'),
+      title: const AppBarTitle('Watchers'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GWatchersReq((b) {

@@ -179,7 +179,7 @@ final router = GoRouter(
                 GoRoute(
                   path: 'watchers',
                   builder: (context, state) =>
-                      GhWachers(state.params['owner']!, state.params['name']!),
+                      GhWatchers(state.params['owner']!, state.params['name']!),
                 ),
                 GoRoute(
                   path: 'contributors',
