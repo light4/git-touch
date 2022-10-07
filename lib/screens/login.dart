@@ -10,7 +10,6 @@ import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/avatar.dart';
-import 'package:git_touch/widgets/link.dart';
 import 'package:git_touch/widgets/loading.dart';
 import 'package:git_touch/widgets/text_field.dart';
 import 'package:provider/provider.dart';
@@ -29,20 +28,27 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
 
   Widget _buildAccountItem(int index) {
-    final theme = Provider.of<ThemeModel>(context);
     final auth = Provider.of<AuthModel>(context);
     final account = auth.accounts![index];
-    return LinkWidget(
-      onLongPress: () {
-        theme.showActions(context, [
-          ActionItem(
-            text: AppLocalizations.of(context)!.removeAccount,
-            danger: true,
-            onTap: (_) {
-              auth.removeAccount(index);
-            },
+    return Dismissible(
+      key: ValueKey(index),
+      direction: DismissDirection.endToStart,
+      background: Container(
+        color: AntTheme.of(context).colorDanger,
+        padding: const EdgeInsets.only(right: 12),
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            AppLocalizations.of(context)!.removeAccount,
+            style: TextStyle(
+              fontSize: 16,
+              color: AntTheme.of(context).colorBackground,
+            ),
           ),
-        ]);
+        ),
+      ),
+      onDismissed: (_) {
+        auth.removeAccount(index);
       },
       child: AntListItem(
         onClick: () {
@@ -354,7 +360,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   padding: CommonStyle.padding,
                   child: Text(
-                    AppLocalizations.of(context)!.longPressToRemoveAccount,
+                    'Swipe to left to remove account',
                     style: TextStyle(
                       fontSize: 16,
                       color: AntTheme.of(context).colorTextSecondary,

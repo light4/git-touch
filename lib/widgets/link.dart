@@ -6,16 +6,14 @@ class LinkWidget extends StatelessWidget {
     required this.child,
     this.url,
     this.onTap,
-    this.onLongPress,
   });
   final Widget child;
   final String? url;
   final Function? onTap;
-  final Function? onLongPress;
 
   @override
   Widget build(BuildContext context) {
-    Widget w = CupertinoButton(
+    final Widget w = CupertinoButton(
       minSize: 0,
       padding: EdgeInsets.zero,
       onPressed: () async {
@@ -24,10 +22,6 @@ class LinkWidget extends StatelessWidget {
       },
       child: child,
     );
-    if (onLongPress != null) {
-      w = GestureDetector(
-          onLongPress: onLongPress as void Function()?, child: w);
-    }
     return w;
   }
 }
