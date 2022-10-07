@@ -33,9 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
     final auth = Provider.of<AuthModel>(context);
     final account = auth.accounts![index];
     return LinkWidget(
-      onTap: () {
-        auth.setActiveAccountAndReload(index);
-      },
       onLongPress: () {
         theme.showActions(context, [
           ActionItem(
@@ -48,52 +45,35 @@ class _LoginScreenState extends State<LoginScreen> {
         ]);
       },
       child: AntListItem(
-        child: Row(
-          children: <Widget>[
-            Avatar(url: account.avatarUrl, size: AvatarSize.large),
-            const Padding(padding: EdgeInsets.only(left: 10)),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    account.login,
-                    style: TextStyle(
-                        fontSize: 20, color: AntTheme.of(context).colorText),
-                  ),
-                  const Padding(padding: EdgeInsets.only(top: 6)),
-                  Text(
-                    account.domain,
-                    style: TextStyle(
-                        color: AntTheme.of(context).colorTextSecondary),
-                  )
-                ],
-              ),
-            ),
-            (index == auth.activeAccountIndex)
-                ? const Icon(Ionicons.checkmark)
-                : Container(),
-          ],
-        ),
+        onClick: () {
+          auth.setActiveAccountAndReload(index);
+        },
+        arrow: null,
+        prefix: Avatar(url: account.avatarUrl),
+        extra: index == auth.activeAccountIndex
+            ? const Icon(Ionicons.checkmark)
+            : null,
+        description: Text(account.domain),
+        child: Text(account.login),
       ),
     );
   }
 
-  Widget _buildAddItem(
-      {IconData? brand, required String text, Function? onTap}) {
-    return LinkWidget(
-      onTap: onTap,
-      child: AntListItem(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Icon(Ionicons.add),
-            const SizedBox(width: 4),
-            Icon(brand),
-            const SizedBox(width: 8),
-            Text(text, style: const TextStyle(fontSize: 16)),
-          ],
-        ),
+  Widget _buildAddItem({
+    IconData? brand,
+    required String text,
+    void Function()? onTap,
+  }) {
+    return AntListItem(
+      onClick: onTap,
+      child: Row(
+        children: <Widget>[
+          const Icon(Ionicons.add),
+          const SizedBox(width: 4),
+          Icon(brand),
+          const SizedBox(width: 8),
+          Text(text, style: const TextStyle(fontSize: 15)),
+        ],
       ),
     );
   }
