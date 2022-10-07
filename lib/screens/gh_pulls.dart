@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:git_touch/widgets/issue_item.dart';
 import 'package:gql_github/issues.data.gql.dart';
@@ -18,7 +17,7 @@ class GhPullsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GPullsData_repository_pullRequests_nodes,
         String?>(
-      title: AppBarTitle(AppLocalizations.of(context)!.pullRequests),
+      title: Text(AppLocalizations.of(context)!.pullRequests),
       fetch: (cursor) async {
         final req = GPullsReq((b) {
           b.vars.owner = owner;

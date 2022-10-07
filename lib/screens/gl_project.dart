@@ -10,7 +10,6 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/language_bar.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
@@ -29,7 +28,7 @@ class GlProjectScreen extends StatelessWidget {
     return RefreshStatefulScaffold<
         Tuple5<GitlabProject, Future<Map<String, double>>, Future<int>,
             MarkdownViewData?, List<GitlabBranch>>>(
-      title: AppBarTitle(AppLocalizations.of(context)!.project),
+      title: Text(AppLocalizations.of(context)!.project),
       fetch: () async {
         final auth = context.read<AuthModel>();
         final p =

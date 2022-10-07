@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:git_touch/scaffolds/common.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 
 class GistObjectScreen extends StatelessWidget {
@@ -17,7 +16,7 @@ class GistObjectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-        title: AppBarTitle(file),
+        title: Text(file),
         action: const ActionEntry(
           iconData: Ionicons.cog,
           url: '/choose-code-theme',

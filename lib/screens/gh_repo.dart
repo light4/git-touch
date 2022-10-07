@@ -9,7 +9,6 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/language_bar.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
@@ -49,7 +48,7 @@ class GhRepoScreen extends StatelessWidget {
     final theme = Provider.of<ThemeModel>(context);
     return RefreshStatefulScaffold<
         Tuple3<GRepoData_repository?, Future<int>, MarkdownViewData>>(
-      title: AppBarTitle(AppLocalizations.of(context)!.repository),
+      title: Text(AppLocalizations.of(context)!.repository),
       fetch: () async {
         final req = GRepoReq((b) => b
           ..vars.owner = owner

@@ -5,7 +5,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/widgets/action_button.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/files_item.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +18,7 @@ class GhComparisonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold(
-      title: AppBarTitle(AppLocalizations.of(context)!.files),
+      title: Text(AppLocalizations.of(context)!.files),
       fetch: () async {
         final res = await context.read<AuthModel>().ghClient.getJSON(
             '/repos/$owner/$name/compare/$before...$head',

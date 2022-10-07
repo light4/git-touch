@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitea.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/repo_item.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -26,7 +25,7 @@ class GtReposScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GiteaRepository, int>(
-      title: AppBarTitle(title),
+      title: Text(title),
       fetch: (page) async {
         final res =
             await context.read<AuthModel>().fetchGiteaWithPage(api, page: page);

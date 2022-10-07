@@ -5,7 +5,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/models/notification.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/event_item.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +34,7 @@ class GhNewsScreenState extends State<GhNewsScreen> {
   @override
   Widget build(context) {
     return ListStatefulScaffold<GithubEvent, int>(
-      title: AppBarTitle(AppLocalizations.of(context)!.news),
+      title: Text(AppLocalizations.of(context)!.news),
       itemBuilder: (payload) => EventItem(payload),
       fetch: (page) async {
         page = page ?? 1;

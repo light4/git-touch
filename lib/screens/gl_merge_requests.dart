@@ -3,7 +3,6 @@ import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:git_touch/widgets/issue_item.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +15,7 @@ class GlMergeRequestsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GitlabIssue, int>(
-      title: AppBarTitle(AppLocalizations.of(context)!.mergeRequests),
+      title: Text(AppLocalizations.of(context)!.mergeRequests),
       fetch: (page) async {
         page = page ?? 1;
         final res = await context.read<AuthModel>().fetchGitlabWithPage(

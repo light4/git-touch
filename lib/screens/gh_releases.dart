@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/release_item.dart';
 import 'package:gql_github/releases.data.gql.dart';
 import 'package:gql_github/releases.req.gql.dart';
@@ -17,7 +16,7 @@ class GhReleasesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GReleasesData_repository_releases_nodes,
         String?>(
-      title: const AppBarTitle('Releases'),
+      title: const Text('Releases'),
       fetch: (page) async {
         final req = GReleasesReq((b) => b
           ..vars.owner = owner

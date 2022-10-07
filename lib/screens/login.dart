@@ -9,7 +9,6 @@ import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/single.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/loading.dart';
 import 'package:git_touch/widgets/text_field.dart';
@@ -112,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final auth = Provider.of<AuthModel>(context);
     final theme = Provider.of<ThemeModel>(context);
     return SingleScaffold(
-      title: AppBarTitle(AppLocalizations.of(context)!.selectAccount),
+      title: Text(AppLocalizations.of(context)!.selectAccount),
       body: auth.loading
           ? const Center(child: Loading())
           : Column(

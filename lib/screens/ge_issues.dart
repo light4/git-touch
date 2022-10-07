@@ -4,7 +4,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:git_touch/widgets/issue_item.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +17,7 @@ class GeIssuesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GiteeIssue, int>(
-      title: AppBarTitle(isPr ? 'Pull Requests' : 'Issues'),
+      title: Text(isPr ? 'Pull Requests' : 'Issues'),
       fetch: (page) async {
         final res = await context
             .read<AuthModel>()

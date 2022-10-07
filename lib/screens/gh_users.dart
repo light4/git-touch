@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/user_item.dart';
 import 'package:gql_github/users.data.gql.dart';
 import 'package:gql_github/users.req.gql.dart';
@@ -14,7 +13,7 @@ class GhFollowers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GUserParts, String?>(
-      title: const AppBarTitle('Followers'),
+      title: const Text('Followers'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GFollowersReq((b) {
@@ -43,7 +42,7 @@ class GhFollowing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GUserParts, String?>(
-      title: const AppBarTitle('Following'),
+      title: const Text('Following'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GFollowingReq((b) {
@@ -72,7 +71,7 @@ class GhOrgs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GOrgParts, String?>(
-      title: const AppBarTitle('Organizations'),
+      title: const Text('Organizations'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GOrgsReq((b) {
@@ -101,7 +100,7 @@ class GhMembers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GUserParts, String?>(
-      title: const AppBarTitle('Members'),
+      title: const Text('Members'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GMembersReq((b) {
@@ -131,7 +130,7 @@ class GhWatchers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GUserParts, String?>(
-      title: const AppBarTitle('Watchers'),
+      title: const Text('Watchers'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GWatchersReq((b) {
@@ -162,7 +161,7 @@ class GhStargazers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GUserParts, String?>(
-      title: const AppBarTitle('Stargazers'),
+      title: const Text('Stargazers'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GStargazersReq((b) {

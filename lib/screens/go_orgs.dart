@@ -4,7 +4,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gogs.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +17,7 @@ class GoOrgsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold<List<GogsOrg>>(
-      title: AppBarTitle(AppLocalizations.of(context)!.organizations),
+      title: Text(AppLocalizations.of(context)!.organizations),
       fetch: () async {
         final res = await context.read<AuthModel>().fetchGogs(api);
         return [for (var v in res) GogsOrg.fromJson(v)];

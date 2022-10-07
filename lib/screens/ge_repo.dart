@@ -10,7 +10,6 @@ import 'package:git_touch/models/gitee.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/markdown_view.dart';
 import 'package:git_touch/widgets/mutation_button.dart';
@@ -36,7 +35,7 @@ class GeRepoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold<
         Tuple4<GiteeRepo, MarkdownViewData, List<GiteeBranch>, StatusPayload>>(
-      title: AppBarTitle(AppLocalizations.of(context)!.repository),
+      title: Text(AppLocalizations.of(context)!.repository),
       fetch: () async {
         final auth = context.read<AuthModel>();
         final repo = await auth.fetchGitee('/repos/$owner/$name').then((v) {

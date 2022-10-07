@@ -6,7 +6,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
 import 'package:github/github.dart';
@@ -24,7 +23,7 @@ class GhObjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold<RepositoryContents>(
       // canRefresh: !_isImage, // TODO:
-      title: AppBarTitle(path ?? 'Files'),
+      title: Text(path ?? 'Files'),
       fetch: () async {
         // Do not request again for images
         if (path != null &&

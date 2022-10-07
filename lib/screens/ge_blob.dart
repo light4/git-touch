@@ -5,7 +5,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +18,7 @@ class GeBlobScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold<String?>(
-      title: AppBarTitle(AppLocalizations.of(context)!.file),
+      title: Text(AppLocalizations.of(context)!.file),
       fetch: () async {
         final auth = context.read<AuthModel>();
         final res = await auth.fetchGitee('/repos/$owner/$name/git/blobs/$sha');

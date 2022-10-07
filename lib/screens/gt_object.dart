@@ -7,7 +7,6 @@ import 'package:git_touch/models/gitea.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +20,7 @@ class GtObjectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold(
-      title: AppBarTitle(path ?? AppLocalizations.of(context)!.files),
+      title: Text(path ?? AppLocalizations.of(context)!.files),
       fetch: () async {
         final suffix = path == null ? '' : '/$path';
         final res = await context

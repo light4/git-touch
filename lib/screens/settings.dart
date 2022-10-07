@@ -10,7 +10,6 @@ import 'package:git_touch/scaffolds/single.dart';
 import 'package:git_touch/utils/locale.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:go_router/go_router.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -24,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
     final auth = Provider.of<AuthModel>(context);
     final code = Provider.of<CodeModel>(context);
     return SingleScaffold(
-      title: AppBarTitle(AppLocalizations.of(context)!.settings),
+      title: Text(AppLocalizations.of(context)!.settings),
       body: Column(
         children: <Widget>[
           CommonStyle.verticalGap,

@@ -7,7 +7,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/models/notification.dart';
 import 'package:git_touch/scaffolds/tab_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/empty.dart';
 import 'package:git_touch/widgets/list_group.dart';
 import 'package:git_touch/widgets/notification_item.dart';
@@ -155,7 +154,7 @@ ${item.key}: pullRequest(number: ${item.subject!.number}) {
   @override
   Widget build(context) {
     return TabStatefulScaffold<Map<String, NotificationGroup>>(
-      title: AppBarTitle(AppLocalizations.of(context)!.notification),
+      title: Text(AppLocalizations.of(context)!.notification),
       tabs: [
         AppLocalizations.of(context)!.unread,
         AppLocalizations.of(context)!.participating,

@@ -6,7 +6,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitee.dart';
 import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/object_tree.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +18,7 @@ class GeTreeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshStatefulScaffold<List<GiteeTreeItem>>(
-      title: AppBarTitle(AppLocalizations.of(context)!.files),
+      title: Text(AppLocalizations.of(context)!.files),
       fetch: () async {
         final res = await context
             .read<AuthModel>()

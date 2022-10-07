@@ -6,7 +6,6 @@ import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/blob_view.dart';
 import 'package:git_touch/widgets/object_tree.dart';
 import 'package:path/path.dart' as p;
@@ -25,7 +24,7 @@ class BbObjectScreen extends StatelessWidget {
     final auth = Provider.of<AuthModel>(context);
 
     return ListStatefulScaffold<dynamic, String?>(
-      title: AppBarTitle(path ?? 'Files'),
+      title: Text(path ?? 'Files'),
       fetch: (next) async {
         final res = await auth.fetchBb(
             next ?? '/repositories/$owner/$name/src/$ref/${path ?? ''}');

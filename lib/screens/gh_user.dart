@@ -8,7 +8,6 @@ import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/avatar.dart';
 import 'package:git_touch/widgets/contribution.dart';
 import 'package:git_touch/widgets/entry_item.dart';
@@ -291,7 +290,7 @@ class GhViewerScreen extends StatelessWidget {
         final res = await auth.ghGqlClient.request(req).first;
         return res.data?.viewer;
       },
-      title: AppBarTitle(AppLocalizations.of(context)!.me),
+      title: Text(AppLocalizations.of(context)!.me),
       action: const ActionEntry(
         iconData: Ionicons.cog,
         url: '/settings',
@@ -317,7 +316,7 @@ class GhUserScreen extends StatelessWidget {
         final res = await auth.ghGqlClient.request(req).first;
         return res.data;
       },
-      title: AppBarTitle(login),
+      title: Text(login),
       actionBuilder: (payload, _) {
         final url = payload?.user?.url ?? payload?.organization?.url;
         if (url == null) return null;

@@ -7,7 +7,6 @@ import 'package:git_touch/scaffolds/refresh_stateful.dart';
 import 'package:git_touch/utils/utils.dart';
 import 'package:git_touch/widgets/action_button.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/entry_item.dart';
 import 'package:git_touch/widgets/repo_item.dart';
 import 'package:git_touch/widgets/user_header.dart';
@@ -34,7 +33,7 @@ class GeUserScreen extends StatelessWidget {
           [for (var v in res[1]) GiteeRepo.fromJson(v)],
         );
       },
-      title: AppBarTitle(isViewer ? 'Me' : login),
+      title: Text(isViewer ? 'Me' : login),
       action: isViewer
           ? const ActionEntry(
               iconData: Ionicons.cog,

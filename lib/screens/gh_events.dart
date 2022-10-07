@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/github.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/event_item.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +14,7 @@ class GhEventsScreen extends StatelessWidget {
   @override
   Widget build(context) {
     return ListStatefulScaffold<GithubEvent, int>(
-      title: AppBarTitle(AppLocalizations.of(context)!.events),
+      title: Text(AppLocalizations.of(context)!.events),
       itemBuilder: (payload) => EventItem(payload),
       fetch: (page) async {
         page = page ?? 1;

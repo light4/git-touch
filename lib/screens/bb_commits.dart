@@ -3,7 +3,6 @@ import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/bitbucket.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/commit_item.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +16,7 @@ class BbCommitsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthModel>(context);
     return ListStatefulScaffold<BbCommit, String?>(
-      title: AppBarTitle(AppLocalizations.of(context)!.commits),
+      title: Text(AppLocalizations.of(context)!.commits),
       fetch: (nextUrl) async {
         final res = await context.read<AuthModel>().fetchBbWithPage(
             nextUrl ?? '/repositories/$owner/$name/commits/$ref');

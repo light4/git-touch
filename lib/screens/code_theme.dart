@@ -8,7 +8,6 @@ import 'package:git_touch/models/code.dart';
 import 'package:git_touch/models/theme.dart';
 import 'package:git_touch/scaffolds/single.dart';
 import 'package:git_touch/utils/utils.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:provider/provider.dart';
 
 class CodeThemeScreen extends StatelessWidget {
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
     final theme = Provider.of<ThemeModel>(context);
 
     return SingleScaffold(
-      title: AppBarTitle(AppLocalizations.of(context)!.codeTheme),
+      title: Text(AppLocalizations.of(context)!.codeTheme),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[

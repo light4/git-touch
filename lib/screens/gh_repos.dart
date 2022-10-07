@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/repo_item.dart';
 import 'package:gql_github/repos.data.gql.dart';
 import 'package:gql_github/repos.req.gql.dart';
@@ -15,7 +14,7 @@ class GhRepos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GRepoParts, String?>(
-      title: const AppBarTitle('Repositories'),
+      title: const Text('Repositories'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GReposReq((b) {
@@ -44,7 +43,7 @@ class GhStars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GRepoParts, String?>(
-      title: const AppBarTitle('Stars'),
+      title: const Text('Stars'),
       fetch: (cursor) async {
         final auth = context.read<AuthModel>();
         final req = GStarsReq((b) {

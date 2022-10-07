@@ -4,7 +4,6 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
 import 'package:git_touch/widgets/action_entry.dart';
-import 'package:git_touch/widgets/app_bar_title.dart';
 import 'package:git_touch/widgets/hex_color_tag.dart';
 import 'package:git_touch/widgets/issue_item.dart';
 import 'package:gql_github/issues.data.gql.dart';
@@ -19,7 +18,7 @@ class GhIssuesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListStatefulScaffold<GIssuesData_repository_issues_nodes, String?>(
-      title: AppBarTitle(AppLocalizations.of(context)!.issues),
+      title: Text(AppLocalizations.of(context)!.issues),
       actionBuilder: () => ActionEntry(
         iconData: Octicons.plus,
         url: '/github/$owner/$name/issues/new',
