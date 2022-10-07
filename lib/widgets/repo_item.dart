@@ -140,116 +140,114 @@ class RepoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = AntTheme.of(context);
+
     return AntListItem(
       arrow: null,
       onClick: () {
         context.pushUrl(url);
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Avatar(
-                url: avatarUrl,
-                size: AvatarSize.small,
-                linkUrl: avatarLink,
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text.rich(
-                  TextSpan(children: [
-                    TextSpan(
-                      text: '$owner / ',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: AntTheme.of(context).colorPrimary,
-                      ),
-                    ),
-                    TextSpan(
-                      text: name,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: AntTheme.of(context).colorPrimary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      // overflow: TextOverflow.ellipsis,
-                    ),
-                  ]),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              if (iconData != null) ...[
-                const SizedBox(width: 6),
-                DefaultTextStyle(
-                  style:
-                      TextStyle(color: AntTheme.of(context).colorTextSecondary),
-                  child: Icon(iconData,
-                      size: 18, color: AntTheme.of(context).colorTextSecondary),
-                ),
-              ]
-            ],
-          ),
-          const SizedBox(height: 8),
-          if (description != null && description!.isNotEmpty) ...[
-            Text(
-              description!,
-              style: TextStyle(
-                color: AntTheme.of(context).colorTextSecondary,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 10),
-          ],
-          if (note != null) ...[
-            Text(
-              note!,
-              style: TextStyle(
-                fontSize: 14,
-                color: AntTheme.of(context).colorWeak,
-              ),
-            ),
-            const SizedBox(height: 10),
-          ],
-          DefaultTextStyle(
-            style:
-                TextStyle(color: AntTheme.of(context).colorText, fontSize: 14),
-            child: Row(
+      child: DefaultTextStyle(
+        style: const TextStyle(height: null),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
               children: <Widget>[
-                if (primaryLanguageName != null) ...[
-                  Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: fromCssColor(primaryLanguageColor ??
-                          github.languageColors[primaryLanguageName!]!),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    primaryLanguageName!,
+                Avatar(
+                  url: avatarUrl,
+                  size: AvatarSize.small,
+                  linkUrl: avatarLink,
+                ),
+                Expanded(
+                  child: Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                        text: '$owner / ',
+                        style: TextStyle(
+                            height: 1, fontSize: 18, color: theme.colorPrimary),
+                      ),
+                      TextSpan(
+                        text: name,
+                        style: TextStyle(
+                          height: 1,
+                          fontSize: 18,
+                          color: theme.colorPrimary,
+                          fontWeight: FontWeight.w600,
+                          // overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ]),
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(width: 24),
-                ],
-                if (starCount! > 0) ...[
-                  Icon(Octicons.star,
-                      size: 16, color: AntTheme.of(context).colorText),
-                  const SizedBox(width: 2),
-                  Text(numberFormat.format(starCount)),
-                  const SizedBox(width: 24),
-                ],
-                if (forkCount! > 0) ...[
-                  Icon(Octicons.repo_forked,
-                      size: 16, color: AntTheme.of(context).colorText),
-                  const SizedBox(width: 2),
-                  Text(numberFormat.format(forkCount)),
-                ],
-              ],
+                ),
+                if (iconData != null)
+                  DefaultTextStyle(
+                    style: TextStyle(color: theme.colorTextSecondary),
+                    child: Icon(iconData,
+                        size: 18, color: theme.colorTextSecondary),
+                  ),
+              ].withSeparator(const SizedBox(width: 8)),
             ),
-          ),
-        ],
+            if (description != null && description!.isNotEmpty)
+              Text(
+                description!,
+                style: TextStyle(
+                  color: theme.colorTextSecondary,
+                  fontSize: 16,
+                  leadingDistribution: TextLeadingDistribution.even,
+                ),
+              ),
+            if (note != null)
+              Text(note!,
+                  style: TextStyle(fontSize: 14, color: theme.colorWeak)),
+            DefaultTextStyle(
+              style: TextStyle(color: theme.colorText, fontSize: 14),
+              child: Row(
+                children: <Widget>[
+                  if (primaryLanguageName != null) ...[
+                    Row(
+                      children: [
+                        Container(
+                          width: 12,
+                          height: 12,
+                          decoration: BoxDecoration(
+                            color: fromCssColor(primaryLanguageColor ??
+                                github.languageColors[primaryLanguageName!]!),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          primaryLanguageName!,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ],
+                  if (starCount! > 0)
+                    Row(
+                      children: [
+                        Icon(Octicons.star, size: 14, color: theme.colorText),
+                        const SizedBox(width: 2),
+                        Text(numberFormat.format(starCount)),
+                      ],
+                    ),
+                  if (forkCount! > 0) ...[
+                    Row(
+                      children: [
+                        Icon(Octicons.repo_forked,
+                            size: 14, color: theme.colorText),
+                        const SizedBox(width: 2),
+                        Text(numberFormat.format(forkCount)),
+                      ],
+                    ),
+                  ],
+                ].withSeparator(const SizedBox(width: 24)),
+              ),
+            ),
+          ].withSeparator(const SizedBox(height: 10)),
+        ),
       ),
     );
   }

@@ -227,7 +227,7 @@ class GhRepoScreen extends StatelessWidget {
                 ),
               ],
             ),
-            if (repo.languages!.edges!.isNotEmpty) ...[
+            if (repo.languages?.edges != null) ...[
               CommonStyle.border,
               LanguageBar([
                 for (var edge in repo.languages!.edges!)
@@ -244,13 +244,18 @@ class GhRepoScreen extends StatelessWidget {
                   AntListItem(
                     prefix: const Icon(Octicons.code),
                     extra: Text(
-                      (license == null ? '' : '$license • ') +
-                          filesize(repo.diskUsage! * 1000),
+                      [
+                        repo.primaryLanguage?.name,
+                        license,
+                        repo.diskUsage == null
+                            ? null
+                            : filesize(repo.diskUsage! * 1000)
+                      ].where((e) => e != null).join(' • '),
                     ),
                     onClick: () {
                       context.push('/github/$owner/$name/blob/${ref.name}');
                     },
-                    child: Text(repo.primaryLanguage?.name ?? 'Code'),
+                    child: const Text('Code'),
                   ),
                 if (repo.hasIssuesEnabled)
                   AntListItem(

@@ -26,50 +26,41 @@ class RepoHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = AntTheme.of(context);
+
     return Container(
       padding: CommonStyle.padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Avatar(
                 url: avatarUrl,
                 size: AvatarSize.small,
                 linkUrl: avatarLink,
               ),
-              const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   '$owner / $name',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: AntTheme.of(context).colorPrimary,
-                  ),
+                  style: TextStyle(fontSize: 20, color: theme.colorPrimary),
                   overflow: TextOverflow.visible,
                 ),
               ),
-            ],
+            ].withSeparator(const SizedBox(width: 8)),
           ),
           if (actions != null) ...actions!,
           if (description != null && description!.isNotEmpty)
             Text(
               description!,
-              style: TextStyle(
-                color: AntTheme.of(context).colorTextSecondary,
-                fontSize: 17,
-              ),
+              style: TextStyle(color: theme.colorTextSecondary, fontSize: 16),
             ),
           if (homepageUrl != null && homepageUrl!.isNotEmpty)
             LinkWidget(
               url: homepageUrl,
               child: Text(
                 homepageUrl!,
-                style: TextStyle(
-                  color: AntTheme.of(context).colorPrimary,
-                  fontSize: 17,
-                ),
+                style: TextStyle(color: theme.colorPrimary, fontSize: 16),
               ),
             ),
           if (trailings != null) ...trailings!
