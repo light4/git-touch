@@ -30,60 +30,58 @@ class GhTrendingScreen extends StatelessWidget {
       bodyBuilder: (payload, activeTab) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: join(
-            CommonStyle.border,
-            activeTab == 0
-                ? [
-                    for (var v in payload.cast<GithubTrendingRepository>())
-                      RepoItem.gh(
-                        owner: v.author,
-                        avatarUrl: v.avatar,
-                        name: v.name,
-                        description: v.description,
-                        starCount: v.stars ?? 0,
-                        forkCount: v.forks ?? 0,
-                        primaryLanguageName: v.language,
-                        primaryLanguageColor: v.languageColor,
-                        note: '${v.currentPeriodStars} stars today',
-                        isPrivate: false,
-                        isFork: false, // TODO:
-                      )
-                  ]
-                : [
-                    for (var v in payload.cast<GithubTrendingDeveloper>())
-                      UserItem.github(
-                        login: v.username,
-                        name: v.name,
-                        avatarUrl: v.avatar,
-                        bio: v.repo == null
-                            ? null
-                            : LinkWidget(
-                                url: '/github/${v.username}/${v.repo!.name}',
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Octicons.repo,
-                                      size: 17,
-                                      color: AntTheme.of(context)
-                                          .colorTextSecondary,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Expanded(
-                                        child: Text(
-                                      '${v.username} / ${v.repo!.name}',
-                                      style: TextStyle(
-                                        fontSize: 17,
+          children: (activeTab == 0
+                  ? [
+                      for (var v in payload.cast<GithubTrendingRepository>())
+                        RepoItem.gh(
+                          owner: v.author,
+                          avatarUrl: v.avatar,
+                          name: v.name,
+                          description: v.description,
+                          starCount: v.stars ?? 0,
+                          forkCount: v.forks ?? 0,
+                          primaryLanguageName: v.language,
+                          primaryLanguageColor: v.languageColor,
+                          note: '${v.currentPeriodStars} stars today',
+                          isPrivate: false,
+                          isFork: false, // TODO:
+                        )
+                    ]
+                  : [
+                      for (var v in payload.cast<GithubTrendingDeveloper>())
+                        UserItem.github(
+                          login: v.username,
+                          name: v.name,
+                          avatarUrl: v.avatar,
+                          bio: v.repo == null
+                              ? null
+                              : LinkWidget(
+                                  url: '/github/${v.username}/${v.repo!.name}',
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        Octicons.repo,
+                                        size: 17,
                                         color: AntTheme.of(context)
                                             .colorTextSecondary,
                                       ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ))
-                                  ],
+                                      const SizedBox(width: 4),
+                                      Expanded(
+                                          child: Text(
+                                        '${v.username} / ${v.repo!.name}',
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                          color: AntTheme.of(context)
+                                              .colorTextSecondary,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ))
+                                    ],
+                                  ),
                                 ),
-                              ),
-                      )
-                  ],
-          ),
+                        )
+                    ])
+              .withSeparator(CommonStyle.border),
         );
       },
     );

@@ -68,7 +68,7 @@ class IssueItem extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: join(const SizedBox(height: 8), [
+              children: [
                 Text.rich(
                   TextSpan(
                     children: [
@@ -129,7 +129,7 @@ class IssueItem extends StatelessWidget {
                     ],
                   ),
                 )
-              ]),
+              ].withSeparator(const SizedBox(height: 8)),
             ),
           ),
           // Column(

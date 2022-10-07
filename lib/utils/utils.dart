@@ -77,32 +77,17 @@ class GithubPalette {
 // final pageSize = 5;
 const kPageSize = 30;
 
-List<T> join<T>(T seperator, List<T> xs) {
-  final result = <T>[];
-  xs.asMap().forEach((index, x) {
-    if (x == null) return;
-
-    result.add(x);
-    if (index < xs.length - 1) {
-      result.add(seperator);
+extension MyList on List {
+  List<T> withSeparator<T>(T separator) {
+    final result = <T>[];
+    for (var i = 0; i < length; i++) {
+      if (i != 0) {
+        result.add(separator);
+      }
+      result.add(this[i]);
     }
-  });
-
-  return result;
-}
-
-List<T> joinAll<T>(T seperator, List<List<T>> xss) {
-  final result = <T>[];
-  xss.asMap().forEach((index, x) {
-    if (x.isEmpty) return;
-
-    result.addAll(x);
-    if (index < xss.length - 1) {
-      result.add(seperator);
-    }
-  });
-
-  return result;
+    return result;
+  }
 }
 
 final numberFormat = NumberFormat();

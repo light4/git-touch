@@ -30,7 +30,7 @@ class RepoHeader extends StatelessWidget {
       padding: CommonStyle.padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: join(const SizedBox(height: 12), [
+        children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -73,7 +73,7 @@ class RepoHeader extends StatelessWidget {
               ),
             ),
           if (trailings != null) ...trailings!
-        ]),
+        ].withSeparator(const SizedBox(height: 12)),
       ),
     );
   }

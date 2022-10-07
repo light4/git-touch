@@ -56,7 +56,7 @@ class EventItem extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: join(const SizedBox(height: 6), [
+                  children: [
                     Text.rich(
                       TextSpan(
                         style: TextStyle(
@@ -81,7 +81,7 @@ class EventItem extends StatelessWidget {
                       ],
                     ),
                     if (card != null) card
-                  ]),
+                  ].withSeparator(const SizedBox(height: 6)),
                 ),
               ),
             ],
@@ -233,7 +233,7 @@ class EventItem extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(4))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: join(const SizedBox(height: 6), [
+          children: [
             Row(
               children: <Widget>[
                 IssueIcon(state, size: 20),
@@ -285,7 +285,7 @@ class EventItem extends StatelessWidget {
                 ]
               ],
             )
-          ]),
+          ].withSeparator(const SizedBox(height: 6)),
         ),
       ),
     );
