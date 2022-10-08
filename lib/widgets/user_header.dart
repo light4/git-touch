@@ -51,8 +51,7 @@ class UserHeader extends StatelessWidget {
               ]
             ],
           ),
-          const SizedBox(height: 8),
-          if (name != null && name!.isNotEmpty) ...[
+          if (name != null && name!.isNotEmpty)
             Text(
               name!,
               style: TextStyle(
@@ -61,16 +60,11 @@ class UserHeader extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 4),
-          ],
           Text(
             login!,
             style: TextStyle(
-              color: AntTheme.of(context).colorPrimary,
-              fontSize: 18,
-            ),
+                color: AntTheme.of(context).colorPrimary, fontSize: 18),
           ),
-          const SizedBox(height: 8),
           if (createdAt != null)
             Row(
               children: <Widget>[
@@ -83,14 +77,11 @@ class UserHeader extends StatelessWidget {
                 Text(
                   'Joined on ${dateFormat.format(createdAt!)}',
                   style: TextStyle(
-                    color: AntTheme.of(context).colorWeak,
-                    fontSize: 16,
-                  ),
+                      color: AntTheme.of(context).colorWeak, fontSize: 16),
                 ),
               ],
             ),
-          if (bio != null && bio!.isNotEmpty) ...[
-            const SizedBox(height: 10),
+          if (bio != null && bio!.isNotEmpty)
             Text(
               bio!,
               style: TextStyle(
@@ -98,8 +89,7 @@ class UserHeader extends StatelessWidget {
                 fontSize: 17,
               ),
             )
-          ]
-        ],
+        ].withSeparator(const SizedBox(height: 8)),
       ),
     );
   }

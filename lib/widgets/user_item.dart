@@ -19,13 +19,15 @@ class GhBioWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = AntTheme.of(context);
+
     if (location != null) {
       return Row(
         children: <Widget>[
           Icon(
             Octicons.location,
             size: 15,
-            color: AntTheme.of(context).colorTextSecondary,
+            color: theme.colorTextSecondary,
           ),
           const SizedBox(width: 4),
           Expanded(child: Text(location!, overflow: TextOverflow.ellipsis)),
@@ -37,7 +39,7 @@ class GhBioWidget extends StatelessWidget {
         Icon(
           Octicons.clock,
           size: 15,
-          color: AntTheme.of(context).colorTextSecondary,
+          color: theme.colorTextSecondary,
         ),
         const SizedBox(width: 4),
         Expanded(
@@ -121,6 +123,8 @@ class UserItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = AntTheme.of(context);
+
     return AntListItem(
       onClick: () {
         context.pushUrl(url);
@@ -128,48 +132,38 @@ class UserItem extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Avatar(url: avatarUrl, size: AvatarSize.large),
-          const SizedBox(width: 10),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  textBaseline: TextBaseline.alphabetic,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  children: <Widget>[
-                    if (name != null && name!.isNotEmpty) ...[
+                  children: [
+                    if (name != null)
                       Text(
                         name!,
-                        style: TextStyle(
-                          color: AntTheme.of(context).colorText,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(width: 8),
-                    ],
                     Expanded(
                       child: Text(
                         login!,
-                        style: TextStyle(
-                          color: AntTheme.of(context).colorText,
-                          fontSize: 16,
-                        ),
+                        style:
+                            TextStyle(fontSize: 16, color: theme.colorPrimary),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                  ],
+                  ].withSeparator(const SizedBox(width: 8)),
                 ),
-                const SizedBox(height: 6),
                 if (bio != null)
-                  DefaultTextStyle(
-                    style: TextStyle(
-                      color: AntTheme.of(context).colorTextSecondary,
-                      fontSize: 16,
-                    ),
-                    child: bio!,
-                  ),
+                  Builder(builder: (context) {
+                    return DefaultTextStyle(
+                      style: DefaultTextStyle.of(context).style.copyWith(
+                          color: theme.colorTextSecondary, fontSize: 16),
+                      child: bio!,
+                    );
+                  }),
               ],
             ),
           )
