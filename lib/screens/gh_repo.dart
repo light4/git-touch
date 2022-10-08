@@ -91,16 +91,7 @@ class GhRepoScreen extends StatelessWidget {
         final repo = data.item1!;
         return ActionButton(
           title: AppLocalizations.of(context)!.repositoryActions,
-          items: [
-            ActionItem(
-              text:
-                  '${AppLocalizations.of(context)!.projects}(${repo.projects.totalCount})',
-              onTap: (_) {
-                launchStringUrl(repo.projectsUrl);
-              },
-            ),
-            ...ActionItem.getUrlActions(repo.url),
-          ],
+          items: ActionItem.getUrlActions(repo.url),
         );
       },
       bodyBuilder: (data, setData) {
@@ -260,7 +251,8 @@ class GhRepoScreen extends StatelessWidget {
                 if (repo.hasIssuesEnabled)
                   AntListItem(
                     prefix: const Icon(Octicons.issue_opened),
-                    extra: Text(numberFormat.format(repo.issues.totalCount)),
+                    extra: Text(
+                        '${numberFormat.format(repo.issuesOpen.totalCount)} / ${numberFormat.format(repo.issues.totalCount)}'),
                     onClick: () {
                       context.push('/github/$owner/$name/issues');
                     },
@@ -268,18 +260,44 @@ class GhRepoScreen extends StatelessWidget {
                   ),
                 AntListItem(
                   prefix: const Icon(Octicons.git_pull_request),
-                  extra:
-                      Text(numberFormat.format(repo.pullRequests.totalCount)),
+                  extra: Text(
+                      '${numberFormat.format(repo.pullRequestsOpen.totalCount)} / ${numberFormat.format(repo.pullRequests.totalCount)}'),
                   onClick: () {
                     context.push('/github/$owner/$name/pulls');
                   },
                   child: Text(AppLocalizations.of(context)!.pullRequests),
                 ),
+                if (repo.discussions.totalCount > 0)
+                  AntListItem(
+                    prefix: const Icon(Octicons.comment_discussion),
+                    extra:
+                        Text(numberFormat.format(repo.discussions.totalCount)),
+                    onClick: () {
+                      context.pushUrl(
+                          'https://github.com/$owner/$name/discussions'); // TODO: discussions screen
+                    },
+                    child: const Text('Discussions'),
+                  ),
+                if (repo.hasProjectsEnabled && repo.projects.totalCount > 0)
+                  AntListItem(
+                    prefix: const Icon(Octicons.project),
+                    extra: Text(numberFormat.format(repo.projects.totalCount)),
+                    onClick: () {
+                      context.pushUrl(repo.projectsUrl);
+                    },
+                    child: Text(AppLocalizations.of(context)!.projects),
+                  ),
+              ],
+            ),
+            CommonStyle.verticalGap,
+            AntList(
+              children: [
                 if (ref != null) ...[
                   AntListItem(
                     prefix: const Icon(Octicons.history),
-                    extra: Text(((ref.target as GRepoCommit).history.totalCount)
-                        .toString()),
+                    extra: Text(
+                        ((ref.target as GCommitParts).history.totalCount)
+                            .toString()),
                     onClick: () {
                       context.push('/github/$owner/$name/commits/${ref.name}');
                     },
@@ -312,19 +330,21 @@ class GhRepoScreen extends StatelessWidget {
                       },
                       child: Text(AppLocalizations.of(context)!.branches),
                     ),
-                  AntListItem(
-                    prefix: const Icon(Octicons.organization),
-                    extra: FutureBuilder<int>(
-                      future: contributionFuture,
-                      builder: (context, snapshot) {
-                        return Text(snapshot.data?.toString() ?? '');
-                      },
-                    ),
-                    onClick: () {
-                      context.push('/github/$owner/$name/contributors');
+                ],
+                AntListItem(
+                  prefix: const Icon(Octicons.people),
+                  extra: FutureBuilder<int>(
+                    future: contributionFuture,
+                    builder: (context, snapshot) {
+                      return Text(snapshot.data?.toString() ?? '');
                     },
-                    child: Text(AppLocalizations.of(context)!.contributors),
                   ),
+                  onClick: () {
+                    context.push('/github/$owner/$name/contributors');
+                  },
+                  child: Text(AppLocalizations.of(context)!.contributors),
+                ),
+                if (repo.releases.totalCount > 0)
                   AntListItem(
                     prefix: const Icon(Octicons.book),
                     onClick: () {
@@ -333,7 +353,6 @@ class GhRepoScreen extends StatelessWidget {
                     extra: Text(repo.releases.totalCount.toString()),
                     child: Text(AppLocalizations.of(context)!.releases),
                   ),
-                ],
               ],
             ),
             MarkdownView(readmeData),

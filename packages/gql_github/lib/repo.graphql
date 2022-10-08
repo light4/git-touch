@@ -1,14 +1,14 @@
-fragment RepoCommit on Commit {
+fragment CommitParts on Commit {
   history {
     totalCount
   }
 }
 
-fragment RepoRef on Ref {
+fragment RefParts on Ref {
   name
   target {
     ... on Commit {
-      ...RepoCommit
+      ...CommitParts # extracted to fragment for type cast
     }
   }
 }
@@ -29,15 +29,21 @@ query Repo(
     homepageUrl
     isPrivate
     isFork
-    diskUsage
-    hasIssuesEnabled
     url
     viewerHasStarred
     viewerSubscription
-    projectsUrl
-    primaryLanguage {
-      color
-      name
+
+    repositoryTopics(first: 10) {
+      nodes {
+        url
+        topic {
+          name
+        }
+      }
+    }
+
+    watchers {
+      totalCount
     }
     stargazers {
       totalCount
@@ -45,21 +51,7 @@ query Repo(
     forks {
       totalCount
     }
-    watchers {
-      totalCount
-    }
-    issues(states: OPEN) {
-      totalCount
-    }
-    pullRequests(states: OPEN) {
-      totalCount
-    }
-    projects {
-      totalCount
-    }
-    releases {
-      totalCount
-    }
+
     languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
       totalSize
       edges {
@@ -70,11 +62,42 @@ query Repo(
         }
       }
     }
+
+    primaryLanguage {
+      name
+    }
+    licenseInfo {
+      name
+      spdxId
+    }
+    diskUsage
+    hasIssuesEnabled
+    issues {
+      totalCount
+    }
+    issuesOpen: issues(states: OPEN) {
+      totalCount
+    }
+    pullRequests {
+      totalCount
+    }
+    pullRequestsOpen: pullRequests(states: OPEN) {
+      totalCount
+    }
+    discussions {
+      totalCount
+    }
+    hasProjectsEnabled
+    projectsUrl
+    projects {
+      totalCount
+    }
+
     defaultBranchRef @skip(if: $branchSpecified) {
-      ...RepoRef
+      ...RefParts
     }
     ref(qualifiedName: $branch) @include(if: $branchSpecified) {
-      ...RepoRef
+      ...RefParts
     }
     refs(first: 100, refPrefix: "refs/heads/") {
       totalCount
@@ -82,17 +105,8 @@ query Repo(
         name
       }
     }
-    licenseInfo {
-      name
-      spdxId
-    }
-    repositoryTopics(first: 10) {
-      nodes {
-        url
-        topic {
-          name
-        }
-      }
+    releases {
+      totalCount
     }
   }
 }
