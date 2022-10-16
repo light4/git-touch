@@ -7,23 +7,22 @@ part of 'model.dart';
 // **************************************************************************
 
 GithubTrendingRepository _$GithubTrendingRepositoryFromJson(
-    Map<String, dynamic> json) {
-  return GithubTrendingRepository()
-    ..author = json['author'] as String?
-    ..name = json['name'] as String?
-    ..avatar = json['avatar'] as String?
-    ..url = json['url'] as String?
-    ..description = json['description'] as String?
-    ..language = json['language'] as String?
-    ..languageColor = json['languageColor'] as String?
-    ..stars = json['stars'] as int?
-    ..forks = json['forks'] as int?
-    ..currentPeriodStars = json['currentPeriodStars'] as int?
-    ..builtBy = (json['builtBy'] as List<dynamic>?)
-        ?.map((e) =>
-            GithubTrendingRepositoryBuiltBy.fromJson(e as Map<String, dynamic>))
-        .toList();
-}
+        Map<String, dynamic> json) =>
+    GithubTrendingRepository()
+      ..author = json['author'] as String?
+      ..name = json['name'] as String?
+      ..avatar = json['avatar'] as String?
+      ..url = json['url'] as String?
+      ..description = json['description'] as String?
+      ..language = json['language'] as String?
+      ..languageColor = json['languageColor'] as String?
+      ..stars = json['stars'] as int?
+      ..forks = json['forks'] as int?
+      ..currentPeriodStars = json['currentPeriodStars'] as int?
+      ..builtBy = (json['builtBy'] as List<dynamic>?)
+          ?.map((e) => GithubTrendingRepositoryBuiltBy.fromJson(
+              e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$GithubTrendingRepositoryToJson(
         GithubTrendingRepository instance) =>
@@ -42,12 +41,11 @@ Map<String, dynamic> _$GithubTrendingRepositoryToJson(
     };
 
 GithubTrendingRepositoryBuiltBy _$GithubTrendingRepositoryBuiltByFromJson(
-    Map<String, dynamic> json) {
-  return GithubTrendingRepositoryBuiltBy()
-    ..href = json['href'] as String?
-    ..avatar = json['avatar'] as String?
-    ..username = json['username'] as String?;
-}
+        Map<String, dynamic> json) =>
+    GithubTrendingRepositoryBuiltBy()
+      ..href = json['href'] as String?
+      ..avatar = json['avatar'] as String?
+      ..username = json['username'] as String?;
 
 Map<String, dynamic> _$GithubTrendingRepositoryBuiltByToJson(
         GithubTrendingRepositoryBuiltBy instance) =>
@@ -58,18 +56,17 @@ Map<String, dynamic> _$GithubTrendingRepositoryBuiltByToJson(
     };
 
 GithubTrendingDeveloper _$GithubTrendingDeveloperFromJson(
-    Map<String, dynamic> json) {
-  return GithubTrendingDeveloper()
-    ..username = json['username'] as String?
-    ..name = json['name'] as String?
-    ..type = json['type'] as String?
-    ..url = json['url'] as String?
-    ..avatar = json['avatar'] as String?
-    ..repo = json['repo'] == null
-        ? null
-        : GithubTrendingDeveloperRepository.fromJson(
-            json['repo'] as Map<String, dynamic>);
-}
+        Map<String, dynamic> json) =>
+    GithubTrendingDeveloper()
+      ..username = json['username'] as String?
+      ..name = json['name'] as String?
+      ..type = json['type'] as String?
+      ..url = json['url'] as String?
+      ..avatar = json['avatar'] as String?
+      ..repo = json['repo'] == null
+          ? null
+          : GithubTrendingDeveloperRepository.fromJson(
+              json['repo'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$GithubTrendingDeveloperToJson(
         GithubTrendingDeveloper instance) =>
@@ -83,12 +80,11 @@ Map<String, dynamic> _$GithubTrendingDeveloperToJson(
     };
 
 GithubTrendingDeveloperRepository _$GithubTrendingDeveloperRepositoryFromJson(
-    Map<String, dynamic> json) {
-  return GithubTrendingDeveloperRepository()
-    ..name = json['name'] as String?
-    ..description = json['description'] as String?
-    ..url = json['url'] as String?;
-}
+        Map<String, dynamic> json) =>
+    GithubTrendingDeveloperRepository()
+      ..name = json['name'] as String?
+      ..description = json['description'] as String?
+      ..url = json['url'] as String?;
 
 Map<String, dynamic> _$GithubTrendingDeveloperRepositoryToJson(
         GithubTrendingDeveloperRepository instance) =>
