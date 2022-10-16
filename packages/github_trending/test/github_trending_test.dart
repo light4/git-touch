@@ -26,10 +26,10 @@ void main() {
     test('star and fork count', () {
       // make sure at least one item has star or fork
       // to ensure no parse error
-      var itemHasStar = items!.where((item) => item.stars != null);
+      final itemHasStar = items!.where((item) => item.stars != null);
       expect(itemHasStar, isNotEmpty);
 
-      var itemHasFork = items!.where((item) => item.forks != null);
+      final itemHasFork = items!.where((item) => item.forks != null);
       expect(itemHasFork, isNotEmpty);
     });
 

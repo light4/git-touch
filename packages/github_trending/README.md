@@ -1,7 +1,6 @@
 # github_trending
 
-[![pub](https://img.shields.io/pub/v/github_trending.svg)](https://pub.dev/packages/github_trending)
-[![test](https://github.com/pd4d10/github-trending/workflows/test/badge.svg)](https://github.com/pd4d10/github-trending/actions?query=workflow:test)
+[![pub](https://img.shields.io/pub/v/github_trending.svg)](https://pub.dev/packages/github_trending) [![test](https://github.com/pd4d10/github-trending/workflows/test/badge.svg)](https://github.com/pd4d10/github-trending/actions?query=workflow:test)
 
 A Dart library to get GitHub trending repositories and developers via [github-trending-api](https://github.com/huchenme/github-trending-api).
 

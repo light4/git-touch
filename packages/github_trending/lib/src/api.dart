@@ -1,17 +1,17 @@
 import 'dart:convert';
+
 import 'package:github_trending/src/model.dart';
 import 'package:http/http.dart' as http;
 
 class TrendingRepositoryPrimaryLanguage {
+  TrendingRepositoryPrimaryLanguage({this.name, this.color});
   String? name;
   String? color;
-  TrendingRepositoryPrimaryLanguage({this.name, this.color});
 }
 
 class GithubTrending {
-  String prefix;
-
   GithubTrending({this.prefix = 'https://ghapi.huchen.dev'});
+  String prefix;
 
   Future _getJson(Uri url) async {
     final res = await http.get(url);
