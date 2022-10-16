@@ -12,5 +12,5 @@ dependencies:
 
 dev_dependencies:
   test: ^1.16.5
-  build_runner: ^1.11.5
-  json_serializable: ^4.0.2
+  build_runner: ^2.3.0
+  json_serializable: ^6.5.1
