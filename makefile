@@ -11,3 +11,9 @@ schema:
 
 format:
 	dartfmt --overwrite lib/**/*.dart
+
+upgrade:
+	cd packages/github_trending && flutter pub upgrade --major-versions && \
+	cd ../gql_github && flutter pub upgrade --major-versions && \
+	cd ../gql_gitlab && flutter pub upgrade --major-versions && \
+	cd ../.. && flutter pub upgrade --major-versions
