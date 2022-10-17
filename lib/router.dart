@@ -25,6 +25,7 @@ import 'package:git_touch/screens/ge_search.dart';
 import 'package:git_touch/screens/ge_tree.dart';
 import 'package:git_touch/screens/ge_user.dart';
 import 'package:git_touch/screens/ge_users.dart';
+import 'package:git_touch/screens/gh_commit.dart';
 import 'package:git_touch/screens/gh_commits.dart';
 import 'package:git_touch/screens/gh_compare.dart';
 import 'package:git_touch/screens/gh_contributors.dart';
@@ -201,6 +202,14 @@ final router = GoRouter(
                     state.params['owner']!,
                     state.params['name']!,
                     branch: state.params['branch'],
+                  ),
+                ),
+                GoRoute(
+                  path: 'commit/:sha',
+                  builder: (context, state) => GhCommit(
+                    state.params['owner']!,
+                    state.params['name']!,
+                    state.params['sha']!,
                   ),
                 ),
                 GoRoute(

@@ -5,7 +5,7 @@ fragment CommitsRefCommit on Commit {
       endCursor
     }
     nodes {
-      url
+      oid
       messageHeadline
       committedDate
       author {

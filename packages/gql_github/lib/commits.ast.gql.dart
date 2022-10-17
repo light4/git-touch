@@ -57,7 +57,7 @@ const CommitsRefCommit = _i1.FragmentDefinitionNode(
           directives: [],
           selectionSet: _i1.SelectionSetNode(selections: [
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'url'),
+              name: _i1.NameNode(value: 'oid'),
               alias: null,
               arguments: [],
               directives: [],

@@ -308,7 +308,7 @@ abstract class GCommitsData_repository_defaultBranchRef_target__asCommit_history
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get url;
+  String get oid;
   @override
   String get messageHeadline;
   @override
@@ -691,7 +691,7 @@ abstract class GCommitsData_repository_ref_target__asCommit_history_nodes
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get url;
+  String get oid;
   @override
   String get messageHeadline;
   @override
@@ -867,7 +867,7 @@ abstract class GCommitsRefCommit_history_pageInfo {
 
 abstract class GCommitsRefCommit_history_nodes {
   String get G__typename;
-  String get url;
+  String get oid;
   String get messageHeadline;
   DateTime get committedDate;
   GCommitsRefCommit_history_nodes_author? get author;
@@ -1014,7 +1014,7 @@ abstract class GCommitsRefCommitData_history_nodes
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get url;
+  String get oid;
   @override
   String get messageHeadline;
   @override
@@ -1200,7 +1200,7 @@ abstract class GCommitsRef_target__asCommit_history_nodes
   @override
   String get G__typename;
   @override
-  String get url;
+  String get oid;
   @override
   String get messageHeadline;
   @override
@@ -1451,7 +1451,7 @@ abstract class GCommitsRefData_target__asCommit_history_nodes
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get url;
+  String get oid;
   @override
   String get messageHeadline;
   @override

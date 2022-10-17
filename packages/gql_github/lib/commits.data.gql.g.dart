@@ -580,8 +580,8 @@ class _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodesS
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'url',
-      serializers.serialize(object.url, specifiedType: const FullType(String)),
+      'oid',
+      serializers.serialize(object.oid, specifiedType: const FullType(String)),
       'messageHeadline',
       serializers.serialize(object.messageHeadline,
           specifiedType: const FullType(String)),
@@ -626,8 +626,8 @@ class _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodesS
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'url':
-          result.url = serializers.deserialize(value,
+        case 'oid':
+          result.oid = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'messageHeadline':
@@ -1188,8 +1188,8 @@ class _$GCommitsData_repository_ref_target__asCommit_history_nodesSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'url',
-      serializers.serialize(object.url, specifiedType: const FullType(String)),
+      'oid',
+      serializers.serialize(object.oid, specifiedType: const FullType(String)),
       'messageHeadline',
       serializers.serialize(object.messageHeadline,
           specifiedType: const FullType(String)),
@@ -1234,8 +1234,8 @@ class _$GCommitsData_repository_ref_target__asCommit_history_nodesSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'url':
-          result.url = serializers.deserialize(value,
+        case 'oid':
+          result.oid = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'messageHeadline':
@@ -1670,8 +1670,8 @@ class _$GCommitsRefCommitData_history_nodesSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'url',
-      serializers.serialize(object.url, specifiedType: const FullType(String)),
+      'oid',
+      serializers.serialize(object.oid, specifiedType: const FullType(String)),
       'messageHeadline',
       serializers.serialize(object.messageHeadline,
           specifiedType: const FullType(String)),
@@ -1715,8 +1715,8 @@ class _$GCommitsRefCommitData_history_nodesSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'url':
-          result.url = serializers.deserialize(value,
+        case 'oid':
+          result.oid = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'messageHeadline':
@@ -2247,8 +2247,8 @@ class _$GCommitsRefData_target__asCommit_history_nodesSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'url',
-      serializers.serialize(object.url, specifiedType: const FullType(String)),
+      'oid',
+      serializers.serialize(object.oid, specifiedType: const FullType(String)),
       'messageHeadline',
       serializers.serialize(object.messageHeadline,
           specifiedType: const FullType(String)),
@@ -2292,8 +2292,8 @@ class _$GCommitsRefData_target__asCommit_history_nodesSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'url':
-          result.url = serializers.deserialize(value,
+        case 'oid':
+          result.oid = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'messageHeadline':
@@ -3452,7 +3452,7 @@ class _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes
   @override
   final String G__typename;
   @override
-  final String url;
+  final String oid;
   @override
   final String messageHeadline;
   @override
@@ -3474,7 +3474,7 @@ class _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes
 
   _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes._(
       {required this.G__typename,
-      required this.url,
+      required this.oid,
       required this.messageHeadline,
       required this.committedDate,
       this.author,
@@ -3485,9 +3485,9 @@ class _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes
         r'GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes',
         'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        url,
+        oid,
         r'GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes',
-        'url');
+        'oid');
     BuiltValueNullFieldError.checkNotNull(
         messageHeadline,
         r'GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes',
@@ -3517,7 +3517,7 @@ class _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes
     return other
             is GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes &&
         G__typename == other.G__typename &&
-        url == other.url &&
+        oid == other.oid &&
         messageHeadline == other.messageHeadline &&
         committedDate == other.committedDate &&
         author == other.author &&
@@ -3529,7 +3529,7 @@ class _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, G__typename.hashCode), url.hashCode),
+                $jc($jc($jc(0, G__typename.hashCode), oid.hashCode),
                     messageHeadline.hashCode),
                 committedDate.hashCode),
             author.hashCode),
@@ -3541,7 +3541,7 @@ class _$GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes
     return (newBuiltValueToStringHelper(
             r'GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes')
           ..add('G__typename', G__typename)
-          ..add('url', url)
+          ..add('oid', oid)
           ..add('messageHeadline', messageHeadline)
           ..add('committedDate', committedDate)
           ..add('author', author)
@@ -3562,9 +3562,9 @@ class GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodesBui
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String? _url;
-  String? get url => _$this._url;
-  set url(String? url) => _$this._url = url;
+  String? _oid;
+  String? get oid => _$this._oid;
+  set oid(String? oid) => _$this._oid = oid;
 
   String? _messageHeadline;
   String? get messageHeadline => _$this._messageHeadline;
@@ -3606,7 +3606,7 @@ class GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodesBui
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _url = $v.url;
+      _oid = $v.oid;
       _messageHeadline = $v.messageHeadline;
       _committedDate = $v.committedDate;
       _author = $v.author?.toBuilder();
@@ -3648,10 +3648,10 @@ class GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodesBui
                   G__typename,
                   r'GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes',
                   'G__typename'),
-              url: BuiltValueNullFieldError.checkNotNull(
-                  url,
+              oid: BuiltValueNullFieldError.checkNotNull(
+                  oid,
                   r'GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes',
-                  'url'),
+                  'oid'),
               messageHeadline: BuiltValueNullFieldError.checkNotNull(
                   messageHeadline,
                   r'GCommitsData_repository_defaultBranchRef_target__asCommit_history_nodes',
@@ -4779,7 +4779,7 @@ class _$GCommitsData_repository_ref_target__asCommit_history_nodes
   @override
   final String G__typename;
   @override
-  final String url;
+  final String oid;
   @override
   final String messageHeadline;
   @override
@@ -4801,7 +4801,7 @@ class _$GCommitsData_repository_ref_target__asCommit_history_nodes
 
   _$GCommitsData_repository_ref_target__asCommit_history_nodes._(
       {required this.G__typename,
-      required this.url,
+      required this.oid,
       required this.messageHeadline,
       required this.committedDate,
       this.author,
@@ -4811,8 +4811,8 @@ class _$GCommitsData_repository_ref_target__asCommit_history_nodes
         G__typename,
         r'GCommitsData_repository_ref_target__asCommit_history_nodes',
         'G__typename');
-    BuiltValueNullFieldError.checkNotNull(url,
-        r'GCommitsData_repository_ref_target__asCommit_history_nodes', 'url');
+    BuiltValueNullFieldError.checkNotNull(oid,
+        r'GCommitsData_repository_ref_target__asCommit_history_nodes', 'oid');
     BuiltValueNullFieldError.checkNotNull(
         messageHeadline,
         r'GCommitsData_repository_ref_target__asCommit_history_nodes',
@@ -4842,7 +4842,7 @@ class _$GCommitsData_repository_ref_target__asCommit_history_nodes
     return other
             is GCommitsData_repository_ref_target__asCommit_history_nodes &&
         G__typename == other.G__typename &&
-        url == other.url &&
+        oid == other.oid &&
         messageHeadline == other.messageHeadline &&
         committedDate == other.committedDate &&
         author == other.author &&
@@ -4854,7 +4854,7 @@ class _$GCommitsData_repository_ref_target__asCommit_history_nodes
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, G__typename.hashCode), url.hashCode),
+                $jc($jc($jc(0, G__typename.hashCode), oid.hashCode),
                     messageHeadline.hashCode),
                 committedDate.hashCode),
             author.hashCode),
@@ -4866,7 +4866,7 @@ class _$GCommitsData_repository_ref_target__asCommit_history_nodes
     return (newBuiltValueToStringHelper(
             r'GCommitsData_repository_ref_target__asCommit_history_nodes')
           ..add('G__typename', G__typename)
-          ..add('url', url)
+          ..add('oid', oid)
           ..add('messageHeadline', messageHeadline)
           ..add('committedDate', committedDate)
           ..add('author', author)
@@ -4885,9 +4885,9 @@ class GCommitsData_repository_ref_target__asCommit_history_nodesBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String? _url;
-  String? get url => _$this._url;
-  set url(String? url) => _$this._url = url;
+  String? _oid;
+  String? get oid => _$this._oid;
+  set oid(String? oid) => _$this._oid = oid;
 
   String? _messageHeadline;
   String? get messageHeadline => _$this._messageHeadline;
@@ -4928,7 +4928,7 @@ class GCommitsData_repository_ref_target__asCommit_history_nodesBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _url = $v.url;
+      _oid = $v.oid;
       _messageHeadline = $v.messageHeadline;
       _committedDate = $v.committedDate;
       _author = $v.author?.toBuilder();
@@ -4966,10 +4966,10 @@ class GCommitsData_repository_ref_target__asCommit_history_nodesBuilder
                   G__typename,
                   r'GCommitsData_repository_ref_target__asCommit_history_nodes',
                   'G__typename'),
-              url: BuiltValueNullFieldError.checkNotNull(
-                  url,
+              oid: BuiltValueNullFieldError.checkNotNull(
+                  oid,
                   r'GCommitsData_repository_ref_target__asCommit_history_nodes',
-                  'url'),
+                  'oid'),
               messageHeadline: BuiltValueNullFieldError.checkNotNull(
                   messageHeadline,
                   r'GCommitsData_repository_ref_target__asCommit_history_nodes',
@@ -5824,7 +5824,7 @@ class _$GCommitsRefCommitData_history_nodes
   @override
   final String G__typename;
   @override
-  final String url;
+  final String oid;
   @override
   final String messageHeadline;
   @override
@@ -5842,7 +5842,7 @@ class _$GCommitsRefCommitData_history_nodes
 
   _$GCommitsRefCommitData_history_nodes._(
       {required this.G__typename,
-      required this.url,
+      required this.oid,
       required this.messageHeadline,
       required this.committedDate,
       this.author,
@@ -5851,7 +5851,7 @@ class _$GCommitsRefCommitData_history_nodes
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GCommitsRefCommitData_history_nodes', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        url, r'GCommitsRefCommitData_history_nodes', 'url');
+        oid, r'GCommitsRefCommitData_history_nodes', 'oid');
     BuiltValueNullFieldError.checkNotNull(messageHeadline,
         r'GCommitsRefCommitData_history_nodes', 'messageHeadline');
     BuiltValueNullFieldError.checkNotNull(
@@ -5872,7 +5872,7 @@ class _$GCommitsRefCommitData_history_nodes
     if (identical(other, this)) return true;
     return other is GCommitsRefCommitData_history_nodes &&
         G__typename == other.G__typename &&
-        url == other.url &&
+        oid == other.oid &&
         messageHeadline == other.messageHeadline &&
         committedDate == other.committedDate &&
         author == other.author &&
@@ -5884,7 +5884,7 @@ class _$GCommitsRefCommitData_history_nodes
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, G__typename.hashCode), url.hashCode),
+                $jc($jc($jc(0, G__typename.hashCode), oid.hashCode),
                     messageHeadline.hashCode),
                 committedDate.hashCode),
             author.hashCode),
@@ -5895,7 +5895,7 @@ class _$GCommitsRefCommitData_history_nodes
   String toString() {
     return (newBuiltValueToStringHelper(r'GCommitsRefCommitData_history_nodes')
           ..add('G__typename', G__typename)
-          ..add('url', url)
+          ..add('oid', oid)
           ..add('messageHeadline', messageHeadline)
           ..add('committedDate', committedDate)
           ..add('author', author)
@@ -5914,9 +5914,9 @@ class GCommitsRefCommitData_history_nodesBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String? _url;
-  String? get url => _$this._url;
-  set url(String? url) => _$this._url = url;
+  String? _oid;
+  String? get oid => _$this._oid;
+  set oid(String? oid) => _$this._oid = oid;
 
   String? _messageHeadline;
   String? get messageHeadline => _$this._messageHeadline;
@@ -5950,7 +5950,7 @@ class GCommitsRefCommitData_history_nodesBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _url = $v.url;
+      _oid = $v.oid;
       _messageHeadline = $v.messageHeadline;
       _committedDate = $v.committedDate;
       _author = $v.author?.toBuilder();
@@ -5982,8 +5982,8 @@ class GCommitsRefCommitData_history_nodesBuilder
           new _$GCommitsRefCommitData_history_nodes._(
               G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
                   r'GCommitsRefCommitData_history_nodes', 'G__typename'),
-              url: BuiltValueNullFieldError.checkNotNull(
-                  url, r'GCommitsRefCommitData_history_nodes', 'url'),
+              oid: BuiltValueNullFieldError.checkNotNull(
+                  oid, r'GCommitsRefCommitData_history_nodes', 'oid'),
               messageHeadline: BuiltValueNullFieldError.checkNotNull(
                   messageHeadline,
                   r'GCommitsRefCommitData_history_nodes',
@@ -6979,7 +6979,7 @@ class _$GCommitsRefData_target__asCommit_history_nodes
   @override
   final String G__typename;
   @override
-  final String url;
+  final String oid;
   @override
   final String messageHeadline;
   @override
@@ -6998,7 +6998,7 @@ class _$GCommitsRefData_target__asCommit_history_nodes
 
   _$GCommitsRefData_target__asCommit_history_nodes._(
       {required this.G__typename,
-      required this.url,
+      required this.oid,
       required this.messageHeadline,
       required this.committedDate,
       this.author,
@@ -7007,7 +7007,7 @@ class _$GCommitsRefData_target__asCommit_history_nodes
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GCommitsRefData_target__asCommit_history_nodes', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        url, r'GCommitsRefData_target__asCommit_history_nodes', 'url');
+        oid, r'GCommitsRefData_target__asCommit_history_nodes', 'oid');
     BuiltValueNullFieldError.checkNotNull(messageHeadline,
         r'GCommitsRefData_target__asCommit_history_nodes', 'messageHeadline');
     BuiltValueNullFieldError.checkNotNull(committedDate,
@@ -7030,7 +7030,7 @@ class _$GCommitsRefData_target__asCommit_history_nodes
     if (identical(other, this)) return true;
     return other is GCommitsRefData_target__asCommit_history_nodes &&
         G__typename == other.G__typename &&
-        url == other.url &&
+        oid == other.oid &&
         messageHeadline == other.messageHeadline &&
         committedDate == other.committedDate &&
         author == other.author &&
@@ -7042,7 +7042,7 @@ class _$GCommitsRefData_target__asCommit_history_nodes
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, G__typename.hashCode), url.hashCode),
+                $jc($jc($jc(0, G__typename.hashCode), oid.hashCode),
                     messageHeadline.hashCode),
                 committedDate.hashCode),
             author.hashCode),
@@ -7054,7 +7054,7 @@ class _$GCommitsRefData_target__asCommit_history_nodes
     return (newBuiltValueToStringHelper(
             r'GCommitsRefData_target__asCommit_history_nodes')
           ..add('G__typename', G__typename)
-          ..add('url', url)
+          ..add('oid', oid)
           ..add('messageHeadline', messageHeadline)
           ..add('committedDate', committedDate)
           ..add('author', author)
@@ -7073,9 +7073,9 @@ class GCommitsRefData_target__asCommit_history_nodesBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String? _url;
-  String? get url => _$this._url;
-  set url(String? url) => _$this._url = url;
+  String? _oid;
+  String? get oid => _$this._oid;
+  set oid(String? oid) => _$this._oid = oid;
 
   String? _messageHeadline;
   String? get messageHeadline => _$this._messageHeadline;
@@ -7113,7 +7113,7 @@ class GCommitsRefData_target__asCommit_history_nodesBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _url = $v.url;
+      _oid = $v.oid;
       _messageHeadline = $v.messageHeadline;
       _committedDate = $v.committedDate;
       _author = $v.author?.toBuilder();
@@ -7148,8 +7148,8 @@ class GCommitsRefData_target__asCommit_history_nodesBuilder
                   G__typename,
                   r'GCommitsRefData_target__asCommit_history_nodes',
                   'G__typename'),
-              url: BuiltValueNullFieldError.checkNotNull(url,
-                  r'GCommitsRefData_target__asCommit_history_nodes', 'url'),
+              oid: BuiltValueNullFieldError.checkNotNull(oid,
+                  r'GCommitsRefData_target__asCommit_history_nodes', 'oid'),
               messageHeadline: BuiltValueNullFieldError.checkNotNull(
                   messageHeadline,
                   r'GCommitsRefData_target__asCommit_history_nodes',
