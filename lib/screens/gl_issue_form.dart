@@ -62,6 +62,10 @@ class _GlIssueFormScreenState extends State<GlIssueFormScreen> {
               ).then((v) {
                 return GitlabIssue.fromJson(v);
               });
+              await AntToast.show(
+                context,
+                content: const Text('Issue submitted'),
+              );
               await context.pushUrl(
                 '/gitlab/projects/${widget.id}/issues/${res.iid}',
                 replace: true,

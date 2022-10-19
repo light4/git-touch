@@ -64,6 +64,10 @@ class _GtIssueFormScreenState extends State<GtIssueFormScreen> {
                 return GiteaIssue.fromJson(v);
               });
               Navigator.pop(context);
+              await AntToast.show(
+                context,
+                content: const Text('Issue submitted'),
+              );
               await context.pushUrl(
                 '/gitea/${widget.owner}/${widget.name}/issues',
                 replace: true,

@@ -61,6 +61,10 @@ class _GhIssueFormScreenState extends State<GhIssueFormScreen> {
                   .ghClient
                   .issues
                   .create(slug, IssueRequest(title: _title, body: _body));
+              await AntToast.show(
+                context,
+                content: const Text('Issue submitted'),
+              );
               await context.pushUrl(
                 '/github/${widget.owner}/${widget.name}/issues/${res.number}',
                 replace: true,

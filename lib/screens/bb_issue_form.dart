@@ -64,6 +64,10 @@ class _BbIssueFormScreenState extends State<BbIssueFormScreen> {
                 return BbIssues.fromJson(v);
               });
               Navigator.pop(context, true);
+              await AntToast.show(
+                context,
+                content: const Text('Issue submitted'),
+              );
               await context.pushUrl(
                 '/bitbucket/${widget.owner}/${widget.name}/issues',
                 replace: true,

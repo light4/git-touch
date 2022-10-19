@@ -62,6 +62,10 @@ class _GeIssueFormScreenState extends State<GeIssueFormScreen> {
               ).then((v) {
                 return GiteeIssue.fromJson(v);
               });
+              await AntToast.show(
+                context,
+                content: const Text('Issue submitted'),
+              );
               await context.pushUrl(
                 '/gitee/${widget.owner}/${widget.name}/issues/${res.number}',
                 replace: true,
