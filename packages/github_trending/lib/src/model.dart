@@ -4,9 +4,9 @@ part 'model.g.dart';
 
 @JsonSerializable()
 class GithubTrendingRepository {
+  GithubTrendingRepository();
   factory GithubTrendingRepository.fromJson(Map<String, dynamic> json) =>
       _$GithubTrendingRepositoryFromJson(json);
-  GithubTrendingRepository();
   String? author;
   String? name;
   String? avatar;
@@ -22,9 +22,9 @@ class GithubTrendingRepository {
 
 @JsonSerializable()
 class GithubTrendingRepositoryBuiltBy {
+  GithubTrendingRepositoryBuiltBy();
   factory GithubTrendingRepositoryBuiltBy.fromJson(Map<String, dynamic> json) =>
       _$GithubTrendingRepositoryBuiltByFromJson(json);
-  GithubTrendingRepositoryBuiltBy();
   String? href;
   String? avatar;
   String? username;
@@ -32,9 +32,9 @@ class GithubTrendingRepositoryBuiltBy {
 
 @JsonSerializable()
 class GithubTrendingDeveloper {
+  GithubTrendingDeveloper();
   factory GithubTrendingDeveloper.fromJson(Map<String, dynamic> json) =>
       _$GithubTrendingDeveloperFromJson(json);
-  GithubTrendingDeveloper();
   String? username;
   String? name;
   String? type;
@@ -45,10 +45,10 @@ class GithubTrendingDeveloper {
 
 @JsonSerializable()
 class GithubTrendingDeveloperRepository {
+  GithubTrendingDeveloperRepository();
   factory GithubTrendingDeveloperRepository.fromJson(
           Map<String, dynamic> json) =>
       _$GithubTrendingDeveloperRepositoryFromJson(json);
-  GithubTrendingDeveloperRepository();
   String? name;
   String? description;
   String? url;
