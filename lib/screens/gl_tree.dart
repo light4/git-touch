@@ -4,8 +4,9 @@ import 'package:flutter_gen/gen_l10n/S.dart';
 import 'package:git_touch/models/auth.dart';
 import 'package:git_touch/models/gitlab.dart';
 import 'package:git_touch/scaffolds/list_stateful.dart';
-import 'package:git_touch/widgets/object_tree.dart';
 import 'package:provider/provider.dart';
+import 'package:antd_mobile/antd_mobile.dart';
+import 'package:file_icon/file_icon.dart';
 
 class GlTreeScreen extends StatelessWidget {
   const GlTreeScreen(this.id, this.ref, {this.path});
@@ -36,16 +37,19 @@ class GlTreeScreen extends StatelessWidget {
         );
       },
       itemBuilder: (item) {
-        return createObjectTreeItem(
-          type: item.type,
-          name: item.name,
-          downloadUrl:
-              '${auth.activeAccount!.domain}/api/v4/projects/$id/repository/files/${item.path.urlencode}/raw?ref=master', // TODO:
-          url: item.type == 'tree'
-              ? '/gitlab/projects/$id/tree/$ref?path=${item.path.urlencode}'
-              : item.type == 'blob'
-                  ? '/gitlab/projects/$id/blob/$ref?path=${item.path.urlencode}'
-                  : '',
+        final url = item.type == 'tree'
+            ? '/gitlab/projects/$id/tree/$ref?path=${item.path.urlencode}'
+            : item.type == 'blob'
+                ? '/gitlab/projects/$id/blob/$ref?path=${item.path.urlencode}'
+                : '';
+        return AntListItem(
+          prefix: FileIcon(item.name, size: 26),
+          extra: null,
+          onClick: () async {
+            context.pushUrl(url);
+          },
+          arrow: const Icon(AntIcons.rightOutline),
+          child: Text(item.name),
         );
       },
     );
