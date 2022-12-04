@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await SentryFlutter.init(
     (options) {
       options.dsn =
