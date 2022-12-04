@@ -87,7 +87,7 @@ class GlBlobScreen extends StatelessWidget {
     Future<void> saveInStorage(String fileName, String content) async {
       await _checkPermission();
       final filename =
-          fileName.split('/').last.trim() + "_" + Uuid().v4() + fileName.ext!;
+          "${fileName.split('/').last.trim()}_${const Uuid().v4()}.${fileName.ext!}";
       final filePath = '$_localPath/$filename';
       final fileDef = File(filePath);
       await fileDef.create(recursive: true);
